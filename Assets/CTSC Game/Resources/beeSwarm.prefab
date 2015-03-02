@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: beeSwarm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 52.2410049, y: 152.809311, z: 188.039154}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5aaa838d6afa4706a173342255d7d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentCount: 1500
+  spawnRadius: 5
+  swarmRadius: 10
+  speed: 20
+  maxSteer: .100000001
+  neighborhoodRadius: 8
+  separation: .200000003
+  separationWeight: .5
+  alignmentWeight: 1
+  cohesionWeight: 1
+  boundsWeight: .5
+  swarmFocus: {fileID: 400000, guid: 4071061a21fe8464fbe28d52450f38d0, type: 2}
+  lookAtFocus: 1
+  lookAtDamping: .5
+  prefab: {fileID: 11400000, guid: 3932e75f2f2ebed4398330045d228a55, type: 2}
+  agents: []
+  multithreaded: 0
+  numThreads: 4
+  splitTasksAcrossFrames: 1
+  deltaTime: 0
+  position: {x: 0, y: 0, z: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

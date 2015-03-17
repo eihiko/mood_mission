@@ -15,17 +15,19 @@ public class AnimationEx : MonoBehaviour {
 	public float rotation = 0.0f;
 	Transform This;
 	bool holdRot, strafing;
-
+	
 	// Use this for initialization
 	void Start () {
 		holdRot = false;
 		animator = GetComponent<Animator> ();
-		StartCoroutine ("Animate");
-		This = transform;
+		//StartCoroutine ("Animate");
+		//This = transform;
+		
 	}
-
+	
 	IEnumerator Animate(){
-		setMoveSpeed (0.5f);
+		return null;
+		/*setMoveSpeed (0.5f);
 		yield return new WaitForSeconds(walkTime);
 		setMoveSpeed (1.5f);
 		yield return new WaitForSeconds (runTime);
@@ -79,21 +81,24 @@ public class AnimationEx : MonoBehaviour {
 		yield return new WaitForSeconds (runTime);
 		setMoveSpeed (-.5f);
 		yield return new WaitForSeconds (walkTime);
-		setMoveSpeed (0.0f);
+		setMoveSpeed (0.0f);*/
 	}
-
+	
 	public void setRotation(float rot){
 		transform.localEulerAngles = new Vector3(0f, rot, 0f);
 		//This.rotation.Set(This.rotation.x, rot, This.rotation.z, This.rotation.w);
 	}
-
+	
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (holdRot && !strafing){
-		    setRotation (rotation);
+			//setRotation (rotation);
 		}
+		//Debug.Log("Has bool is: " + animator.GetBool("hasLimp"));
+		//if(animator.get
+		//Debug.Log ("current movespeed is: " + animator.GetFloat(Animator.StringToHash("MoveSpeed")));
 	}
-
+	
 	public void setYaw(float yaw){
 		animator.SetFloat("Yaw", yaw);
 	}

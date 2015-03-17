@@ -86,6 +86,9 @@ public class MissionManager : MonoBehaviour {
 			//Player will not be able to complete any missions until story begins
 			foreach (GameObject mission in missionObjects){
 				mission.SetActive(false);
+				foreach(Transform child in mission.transform){
+					child.gameObject.SetActive(false);
+				}
 			}
 			Debug.Log ("Initialized and disabled all missions.");
 		}
@@ -109,6 +112,7 @@ public class MissionManager : MonoBehaviour {
 		if (currMission == null) {
 			Debug.Log ("Game is completed!");
 		} else if (!currMission.getIsComplete ()) {
+			Debug.Log ("Executing Mission.");
 			currMission.execute();
 		} else {
 			Debug.Log ("Player has completed: " + currMission.ToString ());
@@ -185,7 +189,7 @@ public class MissionManager : MonoBehaviour {
 					}
 					currTransform = missionObjects[(int)type].transform;
 					foreach (Transform child in currTransform){
-					Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;

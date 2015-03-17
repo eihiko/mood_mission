@@ -8,7 +8,7 @@ public class Mission : MonoBehaviour, IComparable<Mission> {
 
 	private MissionManager.MissionType missionType;
 	private int missionID;
-	private GameObject[] missionObjects;
+	private List<GameObject> missionObjects;
 	private bool isCurrentMission;
 	private bool isComplete;
 
@@ -39,8 +39,12 @@ public class Mission : MonoBehaviour, IComparable<Mission> {
 
 	private void enableMissionEvent(MissionManager.EventType eventType){
 		Debug.Log (eventType.ToString ());
-		if (eventTransforms[eventType].gameObject.activeSelf == false){
-			eventTransforms[eventType].gameObject.SetActive(true);
+		if (eventType != MissionManager.EventType.NULL) {
+			if (eventTransforms [eventType].gameObject.activeSelf == false) {
+				eventTransforms [eventType].gameObject.SetActive (true);
+			}
+		} else {
+			isComplete = true;
 		}
 	}
 
@@ -49,14 +53,14 @@ public class Mission : MonoBehaviour, IComparable<Mission> {
 			eventTransforms[eventType].gameObject.SetActive(false);
 		}
 	}
-
-	//Bugs that lead it to set isComplete = true very quick.
+	
 	public void execute(){
 		MissionManager.EventType eventType = getCurrentMissionEvent ();
 		if (eventType != MissionManager.EventType.NULL) {
 			enableMissionEvent(eventType);
 		} else {
 			isComplete = true;
+			Debug.Log ("Mission is complete via execute method.");
 		}
 	}
 
@@ -75,9 +79,11 @@ public class Mission : MonoBehaviour, IComparable<Mission> {
 	private MissionManager.EventType getCurrentMissionEvent(){
 		foreach (KeyValuePair<MissionManager.EventType, bool> eventType in missionEvents) {
 			if (!eventType.Value){
+				Debug.Log("Current mission event is: " + eventType.ToString());
 				return eventType.Key;
 			}
 		}
+		Debug.Log ("Current mission event is null type. Mission finished.");
 		return MissionManager.EventType.NULL;
 	}
 

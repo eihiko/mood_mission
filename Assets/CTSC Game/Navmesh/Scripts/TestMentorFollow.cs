@@ -12,6 +12,7 @@ public class TestMentorFollow : MonoBehaviour {
 	//An arraylist to store the agent destinations
 	private Vector3[] agentDests;
 	private int arrIndex;
+	private bool lockTorkana;
 	public int numDests;
 	void Start() {
 		agentDests = new Vector3[numDests];
@@ -28,6 +29,7 @@ public class TestMentorFollow : MonoBehaviour {
 		arrIndex = 0;
 		agent.SetDestination(agentDests[0]);
 
+		lockTorkana = false;
 		previousLocation = transform.position;
 	}
 	void Update() {
@@ -46,8 +48,10 @@ public class TestMentorFollow : MonoBehaviour {
 			return;
 		}
 
-		if ((transform.position - player.position).magnitude < 8)
+		if (((transform.position - player.position).magnitude < 8.0f && !lockTorkana) || (lockTorkana && 
+		                                                                (transform.position - player.position).magnitude < 7.5f))
 		{
+			lockTorkana = false;
 			agent.SetDestination(agentDests[arrIndex]);
 			//Debug.Log("Distance between agent and goal is: " + (transform.position - agentDests[arrIndex]).magnitude);
 			Debug.Log("Distance between agent and player is: " + (transform.position - player.position).magnitude);
@@ -57,11 +61,12 @@ public class TestMentorFollow : MonoBehaviour {
 				agent.SetDestination(agentDests[++arrIndex]);
 			}
 		}
-		else 
+		else
 		{
 			Debug.Log("When distance is >= 8: " + (transform.position - player.position).magnitude);
 			agent.SetDestination(transform.position);
 			animationEx.setMoveSpeed(0.0f);
+			lockTorkana = true;
 		}
 		velocity = ((transform.position - previousLocation).magnitude) / Time.deltaTime;
 		Debug.Log ("Velocity is: " + velocity);
@@ -73,7 +78,7 @@ public class TestMentorFollow : MonoBehaviour {
 			//currentAnimation.animation.CrossFade("attack");
 		}
 		//Else, set the movespeed to a value that will trigger the walking animation
-		else {
+		else if (velocity >= 1.0f){
 			animationEx.setMoveSpeed (0.7f);
 		}
 

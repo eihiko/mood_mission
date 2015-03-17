@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class AnimationEx : MonoBehaviour {
-	Animator animator;
+	public Animator animator;
 	public float walkTime = 10.0f;
 	public float runTime = 5.0f;
 	public float jumpTime = 1.0f;

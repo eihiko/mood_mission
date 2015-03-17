@@ -4,26 +4,34 @@ using System.Collections;
 public class TestMentorFollow : MonoBehaviour {
 
 	public Transform player;
+	public Transform pathPointers;
 	private NavMeshAgent agent;
 	private AnimationEx animationEx;
 	private Vector3 previousLocation;
 	private float velocity;
 	//An arraylist to store the agent destinations
-	private Vector3[] agentDests = new Vector3[3];
-	private int arrIndex = 0;
+	private Vector3[] agentDests;
+	private int arrIndex;
+	public int numDests;
 	void Start() {
+		agentDests = new Vector3[numDests];
 		agent = GetComponent<NavMeshAgent>();
 		animationEx = GetComponent<AnimationEx> ();
-		//Set the first destination to be the hill above the bees
-		agentDests[0] = new Vector3(-581.08f, -11.03f, 243.62f);
-		//Second destination is the doctor's house
-		agentDests[1] = new Vector3(-359.8f, -9.13f, 224.14f);
-		//Third destination is the city
-		agentDests[2] = new Vector3(-487.47f, 11.69f, 140.24f);
+		arrIndex = 0;
+		//Iterate over the children of the pathPointers object
+		foreach (Transform pointer in pathPointers) 
+		{
+			agentDests[arrIndex++] = pointer.position;
+		}
+
+		numDests = arrIndex;
+		arrIndex = 0;
 		agent.SetDestination(agentDests[0]);
+
 		previousLocation = transform.position;
 	}
 	void Update() {
+
 		/*RaycastHit hit;
 		if (Input.GetMouseButtonDown(0)) {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -32,43 +40,45 @@ public class TestMentorFollow : MonoBehaviour {
 			Debug.Log ("Destination is: (" + hit.point.x + ", " + hit.point.y + ", " + hit.point.z + ")");
 			
 		}*/
+		animationEx.setHasLimp (true);
+		if (arrIndex == numDests) {
+			animationEx.setMoveSpeed(0.0f);
+			return;
+		}
 
-
-
-
-		if ((transform.position - player.position).magnitude < 10)
+		if ((transform.position - player.position).magnitude < 8)
 		{
 			agent.SetDestination(agentDests[arrIndex]);
+			//Debug.Log("Distance between agent and goal is: " + (transform.position - agentDests[arrIndex]).magnitude);
+			Debug.Log("Distance between agent and player is: " + (transform.position - player.position).magnitude);
 			//Check if the current agent's position is close enough to the previously set destination
-			if ((transform.position - agentDests[arrIndex]).magnitude <= 0.5 && arrIndex < 2) {
-				Debug.Log("Got close enough to destination");
+			if ((transform.position - agentDests[arrIndex]).magnitude <= 0.5 && arrIndex < numDests - 1) {
+
 				agent.SetDestination(agentDests[++arrIndex]);
 			}
 		}
 		else 
 		{
+			Debug.Log("When distance is >= 8: " + (transform.position - player.position).magnitude);
 			agent.SetDestination(transform.position);
-
+			animationEx.setMoveSpeed(0.0f);
 		}
 		velocity = ((transform.position - previousLocation).magnitude) / Time.deltaTime;
+		Debug.Log ("Velocity is: " + velocity);
 		//Check if velocity low enough to play the idle animation (so he doesn't walk in place)
-		if(velocity <= 0.5)
+		if(arrIndex == numDests || velocity < 0.1)
 		{
 
 			animationEx.setMoveSpeed(0.0f);
 			//currentAnimation.animation.CrossFade("attack");
 		}
-		//Walking animation if the agent's velocity is between 0.5 and 1.0
-		else if(velocity > 0.5 && velocity <= 1.0) {
-			animationEx.setMoveSpeed (0.9f);
+		//Else, set the movespeed to a value that will trigger the walking animation
+		else {
+			animationEx.setMoveSpeed (0.7f);
 		}
-		//Running animation if the agent's speed is greater than 1.0
-		else
-		{
 
-			animationEx.setMoveSpeed (0.9f);
-		}
 		//animationEx.setMoveSpeed (velocity);
 		previousLocation = transform.position;
+
 	}
 }

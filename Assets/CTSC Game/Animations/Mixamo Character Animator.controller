@@ -1096,6 +1096,10 @@ Transition:
     m_ConditionEvent: MoveSpeed
     m_EventTreshold: 1
     m_ExitTime: .899999976
+  - m_ConditionMode: 2
+    m_ConditionEvent: HasLimp
+    m_EventTreshold: 1
+    m_ExitTime: .899999976
   m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
@@ -1238,7 +1242,7 @@ Transition:
     m_ExitTime: .846938789
   - m_ConditionMode: 4
     m_ConditionEvent: MoveSpeed
-    m_EventTreshold: .100000001
+    m_EventTreshold: .200000003
     m_ExitTime: .846938789
   m_Atomic: 1
   m_Solo: 0
@@ -1389,7 +1393,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: walking
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 2c3761ec1602f384b9d895a7d1eb44fc, type: 3}
@@ -1479,10 +1483,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: limping
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: f72b3b43a1ee37e4fbd957a8df6150cf, type: 3}
+  - {fileID: 7400000, guid: 28787ba5b635440438c83c6f0375f7d2, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 564, y: -36, z: 0}
   m_IKOnFeet: 0

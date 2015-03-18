@@ -29,35 +29,16 @@ public class Wander : MonoBehaviour {
 		//Manually calculate the velocity of the agent
 		velocity = ((transform.position - previousLocation).magnitude) / Time.deltaTime;
 
-		if((transform.position - player.position).magnitude <= innerRadius && 
-		   (previousLocation - player.position).magnitude > (transform.position - player.position).magnitude)
-		{
-			//calculateRandomPoint();
-			//Reverse the direction of the agent if it gets too close to the player
-			/*Vector3 tempDestination = new Vector3(((transform.position.x - player.position.x) + transform.position.x),
-			                                      ((transform.position.y - player.position.y) + transform.position.y),
-			                                      transform.position.z);
-			NavMeshHit hit;
-			NavMesh.SamplePosition(tempDestination, out hit, outerRadius, 1);
-			Vector3 newDestination = hit.position;
-			agent.SetDestination(newDestination);*/
 
-
-
-
-			//Instead of turning around when too close to the player, agent will try to walk around the player
-			//Vector3 finalDestination = agent.destination;
-
-		}
 		//Check if velocity low enough to play the idle animation (so he doesn't walk in place)
-		if(velocity <= 0.5)
+		if(velocity <= 0.1)
 		{
 			animationEx.setMoveSpeed(0.0f);
 			//currentAnimation.animation.CrossFade("idle");
 		}
 		else
 		{
-			animationEx.setMoveSpeed(1.0f);
+			animationEx.setMoveSpeed(0.7f);
 			//currentAnimation.animation.CrossFade("walk");
 		}
 		previousLocation = transform.position;

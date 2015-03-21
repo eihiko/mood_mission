@@ -24,7 +24,7 @@ NavMeshLayers:
     cost: 1
     editType: 3
   User Layer 2:
-    name: 
+    name: city
     cost: 1
     editType: 3
   User Layer 3:

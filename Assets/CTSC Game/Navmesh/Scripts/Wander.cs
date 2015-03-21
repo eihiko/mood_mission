@@ -9,7 +9,7 @@ public class Wander : MonoBehaviour {
 	public float stoppingDistance;
 	public bool hasLimp;
 	private NavMeshAgent agent;
-	private AnimationEx animationEx;
+	private AnimationEngine animationEngine;
 	//public Animation currentAnimation;
 	private Vector3 previousLocation;
 	private float velocity;
@@ -18,8 +18,8 @@ public class Wander : MonoBehaviour {
 		//Initialize some values
 		previousLocation = transform.position;
 		agent = GetComponent<NavMeshAgent>();
-		animationEx = GetComponent<AnimationEx> ();
-		animationEx.setHasLimp (hasLimp);
+		animationEngine = GetComponent<AnimationEngine> ();
+		animationEngine.setHasLimp (hasLimp);
 		InvokeRepeating("calculateRandomPoint", 0, updateTime);
 
 	}
@@ -33,12 +33,12 @@ public class Wander : MonoBehaviour {
 		//Check if velocity low enough to play the idle animation (so he doesn't walk in place)
 		if(velocity <= 0.1)
 		{
-			animationEx.setMoveSpeed(0.0f);
+			animationEngine.setMoveSpeed(0.0f);
 			//currentAnimation.animation.CrossFade("idle");
 		}
 		else
 		{
-			animationEx.setMoveSpeed(0.7f);
+			animationEngine.setMoveSpeed(0.7f);
 			//currentAnimation.animation.CrossFade("walk");
 		}
 		previousLocation = transform.position;

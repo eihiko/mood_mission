@@ -6,7 +6,7 @@ public class TestMentorFollow : MonoBehaviour {
 	public Transform player;
 	public Transform pathPointers;
 	private NavMeshAgent agent;
-	private AnimationEx animationEx;
+	private AnimationEngine animationEngine;
 	private Vector3 previousLocation;
 	private float velocity;
 	//An arraylist to store the agent destinations
@@ -17,7 +17,7 @@ public class TestMentorFollow : MonoBehaviour {
 	void Start() {
 		agentDests = new Vector3[numDests];
 		agent = GetComponent<NavMeshAgent>();
-		animationEx = GetComponent<AnimationEx> ();
+		animationEngine = GetComponent<AnimationEngine> ();
 		arrIndex = 0;
 		//Iterate over the children of the pathPointers object
 		foreach (Transform pointer in pathPointers) 
@@ -42,9 +42,9 @@ public class TestMentorFollow : MonoBehaviour {
 			Debug.Log ("Destination is: (" + hit.point.x + ", " + hit.point.y + ", " + hit.point.z + ")");
 			
 		}*/
-		animationEx.setHasLimp (true);
+		animationEngine.setHasLimp (true);
 		if (arrIndex == numDests) {
-			animationEx.setMoveSpeed(0.0f);
+			animationEngine.setMoveSpeed(0.0f);
 			return;
 		}
 
@@ -65,7 +65,7 @@ public class TestMentorFollow : MonoBehaviour {
 		{
 			Debug.Log("When distance is >= 8: " + (transform.position - player.position).magnitude);
 			agent.SetDestination(transform.position);
-			animationEx.setMoveSpeed(0.0f);
+			animationEngine.setMoveSpeed(0.0f);
 			lockTorkana = true;
 		}
 		velocity = ((transform.position - previousLocation).magnitude) / Time.deltaTime;
@@ -74,15 +74,15 @@ public class TestMentorFollow : MonoBehaviour {
 		if(arrIndex == numDests || velocity < 0.1)
 		{
 
-			animationEx.setMoveSpeed(0.0f);
+			animationEngine.setMoveSpeed(0.0f);
 			//currentAnimation.animation.CrossFade("attack");
 		}
 		//Else, set the movespeed to a value that will trigger the walking animation
 		else if (velocity >= 1.0f){
-			animationEx.setMoveSpeed (0.7f);
+			animationEngine.setMoveSpeed (0.7f);
 		}
 
-		//animationEx.setMoveSpeed (velocity);
+		//animationEngine.setMoveSpeed (velocity);
 		previousLocation = transform.position;
 
 	}

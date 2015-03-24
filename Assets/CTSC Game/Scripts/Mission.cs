@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Mission : MonoBehaviour, IComparable<Mission> {
+public class Mission : IComparable<Mission> {
 
 	private MissionManager.MissionType missionType;
 	private int missionID;

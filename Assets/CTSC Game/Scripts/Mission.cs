@@ -39,6 +39,7 @@ public class Mission : MonoBehaviour, IComparable<Mission> {
 
 	private void enableMissionEvent(MissionManager.EventType eventType){
 		Debug.Log (eventType.ToString ());
+
 		if (eventType != MissionManager.EventType.NULL) {
 			if (eventTransforms [eventType].gameObject.activeSelf == false) {
 				eventTransforms [eventType].gameObject.SetActive (true);

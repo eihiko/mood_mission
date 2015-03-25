@@ -2,6 +2,10 @@
 using System.Collections;
 
 public class AnimationEngine : MonoBehaviour {
+	//types of animations possible for this engine
+	public enum Type { WALK, IDLE, LIMP, STRAFERIGHT,
+		STRAFELEFT, WAVEHAND, WAVEARMS, JUMP, 
+		RUN, SIT, TURN }
 	public Animator animator;
 	public float walkTime = 10.0f;
 	public float runTime = 5.0f;

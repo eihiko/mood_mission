@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MissionAction {
+public interface MissionAction {
 
 	//MissionAction constructAction(ActionType type);
 
 	// execute this action, return true when success
-	bool execute(){
-		return true;
-	}
+	bool execute ();
 
 	// Update is called once per frame
-	void Update (){}
+	//void Update ();
 }

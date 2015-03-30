@@ -15,9 +15,15 @@ public class MissionEvent : MonoBehaviour {
 	private bool isComplete = false;
 	public GameObject Player;
 	public GameObject Torkana;
-	public GameObject TorkanaHouse;
+
+	//mission 1 objects
+	public GameObject TorkanaHouse, TorkanaSitPos, inFrontTorkanaDoor,
+					inFrontTorkanaHouse;
+	public GameObject Candle, Key, Match;
+	public GameObject MentorBasement, Chest, ChestOpen, Supplies;
+
 	private AudioClip currentAudio;
-	private UIPanel currentUI;
+	private GameObject currentUI;
 	private string currentBrief;
 	private MissionAction currentAction;
 
@@ -53,19 +59,19 @@ public class MissionEvent : MonoBehaviour {
 			//Torkana must TALK(audio, guiToShow)
 			actionQ.Enqueue(new TalkAction(Torkana, currentAudio, currentUI));
 			//Torkana must TURN(faceHouse)
-			actionQ.Enqueue(new TurnAction(TorkanaHouse));
+			actionQ.Enqueue(new TurnAction(Torkana, TorkanaHouse));
 			//Torkana must MOVE(currLoc, adjToHouse)
 			actionQ.Enqueue(new MoveAction(Torkana, TorkanaHouse, AnimationEngine.Type.LIMP));
 			//Torkana must ENTER(mentorHouse)
 			actionQ.Enqueue(new ActiveAction(Torkana, false));
 			//Torkana must SIT(tableInHouse) before Player enters
-			actionQ.Enqueue(new MoveAction(Torkana, TorkanaSitPos)); //Pair this with a sit when sitting
+			//actionQ.Enqueue(new MoveAction(Torkana, TorkanaSitPos)); //Pair this with a sit when sitting
 			actionQ.Enqueue(new SitAction(Torkana, TorkanaSitPos));
+			actionQ.Enqueue(new TurnAction(Torkana, inFrontTorkanaDoor));
 			//Player must UNFREEZE
 			actionQ.Enqueue(new FreezeAction(Player, false));
 			//Player must ENTER(mentorHouse)
 			actionQ.Enqueue(new EnterAction(Player, TorkanaHouse));
-			MissionEvent.execute(actionQ);
 			break;
 		case MissionManager.EventType.ENTER_GUIDES:
 			//Player must FREEZE
@@ -83,7 +89,7 @@ public class MissionEvent : MonoBehaviour {
 			//Gui must ACTIVE(true, brief)
 			actionQ.Enqueue(new ActiveAction(currentUI, true, currentBrief));
 			//Player must ENTER(mentorBasement)
-			actionQ.Enqueue(new EnterAction(MentorBasement));
+			actionQ.Enqueue(new EnterAction(Player, MentorBasement));
 			break;
 		case MissionManager.EventType.ENTER_GUIDE_BASEMENT:
 			//Candle must ACTIVE(true)
@@ -99,7 +105,7 @@ public class MissionEvent : MonoBehaviour {
 			break;
 		case MissionManager.EventType.RELIGHT_CANDLE:
 			//Player must FIND(Match) to light candle (GRAB?)
-			actionQ.Enqueue(new GrabAction(Match));
+			actionQ.Enqueue(new GrabAction(Player, Match));
 			actionQ.Enqueue(new ActiveAction(Candle, true));
 			//Gui must ACTIVE(true, brief)
 			actionQ.Enqueue(new ActiveAction(currentUI, true, currentBrief));
@@ -127,7 +133,7 @@ public class MissionEvent : MonoBehaviour {
 			break;
 		case MissionManager.EventType.MEET_GUIDE:
 			//Player must MOVE(currLoc, TorkanaLoc)
-			actionQ.Enqueue(new MoveAction(Player, TorkanaLoc));
+			actionQ.Enqueue(new MoveAction(Player, Torkana));
 			//Torkana must TALK(audio, guiToShow)
 			actionQ.Enqueue(new TalkAction(Torkana, currentAudio, currentUI));
 			//Torkana must ENTER(Forest)
@@ -136,7 +142,7 @@ public class MissionEvent : MonoBehaviour {
 			//Torkana must STAND(inFrontOfHouse)
 			actionQ.Enqueue(new StandAction(Torkana, inFrontTorkanaHouse));
 			//Player must ENTER(Forest)
-			actionQ.Enqueue(new EnterAction(Player, Forest));
+			actionQ.Enqueue(new EnterAction(Player, inFrontTorkanaHouse));
 			break;
 		//Mission Two events
 		case MissionManager.EventType.LEAVE_GUIDES:
@@ -232,6 +238,12 @@ public class MissionEvent : MonoBehaviour {
 		//About 1/3 way through missions...
 		}
 
+		if (this.execute (actionQ)) {
+			OnComplete ();
+		} else {
+			Debug.LogError("Mission execution did not go as planned...");
+		}
+		
 		//This is an easy example of how to complete this event
 //		if(c.tag == "Player"){
 //			setIsComplete (true);
@@ -248,23 +260,26 @@ public class MissionEvent : MonoBehaviour {
 	
 	//Executes actions provided the action queue
     //Each action queue represents a mission event
-	void execute(Queue<MissionAction> actionQ){
+	bool execute(Queue<MissionAction> actionQ){
 		MissionAction currAction;
 		//begin the mission event with its first action
 		if (actionQ.Count > 0) {
 			currAction = actionQ.Dequeue ();
+		} else {
+			return false;
 		}
 				bool isComplete = false;
 		while (actionQ.Count >= 0 && currentAction != null) {
 			if (actionQ.Count == 0 && isComplete){
-				currentAction = null;
+				currAction = null;
 			}
 			//Action runs its own loop until it's completed
 			//then execute will return true if successfully completed
 			if(currAction.execute()){
 				currAction = actionQ.Dequeue();
 			} else { //Otherwise, we can't continue the story.
-			    return false;
+			    //may want to change this later to keep trying action
+				return false;
 		    }
 		}
 		return true;

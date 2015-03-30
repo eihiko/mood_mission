@@ -48,8 +48,8 @@ public class TestMentorFollow : MonoBehaviour {
 			return;
 		}
 
-		if (((transform.position - player.position).magnitude < 8.0f && !lockTorkana) || (lockTorkana && 
-		                                                                (transform.position - player.position).magnitude < 7.5f))
+		if (((transform.position - player.position).magnitude < 8.0f && !lockTorkana)
+		    || (lockTorkana && (transform.position - player.position).magnitude < 7.5f))
 		{
 			lockTorkana = false;
 			agent.SetDestination(agentDests[arrIndex]);

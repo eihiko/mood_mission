@@ -6,6 +6,8 @@ using System.Linq;
 
 public class Mission : IComparable<Mission> {
 
+//	public string FILE_NAME = "Assets\CTSC Game\StoryDocuments/";
+
 	private MissionManager.MissionType missionType;
 	private int missionID;
 	private List<GameObject> missionObjects;
@@ -19,6 +21,7 @@ public class Mission : IComparable<Mission> {
 	
 	// Use this for initialization
 	void Start () {
+//		ReadStringFromFile (FILE_NAME);
 	}
 	
 	public Mission(int missionID, MissionManager.MissionType missionType,

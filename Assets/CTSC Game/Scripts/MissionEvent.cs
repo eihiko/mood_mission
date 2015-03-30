@@ -143,6 +143,7 @@ public class MissionEvent : MonoBehaviour {
 			actionQ.Enqueue(new StandAction(Torkana, inFrontTorkanaHouse));
 			//Player must ENTER(Forest)
 			actionQ.Enqueue(new EnterAction(Player, inFrontTorkanaHouse));
+			//Checkpoint to reflect with gui and input, write data to database
 			break;
 		//Mission Two events
 		case MissionManager.EventType.LEAVE_GUIDES:
@@ -177,6 +178,7 @@ public class MissionEvent : MonoBehaviour {
 			//Player must MOVE(currLoc, adjToDoctorsHouse)
 			//Player must ENTER(DoctorsHouse)
 			//Torkana must STAND(adjToDoctor) in the house
+			//Checkpoint to reflect with gui and input, write data to database
 			break;
 		//Mission Three events
 		case MissionManager.EventType.ENTER_DOCTORS:
@@ -215,7 +217,7 @@ public class MissionEvent : MonoBehaviour {
 			//Torkana must TALK(audio, noGui)
 			//Player must MOVE(currLoc, adjToDoctor)
 			//Doctor must TALK(audio, guiToShow)
-		    //Player must GIVE(Herb, Doctor)
+		        //Player must GIVE(Herb, Doctor)
 			//Doctor must TALK(audio, guiToShow)
 				break;
 		case MissionManager.EventType.PLAYER_EXAM:
@@ -229,6 +231,7 @@ public class MissionEvent : MonoBehaviour {
 			//Torkana must MOVE(currLoc, adjToDoor)
 			//Torkana must ENTER(Forest)
 			//Torkana must ACTIVE(false)
+			//Checkpoint to reflect with gui and input, write data to database
 			break;
 		//Mission 4 Actions
 		case MissionManager.EventType.LEAVE_FOREST:

@@ -65,11 +65,21 @@ public class MissionManager : MonoBehaviour {
 	public EventHandler eventHandler;
 	public GameObject UISet;
 	public GameObject[] missionObjects;
-	private bool firstPlay = true;
+	public GameObject Player;
+	public GameObject Torkana;
+
+	public GameObject currentUI;
+
+	//mission 1 objects
+	public GameObject TorkanaHouse, TorkanaSitPos, inFrontTorkanaDoor,
+	inFrontTorkanaHouse;
+	public GameObject Candle, Key, Match;
+	public GameObject MentorBasement, ChestClosed, ChestOpen, Supplies;
 
 	//UI indexed by name.
 	//These should be unique to each mission in the future.
 	private	Dictionary<string, GameObject> uiSet = new Dictionary<string, GameObject>(); 
+	private bool firstPlay = true;
 
 	/**
 	 * A mission is a level in the game.

@@ -17,6 +17,7 @@ public class EnterAction : MissionAction {
 	}
 	
 	public bool execute(){
+		Debug.Log ("Executing enter action");
 		while(!collisionScript.isEntered){}
 		return true;
 	}

@@ -24,6 +24,8 @@ public class TurnAction : MissionAction {
 	}
 	
 	public bool execute(){
+		Debug.Log ("Executing turn action");
+
 		//this will work if the z axes are aligned similarly
 		turns.transform.LookAt (to.transform.position);
 

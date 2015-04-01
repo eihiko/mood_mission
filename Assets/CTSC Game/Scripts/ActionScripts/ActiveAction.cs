@@ -46,6 +46,7 @@ public class ActiveAction : MissionAction {
 	}
 
 	public bool execute(){
+		Debug.Log ("Executing active action");
 		if (!gui) {
 			thing.SetActive (active);
 		} else {

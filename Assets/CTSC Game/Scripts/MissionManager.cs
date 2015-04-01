@@ -120,12 +120,12 @@ public class MissionManager : MonoBehaviour {
 	void Update () {
 		Mission currMission = getCurrentMission();
 		if (currMission == null) {
-			//Debug.Log ("Game is completed!");
+			Debug.Log ("Game is completed!");
 		} else if (!currMission.getIsComplete ()) {
-			//Debug.Log ("Executing Mission.");
+			Debug.Log ("Executing Mission.");
 			currMission.execute();
 		} else {
-			//Debug.Log ("Player has completed: " + currMission.ToString ());
+			Debug.Log ("Player has completed: " + currMission.ToString ());
 			missionHistory[currMission] = true;
 		}
 	}
@@ -156,6 +156,7 @@ public class MissionManager : MonoBehaviour {
 		 * that is not complete. That will be the next mission to complete.
 		 */
 		foreach(KeyValuePair<Mission, bool> mission in missionHistory){
+			Debug.Log("Current mission id is: " + mission.Key.getID());
 			GameObject currMission = missionObjects[mission.Key.getID()];
 			if (!mission.Value) {
 				if(currMission.activeSelf == false){

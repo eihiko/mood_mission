@@ -41,6 +41,7 @@ public class MissionEvent : MonoBehaviour {
 		//Determine what to do based on the current mission
 		mission = mm.getCurrentMission ();
 		Queue<MissionAction> actionQ = new Queue<MissionAction>();
+		Debug.Log ("queueing actions for next event");
 		switch (eventType){
 		//Mission one events
 		case MissionManager.EventType.INTRO:
@@ -235,7 +236,10 @@ public class MissionEvent : MonoBehaviour {
 		//About 1/3 way through missions...
 		}
 
+		Debug.Log ("done queueing actions");
+
 		if (this.execute (actionQ)) {
+			Debug.Log ("done executing actions, event complete");
 			OnComplete ();
 		} else {
 			Debug.LogError("Mission execution did not go as planned...");
@@ -258,6 +262,7 @@ public class MissionEvent : MonoBehaviour {
 	//Executes actions provided the action queue
     //Each action queue represents a mission event
 	bool execute(Queue<MissionAction> actionQ){
+		Debug.Log ("Executing mission actions for this event");
 		MissionAction currAction;
 		//begin the mission event with its first action
 		if (actionQ.Count > 0) {
@@ -265,7 +270,8 @@ public class MissionEvent : MonoBehaviour {
 		} else {
 			return false;
 		}
-				bool isComplete = false;
+
+		bool isComplete = false;
 		while (actionQ.Count >= 0 && currentAction != null) {
 			if (actionQ.Count == 0 && isComplete){
 				currAction = null;
@@ -273,12 +279,14 @@ public class MissionEvent : MonoBehaviour {
 			//Action runs its own loop until it's completed
 			//then execute will return true if successfully completed
 			if(currAction.execute()){
+				Debug.Log("Dequeueing last action, it is complete");
 				currAction = actionQ.Dequeue();
 			} else { //Otherwise, we can't continue the story.
 			    //may want to change this later to keep trying action
 				return false;
 		    }
 		}
+		Debug.Log ("Done executing mission actions");
 		return true;
 	}
 

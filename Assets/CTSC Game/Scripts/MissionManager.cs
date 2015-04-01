@@ -18,7 +18,7 @@ public class MissionManager : MonoBehaviour {
 		FIND_KEY, OPEN_CHEST, GATHER_INITIAL_SUPPLIES, MEET_GUIDE, LEAVE_GUIDES, 
 		//Second mission in Forest (6 events)
 		//**Losing the map triggers minimap to disappear**
-		FOLLOW_GUIDE, ENCOUNTER_BEES, LOSE_MAP, TOLERATE_BEES, RETRIEVE_MAP, 
+		FOLLOW_GUIDE, LOSE_MAP, ENCOUNTER_BEES, TOLERATE_BEES, RETRIEVE_MAP, 
 		GO_TO_DOCTORS,
 		//Third Mission at Doctor's Office (10 events)
 		ENTER_DOCTORS, DOCTOR_INTRO, GUIDE_EXAM, REACH_GARDEN, TOLERATE_BEES_AGAIN,
@@ -188,6 +188,7 @@ public class MissionManager : MonoBehaviour {
 					Debug.Log (((MissionManager.EventType)i).ToString ());
 					}
 					currTransform = missionObjects[(int)type].transform;
+				    //Add all the event transforms for this mission to its event dictionary
 					foreach (Transform child in currTransform){
 						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
@@ -260,5 +261,5 @@ public class MissionManager : MonoBehaviour {
 			missionHistory.Add(currMission, false);
 			events.Clear();
 		}
-	}
+	} 
 }

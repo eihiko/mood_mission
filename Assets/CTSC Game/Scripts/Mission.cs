@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Mission : MonoBehaviour, IComparable<Mission> {
+public class Mission : IComparable<Mission> {
+
+//	public string FILE_NAME = "Assets\CTSC Game\StoryDocuments/";
 
 	private MissionManager.MissionType missionType;
 	private int missionID;
@@ -19,6 +21,7 @@ public class Mission : MonoBehaviour, IComparable<Mission> {
 	
 	// Use this for initialization
 	void Start () {
+//		ReadStringFromFile (FILE_NAME);
 	}
 	
 	public Mission(int missionID, MissionManager.MissionType missionType,
@@ -39,6 +42,9 @@ public class Mission : MonoBehaviour, IComparable<Mission> {
 
 	private void enableMissionEvent(MissionManager.EventType eventType){
 		//Debug.Log (eventType.ToString ());
+
+		Debug.Log (eventType.ToString ());
+
 		if (eventType != MissionManager.EventType.NULL) {
 			if (eventTransforms [eventType].gameObject.activeSelf == false) {
 				eventTransforms [eventType].gameObject.SetActive (true);

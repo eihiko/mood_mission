@@ -49,36 +49,41 @@ public class PlayerStatusBars : MonoBehaviour {
 	{
 
 		int counter = 0;
-		while (counter < damage) {
+
 			if (!onCD && currentHealth > 0)
 			{
-				StartCoroutine(CoolDownDmg());
-				CurrentHealth -= 1;
+				StartCoroutine(CoolDownDmg(damage, true));
 			}
-			counter++;
-		}
+
 	}
 
 	public void GainHealth (int health) 
 	{
 		int counter = 0;
-		while(counter < health) {
-			if (!onCD && currentHealth < maxHealth)
-			{
-				StartCoroutine(CoolDownDmg());
+		if (!onCD && currentHealth < maxHealth)
+		{
+				StartCoroutine(CoolDownDmg(health, false));
+		}
+
+	}
+	IEnumerator CoolDownDmg(int counter, bool isDamage) 
+	{
+		while(counter > 0) {
+			onCD = true;
+			if(isDamage && currentHealth > 0) {
+
+				CurrentHealth -= 1;
+			}
+			else if(!isDamage && currentHealth < maxHealth) {
 				CurrentHealth += 1;
 			}
-			counter++;
+			yield return new WaitForSeconds (damageCooldown);
+			onCD = false;
+			counter--;
 		}
 	}
-	IEnumerator CoolDownDmg() 
-	{
-		onCD = true;
-		yield return new WaitForSeconds (damageCooldown);
-		onCD = false;
-	}
 
-	void OnTriggerStay(Collider other) 
+	/*void OnTriggerStay(Collider other) 
 	{
 		if(other.gameObject.tag == "Player")
 		{
@@ -86,11 +91,11 @@ public class PlayerStatusBars : MonoBehaviour {
 			if (!onCD && currentHealth > 0)
 			{
 
-				StartCoroutine(CoolDownDmg());
+				StartCoroutine(CoolDownDmg(0));
 				CurrentHealth -= 1;
 			}
 		}
-	}
+	}*/
 
 
 	void HandleHealth()

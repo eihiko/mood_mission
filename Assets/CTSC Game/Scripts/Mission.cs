@@ -122,7 +122,7 @@ public class Mission : IComparable<Mission> {
 						isComplete = false;
 					}
 				}
-				isComplete = true;
+				//isComplete = true;
 			}
 		}
 		return isComplete;

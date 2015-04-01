@@ -41,6 +41,7 @@ public class MoveAction : MissionAction {
 	//return true when "move" is adjacent to "to" (other npc or waypoint)
 	public bool execute(){
 		//check type for more complex moves
+		Debug.Log ("Executing move action");
 
 		//animate the npc
 		if (animate) {

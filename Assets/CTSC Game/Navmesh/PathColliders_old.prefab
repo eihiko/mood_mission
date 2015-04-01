@@ -1197,7 +1197,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 494438}
   m_Layer: 0
-  m_Name: PathColliders
+  m_Name: PathColliders_old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1473,7 +1473,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194338}
-  m_LocalRotation: {x: -.0356701501, y: .779634476, z: .0258983299, w: -.624681473}
+  m_LocalRotation: {x: -.0356701538, y: .779634535, z: .0258983318, w: -.624681532}
   m_LocalPosition: {x: -327.399994, y: 22.9799995, z: -234.190002}
   m_LocalScale: {x: 1, y: 11.61133, z: 12.7124033}
   m_Children: []
@@ -1677,7 +1677,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194372}
-  m_LocalRotation: {x: -.0356700271, y: .779634535, z: .0258980189, w: -.624681413}
+  m_LocalRotation: {x: -.0356700309, y: .779634595, z: .0258980207, w: -.624681473}
   m_LocalPosition: {x: -315.100006, y: 23.0300007, z: -231.440002}
   m_LocalScale: {x: 1, y: 11.3215046, z: 12.7124033}
   m_Children: []

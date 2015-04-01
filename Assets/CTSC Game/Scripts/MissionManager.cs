@@ -110,12 +110,12 @@ public class MissionManager : MonoBehaviour {
 	void Update () {
 		Mission currMission = getCurrentMission();
 		if (currMission == null) {
-			Debug.Log ("Game is completed!");
+			//Debug.Log ("Game is completed!");
 		} else if (!currMission.getIsComplete ()) {
-			Debug.Log ("Executing Mission.");
+			//Debug.Log ("Executing Mission.");
 			currMission.execute();
 		} else {
-			Debug.Log ("Player has completed: " + currMission.ToString ());
+			//Debug.Log ("Player has completed: " + currMission.ToString ());
 			missionHistory[currMission] = true;
 		}
 	}

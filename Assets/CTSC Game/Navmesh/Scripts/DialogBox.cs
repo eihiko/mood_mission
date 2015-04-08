@@ -8,8 +8,8 @@ using System.IO;
 public class DialogBox : MonoBehaviour {
 
 
-	private List<string> expoStrings = new ArrayList<string>();
-	private List<string> dialogStrings = new ArrayList<string>();
+	private List<string> expoStrings = new List<string>();
+	private List<string> dialogStrings = new List<string>();
 	//Boolean that checks if the current displayed text is exposition
 	private bool isExpo;
 	//A boolean that checks if text is currently being displayed to the player

@@ -20,6 +20,6 @@ public class testScript : MonoBehaviour {
 		if (!hasCalledDialog) {
 			this.dialog.GetComponent<DialogBox> ().displayText (true, 0, 3);
 		}
-		this.dialog.GetComponent<PlayerStatusBars> ().TakeDamage (20);
+		this.dialog.GetComponent<PlayerStatusBars> ().DecreaseStat(30, "Compassion");
 	}
 }

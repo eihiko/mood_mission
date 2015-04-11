@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoveAction : MissionAction {
+public class MoveAction : MonoBehaviour, MissionAction  {
 
 	GameObject move;
 	GameObject to;
@@ -9,14 +9,11 @@ public class MoveAction : MissionAction {
 	AnimationEngine animEngine;
 	bool animate = true;
 	NavMeshAgent agent = null;
+	bool moveMe = false;
+	bool atDestination = false;
 
 	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
 	
 	}
 
@@ -37,42 +34,48 @@ public class MoveAction : MissionAction {
 		}
 	}
 
+	void Update(){
+		if (moveMe) {
+			if (Vector3.Distance(move.transform.position, to.transform.position) > 3f) {
+				Debug.Log ("mover is moving to their destination");
+				
+				//animate the npc
+				if (animate) {
+					//check for limp in walk
+					if (animType == AnimationEngine.Type.LIMP){
+						animEngine.setHasLimp(true);
+					}
+					//set to walking
+					animEngine.setMoveSpeed(.7f);
+				}
+				agent.SetDestination (to.transform.position);
+				atDestination = false;
+			} else {
+				Debug.Log ("mover is at destination");
+				//stop the nav agent
+				agent.SetDestination (move.transform.position);
+
+				//set to idle
+				animEngine.setMoveSpeed(0f);
+				atDestination = true;
+			}
+		}
+	}
+	
 	//call pathfinding script with animator
 	//return true when "move" is adjacent to "to" (other npc or waypoint)
 	public bool execute(){
 		//check type for more complex moves
-		Debug.Log ("Executing move action");
-
-		//animate the npc
-		if (animate) {
-			//check for limp in walk
-			if (animType == AnimationEngine.Type.LIMP){
-				animEngine.setHasLimp(true);
-			}
-			//set to walking
-			animEngine.setMoveSpeed(.7f);
-		}
+		Debug.Log ("Trying move action");
 
 		if (agent != null) {
-			//begin the nav agent
-			agent.SetDestination (to.transform.position);
-
-			//wait until the nav agent completes
-			while (Vector3.Distance(move.transform.position, to.transform.position) > 1.5f) {
-				Debug.Log ("mover is moving to their destination");
-			}
-
-			//stop the nav agent
-			agent.SetDestination (move.transform.position);
-		} else {
-			//wait until the player reaches destination
-			while (Vector3.Distance(move.transform.position, to.transform.position) > 1.5f) {
-				Debug.Log ("mover is moving to their destination");
-			}
+			moveMe = true;
+			Debug.Log ("Executing move action");
+			Update ();
 		}
-		
-		Debug.Log("mover has reached destination");
-
-		return true;
+		if (atDestination) {
+			return true;
+		}
+		return false;
 	}
 }

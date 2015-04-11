@@ -11,6 +11,7 @@ public class TalkAction : MissionAction {
 	DialogBox dBox;
 	int startPar;
 	int numPar;
+	bool hasBegun = false;
 
 	// Use this for initialization
 	void Start () {
@@ -47,15 +48,18 @@ public class TalkAction : MissionAction {
 	public bool execute(){
 		Debug.Log ("Executing talk action");
 		//activate talking animation and faceplus
-		//call gui to display text
-		dBox.displayText (false, startPar, numPar);   
-
-		//play audio clip
-		voice.Play ();
-
+		if (!hasBegun) {
+			hasBegun = true;
+			//call gui to display text
+			dBox.displayText (false, startPar, numPar);   
+			//play audio clip
+			voice.Play ();
+		}
 		//execute while talking and ui is active
-		while (voice.isPlaying && canvas.isActiveAndEnabled &&
-		       !dBox.textCompleted) {}
+		if (voice.isPlaying || (canvas.isActiveAndEnabled &&
+		    !dBox.textCompleted)) {
+			return false;
+		}
 		return true;
 	}
 }

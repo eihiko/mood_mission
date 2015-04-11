@@ -13,7 +13,9 @@ public class MissionEvent : MonoBehaviour {
 	public string[] eventBriefs;
 	private Mission mission;
 	private bool isComplete = false;
-
+	private bool isBusy = false;
+	MissionAction currAction;
+	Queue<MissionAction> actionQ = new Queue<MissionAction>();
 
 	public AudioClip currentAudio;
 
@@ -22,11 +24,30 @@ public class MissionEvent : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		isComplete = false;
 		mm = GameObject.Find("MissionManager").GetComponent<MissionManager>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		bool executionComplete = this.execute (actionQ);
+		if (isBusy && executionComplete) {
+			isBusy = false;
+			Debug.Log ("done executing actions, event complete");
+			//OnComplete ();
+			isComplete = true;
+		} else if (isBusy && !executionComplete) {
+			//this.execute (actionQ);
+			Debug.Log ("Still executing action");
+			isComplete = false;
+		} else if (!isBusy && !executionComplete) {
+			Debug.Log ("no actions received yet");
+		}
+			//			Debug.Log ("done executing actions, event complete");
+			//			OnComplete ();
+			//		} else {
+			//			Debug.LogError("Mission execution did not go as planned...");
+			//		}
 		//Handles completion of this game event.
 		if (isComplete &&
 		    mm.getCurrentMission().getMissionType() 
@@ -40,23 +61,23 @@ public class MissionEvent : MonoBehaviour {
 	void OnTriggerEnter(Collider c){
 		//Determine what to do based on the current mission
 		mission = mm.getCurrentMission ();
-		Queue<MissionAction> actionQ = new Queue<MissionAction>();
+
 		Debug.Log ("queueing actions for next event");
-		switch (eventType){
-		//Mission one events
-		case MissionManager.EventType.INTRO:
-			Debug.Log ("into the INTRO event");
-			//Do the next event if the previous one is completed
-			//Player must FREEZE
-			actionQ.Enqueue(new FreezeAction(mm.Player, true));
-//			//Torkana must MOVE(currLoc, adjToPlayer, limp)
-//			actionQ.Enqueue(new MoveAction(mm.Torkana, mm.Player, AnimationEngine.Type.LIMP));  
-//			//Torkana must TALK(audio, guiToShow)
-//			actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 1, 1));
-//			//Torkana must TURN(faceHouse)
-//			actionQ.Enqueue(new TurnAction(mm.Torkana, mm.TorkanaHouse));
-//			//Torkana must MOVE(currLoc, adjToHouse)
-//			actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.LIMP));
+		if (!isBusy) {
+			switch (eventType) {
+			//Mission one events
+			case MissionManager.EventType.INTRO:
+				Debug.Log ("into the INTRO event");
+			    //Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+			    //Torkana must MOVE(currLoc, adjToPlayer, limp)
+				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.Player, AnimationEngine.Type.LIMP));  
+			    //Torkana must TALK(audio, guiToShow)
+			//    actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 1, 1));
+				//Torkana must TURN(faceHouse)
+				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.TorkanaHouse));
+				//Torkana must MOVE(currLoc, adjToHouse)
+				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.LIMP));
 //			//Torkana must ENTER(mentorHouse)
 //			actionQ.Enqueue(new ActiveAction(mm.Torkana, false));
 //			//Torkana must SIT(tableInHouse) before Player enters
@@ -68,137 +89,137 @@ public class MissionEvent : MonoBehaviour {
 //			actionQ.Enqueue(new FreezeAction(mm.Player, false));
 //			//Player must ENTER(mentorHouse)
 //			actionQ.Enqueue(new EnterAction(mm.Player, mm.inFrontTorkanaDoor));
-			break;
-		case MissionManager.EventType.ENTER_GUIDES:
+				break;
+			case MissionManager.EventType.ENTER_GUIDES:
 
-			Debug.Log ("into the enter guides event");
+				Debug.Log ("into the enter guides event");
 			//Player must FREEZE
-			actionQ.Enqueue(new FreezeAction(mm.Player, true));
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
-			actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 1,1));
-			break;
-		case MissionManager.EventType.CANDLE:
+				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 1, 1));
+				break;
+			case MissionManager.EventType.CANDLE:
 
-			Debug.Log ("into the candle event");
+				Debug.Log ("into the candle event");
 			//Gui must ACTIVE(true, brief)
-			actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 1, 1));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 1, 1));
 			//Player must GRAB(Candle)
-			actionQ.Enqueue(new GrabAction(mm.Player, mm.Candle));
+				actionQ.Enqueue (new GrabAction (mm.Player, mm.Candle));
 			//Player must GRAB(Key)
-			actionQ.Enqueue(new GrabAction(mm.Player, mm.Key));
+				actionQ.Enqueue (new GrabAction (mm.Player, mm.Key));
 			//Gui must ACTIVE(true, brief)
-			actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 2, 1));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 2, 1));
 			//Player must ENTER(mentorBasement)
-			actionQ.Enqueue(new EnterAction(mm.Player, mm.MentorBasement));
-			break;
-		case MissionManager.EventType.ENTER_GUIDE_BASEMENT:
+				actionQ.Enqueue (new EnterAction (mm.Player, mm.MentorBasement));
+				break;
+			case MissionManager.EventType.ENTER_GUIDE_BASEMENT:
 
-			Debug.Log ("into the guides basement event");
+				Debug.Log ("into the guides basement event");
 			//Candle must ACTIVE(true)
-			actionQ.Enqueue(new ActiveAction(mm.Candle, true));
-			break;
-		case MissionManager.EventType.DROP_KEY:
+				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
+				break;
+			case MissionManager.EventType.DROP_KEY:
 			//Player must DROP(Key)
-			actionQ.Enqueue(new DropAction(mm.Player, mm.Key));
+				actionQ.Enqueue (new DropAction (mm.Player, mm.Key));
 			//Candle must ACTIVE(false)
-			actionQ.Enqueue(new ActiveAction(mm.Candle, false));
+				actionQ.Enqueue (new ActiveAction (mm.Candle, false));
 			//Gui must ACTIVE(true, brief)
-			actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 3, 1));
-			break;
-		case MissionManager.EventType.RELIGHT_CANDLE:
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 3, 1));
+				break;
+			case MissionManager.EventType.RELIGHT_CANDLE:
 			//Player must FIND(Match) to light candle (GRAB?)
-			actionQ.Enqueue(new GrabAction(mm.Player, mm.Match));
-			actionQ.Enqueue(new ActiveAction(mm.Candle, true));
+				actionQ.Enqueue (new GrabAction (mm.Player, mm.Match));
+				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
 			//Gui must ACTIVE(true, brief)
-			actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 4, 1));
-			break;
-		case MissionManager.EventType.FIND_KEY:
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 4, 1));
+				break;
+			case MissionManager.EventType.FIND_KEY:
 			//Player must FIND(Key) to open chest (GRAB?)
-			actionQ.Enqueue(new GrabAction(mm.Player, mm.Key));
+				actionQ.Enqueue (new GrabAction (mm.Player, mm.Key));
 			//Gui must ACTIVE(true, brief)
-			actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 5, 1));
-			break;
-		case MissionManager.EventType.OPEN_CHEST:
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 5, 1));
+				break;
+			case MissionManager.EventType.OPEN_CHEST:
 			//Player must OPEN(Chest)
 			//here we replace chest with open chest
-			actionQ.Enqueue(new OpenAction(mm.Player, mm.ChestClosed, mm.ChestOpen));
-			break;
-		case MissionManager.EventType.GATHER_INITIAL_SUPPLIES:
+				actionQ.Enqueue (new OpenAction (mm.Player, mm.ChestClosed, mm.ChestOpen));
+				break;
+			case MissionManager.EventType.GATHER_INITIAL_SUPPLIES:
 			//Player must GRAB(Supplies)
 			//Supplies is a game object of supplies
-			actionQ.Enqueue(new GrabAction(mm.Player, mm.Supplies));
+				actionQ.Enqueue (new GrabAction (mm.Player, mm.Supplies));
 			//Torkana must STAND(inFrontOfDoor)
 			//Stands in front of his front door inside
-			actionQ.Enqueue(new StandAction(mm.Torkana, mm.inFrontTorkanaDoor));
+				actionQ.Enqueue (new StandAction (mm.Torkana, mm.inFrontTorkanaDoor));
 			//Player must ENTER(mentorHouse)
-			actionQ.Enqueue(new EnterAction(mm.Player, mm.TorkanaHouse));
-			break;
-		case MissionManager.EventType.MEET_GUIDE:
+				actionQ.Enqueue (new EnterAction (mm.Player, mm.TorkanaHouse));
+				break;
+			case MissionManager.EventType.MEET_GUIDE:
 			//Player must MOVE(currLoc, TorkanaLoc)
-			actionQ.Enqueue(new MoveAction(mm.Player, mm.Torkana));
+				actionQ.Enqueue (new MoveAction (mm.Player, mm.Torkana));
 			//Torkana must TALK(audio, guiToShow)
-			actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 2, 1));
+				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 2, 1));
 			//Torkana must ENTER(Forest)
-			actionQ.Enqueue(new ActiveAction(mm.Torkana, false));
-			actionQ.Enqueue(new MoveAction(mm.Torkana, mm.inFrontTorkanaHouse));
+				actionQ.Enqueue (new ActiveAction (mm.Torkana, false));
+				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.inFrontTorkanaHouse));
 			//Torkana must STAND(inFrontOfHouse)
-			actionQ.Enqueue(new StandAction(mm.Torkana, mm.inFrontTorkanaHouse));
+				actionQ.Enqueue (new StandAction (mm.Torkana, mm.inFrontTorkanaHouse));
 			//Player must ENTER(Forest)
-			actionQ.Enqueue(new EnterAction(mm.Player, mm.inFrontTorkanaHouse));
+				actionQ.Enqueue (new EnterAction (mm.Player, mm.inFrontTorkanaHouse));
 			//Checkpoint to reflect with gui and input, write data to database
-			break;
-		//Mission Two events
-		case MissionManager.EventType.LEAVE_GUIDES:
+				break;
+			//Mission Two events
+			case MissionManager.EventType.LEAVE_GUIDES:
 			//Player must MOVE(currLoc, TorkanaLoc)
-			break;
-		case MissionManager.EventType.FOLLOW_GUIDE:
+				break;
+			case MissionManager.EventType.FOLLOW_GUIDE:
 			//Torkana must TALK(audio, guiToShow)
 			//Torkana must MOVE(currLoc, adjToBeeArea) iff IN_RANGE(Torkana, Player)
 			//Player must MOVE(currLoc, adjToBeeArea)
-			break;
-		case MissionManager.EventType.LOSE_MAP:
+				break;
+			case MissionManager.EventType.LOSE_MAP:
 			//Player must DROP(Map)
 			//Torkana must TALK(audio, guiToShow)
 			//Torkana must GIVE(Player, Amulet)
 			//Player must MOVE(currLoc, BeeArea)
-			break;
-		case MissionManager.EventType.ENCOUNTER_BEES:
+				break;
+			case MissionManager.EventType.ENCOUNTER_BEES:
 			//Gui must ACTIVE(true, brief)
 			//Bees must MOVE(currLoc, Player)
-			break;
-		case MissionManager.EventType.TOLERATE_BEES:
+				break;
+			case MissionManager.EventType.TOLERATE_BEES:
 
 			//Player must INTERACT(Gui, Bees, Action) and Bees must REACT(Player, Action) and
 			//BEES must APPROVE(Action) 
-			break;
-		case MissionManager.EventType.RETRIEVE_MAP:
+				break;
+			case MissionManager.EventType.RETRIEVE_MAP:
 			//Player must FIND(Map) (GRAB?)
-			break;
-		case MissionManager.EventType.GO_TO_DOCTORS:
+				break;
+			case MissionManager.EventType.GO_TO_DOCTORS:
 			//Torkana must TALK(audio, guiToShow)
 			//Torkana must MOVE(currLoc, adjToDoctorsHouse) iff IN_RANGE(Torkana, Player)
 			//Player must MOVE(currLoc, adjToDoctorsHouse)
 			//Player must ENTER(DoctorsHouse)
 			//Torkana must STAND(adjToDoctor) in the house
 			//Checkpoint to reflect with gui and input, write data to database
-			break;
-		//Mission Three events
-		case MissionManager.EventType.ENTER_DOCTORS:
+				break;
+			//Mission Three events
+			case MissionManager.EventType.ENTER_DOCTORS:
 			//Torkana and Doctor must TALK(audio, noGui)
 			//Player must MOVE(currLoc, adjToTorkana)
-			break;
-		case MissionManager.EventType.DOCTOR_INTRO:
+				break;
+			case MissionManager.EventType.DOCTOR_INTRO:
 			//Player and Doctor must TALK(audio, guiToShow)
 			//Doctor must EXAMINE(Torkana)
-			break;
-		case MissionManager.EventType.GUIDE_EXAM:
+				break;
+			case MissionManager.EventType.GUIDE_EXAM:
 			//Doctor and Torkana must TALK(audio, noGui)
 			//Player must MOVE(currLoc, adjToDoor)
 			//Player must ENTER(FOREST)
 			//Gui must ACTIVE(true, brief)
 			//Player must MOVE(currLoc, DoctorGarden)
-			break;
-		case MissionManager.EventType.TOLERATE_BEES_AGAIN:
+				break;
+			case MissionManager.EventType.TOLERATE_BEES_AGAIN:
 			//Gui must ACTIVE(true, brief)
 			//Bees must MOVE(currLoc, Player)
 			//Player must INTERACT(Gui, Bees, Action) and Bees must REACT(Player, Action)
@@ -206,51 +227,53 @@ public class MissionEvent : MonoBehaviour {
 		//	//**and Amulet must ACTIVE(true) and Amulet must REACT(Action, BEES) and
 		//	//**Amulet must APPROVE(Action, Bees)
 		//	//**Dont use these until later scenarios
-			break;
-		case MissionManager.EventType.GATHER_HERBS:
+				break;
+			case MissionManager.EventType.GATHER_HERBS:
 			//Gui must ACTIVE(true, brief)
 			//Player must GRAB(Herb)
 			//Player must MOVE(currLoc, adjToDoor)
 			//Gui must ACTIVE(true, brief)
 			//Player must ENTER(DoctorsHouse)
 			//Torkana must STAND(adjToDoctor)
-			break;
-		case MissionManager.EventType.GIVE_DOCTOR_HERBS:
+				break;
+			case MissionManager.EventType.GIVE_DOCTOR_HERBS:
 			//Torkana must TALK(audio, noGui)
 			//Player must MOVE(currLoc, adjToDoctor)
 			//Doctor must TALK(audio, guiToShow)
 		        //Player must GIVE(Herb, Doctor)
 			//Doctor must TALK(audio, guiToShow)
 				break;
-		case MissionManager.EventType.PLAYER_EXAM:
+			case MissionManager.EventType.PLAYER_EXAM:
 			//Player and Doctor must TALK(audio, guiToShow)
 			//Doctor must EXAMINE(Player)
 			//Doctor must TALK(audio, noGui)
-			break;
-		case MissionManager.EventType.ATTAIN_AMULET:
+				break;
+			case MissionManager.EventType.ATTAIN_AMULET:
 			//Torkana must GIVE(Amulet, Player)
 			//Torkana must TALK(audio, guiToShow)
 			//Torkana must MOVE(currLoc, adjToDoor)
 			//Torkana must ENTER(Forest)
 			//Torkana must ACTIVE(false)
 			//Checkpoint to reflect with gui and input, write data to database
-			break;
-		//Mission 4 Actions
-		case MissionManager.EventType.LEAVE_FOREST:
+				break;
+			//Mission 4 Actions
+			case MissionManager.EventType.LEAVE_FOREST:
 			//Player must MOVE(currLoc, adjToDoor)
 			//Player must ENTER(Forest)
-			break;
-		//About 1/3 way through missions...
+				break;
+			//About 1/3 way through missions...
+			}
+			isBusy = true;
 		}
 
-		Debug.Log ("done queueing actions");
-
-		if (this.execute (actionQ)) {
-			Debug.Log ("done executing actions, event complete");
-			OnComplete ();
-		} else {
-			Debug.LogError("Mission execution did not go as planned...");
-		}
+//		Debug.Log ("done queueing actions");
+//
+//		if (this.execute (actionQ)) {
+//			Debug.Log ("done executing actions, event complete");
+//			OnComplete ();
+//		} else {
+//			Debug.LogError("Mission execution did not go as planned...");
+//		}
 		
 		//This is an easy example of how to complete this event
 //		if(c.tag == "Player"){
@@ -269,43 +292,50 @@ public class MissionEvent : MonoBehaviour {
 	//Executes actions provided the action queue
     //Each action queue represents a mission event
 	bool execute(Queue<MissionAction> actionQ){
-		Debug.Log ("Executing mission actions for this event");
-		MissionAction currAction;
-		//begin the mission event with its first action
-		if (actionQ.Count > 0) {
+		if (actionQ.Count > 0 && currAction == null && !isComplete) {
 			Debug.Log ("we have at least one action in the queue!");
 			Debug.Log ("there are this many actions in queue: " + actionQ.Count);
 			currAction = actionQ.Dequeue ();
-			if (currAction == null)
-				Debug.Log ("but that action is null?");
-		} else {
-			Debug.Log ("no actions in the queue...");
-			return false;
 		}
+		//begin the mission event with its first action
+//		if (actionQ.Count > 0 && execComplete) {
+//			Debug.Log ("we have at least one action in the queue!");
+//			Debug.Log ("there are this many actions in queue: " + actionQ.Count);
+//			currAction = actionQ.Dequeue ();
+//			if (currAction == null)
+//				Debug.Log ("but that action is null?");
+//		} else {
+//			Debug.Log ("no actions in the queue...");
+//			return true;
+//		}
 
-		bool isComplete = false;
-		while (actionQ.Count >= 0 && currAction != null) {
-			if (actionQ.Count == 0 && isComplete){
-				Debug.Log ("event is complete...");
-				currAction = null;
-			}
+	//	bool isComplete = false;
+		if (actionQ.Count >= 0 && currAction != null) {
+			Debug.Log ("Executing mission actions for this event");
+//			if (actionQ.Count == 0 && isComplete){
+//				Debug.Log ("event is complete...");
+//				currAction = null;
+//			}
 			//Action runs its own loop until it's completed
 			//then execute will return true if successfully completed
 			if(currAction.execute()){
+		    //return currAction.execute();
 				if (actionQ.Count > 0){
 					Debug.Log("Dequeueing next action, last was completed");
 					currAction = actionQ.Dequeue();
 				} else {
 					currAction = null;
 					Debug.Log ("last action was completed, now event is complete...");
+					return true;
 				}
-			} else { //Otherwise, we can't continue the story.
-			    //may want to change this later to keep trying action
-				return false;
+				//return true;
+		     } else { //Otherwise, we can't continue the story.
+//			    //may want to change this later to keep trying action
+
+//				Debug.Log ("Still executing action..please hold");
 		    }
 		}
-		Debug.Log ("Done executing mission actions");
-		return true;
+		return false;
 	}
 
 	public MissionManager.EventType getEventType(){

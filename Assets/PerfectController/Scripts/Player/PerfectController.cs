@@ -22,12 +22,14 @@ public class PerfectController : MonoBehaviour {
 	private Transform cam;
 	private CharacterController controller;
 	private bool isGrounded;
+	private bool isControllable;
 
 	void Awake(){
 		DontDestroyOnLoad (transform.gameObject);
 	}
 
 	void Start () {
+		isControllable = true;
 		cam = transform.FindChild("Camera").transform;
 		controller = gameObject.GetComponent<CharacterController>();
 		pitch = 0;
@@ -41,8 +43,12 @@ public class PerfectController : MonoBehaviour {
 			applyMouseLook();
 			applyMoveForces(isGrounded?1:airBias);
 			capXZVelocity();
-			controller.Move(velocity);
-			if (isGrounded && useViewBob) addViewBob();
+			if (isControllable){
+				controller.Move(velocity);
+				if (isGrounded && useViewBob) addViewBob();
+			} else {
+				controller.Move (new Vector3(0,0,0));
+			}
 		}
 	}
 	
@@ -132,5 +138,13 @@ public class PerfectController : MonoBehaviour {
 		ray.direction = -transform.up;
 		Physics.Raycast(ray, out hit, 1.5f, ~LayerMask.NameToLayer("Ground"));
 		controller.Move(new Vector3(0f, -hit.distance, 0f));
+	}
+
+	public void setIsControllable(bool controllable){
+		isControllable = controllable;
+	}
+
+	public bool getIsControllable(){
+		return isControllable; 
 	}
 }

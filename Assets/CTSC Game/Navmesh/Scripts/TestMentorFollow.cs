@@ -39,8 +39,9 @@ public class TestMentorFollow : MonoBehaviour {
 			animationEngine.setMoveSpeed(0.0f);
 			return;
 		}
-		Debug.Log ("(" + transform.position.x + ", " + transform.position.y + ", " + transform.position.z + ")    " + 
-						"(" + player.position.x + ", " + player.position.y + ", " + player.position.z + ")");
+
+		//Debug.Log ("(" + transform.position.x + ", " + transform.position.y + ", " + transform.position.z + ")    " + 
+		//				"(" + player.position.x + ", " + player.position.y + ", " + player.position.z + ")");
 		if (((transform.position - player.position).magnitude < 8.0f && !lockTorkana)
 		    || (lockTorkana && (transform.position - player.position).magnitude < 7.5f))
 		{

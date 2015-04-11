@@ -17,14 +17,15 @@ public class FreezeAction : MissionAction {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!isControllable)
-		{
-			Input.ResetInputAxes();
-		}
-		if (FROZEN)
-		{
-			player.transform.position = FREEZEPOSITION;
-		}
+//		Debug.Log ("Update loop for freeze action");
+//		if (!isControllable)
+//		{
+//			Input.ResetInputAxes();
+//		}
+//		if (FROZEN)
+//		{
+//			player.transform.position = FREEZEPOSITION;
+//		}
 	}
 	
 	public bool execute(){
@@ -44,14 +45,16 @@ public class FreezeAction : MissionAction {
 
 	void FreezePlayer()
 	{
-		isControllable = false; // disable player controls.
-		FREEZEPOSITION = player.transform.position;
-		FROZEN = true;
+		player.GetComponent<PerfectController> ().setIsControllable(false);
+//		isControllable = false; // disable player controls.
+//		FREEZEPOSITION = player.transform.position;
+//		FROZEN = true;
 	}
 
 	void Thaw()
 	{
-		FROZEN = false;
-		isControllable = true; 
+		player.GetComponent<PerfectController> ().setIsControllable(true);
+	//	FROZEN = false;
+//		isControllable = true; 
 	}
 }

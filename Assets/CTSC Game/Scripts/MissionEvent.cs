@@ -45,36 +45,41 @@ public class MissionEvent : MonoBehaviour {
 		switch (eventType){
 		//Mission one events
 		case MissionManager.EventType.INTRO:
+			Debug.Log ("into the INTRO event");
 			//Do the next event if the previous one is completed
 			//Player must FREEZE
 			actionQ.Enqueue(new FreezeAction(mm.Player, true));
-			//Torkana must MOVE(currLoc, adjToPlayer, limp)
-			actionQ.Enqueue(new MoveAction(mm.Torkana, mm.Player, AnimationEngine.Type.LIMP));  
-			//Torkana must TALK(audio, guiToShow)
-			actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 1, 1));
-			//Torkana must TURN(faceHouse)
-			actionQ.Enqueue(new TurnAction(mm.Torkana, mm.TorkanaHouse));
-			//Torkana must MOVE(currLoc, adjToHouse)
-			actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.LIMP));
-			//Torkana must ENTER(mentorHouse)
-			actionQ.Enqueue(new ActiveAction(mm.Torkana, false));
-			//Torkana must SIT(tableInHouse) before Player enters
-			//actionQ.Enqueue(new MoveAction(Torkana, TorkanaSitPos)); //Pair this with a sit when sitting
-			actionQ.Enqueue(new SitAction(mm.Torkana, mm.TorkanaSitPos));
-			actionQ.Enqueue(new TurnAction(mm.Torkana, mm.inFrontTorkanaDoor));
-			actionQ.Enqueue(new ActiveAction(mm.Torkana, true));
-			//Player must UNFREEZE
-			actionQ.Enqueue(new FreezeAction(mm.Player, false));
-			//Player must ENTER(mentorHouse)
-			actionQ.Enqueue(new EnterAction(mm.Player, mm.inFrontTorkanaDoor));
+//			//Torkana must MOVE(currLoc, adjToPlayer, limp)
+//			actionQ.Enqueue(new MoveAction(mm.Torkana, mm.Player, AnimationEngine.Type.LIMP));  
+//			//Torkana must TALK(audio, guiToShow)
+//			actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 1, 1));
+//			//Torkana must TURN(faceHouse)
+//			actionQ.Enqueue(new TurnAction(mm.Torkana, mm.TorkanaHouse));
+//			//Torkana must MOVE(currLoc, adjToHouse)
+//			actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.LIMP));
+//			//Torkana must ENTER(mentorHouse)
+//			actionQ.Enqueue(new ActiveAction(mm.Torkana, false));
+//			//Torkana must SIT(tableInHouse) before Player enters
+//			//actionQ.Enqueue(new MoveAction(Torkana, TorkanaSitPos)); //Pair this with a sit when sitting
+//			actionQ.Enqueue(new SitAction(mm.Torkana, mm.TorkanaSitPos));
+//			actionQ.Enqueue(new TurnAction(mm.Torkana, mm.inFrontTorkanaDoor));
+//			actionQ.Enqueue(new ActiveAction(mm.Torkana, true));
+//			//Player must UNFREEZE
+//			actionQ.Enqueue(new FreezeAction(mm.Player, false));
+//			//Player must ENTER(mentorHouse)
+//			actionQ.Enqueue(new EnterAction(mm.Player, mm.inFrontTorkanaDoor));
 			break;
 		case MissionManager.EventType.ENTER_GUIDES:
+
+			Debug.Log ("into the enter guides event");
 			//Player must FREEZE
 			actionQ.Enqueue(new FreezeAction(mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
 			actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 1,1));
 			break;
 		case MissionManager.EventType.CANDLE:
+
+			Debug.Log ("into the candle event");
 			//Gui must ACTIVE(true, brief)
 			actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 1, 1));
 			//Player must GRAB(Candle)
@@ -87,6 +92,8 @@ public class MissionEvent : MonoBehaviour {
 			actionQ.Enqueue(new EnterAction(mm.Player, mm.MentorBasement));
 			break;
 		case MissionManager.EventType.ENTER_GUIDE_BASEMENT:
+
+			Debug.Log ("into the guides basement event");
 			//Candle must ACTIVE(true)
 			actionQ.Enqueue(new ActiveAction(mm.Candle, true));
 			break;
@@ -266,21 +273,32 @@ public class MissionEvent : MonoBehaviour {
 		MissionAction currAction;
 		//begin the mission event with its first action
 		if (actionQ.Count > 0) {
+			Debug.Log ("we have at least one action in the queue!");
+			Debug.Log ("there are this many actions in queue: " + actionQ.Count);
 			currAction = actionQ.Dequeue ();
+			if (currAction == null)
+				Debug.Log ("but that action is null?");
 		} else {
+			Debug.Log ("no actions in the queue...");
 			return false;
 		}
 
 		bool isComplete = false;
-		while (actionQ.Count >= 0 && currentAction != null) {
+		while (actionQ.Count >= 0 && currAction != null) {
 			if (actionQ.Count == 0 && isComplete){
+				Debug.Log ("event is complete...");
 				currAction = null;
 			}
 			//Action runs its own loop until it's completed
 			//then execute will return true if successfully completed
 			if(currAction.execute()){
-				Debug.Log("Dequeueing last action, it is complete");
-				currAction = actionQ.Dequeue();
+				if (actionQ.Count > 0){
+					Debug.Log("Dequeueing next action, last was completed");
+					currAction = actionQ.Dequeue();
+				} else {
+					currAction = null;
+					Debug.Log ("last action was completed, now event is complete...");
+				}
 			} else { //Otherwise, we can't continue the story.
 			    //may want to change this later to keep trying action
 				return false;

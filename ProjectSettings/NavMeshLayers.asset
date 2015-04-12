@@ -28,7 +28,7 @@ NavMeshLayers:
     cost: 1
     editType: 3
   User Layer 3:
-    name: 
+    name: interiors
     cost: 1
     editType: 3
   User Layer 4:

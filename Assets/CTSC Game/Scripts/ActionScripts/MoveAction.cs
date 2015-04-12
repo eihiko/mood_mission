@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoveAction : MonoBehaviour, MissionAction  {
+public class MoveAction : MissionAction  {
 
 	GameObject move;
 	GameObject to;
@@ -36,30 +36,49 @@ public class MoveAction : MonoBehaviour, MissionAction  {
 
 	void Update(){
 		if (moveMe) {
-			if (Vector3.Distance(move.transform.position, to.transform.position) > 3f) {
+			if (animate && Vector3.Distance (move.transform.position, to.transform.position) > 3f) {
 				Debug.Log ("mover is moving to their destination");
-				
+				move.GetComponent<NavMeshAgent>().enabled = true;
 				//animate the npc
 				if (animate) {
 					//check for limp in walk
-					if (animType == AnimationEngine.Type.LIMP){
-						animEngine.setHasLimp(true);
+					if (animType == AnimationEngine.Type.LIMP) {
+						animEngine.setHasLimp (true);
 					}
 					//set to walking
-					animEngine.setMoveSpeed(.7f);
-				}
-				agent.SetDestination (to.transform.position);
+					animEngine.setMoveSpeed (.7f);
+					agent.SetDestination (to.transform.position);
+				} 
+
 				atDestination = false;
+			} else if (!animate && Vector3.Distance (move.transform.position, to.transform.position) > 0.1f){
+				//stop the nav agent
+				agent.Stop ();
+				move.GetComponent<NavMeshAgent>().enabled = false;
+
+				move.transform.position = to.transform.position;
+
+				//.Translate((move.transform.localPosition -
+				 //                        to.transform.localPosition)
+				   //                      * 5 * Time.deltaTime);
 			} else {
 				Debug.Log ("mover is at destination");
 				//stop the nav agent
-				agent.SetDestination (move.transform.position);
+				agent.Stop ();
+				if (animate){
+					//set to idle
+					animEngine.setMoveSpeed (0f);
+				}
 
-				//set to idle
-				animEngine.setMoveSpeed(0f);
 				atDestination = true;
 			}
 		}
+//		} else if (moveMe) {
+//			move.transform.Translate(to.transform.localPosition - move.transform.localPosition, Space.World);
+//			if (Vector3.Distance (move.transform.position, to.transform.position) < 1f) {
+//				atDestination = true;
+//			}
+//		}
 	}
 	
 	//call pathfinding script with animator
@@ -68,12 +87,27 @@ public class MoveAction : MonoBehaviour, MissionAction  {
 		//check type for more complex moves
 		Debug.Log ("Trying move action");
 
-		if (agent != null) {
-			moveMe = true;
-			Debug.Log ("Executing move action");
-			Update ();
+		if (!atDestination && agent != null) {
+			if (animate) {
+				moveMe = true;
+				Debug.Log ("Executing move action");
+				Update ();
+			} else {
+				//stop the nav agent
+				agent.Stop ();
+				move.transform.position = to.transform.position;
+				atDestination = true;
+			}
+		} else if (!atDestination) {
+			move.GetComponent<NavMeshAgent>().enabled = false;
+			//stop the nav agent
+			//agent.Stop ();
+			move.transform.position = to.transform.position;
+			atDestination = true;
 		}
 		if (atDestination) {
+			//stop the nav agent
+//			agent.Stop ();
 			return true;
 		}
 		return false;

@@ -56,8 +56,9 @@ public class TurnAction : MissionAction {
 //			return true;
 //		}
 
-		if (time < 0)
+		if (time < 0.2) {
 			return true;
+		}
 
 		return false;
 	}

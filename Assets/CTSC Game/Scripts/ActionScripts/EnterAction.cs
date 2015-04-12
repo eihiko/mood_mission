@@ -18,8 +18,11 @@ public class EnterAction : MissionAction {
 	
 	public bool execute(){
 		Debug.Log ("Executing enter action");
-		while(!collisionScript.isEntered){}
-		return true;
+		if (collisionScript.isEntered) {
+			Debug.Log("Enter action is complete");
+			return true;
+		}
+		return false;
 	}
 
 	//toEnter must have an EnterScript on it!

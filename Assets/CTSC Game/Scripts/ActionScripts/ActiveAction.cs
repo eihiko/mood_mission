@@ -47,15 +47,22 @@ public class ActiveAction : MissionAction {
 
 	public bool execute(){
 		Debug.Log ("Executing active action");
-		if (!gui) {
-			thing.SetActive (active);
+		if (!gui && active) {
+			thing.SetActive(true);
+			if (thing.GetComponent<NavMeshAgent>() != null){
+				thing.GetComponent<NavMeshAgent>().enabled = false;
+			}
+		} else if (!gui && !active) {
+			thing.SetActive(false);
 		} else {
 			//call gui to display text
 			dBox.displayText (true, startPar, numPar);   
 		
 			//execute while ui is active
-			while (canvas.isActiveAndEnabled &&
-		       !dBox.textCompleted) {}
+			if (canvas.isActiveAndEnabled &&
+		       !dBox.textCompleted) {
+				return false;
+			}
 		}
 		return true;
 	}

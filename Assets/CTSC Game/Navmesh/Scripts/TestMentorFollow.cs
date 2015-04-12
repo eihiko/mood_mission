@@ -59,7 +59,8 @@ public class TestMentorFollow : MonoBehaviour {
 		else
 		{
 			//Debug.Log("When distance is >= 8: " + (transform.position - player.position).magnitude);
-			agent.SetDestination(transform.position);
+			agent.Stop ();
+			//agent.SetDestination(transform.position);
 			animationEngine.setMoveSpeed(0.0f);
 			lockTorkana = true;
 		}

@@ -17,6 +17,7 @@ public class AnimationEngine : MonoBehaviour {
 	public float limpTime = 5.0f;
 	public float sitTime = 7.0f;
 	public float rotation = 0.0f;
+
 	Transform This;
 	bool holdRot, strafing;
 	

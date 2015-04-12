@@ -78,17 +78,20 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.TorkanaHouse));
 				//Torkana must MOVE(currLoc, adjToHouse)
 				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.LIMP));
-//			//Torkana must ENTER(mentorHouse)
-//			actionQ.Enqueue(new ActiveAction(mm.Torkana, false));
-//			//Torkana must SIT(tableInHouse) before Player enters
-//			//actionQ.Enqueue(new MoveAction(Torkana, TorkanaSitPos)); //Pair this with a sit when sitting
-//			actionQ.Enqueue(new SitAction(mm.Torkana, mm.TorkanaSitPos));
-//			actionQ.Enqueue(new TurnAction(mm.Torkana, mm.inFrontTorkanaDoor));
-//			actionQ.Enqueue(new ActiveAction(mm.Torkana, true));
-//			//Player must UNFREEZE
-//			actionQ.Enqueue(new FreezeAction(mm.Player, false));
-//			//Player must ENTER(mentorHouse)
-//			actionQ.Enqueue(new EnterAction(mm.Player, mm.inFrontTorkanaDoor));
+				//Torkana must ENTER(mentorHouse)
+				actionQ.Enqueue(new ActiveAction(mm.Torkana, false));
+				//Torkana must SIT(tableInHouse) before Player enters
+				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaSitPos)); //Pair this with a sit when sitting
+				actionQ.Enqueue(new ActiveAction(mm.Torkana, true));
+				actionQ.Enqueue(new SitAction(mm.Torkana, mm.TorkanaSitPos));
+
+				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.inFrontTorkanaDoor));
+				//actionQ.Enqueue(new ActiveAction(mm.Torkana, true));
+
+				//Player must UNFREEZE
+				actionQ.Enqueue(new FreezeAction(mm.Player, false));
+				//Player must ENTER(mentorHouse)
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.inFrontTorkanaDoor));
 				break;
 			case MissionManager.EventType.ENTER_GUIDES:
 
@@ -101,6 +104,8 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.CANDLE:
 
 				Debug.Log ("into the candle event");
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 1, 1));
 			//Player must GRAB(Candle)

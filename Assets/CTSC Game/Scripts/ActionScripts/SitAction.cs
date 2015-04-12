@@ -27,6 +27,7 @@ public class SitAction : MissionAction {
 		Debug.Log ("Executing sit action");
 		//Make the thing sit!
 		animEngine.setSitting (true);
+		//animEngine.animator.SetTrigger("SitTrigger");
 		thingToSit.transform.position = sitPos.transform.position;
 		return true;
 	}

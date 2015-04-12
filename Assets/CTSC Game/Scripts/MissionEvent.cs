@@ -151,7 +151,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.GATHER_INITIAL_SUPPLIES:
 			//Player must GRAB(Supplies)
 			//Supplies is a game object of supplies
-				actionQ.Enqueue (new GrabAction (mm.Player, mm.Supplies));
+				actionQ.Enqueue (new GrabAction (mm.Player, mm.Supplies, "Gather supplies from the chest with F"));
 			//Torkana must STAND(inFrontOfDoor)
 			//Stands in front of his front door inside
 				actionQ.Enqueue (new StandAction (mm.Torkana, mm.inFrontTorkanaDoor));
@@ -170,7 +170,8 @@ public class MissionEvent : MonoBehaviour {
 			//Torkana must STAND(inFrontOfHouse)
 				actionQ.Enqueue (new StandAction (mm.Torkana, mm.inFrontTorkanaHouse));
 			//Player must ENTER(Forest)
-				actionQ.Enqueue (new EnterAction (mm.Player, mm.inFrontTorkanaHouse));
+				actionQ.Enqueue (new EnterAction (mm.Player, mm.inFrontTorkanaHouse,
+				                                  "Stand near Torkana's front door and press E"));
 			//Checkpoint to reflect with gui and input, write data to database
 				break;
 			//Mission Two events

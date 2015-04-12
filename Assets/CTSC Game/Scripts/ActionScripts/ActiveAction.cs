@@ -14,6 +14,7 @@ public class ActiveAction : MissionAction {
 	Transform text;
 	DialogBox dBox;
 	bool gui = false;
+	bool isFirst = true;
 
 	// Use this for initialization
 	void Start () {
@@ -29,7 +30,7 @@ public class ActiveAction : MissionAction {
 	public ActiveAction(GameObject thing, bool active, int startPar, int numPar) 
 	: this(thing, active){
 		this.gui = true;
-		this.currUI = currUI;
+		this.currUI = thing;
 		this.canvas = currUI.GetComponent<Canvas>();
 		
 		//find the ui text element
@@ -55,14 +56,23 @@ public class ActiveAction : MissionAction {
 		} else if (!gui && !active) {
 			thing.SetActive(false);
 		} else {
-			//call gui to display text
-			dBox.displayText (true, startPar, numPar);   
-		
-			//execute while ui is active
-			if (canvas.isActiveAndEnabled &&
-		       !dBox.textCompleted) {
+			if (isFirst){
+				isFirst = false;
+				//call gui to display text
+				dBox.displayText (true, startPar, numPar);
+				Debug.Log ("Displaying text on Gui");
 				return false;
 			}
+			//only return true when text box is completed.
+			if (//canvas.isActiveAndEnabled &&
+		       dBox.textCompleted) {
+				Debug.Log ("Text box is completed!");
+				return true;
+			}
+			Debug.Log ("Still displaying text.");
+			//call gui to display text
+			dBox.displayText (true, startPar, numPar);
+			return false;
 		}
 		return true;
 	}

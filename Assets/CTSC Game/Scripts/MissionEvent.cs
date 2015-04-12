@@ -84,14 +84,12 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaSitPos)); //Pair this with a sit when sitting
 				actionQ.Enqueue(new ActiveAction(mm.Torkana, true));
 				actionQ.Enqueue(new SitAction(mm.Torkana, mm.TorkanaSitPos));
-
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.inFrontTorkanaDoor));
-				//actionQ.Enqueue(new ActiveAction(mm.Torkana, true));
-
 				//Player must UNFREEZE
 				actionQ.Enqueue(new FreezeAction(mm.Player, false));
 				//Player must ENTER(mentorHouse)
-				actionQ.Enqueue(new EnterAction(mm.Player, mm.inFrontTorkanaDoor));
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.inFrontTorkanaDoor,
+				                                "Stand near Torkana's front door and press E to enter"));
 				break;
 			case MissionManager.EventType.ENTER_GUIDES:
 
@@ -99,23 +97,24 @@ public class MissionEvent : MonoBehaviour {
 			//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
-				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 1, 1));
+		//		actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 1, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				break;
 			case MissionManager.EventType.CANDLE:
 
 				Debug.Log ("into the candle event");
-				//Player must UNFREEZE
-				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Gui must ACTIVE(true, brief)
-				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 1, 1));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 3, 1));
 			//Player must GRAB(Candle)
-				actionQ.Enqueue (new GrabAction (mm.Player, mm.Candle));
+		//		actionQ.Enqueue (new GrabAction (mm.Player, mm.Candle, "Grab the candle on the table with F"));
 			//Player must GRAB(Key)
-				actionQ.Enqueue (new GrabAction (mm.Player, mm.Key));
+		//		actionQ.Enqueue (new GrabAction (mm.Player, mm.Key, "Grab the key on the table with F"));
 			//Gui must ACTIVE(true, brief)
-				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 2, 1));
+		//		actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 4, 1));
 			//Player must ENTER(mentorBasement)
-				actionQ.Enqueue (new EnterAction (mm.Player, mm.MentorBasement));
+				actionQ.Enqueue (new EnterAction (mm.Player, mm.MentorBasement,
+				                                  "Stand near Torkana's basement door and press E to enter"));
 				break;
 			case MissionManager.EventType.ENTER_GUIDE_BASEMENT:
 
@@ -129,20 +128,20 @@ public class MissionEvent : MonoBehaviour {
 			//Candle must ACTIVE(false)
 				actionQ.Enqueue (new ActiveAction (mm.Candle, false));
 			//Gui must ACTIVE(true, brief)
-				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 3, 1));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 9, 1));
 				break;
 			case MissionManager.EventType.RELIGHT_CANDLE:
 			//Player must FIND(Match) to light candle (GRAB?)
-				actionQ.Enqueue (new GrabAction (mm.Player, mm.Match));
+				actionQ.Enqueue (new GrabAction (mm.Player, mm.Match, "Find a match then grab it with F"));
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
 			//Gui must ACTIVE(true, brief)
-				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 4, 1));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 10, 1));
 				break;
 			case MissionManager.EventType.FIND_KEY:
 			//Player must FIND(Key) to open chest (GRAB?)
-				actionQ.Enqueue (new GrabAction (mm.Player, mm.Key));
+				actionQ.Enqueue (new GrabAction (mm.Player, mm.Key, "Find the key then grab it with F"));
 			//Gui must ACTIVE(true, brief)
-				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 5, 1));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 12, 1));
 				break;
 			case MissionManager.EventType.OPEN_CHEST:
 			//Player must OPEN(Chest)
@@ -157,13 +156,14 @@ public class MissionEvent : MonoBehaviour {
 			//Stands in front of his front door inside
 				actionQ.Enqueue (new StandAction (mm.Torkana, mm.inFrontTorkanaDoor));
 			//Player must ENTER(mentorHouse)
-				actionQ.Enqueue (new EnterAction (mm.Player, mm.TorkanaHouse));
+				actionQ.Enqueue (new EnterAction (mm.Player, mm.TorkanaHouse,
+				                                  "Stand near the ladder and press E to go upstairs"));
 				break;
 			case MissionManager.EventType.MEET_GUIDE:
 			//Player must MOVE(currLoc, TorkanaLoc)
 				actionQ.Enqueue (new MoveAction (mm.Player, mm.Torkana));
 			//Torkana must TALK(audio, guiToShow)
-				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 2, 1));
+				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 14, 1));
 			//Torkana must ENTER(Forest)
 				actionQ.Enqueue (new ActiveAction (mm.Torkana, false));
 				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.inFrontTorkanaHouse));

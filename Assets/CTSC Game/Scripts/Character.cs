@@ -5,6 +5,7 @@ using System.Collections;
 public class Character : MonoBehaviour {
 	
 	public string name;
+	public GameObject[] inventory;
 	
 	public Character(){
 		this.name = "";
@@ -18,5 +19,15 @@ public class Character : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	//Check if this character has the specified item.
+	public bool has(GameObject item){
+		foreach (GameObject g in inventory) {
+			if (g.Equals(item)){
+				return true;
+			}
+		}
+		return false;
 	}
 }

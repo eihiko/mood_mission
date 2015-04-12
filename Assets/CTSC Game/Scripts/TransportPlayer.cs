@@ -29,8 +29,9 @@ public class TransportPlayer : MonoBehaviour {
 	Vector3 targetPostition;
 	bool loadNewScene = false;
 	EventHandler.GameLocation transportLocation;
-
-
+	GameObject interactionManager;
+	GUIHandler guiHandler;
+	
 	void Awake()
 	{
 		DontDestroyOnLoad(transform.gameObject);
@@ -41,6 +42,8 @@ public class TransportPlayer : MonoBehaviour {
 		eventHandler = GameObject.Find("EventHandler").GetComponent<EventHandler>();
 		currPlayerPosition = new Vector3 ();
 		currPlayerRotation = new Quaternion ();
+		interactionManager = GameObject.Find ("InteractionManager");
+		guiHandler = interactionManager.GetComponent<GUIHandler> ();
 	}
 	
 	// Update is called once per frame
@@ -51,6 +54,9 @@ public class TransportPlayer : MonoBehaviour {
 	void OnTriggerStay(Collider col){
 		Debug.Log("Entered trigger");
 		if(col.gameObject.tag.Equals("Player") && Input.GetKeyDown(KeyCode.E)){
+			//turn off all interaction gui, can enable this if desired
+			guiHandler.reset();
+
 			//Handles fade out.
 			setTransportState();
 			Debug.Log("Into " + location);

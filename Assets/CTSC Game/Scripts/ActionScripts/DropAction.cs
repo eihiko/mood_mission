@@ -3,8 +3,9 @@ using System.Collections;
 
 public class DropAction : MissionAction {
 
-	GameObject who, what;
-	Character whoIs;
+	GameObject who;
+	GrabMe.kind what;
+	CharacterOurs whoIs;
 	bool showText;
 	GameObject interactionManager;
 	GUIHandler guiHandler;
@@ -20,10 +21,10 @@ public class DropAction : MissionAction {
 	}
 
 
-	public DropAction(GameObject who, GameObject what){
+	public DropAction(GameObject who, GrabMe.kind what){
 		this.who = who;
-		if (who.GetComponent<Character> () != null) {
-			whoIs = who.GetComponent<Character> ();
+		if (who.GetComponent<CharacterOurs> () != null) {
+			whoIs = who.GetComponent<CharacterOurs> ();
 		}
 		this.what = what;
 		interactionManager = GameObject.Find ("InteractionManager");
@@ -37,7 +38,7 @@ public class DropAction : MissionAction {
 			return true;
 		}
 		if (first) {
-			guiHandler.setTextToShow ("Drop object with F");
+			guiHandler.setTextToShow ("Drop object(s) with F");
 			first = false;
 		}
 		//who will drop what and lose it from inventory

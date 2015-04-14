@@ -3,8 +3,9 @@ using System.Collections;
 
 public class GrabAction : MissionAction {
 
-	GameObject who, what;
-	Character whoIs;
+	GameObject who;
+	GrabMe.kind what;
+	CharacterOurs whoIs;
 	GameObject interactionManager;
 	GUIHandler guiHandler;
 	bool first = true;
@@ -20,10 +21,10 @@ public class GrabAction : MissionAction {
 	
 	}
 
-	public GrabAction(GameObject who, GameObject what, string text){
+	public GrabAction(GameObject who, GrabMe.kind what, string text){
 		this.who = who;
-		if (who.GetComponent<Character> () != null) {
-			whoIs = who.GetComponent<Character> ();
+		if (who.GetComponent<CharacterOurs> () != null) {
+			whoIs = who.GetComponent<CharacterOurs> ();
 		}
 		this.what = what;
 		interactionManager = GameObject.Find ("InteractionManager");

@@ -87,29 +87,35 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.inFrontTorkanaDoor));
 				//Player must UNFREEZE
 				actionQ.Enqueue(new FreezeAction(mm.Player, false));
+				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.WOOD, "Go to the backyard and" +
+					" gather wood by pressing G"));
 				//Player must ENTER(mentorHouse)
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.inFrontTorkanaDoor,
-				                                "Stand near Torkana's front door and press E to enter"));
+				                                "Go to Torkana's front door and press E to enter"));
 				break;
 			case MissionManager.EventType.ENTER_GUIDES:
 
 				Debug.Log ("into the enter guides event");
-			//Player must FREEZE
-				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+				//Player must drop wood
+				actionQ.Enqueue(new DropAction(mm.Player, GrabMe.kind.WOOD));
 			//Torkana must TALK(audio, guiToShow)
 		//		actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 1, 2));
-				//Player must UNFREEZE
-				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				break;
 			case MissionManager.EventType.CANDLE:
 
 				Debug.Log ("into the candle event");
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+				//Torkana must TALK(audio, guiToShow)
+				//		actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 1, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 3, 1));
 			//Player must GRAB(Candle)
-		//		actionQ.Enqueue (new GrabAction (mm.Player, mm.Candle, "Grab the candle on the table with F"));
+				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.CANDLE, "Grab the candle on the table with G"));
 			//Player must GRAB(Key)
-		//		actionQ.Enqueue (new GrabAction (mm.Player, mm.Key, "Grab the key on the table with F"));
+		//		actionQ.Enqueue (new GrabAction (mm.Player, mm.Key, "Grab the key on the table with G"));
 			//Gui must ACTIVE(true, brief)
 		//		actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 4, 1));
 			//Player must ENTER(mentorBasement)
@@ -120,26 +126,28 @@ public class MissionEvent : MonoBehaviour {
 
 				Debug.Log ("into the guides basement event");
 			//Candle must ACTIVE(true)
+				//we use a headlamp here instead of a real candle
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
 				break;
 			case MissionManager.EventType.DROP_KEY:
 			//Player must DROP(Key)
-				actionQ.Enqueue (new DropAction (mm.Player, mm.Key));
+				actionQ.Enqueue (new DropAction (mm.Player, GrabMe.kind.KEY));
 			//Candle must ACTIVE(false)
+				//we use a headlamp here instead of a real candle
 				actionQ.Enqueue (new ActiveAction (mm.Candle, false));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 9, 1));
 				break;
 			case MissionManager.EventType.RELIGHT_CANDLE:
 			//Player must FIND(Match) to light candle (GRAB?)
-				actionQ.Enqueue (new GrabAction (mm.Player, mm.Match, "Find a match then grab it with F"));
+				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.CANDLE, "Find a match then grab it with G"));
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 10, 1));
 				break;
 			case MissionManager.EventType.FIND_KEY:
 			//Player must FIND(Key) to open chest (GRAB?)
-				actionQ.Enqueue (new GrabAction (mm.Player, mm.Key, "Find the key then grab it with F"));
+				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.KEY, "Find the key then grab it with G"));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 12, 1));
 				break;
@@ -151,7 +159,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.GATHER_INITIAL_SUPPLIES:
 			//Player must GRAB(Supplies)
 			//Supplies is a game object of supplies
-				actionQ.Enqueue (new GrabAction (mm.Player, mm.Supplies, "Gather supplies from the chest with F"));
+				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.SUPPLIES, "Gather supplies from the chest with G"));
 			//Torkana must STAND(inFrontOfDoor)
 			//Stands in front of his front door inside
 				actionQ.Enqueue (new StandAction (mm.Torkana, mm.inFrontTorkanaDoor));

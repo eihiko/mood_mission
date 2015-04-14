@@ -53,7 +53,7 @@ public class EventHandler: MonoBehaviour
 	
 	PlayerScreenFade playerScreenFade;
 	PerfectController controller;
-	Character playerChar;
+	CharacterOurs playerChar;
 	PauseMenu pauseMenu;
 	
 	private bool firstLoad = true;
@@ -111,7 +111,7 @@ public class EventHandler: MonoBehaviour
 		pauseMenu = saveManagerObject.GetComponent<PauseMenu>();
 		playerScreenFade = playerCamera.GetComponent<PlayerScreenFade>();
 		controller = player.GetComponent<PerfectController>();
-		playerChar = player.GetComponent<Character>();
+		playerChar = player.GetComponent<CharacterOurs>();
 		currState = GameState.START;
 		lastState = GameState.START;
 		firstLoad = false;

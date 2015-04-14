@@ -25,12 +25,14 @@ public class DialogBox : MonoBehaviour {
 	private int numParagraphs;
 	public Text expositionText;
 	public Text dialogText;
+	public Text titleText;
 	public GameObject prevButton;
 	public GameObject doneButton;
 	public GameObject nextButton;
 	public GameObject repeatButton;
 	public GameObject expoBackground;
 	public GameObject dialogBackground;
+	public Scrollbar scrollBar;
 	public bool textCompleted = true;
 
 
@@ -121,6 +123,7 @@ public class DialogBox : MonoBehaviour {
 			nextButton.SetActive(true);
 			doneButton.SetActive(true);
 			expoBackground.SetActive(true);
+			scrollBar.value = 1;
 			this.textNum = textNum;
 			//Set the intial pageNum to the textNum (first paragraph we are displaying)
 			this.pageNum = textNum;
@@ -132,6 +135,7 @@ public class DialogBox : MonoBehaviour {
 			this.doneButton.SetActive (true);
 			this.nextButton.SetActive (true);
 			this.dialogBackground.SetActive(true);
+			scrollBar.value = 1;
 			this.textNum = textNum;
 			this.pageNum = textNum;
 		}
@@ -140,8 +144,10 @@ public class DialogBox : MonoBehaviour {
 
 	public void nextPage() 
 	{
-		if(this.pageNum < numParagraphs - 1)
+		if(this.pageNum < numParagraphs - 1) {
 			this.pageNum++;
+			scrollBar.value = 1;
+		}
 	}
 
 	public void prevPage()
@@ -149,6 +155,7 @@ public class DialogBox : MonoBehaviour {
 		if(pageNum > textNum) 
 		{
 			this.pageNum--;
+			scrollBar.value = 1;
 		}
 	}
 

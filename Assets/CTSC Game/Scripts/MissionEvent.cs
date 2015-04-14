@@ -41,7 +41,7 @@ public class MissionEvent : MonoBehaviour {
 			Debug.Log ("Still executing action");
 			isComplete = false;
 		} else if (!isBusy && !executionComplete) {
-			Debug.Log ("no actions received yet");
+			//Debug.Log ("no actions received yet");
 		}
 			//			Debug.Log ("done executing actions, event complete");
 			//			OnComplete ();
@@ -140,7 +140,7 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.RELIGHT_CANDLE:
 			//Player must FIND(Match) to light candle (GRAB?)
-				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.CANDLE, "Find a match then grab it with G"));
+				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.MATCH, "Find a match then grab it with G"));
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 10, 1));

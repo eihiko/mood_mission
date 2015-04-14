@@ -43,7 +43,7 @@ public class Mission : IComparable<Mission> {
 	private void enableMissionEvent(MissionManager.EventType eventType){
 		//Debug.Log (eventType.ToString ());
 
-		Debug.Log (eventType.ToString ());
+		//Debug.Log (eventType.ToString ());
 
 		if (eventType != MissionManager.EventType.NULL) {
 			if (eventTransforms [eventType].gameObject.activeSelf == false) {

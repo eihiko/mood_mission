@@ -32,7 +32,7 @@ public class GUIHandler : MonoBehaviour {
 	
 	void OnGUI()
 	{
-		Debug.Log ("Gui should be showing text");
+		//Debug.Log ("Gui should be showing text");
 		GUI.Label (new Rect (100, 100, 300, 100), textToShow);
 	}
 

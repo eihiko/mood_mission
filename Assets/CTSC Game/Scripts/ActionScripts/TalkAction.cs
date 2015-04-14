@@ -56,10 +56,10 @@ public class TalkAction : MissionAction {
 			voice.Play ();
 		}
 		//execute while talking and ui is active
-		if (voice.isPlaying || (canvas.isActiveAndEnabled &&
+		/*if (voice.isPlaying || (canvas.isActiveAndEnabled &&
 		    !dBox.textCompleted)) {
 			return false;
-		}
+		}*/
 		return true;
 	}
 }

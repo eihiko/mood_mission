@@ -41,7 +41,7 @@ public class Inventory : MonoBehaviour {
 			slots.Add(new Item());
 			inventory.Add(new Item());
 		}
-		database = GameObject.FindGameObjectWithTag("ItemDatabase").GetComponent<ItemDatabase>();
+		//database = GameObject.FindGameObjectWithTag("ItemDatabase").GetComponent<ItemDatabase>();
 	}
 	
 	void Update() 

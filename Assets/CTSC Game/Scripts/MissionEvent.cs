@@ -41,7 +41,7 @@ public class MissionEvent : MonoBehaviour {
 			Debug.Log ("Still executing action");
 			isComplete = false;
 		} else if (!isBusy && !executionComplete) {
-			Debug.Log ("no actions received yet");
+			//Debug.Log ("no actions received yet");
 		}
 			//			Debug.Log ("done executing actions, event complete");
 			//			OnComplete ();

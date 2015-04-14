@@ -30,8 +30,14 @@ public class Item {
 		}
 		
 		itemType = type;
-		itemIcon = Resources.Load<Texture2D>("Item Icons/" + name);
-		glowIcon = Resources.Load<Texture2D>("Item Icons/" + "glow" + name);
+		//itemIcon = Resources.Load<Texture2D>("Item Icons/" + name);
+		//glowIcon = Resources.Load<Texture2D>("Item Icons/" + "glow" + name);
+	}
+
+	public Item(string name, int id) 
+	{
+		itemName = name;
+		itemID = id;
 	}
 	public Item() 
 	{

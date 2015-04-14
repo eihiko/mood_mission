@@ -122,7 +122,7 @@ public class MissionManager : MonoBehaviour {
 		if (currMission == null) {
 			Debug.Log ("Game is completed!");
 		} else if (!currMission.getIsComplete ()) {
-			Debug.Log ("Executing Mission.");
+			//Debug.Log ("Executing Mission.");
 			currMission.execute();
 		} else {
 			Debug.Log ("Player has completed: " + currMission.ToString ());
@@ -156,7 +156,7 @@ public class MissionManager : MonoBehaviour {
 		 * that is not complete. That will be the next mission to complete.
 		 */
 		foreach(KeyValuePair<Mission, bool> mission in missionHistory){
-			Debug.Log("Current mission id is: " + mission.Key.getID());
+			//Debug.Log("Current mission id is: " + mission.Key.getID());
 			GameObject currMission = missionObjects[mission.Key.getID()];
 			if (!mission.Value) {
 				if(currMission.activeSelf == false){
@@ -196,7 +196,7 @@ public class MissionManager : MonoBehaviour {
 				case MissionType.GUIDES_HUT:
 					for(int i = 0; i < 11; i++) {
 						events.Add((MissionManager.EventType)i);
-					Debug.Log (((MissionManager.EventType)i).ToString ());
+					//Debug.Log (((MissionManager.EventType)i).ToString ());
 					}
 					currTransform = missionObjects[(int)type].transform;
 				    //Add all the event transforms for this mission to its event dictionary

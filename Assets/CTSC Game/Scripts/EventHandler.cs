@@ -90,7 +90,7 @@ public class EventHandler: MonoBehaviour
 					if (!room.gameObject.name.Equals("Transports_TDI")){
 						GameLocation enumLoc = switchLocation(room.gameObject.name);
 						locationSet.Add(enumLoc, room);
-						Debug.Log(room.gameObject.name);
+						//Debug.Log(room.gameObject.name);
 						if (room.gameObject.activeSelf && firstLoad) {
 							currLevel.setCurrLocation(enumLoc);
 						}
@@ -99,7 +99,7 @@ public class EventHandler: MonoBehaviour
 			} else {
 				GameLocation enumLoc = switchLocation(location.gameObject.name);
 				locationSet.Add(enumLoc, location);
-				Debug.Log(location.gameObject.name);
+				//Debug.Log(location.gameObject.name);
 				if (location.gameObject.activeSelf && firstLoad) {
 					currLevel.setCurrLocation(enumLoc);
 				}

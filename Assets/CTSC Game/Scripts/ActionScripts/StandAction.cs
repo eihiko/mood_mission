@@ -23,13 +23,13 @@ public class StandAction : MissionAction {
 	}
 	
 	public bool execute(){
-		float y = 0;
+		float x = 0;
 		//Make who stand!
 		animEngine.setSitting (false);
 		animEngine.setMoveSpeed (0.0f);
 		who.transform.position = where.transform.position;
-		y = who.transform.position.y - 8;
-		who.transform.position.Set(who.transform.position.x, y, who.transform.position.z);
+		x = who.transform.position.x - 8;
+		who.transform.position.Set(x, who.transform.position.y, who.transform.position.z);
 		who.transform.rotation.Set (0, who.transform.rotation.y, who.transform.rotation.z, who.transform.rotation.w);
 		return true;
 	}

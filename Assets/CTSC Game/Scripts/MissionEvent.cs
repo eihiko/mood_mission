@@ -87,7 +87,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaSitPos)); //Pair this with a sit when sitting
 				actionQ.Enqueue(new ActiveAction(mm.Torkana, true));
 				actionQ.Enqueue(new SitAction(mm.Torkana, mm.TorkanaSitPos));
-				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.inFrontTorkanaDoor));
+				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.inFrontTorkanaDoor, false, 0));
 				//Player must UNFREEZE
 				actionQ.Enqueue(new FreezeAction(mm.Player, false));
 				//actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.WOOD, "Go to the backyard and" +
@@ -102,6 +102,7 @@ public class MissionEvent : MonoBehaviour {
 				Debug.Log ("into the enter guides event");
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+				actionQ.Enqueue(new TurnAction(mm.Player, mm.Torkana, true, 40));
 				//Torkana must TALK(audio, guiToShow)
 				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 5, 1));
 				//Player must UNFREEZE

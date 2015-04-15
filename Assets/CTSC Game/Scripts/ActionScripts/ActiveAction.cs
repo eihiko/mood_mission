@@ -71,7 +71,7 @@ public class ActiveAction : MissionAction {
 			}
 			Debug.Log ("Still displaying text.");
 			//call gui to display text
-			dBox.displayText (true, startPar, numPar);
+			//dBox.displayText (true, startPar, numPar);
 			return false;
 		}
 		return true;

@@ -51,15 +51,15 @@ public class TalkAction : MissionAction {
 		if (!hasBegun) {
 			hasBegun = true;
 			//call gui to display text
-			dBox.displayText (false, startPar, numPar);   
+			dBox.displayText (true, startPar, numPar);   
 			//play audio clip
 			voice.Play ();
 		}
 		//execute while talking and ui is active
-		/*if (voice.isPlaying || (canvas.isActiveAndEnabled &&
+		if (voice.isPlaying || (canvas.isActiveAndEnabled &&
 		    !dBox.textCompleted)) {
 			return false;
-		}*/
+		}
 		return true;
 	}
 }

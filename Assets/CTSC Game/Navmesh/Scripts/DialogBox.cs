@@ -70,7 +70,7 @@ public class DialogBox : MonoBehaviour {
 			string line;
 			// Create a new StreamReader, tell it which file to read and what encoding the file
 			// was saved as
-			StreamReader theReader = new StreamReader(fileName, Encoding.Unicode);
+			StreamReader theReader = new StreamReader(fileName, Encoding.UTF8);
 			
 
 			using (theReader)
@@ -86,9 +86,12 @@ public class DialogBox : MonoBehaviour {
 						if(isExpo) 
 						{
 							expoStrings.Add(line);
+					
 						}
-						else
+						else{
 							dialogStrings.Add(line);
+						}
+					Debug.Log(line);
 					}
 				}
 				while (line != null);
@@ -112,7 +115,7 @@ public class DialogBox : MonoBehaviour {
 		this.numParagraphs = numParagraphs;
 		textCompleted = false;
 		showText = true;
-		if(isExpo) 
+		if(!isExpo) 
 		{
 			this.isExpo = true;
 			prevButton.SetActive(true);
@@ -140,7 +143,8 @@ public class DialogBox : MonoBehaviour {
 
 	public void nextPage() 
 	{
-		if(this.pageNum < numParagraphs - 1) {
+		//go forward the current page number plus the number of paragraphs
+		if(this.pageNum < (this.textNum + numParagraphs)) {
 			this.pageNum++;
 			scrollBar.value = 1;
 		}

@@ -59,7 +59,7 @@ public class ActiveAction : MissionAction {
 			if (isFirst){
 				isFirst = false;
 				//call gui to display text
-				dBox.displayText (true, startPar, numPar);
+				dBox.displayText (false, startPar, numPar);
 				Debug.Log ("Displaying text on Gui");
 				return false;
 			}

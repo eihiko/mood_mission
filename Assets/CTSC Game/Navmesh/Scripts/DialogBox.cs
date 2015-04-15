@@ -38,10 +38,10 @@ public class DialogBox : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		isExpo = true;
-		Load ("Assets/CTSC Game/UI/begin_expo.txt");
+	//	isExpo = true;
+	//	Load ("Assets/CTSC Game/UI/begin_expo.txt");
 		isExpo = false;
-		Load ("Assets/CTSC Game/UI/begin_dialog.txt");
+    	Load ("Assets/CTSC Game/UI/begin_dialog.txt");
 	}
 	
 	// Update is called once per frame
@@ -49,11 +49,11 @@ public class DialogBox : MonoBehaviour {
 		if (showText) {
 			Screen.lockCursor = false;
 			Screen.showCursor = true;
-			if (isExpo) {
-				expositionText.text = expoStrings [pageNum];
-			} else {
+	//		if (isExpo) {
+	//			expositionText.text = expoStrings [pageNum];
+	//		} else {
 				dialogText.text = /*"Torkana:\n "*/ dialogStrings [pageNum];
-			}
+	//		}
 		}
 		/*else 
 		{
@@ -75,30 +75,16 @@ public class DialogBox : MonoBehaviour {
 
 			using (theReader)
 			{
+			while((line = theReader.ReadLine()) != null){
 				// While there's lines left in the text file, do this:
-				int i = 0;
-				do
-				{
-					line = theReader.ReadLine();
-					
-					if (line != null)
-					{
-						if(isExpo) 
-						{
-							expoStrings.Add(line);
-					
-						}
-						else{
-							dialogStrings.Add(line);
-						}
-					Debug.Log(line);
-					}
-				}
-				while (line != null);
+//							expoStrings.Add(line);
+				dialogStrings.Add(line);
+				Debug.Log(line);
+			}
 				
-				// Done reading, close the reader and return true to broadcast success    
-				theReader.Close();
-				return true;
+			// Done reading, close the reader and return true to broadcast success    
+			theReader.Close();
+			return true;
 			}
 	//	}
 //		catch(IOException e) 
@@ -117,7 +103,7 @@ public class DialogBox : MonoBehaviour {
 		showText = true;
 		if(!isExpo) 
 		{
-			this.isExpo = true;
+			this.isExpo = false;
 			prevButton.SetActive(true);
 			nextButton.SetActive(true);
 			doneButton.SetActive(true);
@@ -129,7 +115,7 @@ public class DialogBox : MonoBehaviour {
 		}
 		else 
 		{
-			this.isExpo = false;
+			this.isExpo = true;
 			this.prevButton.SetActive (false);
 			this.doneButton.SetActive (true);
 			this.nextButton.SetActive (true);
@@ -144,7 +130,7 @@ public class DialogBox : MonoBehaviour {
 	public void nextPage() 
 	{
 		//go forward the current page number plus the number of paragraphs
-		if(this.pageNum < (this.textNum + numParagraphs)) {
+		if(this.pageNum < (this.textNum + numParagraphs) - 1) {
 			this.pageNum++;
 			scrollBar.value = 1;
 		}

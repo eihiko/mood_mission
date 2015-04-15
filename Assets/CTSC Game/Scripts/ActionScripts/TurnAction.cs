@@ -10,7 +10,7 @@ public class TurnAction : MissionAction {
 	//move until within 2 degrees of target
 	float angleTol = 2f;
 
-	float time = 3f;
+	float time = 1.5f;
 	
 	// Use this for initialization
 	void Start () {

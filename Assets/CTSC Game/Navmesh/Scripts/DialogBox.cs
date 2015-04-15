@@ -48,15 +48,12 @@ public class DialogBox : MonoBehaviour {
 	void Update () {
 		if (showText) {
 			Screen.lockCursor = false;
-			Time.timeScale = 0.0f;
 			Screen.showCursor = true;
 			if (isExpo) {
 				expositionText.text = expoStrings [pageNum];
 			} else {
 				dialogText.text = /*"Torkana:\n "*/ dialogStrings [pageNum];
 			}
-		} else {
-			Time.timeScale = 1.0f;
 		}
 		/*else 
 		{
@@ -166,6 +163,7 @@ public class DialogBox : MonoBehaviour {
 		this.nextButton.SetActive (false);
 		this.expoBackground.SetActive (false);
 		this.dialogBackground.SetActive (false);
+		//scrollRect.GetComponent<Text> ().text = "";
 		this.expositionText.text = "";
 		this.dialogText.text = "";
 		this.textCompleted = true;

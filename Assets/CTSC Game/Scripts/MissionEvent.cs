@@ -138,6 +138,7 @@ public class MissionEvent : MonoBehaviour {
 			//Candle must ACTIVE(true)
 				//we use a headlamp here instead of a real candle
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
+				isBusy = true;
 				break;
 			case MissionManager.EventType.DROP_KEY:
 			//Player must DROP(Key)

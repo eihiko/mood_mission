@@ -49,10 +49,12 @@ public class ActiveAction : MissionAction {
 	public bool execute(){
 		Debug.Log ("Executing active action");
 		if (!gui && active) {
+			Debug.Log("Activated thing");
 			thing.SetActive(true);
 			if (thing.GetComponent<NavMeshAgent>() != null){
 				thing.GetComponent<NavMeshAgent>().enabled = false;
 			}
+			return true;
 		} else if (!gui && !active) {
 			thing.SetActive(false);
 		} else {
@@ -74,6 +76,7 @@ public class ActiveAction : MissionAction {
 			//dBox.displayText (true, startPar, numPar);
 			return false;
 		}
+		Debug.Log ("Active action is completed");
 		return true;
 	}
 }

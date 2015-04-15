@@ -37,18 +37,23 @@ public class PerfectController : MonoBehaviour {
 	}
 	
 	public void UpdatePlayer(EventHandler.GameState state){
-		if (state != EventHandler.GameState.PAUSE){
-			snapToGround();
-			checkGrounded();
-			applyMouseLook();
-			applyMoveForces(isGrounded?1:airBias);
-			capXZVelocity();
-			if (isControllable){
-				controller.Move(velocity);
-				if (isGrounded && useViewBob) addViewBob();
-			} else {
-				controller.Move (new Vector3(0,0,0));
+		if (state != EventHandler.GameState.PAUSE) {
+			snapToGround ();
+			checkGrounded ();
+			if (isControllable) {
+				applyMouseLook ();
 			}
+			applyMoveForces (isGrounded ? 1 : airBias);
+			capXZVelocity ();
+			if (isControllable) {
+				controller.Move (velocity);
+				if (isGrounded && useViewBob)
+					addViewBob ();
+			} else {
+				controller.Move (new Vector3 (0, 0, 0));
+			}
+		} else {
+			controller.Move (new Vector3 (0, 0, 0));
 		}
 	}
 	

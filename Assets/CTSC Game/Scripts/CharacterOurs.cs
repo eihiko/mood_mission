@@ -8,6 +8,8 @@ public class CharacterOurs : MonoBehaviour {
 	
 	public string name;
 	public ArrayList inventory;
+	public GrabMe.kind nextKind;
+	public bool canEnter = false;
 	
 	public CharacterOurs(){
 		this.name = "";
@@ -24,7 +26,7 @@ public class CharacterOurs : MonoBehaviour {
 	}
 
 	public void grab(GameObject item){
-		if (item != null) {
+		if (item != null && nextKind == item.GetComponent<GrabMe>().myKind) {
 			Debug.Log("grabbed item");
 			inventory.Add (item);
 			item.SetActive (false);

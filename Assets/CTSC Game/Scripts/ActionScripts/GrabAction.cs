@@ -34,6 +34,9 @@ public class GrabAction : MissionAction {
 	
 	public bool execute(){
 		Debug.Log ("Executing grab action");
+
+		//Determine if we can pickup an object or not
+		whoIs.nextKind = what;
 		if (whoIs.has (what)) {
 			guiHandler.reset ();
 			return true;

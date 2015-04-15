@@ -53,7 +53,9 @@ public class TransportPlayer : MonoBehaviour {
 
 	void OnTriggerStay(Collider col){
 		Debug.Log("Entered trigger");
-		if(col.gameObject.tag.Equals("Player") && Input.GetKeyDown(KeyCode.E)){
+		if(col.gameObject.tag.Equals("Player") &&
+		   col.GetComponent<CharacterOurs>().canEnter &&
+		   Input.GetKeyDown(KeyCode.E)){
 			//turn off all interaction gui, can enable this if desired
 			guiHandler.reset();
 

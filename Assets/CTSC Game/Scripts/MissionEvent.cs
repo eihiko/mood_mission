@@ -71,17 +71,17 @@ public class MissionEvent : MonoBehaviour {
 				Debug.Log ("into the INTRO event");
 			    //Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
-//				//Gui must ACTIVE(true, brief)
-//				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 0, 3));
-//			    //Torkana must MOVE(currLoc, adjToPlayer, limp)
-//				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.Player, AnimationEngine.Type.LIMP));  
-//			    //Torkana must TALK(audio, guiToShow)
-//			    actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 3, 2));
-//				//Torkana must TURN(faceHouse)
-//				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.TorkanaHouse));
-//				//Torkana must MOVE(currLoc, adjToHouse)
-//				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.LIMP));
-//				//Torkana must ENTER(mentorHouse)
+				//Gui must ACTIVE(true, brief)
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 0, 3));
+			    //Torkana must MOVE(currLoc, adjToPlayer, limp)
+				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.Player, AnimationEngine.Type.LIMP));  
+			    //Torkana must TALK(audio, guiToShow)
+			    actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 3, 2));
+				//Torkana must TURN(faceHouse)
+				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.TorkanaHouse, false, 0));
+				//Torkana must MOVE(currLoc, adjToHouse)
+				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.LIMP));
+				//Torkana must ENTER(mentorHouse)
 				actionQ.Enqueue(new ActiveAction(mm.Torkana, false));
 				//Torkana must SIT(tableInHouse) before Player enters
 				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaSitPos)); //Pair this with a sit when sitting
@@ -90,8 +90,8 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.inFrontTorkanaDoor, false, 0));
 				//Player must UNFREEZE
 				actionQ.Enqueue(new FreezeAction(mm.Player, false));
-				//actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.WOOD, "Go to the backyard and" +
-				//	" gather wood by pressing G"));
+				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.WOOD, "Go to the backyard and" +
+					" gather wood by pressing G"));
 				//Player must ENTER(mentorHouse)
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.inFrontTorkanaDoor,
 				                                "Go to Torkana's front door and press E to enter"));
@@ -183,7 +183,7 @@ public class MissionEvent : MonoBehaviour {
 
 			//Torkana must STAND(inFrontOfDoor)
 			//Stands in front of his front door inside
-				actionQ.Enqueue (new StandAction (mm.Torkana, mm.inFrontTorkanaDoor));
+				actionQ.Enqueue (new StandAction (mm.Torkana, mm.TorkanaStandPos));
 			//Player must ENTER(mentorHouse)
 				actionQ.Enqueue (new EnterAction (mm.Player, mm.leavingHouse,
 				                                  "Stand near the ladder and press E to go upstairs"));
@@ -204,6 +204,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.inFrontTorkanaHouse));
 			//Torkana must STAND(inFrontOfHouse)
 				actionQ.Enqueue (new StandAction (mm.Torkana, mm.inFrontTorkanaHouse));
+				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.Player, false, 0));
 			//Player must ENTER(Forest)
 				actionQ.Enqueue (new EnterAction (mm.Player, mm.inFrontTorkanaHouse,
 				                                  "Stand near Torkana's front door and press E"));

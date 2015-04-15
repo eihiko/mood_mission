@@ -10,5 +10,4 @@ You candle has blown out due to the cold draft down here. You should try to reli
 Torkana said he wanted you to gather supplies from a chest but mentioned it was locked. Try looking around in the back room for the key.
 Now open the chest!
 Torkana: Excellent job! You have demonstrated courage, intelligence, kindness and perseverance—all characteristics that will serve you well as you continue on this journey.
-If you feel you are prepared, we will head to Merami momentarily. 
-I will meet you outside.
+When you are prepared, we will head to Merami. I will meet you outside.

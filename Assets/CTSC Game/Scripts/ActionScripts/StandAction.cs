@@ -23,14 +23,17 @@ public class StandAction : MissionAction {
 	}
 	
 	public bool execute(){
-		float x = 0;
+		//float y = where.transform.position.y - 3;
 		//Make who stand!
 		animEngine.setSitting (false);
 		animEngine.setMoveSpeed (0.0f);
-		who.transform.position = where.transform.position;
-		x = who.transform.position.x - 8;
-		who.transform.position.Set(x, who.transform.position.y, who.transform.position.z);
-		who.transform.rotation.Set (0, who.transform.rotation.y, who.transform.rotation.z, who.transform.rotation.w);
+		who.transform.position = where.transform.position; //new Vector3(where.transform.position.x, where.transform.position.z);
+		var rotationVector = who.transform.rotation.eulerAngles;
+		rotationVector.x = 0;
+		who.transform.rotation = Quaternion.Euler(rotationVector);
+		//x = who.transform.position.x - 8;
+		//who.transform.position.Set(x, who.transform.position.y, who.transform.position.z);
+		//who.transform.rotation.Set (0, who.transform.rotation.y, who.transform.rotation.z, who.transform.rotation.w);
 		return true;
 	}
 }

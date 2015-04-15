@@ -75,7 +75,7 @@ public class MissionManager : MonoBehaviour {
 	inFrontTorkanaHouse;
 	public GameObject Candle;
 	public GameObject MentorBasement, ChestClosed, ChestOpen;
-	public GameObject leavingHouse;
+	public GameObject TorkanaStandPos, leavingHouse;
 
 	//UI indexed by name.
 	//These should be unique to each mission in the future.

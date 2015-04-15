@@ -138,20 +138,20 @@ public class MissionEvent : MonoBehaviour {
 				//we use a headlamp here instead of a real candle
 				actionQ.Enqueue (new ActiveAction (mm.Candle, false));
 			//Gui must ACTIVE(true, brief)
-				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 9, 1));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 12, 1));
 				break;
 			case MissionManager.EventType.RELIGHT_CANDLE:
 			//Player must FIND(Match) to light candle (GRAB?)
-				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.MATCH, "Find somes matches then grab them with G"));
+				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.MATCH, "Find some matches then grab them with G"));
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
 			//Gui must ACTIVE(true, brief)
-				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 10, 1));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 14, 1));
 				break;
 			case MissionManager.EventType.FIND_KEY:
 			//Player must FIND(Key) to open chest (GRAB?)
 				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.KEY, "Find the key then grab it with G"));
 			//Gui must ACTIVE(true, brief)
-				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 12, 1));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 16, 1));
 				break;
 			case MissionManager.EventType.OPEN_CHEST:
 			//Player must OPEN(Chest)
@@ -180,7 +180,7 @@ public class MissionEvent : MonoBehaviour {
 			//	actionQ.Enqueue (new MoveAction (mm.Player, mm.Torkana));
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
-				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 14, 1));
+				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 18, 2));
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				//Player must GRAB(Candle)
 				actionQ.Enqueue (new DropAction (mm.Player, GrabMe.kind.CANDLE));

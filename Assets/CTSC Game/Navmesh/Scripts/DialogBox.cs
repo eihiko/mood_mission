@@ -48,7 +48,7 @@ public class DialogBox : MonoBehaviour {
 	void Update () {
 		if (showText) {
 			Screen.lockCursor = false;
-			Time.timeScale = 0.0;
+			Time.timeScale = 0.0f;
 			Screen.showCursor = true;
 			if (isExpo) {
 				expositionText.text = expoStrings [pageNum];
@@ -56,7 +56,7 @@ public class DialogBox : MonoBehaviour {
 				dialogText.text = /*"Torkana:\n "*/ dialogStrings [pageNum];
 			}
 		} else {
-			Time.timeScale = 1.0;
+			Time.timeScale = 1.0f;
 		}
 		/*else 
 		{

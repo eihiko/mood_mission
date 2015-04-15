@@ -6,6 +6,9 @@ I was just in the town of Merami. A dragon and other creatures have taken over t
 Torkana: Please, put down the wood. It is so heavy, but you are obviously quite strong, much like I was in my younger days. In fact, you remind me of myself at your age. I wonder if you might be willing to help me a bit more by accompanying me on a journey to a town through the forest. The town is called Merami, where a dragon has lately inhabited the surrounding areas of. We must battle the dragon before creatures have overrun the city. The journey will require bravery and quick thinking, but from what I have seen of you, you will be brave enough to handle the challenge.
 I will stoke the fire so we can warm up before our journey. While I am doing that, would you please go down to my cellar? There are some tools down there that would be useful to you on the quest. I have locked them all in a chest in the back room of the basement. The key to the chest is somewhere in the back room. It is dark down there so take this candle to light your way.
 And so your adventure begins…
+You candle has blown out due to the cold draft down here. You should try to relight it. Matches may be useful but watch out for spiders!
+Torkana said he wanted you to gather supplies from a chest but mentioned it was locked. Try looking around in the back room for the key.
+Now open the chest!
 Torkana: Excellent job! You have demonstrated courage, intelligence, kindness and perseverance—all characteristics that will serve you well as you continue on this journey.
 If you feel you are prepared, we will head to Merami momentarily. 
 I will meet you outside.

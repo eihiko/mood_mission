@@ -36,7 +36,7 @@ public class MoveAction : MissionAction  {
 
 	void Update(){
 		if (moveMe) {
-			if (animate && Vector3.Distance (move.transform.position, to.transform.position) > 3f) {
+			if (animate && Vector3.Distance (move.transform.position, to.transform.position) > 3.3f) {
 				Debug.Log ("mover is moving to their destination");
 				move.GetComponent<NavMeshAgent>().enabled = true;
 				//animate the npc

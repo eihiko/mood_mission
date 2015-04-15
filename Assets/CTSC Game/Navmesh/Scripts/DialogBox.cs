@@ -46,18 +46,17 @@ public class DialogBox : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(showText) 
-		{
+		if (showText) {
 			Screen.lockCursor = false;
+			Time.timeScale = 0.0;
 			Screen.showCursor = true;
-			if(isExpo) 
-			{
-				expositionText.text = expoStrings[pageNum];
+			if (isExpo) {
+				expositionText.text = expoStrings [pageNum];
+			} else {
+				dialogText.text = /*"Torkana:\n "*/ dialogStrings [pageNum];
 			}
-			else
-			{
-				dialogText.text = "Torkana:\n " + dialogStrings[pageNum];
-			}
+		} else {
+			Time.timeScale = 1.0;
 		}
 		/*else 
 		{
@@ -69,12 +68,12 @@ public class DialogBox : MonoBehaviour {
 	private bool Load(string fileName)
 	{
 		// Handle any problems that might arise when reading the text
-		try
-		{
+//		try
+//		{
 			string line;
 			// Create a new StreamReader, tell it which file to read and what encoding the file
 			// was saved as
-			StreamReader theReader = new StreamReader(fileName, Encoding.Default);
+			StreamReader theReader = new StreamReader(fileName, Encoding.Unicode);
 			
 
 			using (theReader)
@@ -101,12 +100,12 @@ public class DialogBox : MonoBehaviour {
 				theReader.Close();
 				return true;
 			}
-		}
-		catch(IOException e) 
-		{
-			Debug.Log("Reading FAILED!!");
-			return false;
-		}
+	//	}
+//		catch(IOException e) 
+//		{
+//			Debug.Log("Reading FAILED!!");
+//			return false;
+//		}
 
 	}
 

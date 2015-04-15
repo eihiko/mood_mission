@@ -71,11 +71,11 @@ public class MissionEvent : MonoBehaviour {
 			    //Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Gui must ACTIVE(true, brief)
-				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 10, 1));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 0, 3));
 			    //Torkana must MOVE(currLoc, adjToPlayer, limp)
 				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.Player, AnimationEngine.Type.LIMP));  
 			    //Torkana must TALK(audio, guiToShow)
-			//    actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 1, 1));
+			    actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 3, 2));
 				//Torkana must TURN(faceHouse)
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.TorkanaHouse));
 				//Torkana must MOVE(currLoc, adjToHouse)
@@ -101,7 +101,7 @@ public class MissionEvent : MonoBehaviour {
 				//Player must drop wood
 				actionQ.Enqueue(new DropAction(mm.Player, GrabMe.kind.WOOD));
 			//Torkana must TALK(audio, guiToShow)
-		//		actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 1, 2));
+				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 6, 1));
 				break;
 			case MissionManager.EventType.CANDLE:
 
@@ -109,7 +109,7 @@ public class MissionEvent : MonoBehaviour {
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Torkana must TALK(audio, guiToShow)
-				//		actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 1, 2));
+				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 8, 1));
 				//Player must UNFREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Gui must ACTIVE(true, brief)
@@ -119,7 +119,7 @@ public class MissionEvent : MonoBehaviour {
 			//Player must GRAB(Key)
 		//		actionQ.Enqueue (new GrabAction (mm.Player, mm.Key, "Grab the key on the table with G"));
 			//Gui must ACTIVE(true, brief)
-		//		actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 4, 1));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 10, 1));
 			//Player must ENTER(mentorBasement)
 				actionQ.Enqueue (new EnterAction (mm.Player, mm.MentorBasement,
 				                                  "Stand near Torkana's basement door and press E to enter"));

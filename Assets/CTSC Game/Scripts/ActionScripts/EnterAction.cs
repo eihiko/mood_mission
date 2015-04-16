@@ -9,6 +9,7 @@ public class EnterAction : MissionAction {
 	GUIHandler guiHandler;
 	bool first = true;
 	string text;
+	CharacterOurs character;
 
 	// Use this for initialization
 	void Start () {
@@ -22,14 +23,21 @@ public class EnterAction : MissionAction {
 	
 	public bool execute(){
 		Debug.Log ("Executing enter action");
+
 		if (collisionScript.isEntered) {
 			guiHandler.reset();
+			if (character != null) {
+				willEnter.GetComponent<CharacterOurs>().canEnter = false;
+			}
 			Debug.Log("Enter action is complete");
 			return true;
 		}
 		if (first) {
 			guiHandler.setTextToShow (text);
 			first = false;
+			if (character != null) {
+				willEnter.GetComponent<CharacterOurs>().canEnter = true;
+			}
 		}
 		return false;
 	}
@@ -40,6 +48,7 @@ public class EnterAction : MissionAction {
 		this.toEnter = toEnter;
 	    this.collisionScript = toEnter.GetComponent<EnterScript> ();
 		this.collisionScript.setWillEnter(willEnter);
+		this.character = willEnter.GetComponent<CharacterOurs> ();
 
 		interactionManager = GameObject.Find ("InteractionManager");
 		guiHandler = interactionManager.GetComponent<GUIHandler> ();

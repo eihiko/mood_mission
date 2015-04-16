@@ -38,26 +38,22 @@ public class DialogBox : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		isExpo = true;
-		Load ("Assets/CTSC Game/UI/begin_expo.txt");
+	//	isExpo = true;
+	//	Load ("Assets/CTSC Game/UI/begin_expo.txt");
 		isExpo = false;
-		Load ("Assets/CTSC Game/UI/begin_dialog.txt");
+    	Load ("Assets/CTSC Game/UI/begin_dialog.txt");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(showText) 
-		{
+		if (showText) {
 			Screen.lockCursor = false;
 			Screen.showCursor = true;
-			if(isExpo) 
-			{
-				expositionText.text = expoStrings[pageNum];
-			}
-			else
-			{
-				dialogText.text = "Torkana:\n " + dialogStrings[pageNum];
-			}
+	//		if (isExpo) {
+	//			expositionText.text = expoStrings [pageNum];
+	//		} else {
+				dialogText.text = /*"Torkana:\n "*/ dialogStrings [pageNum];
+	//		}
 		}
 		/*else 
 		{
@@ -69,44 +65,33 @@ public class DialogBox : MonoBehaviour {
 	private bool Load(string fileName)
 	{
 		// Handle any problems that might arise when reading the text
-		try
-		{
+//		try
+//		{
 			string line;
 			// Create a new StreamReader, tell it which file to read and what encoding the file
 			// was saved as
-			StreamReader theReader = new StreamReader(fileName, Encoding.Default);
+			StreamReader theReader = new StreamReader(fileName, Encoding.UTF8);
 			
 
 			using (theReader)
 			{
+			while((line = theReader.ReadLine()) != null){
 				// While there's lines left in the text file, do this:
-				int i = 0;
-				do
-				{
-					line = theReader.ReadLine();
-					
-					if (line != null)
-					{
-						if(isExpo) 
-						{
-							expoStrings.Add(line);
-						}
-						else
-							dialogStrings.Add(line);
-					}
-				}
-				while (line != null);
-				
-				// Done reading, close the reader and return true to broadcast success    
-				theReader.Close();
-				return true;
+//							expoStrings.Add(line);
+				dialogStrings.Add(line);
+				Debug.Log(line);
 			}
-		}
-		catch(IOException e) 
-		{
-			Debug.Log("Reading FAILED!!");
-			return false;
-		}
+				
+			// Done reading, close the reader and return true to broadcast success    
+			theReader.Close();
+			return true;
+			}
+	//	}
+//		catch(IOException e) 
+//		{
+//			Debug.Log("Reading FAILED!!");
+//			return false;
+//		}
 
 	}
 
@@ -116,9 +101,9 @@ public class DialogBox : MonoBehaviour {
 		this.numParagraphs = numParagraphs;
 		textCompleted = false;
 		showText = true;
-		if(isExpo) 
+		if(!isExpo) 
 		{
-			this.isExpo = true;
+			this.isExpo = false;
 			prevButton.SetActive(true);
 			nextButton.SetActive(true);
 			doneButton.SetActive(true);
@@ -130,7 +115,7 @@ public class DialogBox : MonoBehaviour {
 		}
 		else 
 		{
-			this.isExpo = false;
+			this.isExpo = true;
 			this.prevButton.SetActive (false);
 			this.doneButton.SetActive (true);
 			this.nextButton.SetActive (true);
@@ -144,7 +129,8 @@ public class DialogBox : MonoBehaviour {
 
 	public void nextPage() 
 	{
-		if(this.pageNum < numParagraphs - 1) {
+		//go forward the current page number plus the number of paragraphs
+		if(this.pageNum < (this.textNum + numParagraphs) - 1) {
 			this.pageNum++;
 			scrollBar.value = 1;
 		}
@@ -167,6 +153,7 @@ public class DialogBox : MonoBehaviour {
 		this.nextButton.SetActive (false);
 		this.expoBackground.SetActive (false);
 		this.dialogBackground.SetActive (false);
+		//scrollRect.GetComponent<Text> ().text = "";
 		this.expositionText.text = "";
 		this.dialogText.text = "";
 		this.textCompleted = true;

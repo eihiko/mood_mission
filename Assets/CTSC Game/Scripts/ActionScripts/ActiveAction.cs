@@ -49,17 +49,19 @@ public class ActiveAction : MissionAction {
 	public bool execute(){
 		Debug.Log ("Executing active action");
 		if (!gui && active) {
+			Debug.Log("Activated thing");
 			thing.SetActive(true);
 			if (thing.GetComponent<NavMeshAgent>() != null){
 				thing.GetComponent<NavMeshAgent>().enabled = false;
 			}
+			return true;
 		} else if (!gui && !active) {
 			thing.SetActive(false);
 		} else {
 			if (isFirst){
 				isFirst = false;
 				//call gui to display text
-				dBox.displayText (true, startPar, numPar);
+				dBox.displayText (false, startPar, numPar);
 				Debug.Log ("Displaying text on Gui");
 				return false;
 			}
@@ -71,9 +73,10 @@ public class ActiveAction : MissionAction {
 			}
 			Debug.Log ("Still displaying text.");
 			//call gui to display text
-			dBox.displayText (true, startPar, numPar);
+			//dBox.displayText (true, startPar, numPar);
 			return false;
 		}
+		Debug.Log ("Active action is completed");
 		return true;
 	}
 }

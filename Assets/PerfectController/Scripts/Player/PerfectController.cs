@@ -37,18 +37,26 @@ public class PerfectController : MonoBehaviour {
 	}
 	
 	public void UpdatePlayer(EventHandler.GameState state){
-		if (state != EventHandler.GameState.PAUSE){
-			snapToGround();
-			checkGrounded();
-			applyMouseLook();
-			applyMoveForces(isGrounded?1:airBias);
-			capXZVelocity();
-			if (isControllable){
-				controller.Move(velocity);
-				if (isGrounded && useViewBob) addViewBob();
+		if (state != EventHandler.GameState.PAUSE) {
+			snapToGround ();
+			checkGrounded ();
+
+			if (!isControllable)
+				applyMouseLook (true);
+			else
+				applyMouseLook(false);
+			
+			applyMoveForces (isGrounded ? 1 : airBias);
+			capXZVelocity ();
+			if (isControllable) {
+				controller.Move (velocity);
+				if (isGrounded && useViewBob)
+					addViewBob ();
 			} else {
-				controller.Move (new Vector3(0,0,0));
+				controller.Move (new Vector3 (0, 0, 0));
 			}
+		} else {
+
 		}
 	}
 	
@@ -59,10 +67,12 @@ public class PerfectController : MonoBehaviour {
 		}
 	}
 	
-	private void applyMouseLook() {
-		yaw += Input.GetAxis("Mouse X")*Xsensitivity;
-		pitch -= Input.GetAxis("Mouse Y")*Ysensitivity;
-		pitch = Mathf.Clamp(pitch, -60f, 60f);
+	private void applyMouseLook(bool freeze) {
+		if (!freeze) {
+			yaw += Input.GetAxis ("Mouse X") * Xsensitivity;
+			pitch -= Input.GetAxis ("Mouse Y") * Ysensitivity;
+			pitch = Mathf.Clamp (pitch, -60f, 60f);
+		}
 		transform.localEulerAngles = new Vector3(0, yaw, 0);
 		cam.localEulerAngles = new Vector3(pitch, 9, 0);
 	}

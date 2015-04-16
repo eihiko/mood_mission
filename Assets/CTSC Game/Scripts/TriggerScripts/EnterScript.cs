@@ -21,9 +21,11 @@ public class EnterScript : MonoBehaviour {
 		this.tag = willEnter.tag;
 	}
 
-	public void OnTriggerEnter(Collider o){
+	public void OnTriggerStay(Collider o){
 		if (o.tag == tag) {
-			isEntered=true;
+			isEntered = true;
+		} else {
+			isEntered = false;
 		}
 	}
 

@@ -6,11 +6,13 @@ public class TurnAction : MissionAction {
 	GameObject turns, to;
 
 	public float damp = 5f;
+	public bool isPlayer = false;
 
 	//move until within 2 degrees of target
 	float angleTol = 2f;
+	float angle;
 
-	float time = 3f;
+	float time = 1.5f;
 	
 	// Use this for initialization
 	void Start () {
@@ -22,19 +24,24 @@ public class TurnAction : MissionAction {
 	
 	}
 
-	public TurnAction(GameObject turns, GameObject to){
+	public TurnAction(GameObject turns, GameObject to, bool isPlayer, float angle){
 		this.turns = turns;
 		this.to = to;
+		this.isPlayer = isPlayer;
+		//the angle of the player's turn in degrees
+		this.angle = angle;
 	}
 	
 	public bool execute(){
 		Debug.Log ("Executing turn action");
+
 		Transform turn = turns.transform;
-		var rotate = Quaternion.LookRotation(to.transform.position - turn.position);
-		turn.rotation = Quaternion.Slerp(turn.rotation, rotate, Time.deltaTime * damp);
-		time -= Time.deltaTime;
-		//this will work if the z axes are aligned similarly
-	//	turns.transform.LookAt (to.transform.position);
+		if (!isPlayer) {
+			var rotate = Quaternion.LookRotation (to.transform.position - turn.position);
+			turn.rotation = Quaternion.Slerp (turn.rotation, rotate, Time.deltaTime * damp);
+			time -= Time.deltaTime;
+			//this will work if the z axes are aligned similarly
+			//	turns.transform.LookAt (to.transform.position);
 
 //
 //		Vector3.RotateTowards(turns.transform.position, to.transform.position, 
@@ -56,7 +63,13 @@ public class TurnAction : MissionAction {
 //			return true;
 //		}
 
-		if (time < 0.2) {
+			if (time < 0.2) {
+				return true;
+			}
+		} else {
+			var rotate = Quaternion.LookRotation (to.transform.position - turn.position);
+			float yaw = turn.gameObject.GetComponent<PerfectController>().yaw;
+			turn.gameObject.GetComponent<PerfectController>().yaw = yaw - angle;
 			return true;
 		}
 

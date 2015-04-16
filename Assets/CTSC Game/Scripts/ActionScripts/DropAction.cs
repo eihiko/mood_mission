@@ -38,7 +38,7 @@ public class DropAction : MissionAction {
 			return true;
 		}
 		if (first) {
-			guiHandler.setTextToShow ("Drop object(s) with F");
+			guiHandler.setTextToShow ("Drop " + what.ToString().ToLower() + " with F");
 			first = false;
 		}
 		//who will drop what and lose it from inventory

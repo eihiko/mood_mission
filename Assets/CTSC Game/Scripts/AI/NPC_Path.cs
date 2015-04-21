@@ -160,7 +160,7 @@ public class NPC_Path : MonoBehaviour {
 		//Cache some other components (not all are necessarily there)
 		controller = GetComponent<CharacterController>();
 		navController = GetComponent<NavmeshController>();
-		rigid = rigidbody;
+		rigid = GetComponent<Rigidbody>();
 	}
 
 	public void setTarget(Transform target){

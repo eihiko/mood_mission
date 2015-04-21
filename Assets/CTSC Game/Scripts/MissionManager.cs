@@ -132,7 +132,7 @@ public class MissionManager : MonoBehaviour {
 	}
 
 	public void playUI(string name){
-		Screen.showCursor = true;
+		Cursor.visible = true;
 		Screen.lockCursor = false;
 		eventHandler.setGameState (EventHandler.GameState.GUI);
 		GameObject currUI;
@@ -143,7 +143,7 @@ public class MissionManager : MonoBehaviour {
 	}
 
 	public void removeThisUI(GameObject ui){
-		Screen.showCursor = false;
+		Cursor.visible = false;
 		Screen.lockCursor = true;
 		eventHandler.setGameState (EventHandler.GameState.PLAY);
 		ui.SetActive(false);

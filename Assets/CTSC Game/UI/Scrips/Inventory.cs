@@ -124,7 +124,7 @@ public class Inventory : MonoBehaviour {
 			if(ev != null && ev.type == EventType.mouseUp && logTab1.Contains(ev.mousePosition))
 			{
 				tabSelected = 2;
-				audio.Play();
+				GetComponent<AudioSource>().Play();
 				//GameObject.Find("MapPlane").GetComponent<Map>().turnMapOff();
 			}
 			GUI.DrawTexture(new Rect(0, 0, Screen.width / 3, Screen.height), mapTabBackground);
@@ -157,7 +157,7 @@ public class Inventory : MonoBehaviour {
 			}
 			if(buttonArea.Contains(ev.mousePosition) && ev.isMouse && ev.type == EventType.mouseUp)
 			{
-				audio.Play ();
+				GetComponent<AudioSource>().Play ();
 				tabSelected = 1;
 			}
 			/*if(GUI.Button(new Rect(0, 0, Screen.width / 10, Screen.height / 12), "Back"))
@@ -355,6 +355,6 @@ public class Inventory : MonoBehaviour {
 	}
 	
 	public void playNotebookFlipSound() {
-		audio.Play();
+		GetComponent<AudioSource>().Play();
 	}
 }

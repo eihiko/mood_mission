@@ -57,7 +57,7 @@ public class NPC_FSM : MonoBehaviour {
 		}
 		switch (state) {
 			case NPC_State.ATTACK:
-				Attack (target.collider);
+				Attack (target.GetComponent<Collider>());
 				break;
 			case NPC_State.FLYING:
 				Fly (target);
@@ -104,11 +104,11 @@ public class NPC_FSM : MonoBehaviour {
 	}
 	
 	public void Idle(){
-		controller.animation.PlayQueued ("Idle", QueueMode.PlayNow);
+		controller.GetComponent<Animation>().PlayQueued ("Idle", QueueMode.PlayNow);
 	}
 
 	public void Attack(Collider opponent){
-		controller.animation.PlayQueued ("Attack", QueueMode.PlayNow);
+		controller.GetComponent<Animation>().PlayQueued ("Attack", QueueMode.PlayNow);
 		MoveTo (opponent.transform, attackSpeed);
 	}
 

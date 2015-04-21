@@ -25,7 +25,7 @@ public class PlayerScreenFade : MonoBehaviour {
 	//-----------------------------------------------------------------------------
 	
 	void Awake(){
-		cachedAudioSource = audio;
+		cachedAudioSource = GetComponent<AudioSource>();
 		cachedTransform = transform;
 		startingPosition = cachedTransform.localPosition;
 	}

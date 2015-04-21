@@ -175,7 +175,7 @@ public class NPC_FSM_C : MonoBehaviour {
 	}
 			 
     public void OnTriggerEnter(Collider opponent){
-			if (collider.tag.Equals("Player")){
+			if (GetComponent<Collider>().tag.Equals("Player")){
 				Attack(opponent);
 			}
 			collision = true;

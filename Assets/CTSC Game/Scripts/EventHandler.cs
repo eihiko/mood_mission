@@ -246,7 +246,7 @@ public class EventHandler: MonoBehaviour
 	public void StartGame(){
 		player.SetActive(true);
 		currState = GameState.PLAY;
-		Screen.showCursor = false;
+		Cursor.visible = false;
 		Screen.lockCursor = true;
 		loginMenu.SetActive(false);
 	}

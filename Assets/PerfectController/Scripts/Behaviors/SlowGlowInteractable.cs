@@ -20,7 +20,7 @@ public class SlowGlowInteractable : Interactable {
 					alive = false;
 				}
 			}
-			renderer.material.color = Color.Lerp(start, end, pulse);
+			GetComponent<Renderer>().material.color = Color.Lerp(start, end, pulse);
 		}
 	}
 	override public void Active() {

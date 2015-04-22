@@ -62,8 +62,8 @@ public class DoorCollision : MonoBehaviour {
 			player = col.gameObject;
 
 			//Store the current player position.
-			currPlayerPosition = player.rigidbody.transform.position;
-			currPlayerRotation = player.rigidbody.transform.rotation;
+			currPlayerPosition = player.GetComponent<Rigidbody>().transform.position;
+			currPlayerRotation = player.GetComponent<Rigidbody>().transform.rotation;
 
 			//Plays the door animation.
 			//transform.FindChild("door").SendMessage("DoorCheck"); 

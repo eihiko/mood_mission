@@ -36,7 +36,7 @@ timeOfChange=Random.Range(0, 3);
 
 xStart=transform.position.x;
 zStart=transform.position.z;
-	animation["move"].speed = moveAnimSpeed;	
+	GetComponent.<Animation>()["move"].speed = moveAnimSpeed;	
 }
 
 function Update () {
@@ -145,24 +145,24 @@ if (state==1) ///MOVE BEGIN
 	transform.Translate(Vector3(0,0,moveSpeed)*Time.deltaTime);
 
 	// ANIM PART
-	if (!animation.IsPlaying("move")&&(move2==false))
+	if (!GetComponent.<Animation>().IsPlaying("move")&&(move2==false))
 		{
- 		animation.CrossFade("move", 0.3);
-		animation["move"].speed = moveAnimSpeed;	
+ 		GetComponent.<Animation>().CrossFade("move", 0.3);
+		GetComponent.<Animation>()["move"].speed = moveAnimSpeed;	
 		}
 
 	if (move2==true)
 		{
-		if (!animation.IsPlaying("move")&&useMove2==false)
+		if (!GetComponent.<Animation>().IsPlaying("move")&&useMove2==false)
 			{
-			animation.CrossFade("move", 0.3);
-			animation["move"].speed = moveAnimSpeed;		
+			GetComponent.<Animation>().CrossFade("move", 0.3);
+			GetComponent.<Animation>()["move"].speed = moveAnimSpeed;		
 			}
 		
-		if (!animation.IsPlaying("move2")&&useMove2==true)
+		if (!GetComponent.<Animation>().IsPlaying("move2")&&useMove2==true)
 			{
-			animation.CrossFade("move2", 0.3);
-			animation["move2"].speed = moveAnimSpeed;		
+			GetComponent.<Animation>().CrossFade("move2", 0.3);
+			GetComponent.<Animation>()["move2"].speed = moveAnimSpeed;		
 			}
 
 
@@ -173,20 +173,20 @@ if (state==1) ///MOVE BEGIN
 
 if (state==2)
 	{	
-	if (!animation.IsPlaying("idle")) animation.CrossFade("idle", 0.3);
+	if (!GetComponent.<Animation>().IsPlaying("idle")) GetComponent.<Animation>().CrossFade("idle", 0.3);
 	}
 
 
 if (state==3)
 	{	
-	if (!animation.IsPlaying("die")) animation.CrossFade("die");
+	if (!GetComponent.<Animation>().IsPlaying("die")) GetComponent.<Animation>().CrossFade("die");
 
 	}
 
 
 if (state==4)
 	{	
-	if (!animation.IsPlaying("idle2")) animation.CrossFade("idle2", 0.5);
+	if (!GetComponent.<Animation>().IsPlaying("idle2")) GetComponent.<Animation>().CrossFade("idle2", 0.5);
 	}
 
 

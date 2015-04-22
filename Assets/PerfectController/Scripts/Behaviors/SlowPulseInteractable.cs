@@ -8,7 +8,7 @@ public class SlowPulseInteractable : Interactable {
 	void Update () {
 		if (alive) {
 			pulse = (pulse+Time.deltaTime*rate)%(Mathf.PI*2f);
-			renderer.material.color = Color.Lerp(start, end, -.5f*Mathf.Cos(pulse)+.5f);
+			GetComponent<Renderer>().material.color = Color.Lerp(start, end, -.5f*Mathf.Cos(pulse)+.5f);
 		}
 	}
 	override public void Active() {
@@ -21,6 +21,6 @@ public class SlowPulseInteractable : Interactable {
 	override public void Inactive() {
 		alive = false;
 		pulse = 0f;
-		renderer.material.color = start;
+		GetComponent<Renderer>().material.color = start;
 	}
 }

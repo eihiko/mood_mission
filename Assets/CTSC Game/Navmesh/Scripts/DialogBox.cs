@@ -48,7 +48,7 @@ public class DialogBox : MonoBehaviour {
 	void Update () {
 		if (showText) {
 			Screen.lockCursor = false;
-			Screen.showCursor = true;
+			Cursor.visible = true;
 	//		if (isExpo) {
 	//			expositionText.text = expoStrings [pageNum];
 	//		} else {
@@ -158,7 +158,7 @@ public class DialogBox : MonoBehaviour {
 		this.dialogText.text = "";
 		this.textCompleted = true;
 		Screen.lockCursor = true;
-		Screen.showCursor = false;
+		Cursor.visible = false;
 	}
 
 

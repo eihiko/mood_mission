@@ -15,7 +15,7 @@ public class MissionManager : MonoBehaviour {
 	public enum EventType {
 		//First mission at Guide's Hut (11 events)
 		INTRO, ENTER_GUIDES, CANDLE, ENTER_GUIDE_BASEMENT, DROP_KEY, RELIGHT_CANDLE, 
-		FIND_KEY, OPEN_CHEST, GATHER_INITIAL_SUPPLIES, MEET_GUIDE, LEAVE_GUIDES, 
+		FIND_KEY, OPEN_CHEST, GATHER_INITIAL_SUPPLIES, MEET_GUIDE, LEAVE_GUIDES,
 		//Second mission in Forest (6 events)
 		//**Losing the map triggers minimap to disappear**
 		FOLLOW_GUIDE, LOSE_MAP, ENCOUNTER_BEES, TOLERATE_BEES, RETRIEVE_MAP, 
@@ -75,7 +75,7 @@ public class MissionManager : MonoBehaviour {
 	inFrontTorkanaHouse;
 	public GameObject Candle;
 	public GameObject MentorBasement, ChestClosed, ChestOpen;
-	public GameObject TorkanaStandPos, leavingHouse;
+	public GameObject TorkanaStandPos, leavingHouse, TorkanaOutsideLeaving;
 	public GameObject atBeeArea;
 
 	//UI indexed by name.
@@ -196,7 +196,7 @@ public class MissionManager : MonoBehaviour {
 			//Add events specific to the given mission
 			switch (type){
 				case MissionType.GUIDES_HUT:
-					for(int i = 0; i < 11; i++) {
+					for(int i = 0; i < 12; i++) {
 						events.Add((MissionManager.EventType)i);
 					//Debug.Log (((MissionManager.EventType)i).ToString ());
 					}
@@ -208,7 +208,7 @@ public class MissionManager : MonoBehaviour {
 					}
 					break;
 				case MissionType.FOREST:
-					for(int i = 11; i < 17; i++) {
+					for(int i = 12; i < 18; i++) {
 						events.Add((EventType)i);
 					}
 					currTransform = missionObjects[(int)type].transform;
@@ -217,7 +217,7 @@ public class MissionManager : MonoBehaviour {
 					}
 					break;
 //				case MissionType.DOCTORS_OFFICE:
-//					for(int i = 17; i < 27; i++) {
+//					for(int i = 18; i < 27; i++) {
 //						events.Add((EventType)i);
 //					}
 //					currTransform = missionObjects[(int)type].transform;

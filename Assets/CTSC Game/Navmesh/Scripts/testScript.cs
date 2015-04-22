@@ -5,6 +5,7 @@ public class testScript : MonoBehaviour {
 
 	private bool hasCalledDialog;
 	public GameObject dialog;
+	public GameObject character;
 	// Use this for initialization
 	void Start () {
 	
@@ -17,6 +18,7 @@ public class testScript : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) 
 	{
+		character.GetComponent<CharacterOurs> ().showInventory (true);
 		if (!hasCalledDialog) {
 			this.dialog.GetComponent<DialogBox> ().displayText (true, 0, 3);
 		}

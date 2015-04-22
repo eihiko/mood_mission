@@ -50,7 +50,7 @@ public class CharacterOurs : MonoBehaviour {
 	}
 
 	private void place(GameObject item, Transform tPos){
-		item.transform.localPosition = tPos.position;
+		item.transform.position = tPos.position;
 		item.SetActive (true);
 		inventory.Remove (item);
 	}

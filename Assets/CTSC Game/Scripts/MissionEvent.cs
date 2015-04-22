@@ -80,7 +80,7 @@ public class MissionEvent : MonoBehaviour {
 				//Torkana must TURN(faceHouse)
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.TorkanaHouse, false, 0));
 				//Torkana must MOVE(currLoc, adjToHouse)
-				//actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.LIMP));
+				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.LIMP));
 				//Player must UNFREEZE
 				actionQ.Enqueue(new FreezeAction(mm.Player, false));
 				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.WOOD, "Go to the backyard and" +
@@ -201,15 +201,13 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new DropAction (mm.Player, GrabMe.kind.CANDLE));
 			//Torkana must ENTER(Forest)
 				actionQ.Enqueue (new ActiveAction (mm.Torkana, false));
-				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.TorkanaOutsideLeaving));
+				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.inFrontTorkanaHouse));
 			//Torkana must STAND(inFrontOfHouse)
-				actionQ.Enqueue (new ActiveAction (mm.Torkana, true));
-				actionQ.Enqueue (new StandAction (mm.Torkana, mm.TorkanaOutsideLeaving));
-
+				actionQ.Enqueue (new StandAction (mm.Torkana, mm.inFrontTorkanaHouse));
+				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.Player, false, 0));
 			//Player must ENTER(Forest)
 				actionQ.Enqueue (new EnterAction (mm.Player, mm.inFrontTorkanaHouse,
 				                                  "Stand near Torkana's front door and press E"));
-				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.Player, false, 0));
 			//Checkpoint to reflect with gui and input, write data to database
 				isBusy = true;
 				break;

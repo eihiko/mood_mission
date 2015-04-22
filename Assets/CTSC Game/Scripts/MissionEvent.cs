@@ -81,6 +81,10 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.TorkanaHouse, false, 0));
 				//Torkana must MOVE(currLoc, adjToHouse)
 				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.LIMP));
+				//Player must UNFREEZE
+				actionQ.Enqueue(new FreezeAction(mm.Player, false));
+				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.WOOD, "Go to the backyard and" +
+					" gather wood by pressing G"));
 				//Torkana must ENTER(mentorHouse)
 				actionQ.Enqueue(new ActiveAction(mm.Torkana, false));
 				//Torkana must SIT(tableInHouse) before Player enters
@@ -88,10 +92,6 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new ActiveAction(mm.Torkana, true));
 				actionQ.Enqueue(new SitAction(mm.Torkana, mm.TorkanaSitPos));
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.inFrontTorkanaDoor, false, 0));
-				//Player must UNFREEZE
-				actionQ.Enqueue(new FreezeAction(mm.Player, false));
-				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.WOOD, "Go to the backyard and" +
-					" gather wood by pressing G"));
 				//Player must ENTER(mentorHouse)
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.inFrontTorkanaDoor,
 				                                "Go to Torkana's front door and press E to enter"));
@@ -214,17 +214,27 @@ public class MissionEvent : MonoBehaviour {
 			//Mission Two events
 			case MissionManager.EventType.LEAVE_GUIDES:
 			//Player must MOVE(currLoc, TorkanaLoc)
+			//Torkana must TALK(audio, guiToShow)
+				actionQ.Enqueue(new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 13, 2));
+
 				break;
 			case MissionManager.EventType.FOLLOW_GUIDE:
-			//Torkana must TALK(audio, guiToShow)
+			
 			//Torkana must MOVE(currLoc, adjToBeeArea) iff IN_RANGE(Torkana, Player)
+				actionQ.Enqueue(new FollowAction(0, 13, mm.Torkana));
+				//actionQ.Enqueue (new MoveAction (mm.Torkana, mm.adjToBeeArea));
 			//Player must MOVE(currLoc, adjToBeeArea)
+				//this automatically happens b.c. follow action requires it!
 				break;
 			case MissionManager.EventType.LOSE_MAP:
 			//Player must DROP(Map)
+				actionQ.Enqueue(new DropAction(mm.Player, GrabMe.kind.MAP));
 			//Torkana must TALK(audio, guiToShow)
+				actionQ.Enqueue(new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 15, 2));
 			//Torkana must GIVE(Player, Amulet)
+				//don't think this is happening until later
 			//Player must MOVE(currLoc, BeeArea)
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.atBeeArea, "Go search for the map down the hill"));
 				break;
 			case MissionManager.EventType.ENCOUNTER_BEES:
 			//Gui must ACTIVE(true, brief)

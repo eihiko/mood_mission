@@ -76,6 +76,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject Candle;
 	public GameObject MentorBasement, ChestClosed, ChestOpen;
 	public GameObject TorkanaStandPos, leavingHouse;
+	public GameObject atBeeArea;
 
 	//UI indexed by name.
 	//These should be unique to each mission in the future.
@@ -206,15 +207,15 @@ public class MissionManager : MonoBehaviour {
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
-//				case MissionType.FOREST:
-//					for(int i = 11; i < 17; i++) {
-//						events.Add((EventType)i);
-//					}
-//					currTransform = missionObjects[(int)type].transform;
-//					foreach (Transform child in currTransform){
-//						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
-//					}
-//					break;
+				case MissionType.FOREST:
+					for(int i = 11; i < 17; i++) {
+						events.Add((EventType)i);
+					}
+					currTransform = missionObjects[(int)type].transform;
+					foreach (Transform child in currTransform){
+						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+					}
+					break;
 //				case MissionType.DOCTORS_OFFICE:
 //					for(int i = 17; i < 27; i++) {
 //						events.Add((EventType)i);

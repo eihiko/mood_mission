@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,29 +11,47 @@ public class CharacterOurs : MonoBehaviour {
 	public ArrayList inventory;
 	public GrabMe.kind nextKind;
 	public bool canEnter = false;
-	
+	public Transform menuPanel;
+	public GameObject buttonPrefab;
+	public GameObject inv;
+	private bool showInv = false;
 	public CharacterOurs(){
 		this.name = "";
 	}
-
+	
 	// Use this for initialization
 	void Start () {
 		inventory = new ArrayList();
+		inv.SetActive (false);
+		buttonPrefab.GetComponent<LayoutElement> ().minWidth = Screen.width * 0.2f;
+		for (int i = 0; i < inventory.Count; i++) {
+			GameObject button = (GameObject)Instantiate (buttonPrefab);
+			button.GetComponentInChildren<Text>().text = getItemName((GameObject)inventory[i]);
+			int index = i;
+			button.GetComponent<Button>().onClick.AddListener (
+				() => {/* Do stuff here */}
+			);
+			button.transform.parent = menuPanel;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(showInv)
+			inv.SetActive(true);
+		else if(!showInv)
+			inv.SetActive(false);
 	}
-
+	
 	public void grab(GameObject item){
 		if (item != null && nextKind == item.GetComponent<GrabMe>().myKind) {
 			Debug.Log("grabbed item");
 			inventory.Add (item);
 			item.SetActive (false);
+			updateInventory();
 		}
 	}
-
+	
 	public void drop(GrabMe.kind kind, Transform at){
 		GameObject item = null;
 		foreach (GameObject o in inventory){
@@ -48,13 +67,14 @@ public class CharacterOurs : MonoBehaviour {
 			Debug.Log("could not place object of kind: " + kind);
 		}
 	}
-
+	
 	private void place(GameObject item, Transform tPos){
-		item.transform.localPosition = tPos.position;
+		item.transform.position = tPos.position;
 		item.SetActive (true);
 		inventory.Remove (item);
+		updateInventory ();
 	}
-
+	
 	//Check if this character has the specified item.
 	public bool has(GrabMe.kind item){
 		foreach (GameObject g in inventory) {
@@ -65,5 +85,34 @@ public class CharacterOurs : MonoBehaviour {
 			}
 		}
 		return false;
+	}
+	
+	public string getItemName (GameObject gameObj)
+	{
+		if(gameObj.GetComponent<GrabMe>() != null) 
+		{
+			return gameObj.GetComponent<GrabMe>().getKind().ToString();
+		}
+		else
+			return "";
+	}
+	
+	void updateInventory()
+	{
+		buttonPrefab.GetComponent<LayoutElement> ().minWidth = Screen.width * 0.2f;
+		for (int i = 0; i < inventory.Count; i++) {
+			GameObject button = (GameObject)Instantiate (buttonPrefab);
+			button.GetComponentInChildren<Text>().text = getItemName((GameObject)inventory[i]);
+			int index = i;
+			button.GetComponent<Button>().onClick.AddListener (
+				() => {/* Do stuff here */}
+			);
+			button.transform.parent = menuPanel;
+		}
+	}
+	
+	public void showInventory(bool showInv) 
+	{
+		this.showInv = showInv;
 	}
 }

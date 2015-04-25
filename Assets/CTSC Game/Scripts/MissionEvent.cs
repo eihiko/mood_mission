@@ -203,6 +203,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new ActiveAction (mm.Torkana, false));
 				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.inFrontTorkanaHouse));
 			//Torkana must STAND(inFrontOfHouse)
+				actionQ.Enqueue (new ActiveAction (mm.Torkana, true));
 				actionQ.Enqueue (new StandAction (mm.Torkana, mm.inFrontTorkanaHouse));
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.Player, false, 0));
 			//Player must ENTER(Forest)
@@ -216,7 +217,7 @@ public class MissionEvent : MonoBehaviour {
 			//Player must MOVE(currLoc, TorkanaLoc)
 			//Torkana must TALK(audio, guiToShow)
 				actionQ.Enqueue(new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 13, 2));
-
+				isBusy = true;
 				break;
 			case MissionManager.EventType.FOLLOW_GUIDE:
 			
@@ -225,6 +226,7 @@ public class MissionEvent : MonoBehaviour {
 				//actionQ.Enqueue (new MoveAction (mm.Torkana, mm.adjToBeeArea));
 			//Player must MOVE(currLoc, adjToBeeArea)
 				//this automatically happens b.c. follow action requires it!
+				isBusy = true;
 				break;
 			case MissionManager.EventType.LOSE_MAP:
 			//Player must DROP(Map)
@@ -235,6 +237,7 @@ public class MissionEvent : MonoBehaviour {
 				//don't think this is happening until later
 			//Player must MOVE(currLoc, BeeArea)
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.atBeeArea, "Go search for the map down the hill"));
+				isBusy = true;
 				break;
 			case MissionManager.EventType.ENCOUNTER_BEES:
 			//Gui must ACTIVE(true, brief)

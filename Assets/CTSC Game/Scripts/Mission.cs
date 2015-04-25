@@ -116,13 +116,21 @@ public class Mission : IComparable<Mission> {
 			if (missionType == MissionManager.MissionType.ENTER_CITY_GATHER_SUPPLIES) {
 			} else if (missionType == MissionManager.MissionType.HELP_TP_1){
 			} else {
+				int currLeft = 0;
 				//Iterate through all events and see if they are complete
 				foreach (KeyValuePair<MissionManager.EventType, bool> kvp in missionEvents){
 					if (!kvp.Value) {
 						isComplete = false;
+						currLeft++;
+						Debug.Log("The mission: " + missionType + " is not complete");
 					}
+
 				}
-				//isComplete = true;
+				Debug.Log ("There are :" + currLeft + " missions left");
+				if (currLeft == 0){
+					Debug.Log("The mission: " + missionType + " is complete, moving to next mission");
+					isComplete = true;
+				}
 			}
 		}
 		return isComplete;

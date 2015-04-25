@@ -200,6 +200,7 @@ public class MissionManager : MonoBehaviour {
 						events.Add((MissionManager.EventType)i);
 					//Debug.Log (((MissionManager.EventType)i).ToString ());
 					}
+					events.Add (MissionManager.EventType.NULL);
 					currTransform = missionObjects[(int)type].transform;
 				    //Add all the event transforms for this mission to its event dictionary
 					foreach (Transform child in currTransform){

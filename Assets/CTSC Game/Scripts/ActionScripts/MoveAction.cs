@@ -11,6 +11,7 @@ public class MoveAction : MissionAction  {
 	NavMeshAgent agent = null;
 	bool moveMe = false;
 	bool atDestination = false;
+	float speed = 1f;
 
 	// Use this for initialization
 	void Start () {
@@ -47,7 +48,11 @@ public class MoveAction : MissionAction  {
 					}
 					//set to walking
 					animEngine.setMoveSpeed (.7f);
-					agent.SetDestination (to.transform.position);
+					//don't do this for now
+					//agent.SetDestination (to.transform.position);
+					//move.transform.position = to.transform.position;
+					float step = speed * Time.deltaTime;
+					move.transform.position = Vector3.MoveTowards(move.transform.position, to.transform.position, step);
 				} 
 
 				atDestination = false;

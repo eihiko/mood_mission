@@ -192,6 +192,7 @@ public class MissionManager : MonoBehaviour {
 		List<MissionManager.EventType> events = new List<MissionManager.EventType> ();
 		Dictionary<MissionManager.EventType, Transform> eventDict = new Dictionary<MissionManager.EventType, Transform> ();
 		Transform currTransform;
+		int currMissionNum = 0;
 		foreach (MissionType type in Enum.GetValues(typeof(MissionType))) {
 			//Add events specific to the given mission
 			switch (type){
@@ -272,8 +273,11 @@ public class MissionManager : MonoBehaviour {
 //					break;
 			}
 			currMission = new Mission((int)type, type, events, eventDict);
-			missionHistory.Add(currMission, false);
+			if (currMissionNum != 0){
+				missionHistory.Add(currMission, false);
+			}
 			events.Clear();
+			currMissionNum++;
 		}
 	} 
 }

@@ -249,21 +249,36 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.ENCOUNTER_BEES:
 			//Gui must ACTIVE(true, brief)
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 17, 1));
 			//Bees must MOVE(currLoc, Player)
+				actionQ.Enqueue(new ActiveAction(mm.Bees, true));
+				actionQ.Enqueue(new MoveAction(mm.Bees, mm.Player));
 				break;
 			case MissionManager.EventType.TOLERATE_BEES:
 
 			//Player must INTERACT(Gui, Bees, Action) and Bees must REACT(Player, Action) and
 			//BEES must APPROVE(Action) 
+				actionQ.Enqueue(new PrintAction("Hold C while you move for courage\r\n" +
+				                                "Hold E while you move for compassion\r\n" +
+				                                "Hold Q while you move for health\r\n", 10));
 				break;
 			case MissionManager.EventType.RETRIEVE_MAP:
 			//Player must FIND(Map) (GRAB?)
+				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.MAP, "Press G to grab map"));
+			//Bees fly off to the doctor's garden
+				actionQ.Enqueue(new MoveAction(mm.Bees, mm.DoctorGardenBees));
 				break;
 			case MissionManager.EventType.GO_TO_DOCTORS:
 			//Torkana must TALK(audio, guiToShow)
+				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 18, 2));
 			//Torkana must MOVE(currLoc, adjToDoctorsHouse) iff IN_RANGE(Torkana, Player)
 			//Player must MOVE(currLoc, adjToDoctorsHouse)
+			//note that Torkana moves to the doctor's house so the player also must
+				actionQ.Enqueue(new FollowAction(14, 30, mm.Torkana));
+			
 			//Player must ENTER(DoctorsHouse)
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.atBeeArea, "Press E to enter the Doctor's House"));
+
 			//Torkana must STAND(adjToDoctor) in the house
 			//Checkpoint to reflect with gui and input, write data to database
 				break;

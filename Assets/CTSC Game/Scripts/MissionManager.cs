@@ -76,8 +76,8 @@ public class MissionManager : MonoBehaviour {
 	public GameObject Candle;
 	public GameObject MentorBasement, ChestClosed, ChestOpen;
 	public GameObject TorkanaStandPos, leavingHouse;
-	public GameObject atBeeArea;
-	public GameObject Map;
+	public GameObject atBeeArea, DoctorGardenBees;
+	public GameObject Map, Bees;
 	
 	public MissionManager.MissionType currMissionType;
 

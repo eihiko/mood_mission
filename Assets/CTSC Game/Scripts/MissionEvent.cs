@@ -14,6 +14,7 @@ public class MissionEvent : MonoBehaviour {
 	private Mission mission;
 	private bool isComplete = false;
 	private bool isBusy = false;
+	private bool isTest = false;
 	MissionAction currAction;
 	Queue<MissionAction> actionQ = new Queue<MissionAction>();
 
@@ -31,8 +32,9 @@ public class MissionEvent : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		bool executionComplete = this.execute (actionQ);
-		if (isBusy && executionComplete) {
+		if ((isBusy && executionComplete) || isTest) {
 			isBusy = false;
+			isTest = false;
 			Debug.Log ("done executing actions, event complete");
 			//OnComplete ();
 			isComplete = true;
@@ -222,15 +224,21 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.FOLLOW_GUIDE:
 			
 			//Torkana must MOVE(currLoc, adjToBeeArea) iff IN_RANGE(Torkana, Player)
-				actionQ.Enqueue(new FollowAction(0, 13, mm.Torkana));
+			//	actionQ.Enqueue(new FollowAction(0, 13, mm.Torkana));
 				//actionQ.Enqueue (new MoveAction (mm.Torkana, mm.adjToBeeArea));
 			//Player must MOVE(currLoc, adjToBeeArea)
 				//this automatically happens b.c. follow action requires it!
-				isBusy = true;
+				//isBusy = true;
+				isTest = true;
 				break;
 			case MissionManager.EventType.LOSE_MAP:
 			//Player must DROP(Map)
 				actionQ.Enqueue(new DropAction(mm.Player, GrabMe.kind.MAP));
+				//move map to ground near bees
+				//actionQ.Enqueue(new MoveAction(mm.Map, mm.mapLocation));
+				//activate map on ground near bees
+				actionQ.Enqueue(new ActiveAction(mm.Map, true));
+
 			//Torkana must TALK(audio, guiToShow)
 				actionQ.Enqueue(new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 15, 2));
 			//Torkana must GIVE(Player, Amulet)

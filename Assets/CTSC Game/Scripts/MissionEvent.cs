@@ -253,6 +253,7 @@ public class MissionEvent : MonoBehaviour {
 			//Bees must MOVE(currLoc, Player)
 				actionQ.Enqueue(new ActiveAction(mm.Bees, true));
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.Player));
+				isBusy = true;
 				break;
 			case MissionManager.EventType.TOLERATE_BEES:
 
@@ -261,12 +262,14 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new PrintAction("Hold C while you move for courage\r\n" +
 				                                "Hold E while you move for compassion\r\n" +
 				                                "Hold Q while you move for health\r\n", 10));
+				isBusy = true;
 				break;
 			case MissionManager.EventType.RETRIEVE_MAP:
 			//Player must FIND(Map) (GRAB?)
 				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.MAP, "Press G to grab map"));
 			//Bees fly off to the doctor's garden
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.DoctorGardenBees));
+				isBusy = true;
 				break;
 			case MissionManager.EventType.GO_TO_DOCTORS:
 			//Torkana must TALK(audio, guiToShow)
@@ -277,15 +280,17 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new FollowAction(14, 30, mm.Torkana));
 			
 			//Player must ENTER(DoctorsHouse)
-				actionQ.Enqueue(new EnterAction(mm.Player, mm.atBeeArea, "Press E to enter the Doctor's House"));
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.atBeeArea, "Press E to enter the Doctor's Office"));
 
 			//Torkana must STAND(adjToDoctor) in the house
 			//Checkpoint to reflect with gui and input, write data to database
+				isBusy = true;
 				break;
 			//Mission Three events
 			case MissionManager.EventType.ENTER_DOCTORS:
 			//Torkana and Doctor must TALK(audio, noGui)
 			//Player must MOVE(currLoc, adjToTorkana)
+			//	isBusy = true;
 				break;
 			case MissionManager.EventType.DOCTOR_INTRO:
 			//Player and Doctor must TALK(audio, guiToShow)

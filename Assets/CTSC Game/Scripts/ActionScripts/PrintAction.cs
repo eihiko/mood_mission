@@ -13,6 +13,7 @@ public class PrintAction : MissionAction {
 		interactionManager = GameObject.Find ("InteractionManager");
 		guiHandler = interactionManager.GetComponent<GUIHandler> ();
 		timeToStop = duration;
+		toPrint = printMe;
 	}
 
 	public bool execute(){

@@ -126,7 +126,7 @@ public class Mission : IComparable<Mission> {
 					}
 
 				}
-				Debug.Log ("There are :" + currLeft + " missions left");
+				Debug.Log ("There are :" + currLeft + " events left in this mission");
 				if (currLeft == 0){
 					Debug.Log("The mission: " + missionType + " is complete, moving to next mission");
 					isComplete = true;

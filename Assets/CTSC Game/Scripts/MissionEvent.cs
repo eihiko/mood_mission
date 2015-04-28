@@ -250,24 +250,27 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.ENCOUNTER_BEES:
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 17, 1));
-			//Bees must MOVE(currLoc, Player)
-				actionQ.Enqueue(new ActiveAction(mm.Bees, true));
-				actionQ.Enqueue(new MoveAction(mm.Bees, mm.Player));
+
+				//actionQ.Enqueue(new MoveAction(mm.Bees, mm.Player));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.TOLERATE_BEES:
-
+				//Bees must MOVE(currLoc, Player)
+				actionQ.Enqueue(new ActiveAction(mm.Bees, true));
 			//Player must INTERACT(Gui, Bees, Action) and Bees must REACT(Player, Action) and
 			//BEES must APPROVE(Action) 
 				actionQ.Enqueue(new PrintAction("Hold C while you move for courage\r\n" +
 				                                "Hold E while you move for compassion\r\n" +
-				                                "Hold Q while you move for health\r\n", 10));
+				                                "Hold Q while you move for health\r\n", 20));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.RETRIEVE_MAP:
 			//Player must FIND(Map) (GRAB?)
 				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.MAP, "Press G to grab map"));
 			//Bees fly off to the doctor's garden
+				//set the focus of the bees to the doctor's garden area
+				mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
+				//move the actual position to the doctor's garden area
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.DoctorGardenBees));
 				isBusy = true;
 				break;

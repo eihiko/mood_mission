@@ -12,6 +12,7 @@ public class MoveAction : MissionAction  {
 	bool moveMe = false;
 	bool atDestination = false;
 	float speed = 1f;
+	bool primMove = false;
 
 	// Use this for initialization
 	void Start () {
@@ -39,7 +40,7 @@ public class MoveAction : MissionAction  {
 		if (moveMe) {
 			if (animate && Vector3.Distance (move.transform.position, to.transform.position) > 3.3f) {
 				Debug.Log ("mover is moving to their destination");
-				move.GetComponent<NavMeshAgent>().enabled = true;
+				move.GetComponent<NavMeshAgent> ().enabled = true;
 				//animate the npc
 				if (animate) {
 					//check for limp in walk
@@ -52,25 +53,25 @@ public class MoveAction : MissionAction  {
 					//agent.SetDestination (to.transform.position);
 					//move.transform.position = to.transform.position;
 					float step = speed * Time.deltaTime;
-					move.transform.position = Vector3.MoveTowards(move.transform.position, to.transform.position, step);
+					move.transform.position = Vector3.MoveTowards (move.transform.position, to.transform.position, step);
 				} 
 
 				atDestination = false;
-			} else if (!animate && Vector3.Distance (move.transform.position, to.transform.position) > 0.1f){
+			} else if (!animate && Vector3.Distance (move.transform.position, to.transform.position) > 0.1f) {
 				//stop the nav agent
 				agent.Stop ();
-				move.GetComponent<NavMeshAgent>().enabled = false;
+				move.GetComponent<NavMeshAgent> ().enabled = false;
 
 				move.transform.position = to.transform.position;
 
 				//.Translate((move.transform.localPosition -
-				 //                        to.transform.localPosition)
-				   //                      * 5 * Time.deltaTime);
+				//                        to.transform.localPosition)
+				//                      * 5 * Time.deltaTime);
 			} else {
 				Debug.Log ("mover is at destination");
 				//stop the nav agent
 				agent.Stop ();
-				if (animate){
+				if (animate) {
 					//set to idle
 					animEngine.setMoveSpeed (0f);
 				}
@@ -104,7 +105,8 @@ public class MoveAction : MissionAction  {
 				atDestination = true;
 			}
 		} else if (!atDestination) {
-			move.GetComponent<NavMeshAgent>().enabled = false;
+
+			//move.GetComponent<NavMeshAgent>().enabled = false;
 			//stop the nav agent
 			//agent.Stop ();
 			move.transform.position = to.transform.position;

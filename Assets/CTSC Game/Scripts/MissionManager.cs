@@ -177,6 +177,7 @@ public class MissionManager : MonoBehaviour {
 				}
 			}
 		}
+		Debug.Log ("Couldnt find current mission, game done or error");
 		//Otherwise, the game is probably complete.
 		//Will check for null's later on in game dev process..
 		return null;

@@ -76,7 +76,10 @@ public class MissionManager : MonoBehaviour {
 	public GameObject Candle;
 	public GameObject MentorBasement, ChestClosed, ChestOpen;
 	public GameObject TorkanaStandPos, leavingHouse;
-	public GameObject atBeeArea;
+	public GameObject atBeeArea, DoctorGardenBees;
+	public GameObject Map, Bees;
+	
+	public MissionManager.MissionType currMissionType;
 
 	//UI indexed by name.
 	//These should be unique to each mission in the future.
@@ -121,6 +124,7 @@ public class MissionManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Mission currMission = getCurrentMission();
+		currMissionType = currMission.getMissionType ();
 		if (currMission == null) {
 			Debug.Log ("Game is completed!");
 		} else if (!currMission.getIsComplete ()) {
@@ -173,6 +177,7 @@ public class MissionManager : MonoBehaviour {
 				}
 			}
 		}
+		Debug.Log ("Couldnt find current mission, game done or error");
 		//Otherwise, the game is probably complete.
 		//Will check for null's later on in game dev process..
 		return null;
@@ -210,7 +215,8 @@ public class MissionManager : MonoBehaviour {
 					}
 					break;
 				case MissionType.FOREST:
-					for(int i = 11; i < 17; i++) {
+				// i = 11 but changed it for testing !
+					for(int i = 12; i < 17; i++) {
 						events.Add((EventType)i);
 					}
 					currTransform = missionObjects[(int)type].transform;

@@ -10,6 +10,7 @@ public class DropAction : MissionAction {
 	GameObject interactionManager;
 	GUIHandler guiHandler;
 	bool first = true;
+	string whatStr = "";
 
 	// Use this for initialization
 	void Start () {
@@ -19,8 +20,7 @@ public class DropAction : MissionAction {
 	// Update is called once per frame
 	public void Update () {
 	}
-
-
+	
 	public DropAction(GameObject who, GrabMe.kind what){
 		this.who = who;
 		if (who.GetComponent<CharacterOurs> () != null) {
@@ -31,10 +31,17 @@ public class DropAction : MissionAction {
 		guiHandler = interactionManager.GetComponent<GUIHandler> ();
 	}
 
+	public DropAction(GameObject who, GrabMe.kind what, string whatStr) : this(who, what){
+		this.whatStr = whatStr;
+	}
+
 	public bool execute(){
 		Debug.Log ("Executing drop action");
 		if (!whoIs.has (what)) {
 			guiHandler.reset ();
+			if (what.Equals("map")){
+				who.transform.FindChild("MapCamera").gameObject.SetActive(false);
+			}
 			return true;
 		}
 		if (first) {

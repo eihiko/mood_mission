@@ -18,8 +18,8 @@ public class FollowAction : MissionAction {
 	
 	public bool execute(){
 		if (!followScript.enabled) {
-			if (!navAgent.enabled){
-				navAgent.enabled = true;
+			if (navAgent.enabled){
+				navAgent.enabled = false;
 			}
 			followScript.enabled = true;
 			followScript.Start ();
@@ -28,9 +28,11 @@ public class FollowAction : MissionAction {
 			}
 		} else if (followScript.isEnabled ()&& !followScript.isGoal() && followScript.currIndex != startIndex) {
 
-			//followScript.beginPath (startIndex, endIndex);
+			followScript.beginPath (startIndex, endIndex);
 		} else if (followScript.isGoal()){
-			navAgent.enabled = false;
+			if (navAgent != null){
+				navAgent.enabled = false;
+			}
 			return true;
 		}
 

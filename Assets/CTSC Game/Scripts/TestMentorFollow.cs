@@ -43,8 +43,8 @@ public class TestMentorFollow : MonoBehaviour {
 		this.currIndex = startIndex;
 		this.endIndex = endIndex;
 		this.pathComplete = false;
-		if (!agent.enabled)
-			agent.enabled = true;
+//		if (!agent.enabled)
+//			agent.enabled = true;
 		Vector3.MoveTowards (transform.position, agentDests [startIndex], speed);
 	//	agent.SetDestination(agentDests[startIndex]);
 	}
@@ -55,7 +55,7 @@ public class TestMentorFollow : MonoBehaviour {
 	}
 
 	public bool isGoal(){
-		if (currIndex == endIndex && Vector3.Distance (transform.position, agentDests [currIndex]) < 1.0f) {
+		if (currIndex == endIndex && Vector3.Distance (transform.position, agentDests [endIndex]) < 1.0f) {
 			return true;
 		}
 		return false;

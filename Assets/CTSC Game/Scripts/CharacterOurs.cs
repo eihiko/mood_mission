@@ -22,7 +22,7 @@ public class CharacterOurs : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		inventory = new ArrayList();
-		inv.SetActive (false);
+		//inv.SetActive (false);
 		buttonPrefab.GetComponent<LayoutElement> ().minWidth = Screen.width * 0.2f;
 		for (int i = 0; i < inventory.Count; i++) {
 			GameObject button = (GameObject)Instantiate (buttonPrefab);
@@ -37,10 +37,10 @@ public class CharacterOurs : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(showInv)
+		/*if(showInv)
 			inv.SetActive(true);
 		else if(!showInv)
-			inv.SetActive(false);
+			inv.SetActive(false);*/
 	}
 	
 	public void grab(GameObject item){

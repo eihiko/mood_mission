@@ -302,7 +302,7 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.DOCTOR_INTRO:
 			//Player and Doctor must TALK(audio, guiToShow)
-				actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio, mm.currentUI, 22, 2));
+				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 22, 2));
 			//Doctor must EXAMINE(Torkana)
 				break;
 			case MissionManager.EventType.GUIDE_EXAM:

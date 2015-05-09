@@ -13,10 +13,18 @@ Torkana: Excellent job! You have demonstrated courage, intelligence, kindness an
 When you are prepared, we will head to Merami. I will meet you outside.
 We are headed off to Merami, but first I would like to give you this map.
 The map covers the whole area that you should need to reach to defeat the dragon.
-I see you have lost your map due to the wind. You must search for it down at the bottom of the hill. 
+Torkana: I see you have lost your map due to the wind. You must search for it down at the bottom of the hill. 
 Beware; there may be bees down there that will torment you. You should choose to tolerate them and they will eventually ignore you.
 Torkana said you should tolerate the bees, so focus on trying to find the map if you can.
-You were really brave down there. I am proud of you for tolerating the bees and retrieving the map. You got stung pretty badly though. 
+Torkana: You were really brave down there. I am proud of you for tolerating the bees and retrieving the map. You got stung pretty badly though. 
 How about we go to the Doctor’s office closer to Merami and get ourselves healed? Let’s walk together to the doctor’s office now.
-Hi Doctor! I’m here because was injured a recent battle. I’m afraid it’s getting worse. Can you take a look at my wounds?
-They also got stung up really bad. They need medical treatment to soothe the bites.
+Torkana: Hi Doctor! I’m here because was injured a recent battle. I’m afraid it’s getting worse. Can you take a look at my wounds?
+My friend here also got stung up really bad. They need medical treatment before their bites swell.
+Doctor: Yes, you two are in rough shape. Good thing you came to my office today. We have had a bee problem around here. I have just the herb you need out back in my garden. There is a healing cave with special water too.
+Would you be willing to get both so I can heal you two up?
+Torkana: You should get the herbs and water for us so the doctor can heal our wounds.
+His garden is right out back, but the healing cave is hidden. I have faith you can find it. Watch out for more bees out there. If you see them, remember to tolerate them and they will ignore you.
+Torkana said to tolerate the bees so they ignore you. You need to find the special herb from the healing cave the doctor spoke of. Try find the cave entrance nearby. 
+Keep an eye out for the herb and the cave entrance.
+You are close to the herb, now grab it!
+The bees will not follow you into the healing cave. You need to find the special water in there. The cave entrance should be around here somewhere, look near the torches over there.

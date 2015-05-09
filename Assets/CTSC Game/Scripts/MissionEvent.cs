@@ -293,27 +293,51 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.ENTER_DOCTORS:
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.PlayerEnterDoctors, ""));
 				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaEnterDoctors));
+				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.Doctor, false, 0));
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.nearDoctor, ""));
-			//Torkana and Doctor must TALK(audio, noGui)
-				actionQ.Enqueue(new TalkAction(mm.Doctor, currentAudio, mm.currentUI, 20, 2));
-			//Player must MOVE(currLoc, adjToTorkana)
-				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaEnterDoctors));
+				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaNearDoctor));
+				//Torkana and Doctor must TALK(audio, noGui)
+				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 20, 2));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.DOCTOR_INTRO:
 			//Player and Doctor must TALK(audio, guiToShow)
-				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 22, 2));
+				actionQ.Enqueue(new TalkAction(mm.Doctor, currentAudio, mm.currentUI, 22, 2));
 			//Doctor must EXAMINE(Torkana)
+				isBusy = true;
 				break;
 			case MissionManager.EventType.GUIDE_EXAM:
 			//Doctor and Torkana must TALK(audio, noGui)
+				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 24, 2));
 			//Player must MOVE(currLoc, adjToDoor)
-			//Player must ENTER(FOREST)
-			//Gui must ACTIVE(true, brief)
+				//Player must ENTER(FOREST)
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.GoingToBees, "Go straight to the garden for the herbs"));
+				mm.Player.GetComponent<CharacterOurs>().canEnter = false;
+				//Gui must ACTIVE(true, brief)
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 26, 1));
 			//Player must MOVE(currLoc, DoctorGarden)
+				isBusy = true;
+				break;
+			case MissionManager.EventType.REACH_GARDEN:
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 27, 1));
+				isBusy = true;
 				break;
 			case MissionManager.EventType.TOLERATE_BEES_AGAIN:
-			//Gui must ACTIVE(true, brief)
+				actionQ.Enqueue(new MoveAction(mm.Bees, mm.DoctorGardenBees));
+				//Bees must MOVE(currLoc, Player)
+				actionQ.Enqueue(new ActiveAction(mm.Bees, true));
+				//Player must INTERACT(Gui, Bees, Action) and Bees must REACT(Player, Action) and
+				//BEES must APPROVE(Action) 
+				actionQ.Enqueue(new PrintAction("Hold C while you move for courage\r\n" +
+				                                "Hold E while you move for compassion\r\n" +
+				                                "Hold Q while you move for health\r\n", 20));
+
+				//Bees fly off to the doctor's garden
+				//set the focus of the bees to the doctor's garden area
+				mm.Bees.GetComponent<Swarm>().swarmFocus = mm.Player.transform;
+				isBusy = true;
+				//Gui must ACTIVE(true, brief)
 			//Bees must MOVE(currLoc, Player)
 			//Player must INTERACT(Gui, Bees, Action) and Bees must REACT(Player, Action)
 			//and BEES must APPROVE(Action)
@@ -322,12 +346,30 @@ public class MissionEvent : MonoBehaviour {
 		//	//**Dont use these until later scenarios
 				break;
 			case MissionManager.EventType.GATHER_HERBS:
-			//Gui must ACTIVE(true, brief)
-			//Player must GRAB(Herb)
+				//Gui must ACTIVE(true, brief)
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 28, 1));
+				//Player must GRAB(Herb)
+				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.HERB, "Press G to grab herb"));
+
+				//set the focus of the bees to the doctor's garden area
+				//mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
+
+				//print message to go into cave
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 29, 1));
+				//player must enter healing cave
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveEntrance, "Press E near the cave entrance to enter"));
+		
 			//Player must MOVE(currLoc, adjToDoor)
 			//Gui must ACTIVE(true, brief)
 			//Player must ENTER(DoctorsHouse)
 			//Torkana must STAND(adjToDoctor)
+
+				//set the focus of the bees to the doctor's garden area
+				//mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
+				isBusy = true;
+				break;
+			case MissionManager.EventType.GATHER_HEALING_WATER:
+				isBusy = true;
 				break;
 			case MissionManager.EventType.GIVE_DOCTOR_HERBS:
 			//Torkana must TALK(audio, noGui)

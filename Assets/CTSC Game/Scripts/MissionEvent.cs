@@ -283,7 +283,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new FollowAction(14, 30, mm.Torkana));
 			
 			//Player must ENTER(DoctorsHouse)
-				actionQ.Enqueue(new EnterAction(mm.Player, mm.atBeeArea, "Press E to enter the Doctor's Office"));
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.Doctors_House, ""));
 
 			//Torkana must STAND(adjToDoctor) in the house
 			//Checkpoint to reflect with gui and input, write data to database
@@ -291,12 +291,18 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			//Mission Three events
 			case MissionManager.EventType.ENTER_DOCTORS:
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.PlayerEnterDoctors, ""));
+				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaEnterDoctors));
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.nearDoctor, ""));
 			//Torkana and Doctor must TALK(audio, noGui)
+				actionQ.Enqueue(new TalkAction(mm.Doctor, currentAudio, mm.currentUI, 20, 2));
 			//Player must MOVE(currLoc, adjToTorkana)
-			//	isBusy = true;
+				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaEnterDoctors));
+				isBusy = true;
 				break;
 			case MissionManager.EventType.DOCTOR_INTRO:
 			//Player and Doctor must TALK(audio, guiToShow)
+				actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio, mm.currentUI, 22, 2));
 			//Doctor must EXAMINE(Torkana)
 				break;
 			case MissionManager.EventType.GUIDE_EXAM:

@@ -18,3 +18,5 @@ Beware; there may be bees down there that will torment you. You should choose to
 Torkana said you should tolerate the bees, so focus on trying to find the map if you can.
 You were really brave down there. I am proud of you for tolerating the bees and retrieving the map. You got stung pretty badly though. 
 How about we go to the Doctor’s office closer to Merami and get ourselves healed? Let’s walk together to the doctor’s office now.
+Hi Doctor! I’m here because was injured a recent battle. I’m afraid it’s getting worse. Can you take a look at my wounds?
+They also got stung up really bad. They need medical treatment to soothe the bites.

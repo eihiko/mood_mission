@@ -402,10 +402,13 @@ public class EventHandler: MonoBehaviour
 			case "TopDownCity":
 				playerStartPosition = GameObject.Find("TransportToDungeon").transform.position;
 				break;
+			case "HealingCave":
+				playerStartPosition = GameObject.Find ("TransportToHealingCave").transform.position;
+				break;
 //			case "Dungeon":
 //				return EventHandler.GameLocation.DUNGEON;
-//			case "HealingCave":
-//				return EventHandler.GameLocation.HEALING_CAVE;
+
+			//	return EventHandler.GameLocation.HEALING_CAVE;
 //			case "LargeBasement":
 //				return EventHandler.GameLocation.L_BASEMENT;
 //			case "CobWebBasement":

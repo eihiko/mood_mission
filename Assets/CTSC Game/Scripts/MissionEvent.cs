@@ -356,9 +356,11 @@ public class MissionEvent : MonoBehaviour {
 
 				//print message to go into cave
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 29, 1));
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				//player must enter healing cave
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveEntrance, "Press E near the cave entrance to enter"));
-		
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveInside, ""));
 			//Player must MOVE(currLoc, adjToDoor)
 			//Gui must ACTIVE(true, brief)
 			//Player must ENTER(DoctorsHouse)

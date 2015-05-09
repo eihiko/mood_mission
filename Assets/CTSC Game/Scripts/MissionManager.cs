@@ -217,7 +217,7 @@ public class MissionManager : MonoBehaviour {
 					break;
 				case MissionType.FOREST:
 				// i = 11 but changed it for testing !
-					for(int i = 12; i < 17; i++) {
+					for(int i = 11; i < 17; i++) {
 						events.Add((EventType)i);
 					}
 					currTransform = missionObjects[(int)type].transform;
@@ -225,15 +225,15 @@ public class MissionManager : MonoBehaviour {
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
-//				case MissionType.DOCTORS_OFFICE:
-//					for(int i = 17; i < 27; i++) {
-//						events.Add((EventType)i);
-//					}
-//					currTransform = missionObjects[(int)type].transform;
-//					foreach (Transform child in currTransform){
-//						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
-//					}
-//					break;
+				case MissionType.DOCTORS_OFFICE:
+					for(int i = 17; i < 27; i++) {
+						events.Add((EventType)i);
+					}
+					currTransform = missionObjects[(int)type].transform;
+					foreach (Transform child in currTransform){
+						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+					}
+					break;
 //				case MissionType.CROSS_BRIDGE:
 //					for(int i = 27; i < 30; i++) {
 //						events.Add((EventType)i);
@@ -280,7 +280,7 @@ public class MissionManager : MonoBehaviour {
 //					break;
 			}
 			currMission = new Mission((int)type, type, events, eventDict);
-			if (currMissionNum != 0){
+			if (currMissionNum > 1){
 				missionHistory.Add(currMission, false);
 			}
 			events.Clear();

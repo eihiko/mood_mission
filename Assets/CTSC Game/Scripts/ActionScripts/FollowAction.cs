@@ -7,28 +7,31 @@ public class FollowAction : MissionAction {
 	GameObject Torkana;
 	TestMentorFollow followScript;
 	NavMeshAgent navAgent;
+	bool pathBegun = false;
 
-	public FollowAction(int startIndex, int endIndex, GameObject mover){
-		this.startIndex = startIndex;
-		this.endIndex = endIndex;
+	public FollowAction(int start_index, int end_index, GameObject mover){
+		this.startIndex = start_index;
+		this.endIndex = end_index;
 		this.Torkana = mover;
 		this.followScript = mover.GetComponent<TestMentorFollow> ();
 		this.navAgent = mover.GetComponent<NavMeshAgent> ();
 	}
 	
 	public bool execute(){
-		if (!followScript.enabled) {
-			if (navAgent.enabled){
-				navAgent.enabled = false;
-			}
+		if (!followScript.enabled && !pathBegun) {
+//			if (navAgent.enabled){
+//				navAgent.enabled = false;
+//			}
 			followScript.enabled = true;
-			followScript.Start ();
+			//followScript.Start ();
 			if (followScript.isEnabled ()) {
 				followScript.beginPath (startIndex, endIndex);
+				pathBegun = true;
 			}
-		} else if (followScript.isEnabled ()&& !followScript.isGoal() && followScript.currIndex != startIndex) {
-
+		} else if (!pathBegun && followScript.isEnabled () && !followScript.isGoal()) {
+			//followScript.Start ();
 			followScript.beginPath (startIndex, endIndex);
+			pathBegun = true;
 		} else if (followScript.isGoal()){
 			if (navAgent != null){
 				navAgent.enabled = false;

@@ -224,7 +224,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.FOLLOW_GUIDE:
 			
 			//Torkana must MOVE(currLoc, adjToBeeArea) iff IN_RANGE(Torkana, Player)
-			//	actionQ.Enqueue(new FollowAction(0, 13, mm.Torkana));
+			//	actionQ.Enqueue(new FollowAction(0, 12, mm.Torkana));
 				//actionQ.Enqueue (new MoveAction (mm.Torkana, mm.adjToBeeArea));
 			//Player must MOVE(currLoc, adjToBeeArea)
 				//this automatically happens b.c. follow action requires it!
@@ -280,7 +280,7 @@ public class MissionEvent : MonoBehaviour {
 			//Torkana must MOVE(currLoc, adjToDoctorsHouse) iff IN_RANGE(Torkana, Player)
 			//Player must MOVE(currLoc, adjToDoctorsHouse)
 			//note that Torkana moves to the doctor's house so the player also must
-				actionQ.Enqueue(new FollowAction(14, 30, mm.Torkana));
+				actionQ.Enqueue(new FollowAction(13, 29, mm.Torkana));
 			
 			//Player must ENTER(DoctorsHouse)
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.Doctors_House, ""));

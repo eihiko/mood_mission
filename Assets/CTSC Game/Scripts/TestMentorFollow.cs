@@ -18,10 +18,23 @@ public class TestMentorFollow : MonoBehaviour {
 	private bool isActive = false;
 	private bool pathComplete = true;
 	private float speed = 1.2f;
+	private Transform torkanaTrans;
+	private Transform playerTrans;
+	private float manhattan = 0.0f;
+	private bool pathBegun = false;
 
 	public void Start() {
+
+//		foreach (Transform t in transform){
+//			if (t.gameObject.name.Equals("mixamorig:Hips")){
+//				torkanaTrans = t;
+//				break;
+//			}
+//		}
+		torkanaTrans = transform;
+		playerTrans = player;
 		agentDests = new Vector3[numDests];
-		agent = gameObject.GetComponent<NavMeshAgent>();
+		agent = GetComponent<NavMeshAgent>();
 		animationEngine = GetComponent<AnimationEngine> ();
 		currIndex = 0;
 		//Iterate over the children of the pathPointers object
@@ -33,8 +46,8 @@ public class TestMentorFollow : MonoBehaviour {
 
 		numDests = currIndex;
 		currIndex = 0;
-		lockTorkana = false;
-		previousLocation = transform.position;
+	//	lockTorkana = false;
+		previousLocation = torkanaTrans.position;
 		//InvokeRepeating ("moveTorkana", 0, 0.1f);
 		isActive = true;
 	}
@@ -45,8 +58,9 @@ public class TestMentorFollow : MonoBehaviour {
 		this.pathComplete = false;
 //		if (!agent.enabled)
 //			agent.enabled = true;
-		Vector3.MoveTowards (transform.position, agentDests [startIndex], speed);
+		Vector3.MoveTowards (torkanaTrans.position, agentDests [currIndex], speed);
 	//	agent.SetDestination(agentDests[startIndex]);
+		pathBegun = true;
 	}
 
 
@@ -55,118 +69,102 @@ public class TestMentorFollow : MonoBehaviour {
 	}
 
 	public bool isGoal(){
-		if (currIndex == endIndex && Vector3.Distance (transform.position, agentDests [endIndex]) < 1.0f) {
+		if ((currIndex == endIndex || currIndex == numDests) &&
+		    Vector3.Distance (torkanaTrans.position, agentDests [endIndex]) < 1.0f) {
 			return true;
 		}
 		return false;
 	}
 
 	void Update() {
+		torkanaTrans = transform;
+		playerTrans = player;
 		animationEngine.setHasLimp (true);
+
+		if (pathBegun) {
+		//	GroundTorkana ();
+			MoveTorkana ();
+		}
+	}
+
+    void MoveTorkana(){
 		if (isGoal()) {
 			animationEngine.setMoveSpeed(0.0f);
 			pathComplete = true;
 			return;
 		}
-
-		Debug.Log ("(" + transform.position.x + ", " + transform.position.y + ", " + transform.position.z + ")    " + 
-						"(" + player.position.x + ", " + player.position.y + ", " + player.position.z + ")");
-		if (((transform.position - player.position).magnitude < 8.0f && !lockTorkana)
-		    || (lockTorkana && (transform.position - player.position).magnitude < 7.5f))
-		{
-			Debug.Log("Torkana is moving to the destination: " + currIndex); 
-			lockTorkana = false;
+		
+		manhattan = System.Math.Abs(torkanaTrans.position.x - playerTrans.position.x) +
+			System.Math.Abs(torkanaTrans.position.y - playerTrans.position.y);
+		
+		Debug.Log ("Manhattan distance between Torkana and Player is: " + manhattan);
+		
+		if (Vector3.Distance(torkanaTrans.position, playerTrans.position) < 18f) {
+			// ||// (lockTorkana && (transform.position - player.position).magnitude < 7.5f))
+			
+			Debug.Log ("Torkana is moving to the destination: " + currIndex); 
+			//lockTorkana = false;
 			//agent.SetDestination(agentDests[currIndex]);
 			float step = speed * Time.deltaTime;
-			transform.position = Vector3.MoveTowards(transform.position, agentDests[currIndex], step);
-			//Debug.Log("Distance between agent and goal is: " + (transform.position - agentDests[arrIndex]).magnitude);
-			//Debug.Log("Distance between agent and player is: " + (transform.position - player.position).magnitude);
-			//Debug.Log("Distance between agent and its dest: " + (transform.position - agentDests[arrIndex]).magnitude);
-			//Check if the current agent's position is close enough to the previously set destination
-			if ((transform.position - agentDests[currIndex]).magnitude <= 0.5 && currIndex < numDests - 1) {
-				transform.position = Vector3.MoveTowards(transform.position, agentDests[++currIndex], step);
-				//agent.SetDestination(agentDests[++currIndex]);
-			}
-
-			Vector3 targetDir = agentDests[currIndex] - transform.position;
-			float step_rot = speed * Time.deltaTime;
-			Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step_rot, 0.0F);
-			Debug.DrawRay(transform.position, newDir, Color.red);
-			transform.rotation = Quaternion.LookRotation(newDir);
-		}
-		else
-		{
-			Debug.Log("Torkana is done moving");
-			//Debug.Log("When distance is >= 8: " + (transform.position - player.position).magnitude);
-			//agent.Stop ();
-			//agent.SetDestination(transform.position);
-			animationEngine.setMoveSpeed(0.0f);
-			lockTorkana = true;
-		}
-		velocity = ((transform.position - previousLocation).magnitude) / Time.deltaTime;
-		//Debug.Log ("Velocity is: " + velocity);
-		//Check if velocity low enough to play the idle animation (so he doesn't walk in place)
-		if(currIndex == numDests || velocity < 0.1)
-		{
+			animationEngine.setMoveSpeed (1f);
+			torkanaTrans.position = Vector3.MoveTowards (torkanaTrans.position, agentDests [currIndex], step);
 			
-			animationEngine.setMoveSpeed(0.0f);
-			//currentAnimation.animation.CrossFade("attack");
-		}
-		//Else, set the movespeed to a value that will trigger the walking animation
-		else if (velocity >= 1.0f){
-			animationEngine.setMoveSpeed (0.7f);
+			Vector3 targetDir = agentDests [currIndex] - torkanaTrans.position;
+			float step_rot = speed * Time.deltaTime;
+			Vector3 newDir = Vector3.RotateTowards (torkanaTrans.forward, targetDir, step_rot, 0.0F);
+			Debug.DrawRay (torkanaTrans.position, newDir, Color.red);
+			torkanaTrans.rotation = Quaternion.LookRotation (newDir);
+		} else {
+			animationEngine.setMoveSpeed(0f);
 		}
 		
-		//animationEngine.setMoveSpeed (velocity);
-		previousLocation = transform.position;
+		//check Torkana's dist from the target dest
+		manhattan = System.Math.Abs(torkanaTrans.position.x - agentDests[currIndex].x) +
+			System.Math.Abs(torkanaTrans.position.y - agentDests[currIndex].y);
+		Debug.Log ("Torkana is: " + manhattan + " from the current goal dest.");
+		Debug.Log("Number of destinations is: " + numDests);
 		
-
+		if (Vector3.Distance(torkanaTrans.position, agentDests[currIndex]) < 1f) {
+			previousLocation = agentDests[currIndex];
+			++currIndex;
+			//torkanaTrans.position = Vector3.MoveTowards(torkanaTrans.position, agentDests[++currIndex], step);
+			//agent.SetDestination(agentDests[++currIndex]);
+		}
 	}
 
-	void moveTorkana() {
-		animationEngine.setHasLimp (true);
-		if (currIndex == numDests) {
-			animationEngine.setMoveSpeed(0.0f);
-			return;
-		}
-		Debug.Log("Torkana transform: " + transform.position.x + ", " + transform.position.y + ", " + transform.position.z + 
-		          "Player transform: " + player.position.x + ", " + player.position.y + ", " + player.position.z);
-		if (((transform.position - player.position).magnitude < 8.0f && !lockTorkana) || (lockTorkana && 
-		                                                                                   (transform.position - player.position).magnitude < 7.5f))
-		{
-			lockTorkana = false;
-			agent.SetDestination(agentDests[currIndex]);
-			//Debug.Log("Distance between agent and goal is: " + (transform.position - agentDests[arrIndex]).magnitude);
-			//Debug.Log("Distance between agent and player is: " + (transform.position - player.position).magnitude);
-			//Debug.Log("Distance between agent and its dest: " + (transform.position - agentDests[arrIndex]).magnitude);
-			//Check if the current agent's position is close enough to the previously set destination
-			if ((transform.position - agentDests[currIndex]).magnitude <= 0.5 && currIndex < numDests - 1) {
-				
-				agent.SetDestination(agentDests[++currIndex]);
-			}
-		}
-		else
-		{
-			//Debug.Log("When distance is >= 8: " + (transform.position - player.position).magnitude);
-			agent.SetDestination(transform.position);
-			animationEngine.setMoveSpeed(0.0f);
-			lockTorkana = true;
-		}
-		velocity = ((transform.position - previousLocation).magnitude) / Time.deltaTime;
-		//Debug.Log ("Velocity is: " + velocity);
-		//Check if velocity low enough to play the idle animation (so he doesn't walk in place)
-		if(currIndex == numDests || velocity < 0.1)
-		{
-			
-			animationEngine.setMoveSpeed(0.0f);
-			//currentAnimation.animation.CrossFade("attack");
-		}
-		//Else, set the movespeed to a value that will trigger the walking animation
-		else if (velocity >= 1.0f){
-			animationEngine.setMoveSpeed (0.7f);
-		}
+	void GroundTorkana()
+	{
+
+		CapsuleCollider torkCap = torkanaTrans.GetComponent<CapsuleCollider> ();
+		//ray starts at player position and points down
+		Ray ray = new Ray(torkanaTrans.position, Vector3.down);
 		
-		//animationEngine.setMoveSpeed (velocity);
-		previousLocation = transform.position;
+		//will store info of successful ray cast
+		RaycastHit hitInfo;
+		
+		//terrain should have mesh collider and be on custom terrain 
+		//layer so we don't hit other objects with our raycast
+		LayerMask layer = LayerMask.NameToLayer("Terrain");
+
+		int layerMask = 1 << LayerMask.NameToLayer("Terrain");
+		layerMask = ~layerMask;
+
+		//cast ray
+		if(Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
+		{
+			//get where on the z axis our raycast hit the ground
+			float z = hitInfo.point.z;
+
+			Debug.Log("A raycast hit the terrain with z: " + z);
+			
+			//copy current position into temporary container
+			Vector3 pos = torkanaTrans.position;
+			
+			//change z to where on the z axis our raycast hit the ground
+			pos.z = z;
+			
+			//override our position with the new adjusted position.
+			torkanaTrans.position = pos;
+		}
 	}
 }

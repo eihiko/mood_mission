@@ -93,12 +93,12 @@ public class PlayerScreenFade : MonoBehaviour {
 	// OnGUI
 	//-----------------------------------------------------------------------------
 	
-	void OnGUI(){
-		//draw buttons:
-		DrawFadeButton();
-		DrawCameraFlashButton();
-		DrawInjuryButton();
-	}	
+//	void OnGUI(){
+//		//draw buttons:
+//		DrawFadeButton();
+//		DrawCameraFlashButton();
+//		DrawInjuryButton();
+//	}	
 	
 	//-----------------------------------------------------------------------------
 	// Private Methods

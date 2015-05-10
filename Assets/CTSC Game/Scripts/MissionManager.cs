@@ -22,7 +22,7 @@ public class MissionManager : MonoBehaviour {
 		GO_TO_DOCTORS,
 		//Third Mission at Doctor's Office (10 events)
 		ENTER_DOCTORS, DOCTOR_INTRO, GUIDE_EXAM, REACH_GARDEN, TOLERATE_BEES_AGAIN,
-		GATHER_HERBS, GIVE_DOCTOR_HERBS, PLAYER_EXAM, ATTAIN_AMULET, LEAVE_FOREST,
+		GATHER_HERBS, GATHER_HEALING_WATER, GIVE_DOCTOR_HERBS, PLAYER_EXAM, ATTAIN_AMULET, LEAVE_FOREST,
 		//Fourth Mission leaving Forest (3 events)
 		ENTER_BRIDGE, CROSS_BRIDGE, EXIT_BRIDGE, 
 		//Fifth Mission entering city (7 events)
@@ -77,7 +77,9 @@ public class MissionManager : MonoBehaviour {
 	public GameObject MentorBasement, ChestClosed, ChestOpen;
 	public GameObject TorkanaStandPos, leavingHouse;
 	public GameObject atBeeArea, DoctorGardenBees;
-	public GameObject Map, Bees;
+	public GameObject Map, Bees, Doctors_House, PlayerEnterDoctors, TorkanaEnterDoctors;
+	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden;
+	public GameObject HealingCaveEntrance, HealingCaveInside;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -216,7 +218,7 @@ public class MissionManager : MonoBehaviour {
 					break;
 				case MissionType.FOREST:
 				// i = 11 but changed it for testing !
-					for(int i = 12; i < 17; i++) {
+					for(int i = 11; i < 17; i++) {
 						events.Add((EventType)i);
 					}
 					currTransform = missionObjects[(int)type].transform;
@@ -224,17 +226,17 @@ public class MissionManager : MonoBehaviour {
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
-//				case MissionType.DOCTORS_OFFICE:
-//					for(int i = 17; i < 27; i++) {
-//						events.Add((EventType)i);
-//					}
-//					currTransform = missionObjects[(int)type].transform;
-//					foreach (Transform child in currTransform){
-//						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
-//					}
-//					break;
+				case MissionType.DOCTORS_OFFICE:
+					for(int i = 17; i < 28; i++) {
+						events.Add((EventType)i);
+					}
+					currTransform = missionObjects[(int)type].transform;
+					foreach (Transform child in currTransform){
+						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+					}
+					break;
 //				case MissionType.CROSS_BRIDGE:
-//					for(int i = 27; i < 30; i++) {
+//					for(int i = 28; i < 31; i++) {
 //						events.Add((EventType)i);
 //					}
 //					currTransform = missionObjects[(int)type].transform;
@@ -279,7 +281,7 @@ public class MissionManager : MonoBehaviour {
 //					break;
 			}
 			currMission = new Mission((int)type, type, events, eventDict);
-			if (currMissionNum != 0){
+			if (currMissionNum > 1){
 				missionHistory.Add(currMission, false);
 			}
 			events.Clear();

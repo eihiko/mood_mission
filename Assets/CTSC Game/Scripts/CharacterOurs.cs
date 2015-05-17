@@ -14,6 +14,10 @@ public class CharacterOurs : MonoBehaviour {
 	public Transform menuPanel;
 	public GameObject buttonPrefab;
 	public GameObject inv;
+	public int health = 100;
+	public int courage = 100;
+	public int compassion = 100;
+
 	private bool showInv = false;
 	public CharacterOurs(){
 		this.name = "";

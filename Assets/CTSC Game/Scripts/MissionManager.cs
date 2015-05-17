@@ -79,7 +79,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject atBeeArea, DoctorGardenBees;
 	public GameObject Map, Bees, Doctors_House, PlayerEnterDoctors, TorkanaEnterDoctors;
 	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden;
-	public GameObject HealingCaveEntrance, HealingCaveInside;
+	public GameObject HealingCaveEntrance, healthPotion;
 	
 	public MissionManager.MissionType currMissionType;
 

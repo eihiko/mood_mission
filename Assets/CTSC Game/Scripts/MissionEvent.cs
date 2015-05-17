@@ -353,14 +353,13 @@ public class MissionEvent : MonoBehaviour {
 
 				//set the focus of the bees to the doctor's garden area
 				//mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
-
+				actionQ.Enqueue(new MoveAction(mm.Bees, mm.TorkanaEnterDoctors));
+				actionQ.Enqueue(new ActiveAction(mm.Bees, false));
 				//print message to go into cave
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 29, 1));
-				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-				//player must enter healing cave
-				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveEntrance, "Press E near the cave entrance to enter"));
-				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveInside, ""));
+
+				//mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				//actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveInside, ""));
 			//Player must MOVE(currLoc, adjToDoor)
 			//Gui must ACTIVE(true, brief)
 			//Player must ENTER(DoctorsHouse)
@@ -371,6 +370,18 @@ public class MissionEvent : MonoBehaviour {
 				isBusy = true;
 				break;
 			case MissionManager.EventType.GATHER_HEALING_WATER:
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				//player must enter healing cave
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveEntrance, "Press E near the cave entrance to enter"));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 30, 1));
+				actionQ.Enqueue(new GrabAction(mm.Player,GrabMe.kind.HEALING_WATER,"Grab the healing water with G"));
+				//player must find the health potion to get out alive
+				if(mm.Player.GetComponent<CharacterOurs>().health < 50){
+					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 31, 1));
+					actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.HEALTH_POTION, "Grab the health potion with G"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 32, 1));
+					actionQ.Enqueue(new ApplyAction(mm.Player, mm.Player, GrabMe.kind.HEALTH_POTION));
+				}
 				isBusy = true;
 				break;
 			case MissionManager.EventType.GIVE_DOCTOR_HERBS:

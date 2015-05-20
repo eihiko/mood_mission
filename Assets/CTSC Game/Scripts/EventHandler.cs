@@ -186,19 +186,32 @@ public class EventHandler: MonoBehaviour
 
 	public void EnableLocation(GameLocation nextLocation)
 	{
-		if (nextLocation == GameLocation.DUNGEON){
-			Application.LoadLevel(1);
+		if (nextLocation == GameLocation.DUNGEON) {
+			Application.LoadLevel (1);
 			lastLocation = currLocation;
 			currLocation = nextLocation;
-			currLevel.setCurrLocation(nextLocation);
-			playerCamera.GetComponent<Skybox>().enabled = false;
+			currLevel.setCurrLocation (nextLocation);
+			playerCamera.GetComponent<Skybox> ().enabled = false;
 		} else if (currLocation == GameLocation.DUNGEON && nextLocation == GameLocation.TDC) {
-			Application.LoadLevel(0);
+			Application.LoadLevel (0);
 			lastLocation = currLocation;
 			currLocation = nextLocation;
-			currLevel.setCurrLocation(nextLocation);
-			playerCamera.GetComponent<Skybox>().enabled = true;
-		} else if (currLocation != GameLocation.DUNGEON){
+			currLevel.setCurrLocation (nextLocation);
+			playerCamera.GetComponent<Skybox> ().enabled = true;
+		} 
+		//------Note------
+		//This code correctly loads the forest AND city, but throws a lot of Missing Reference Exceptions.
+		//Also the fade back in never happens and must be fixed by going into the Pause menu briefly.
+
+		//else if (nextLocation == GameLocation.FOREST || nextLocation == GameLocation.TDC) {
+			//Application.LoadLevel (0);
+			//lastLocation = currLocation;
+			//currLocation = nextLocation;
+			//currLevel.setCurrLocation (nextLocation);
+			//playerCamera.GetComponent<Skybox> ().enabled = true;
+		//}
+		//This code does not load the city when exiting a house, but doesn't have the other problems.
+			else if (currLocation != GameLocation.DUNGEON){
 			GameObject nextLocationObj;
 			foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
 				nextLocationObj = kvp.Value.gameObject;
@@ -209,7 +222,8 @@ public class EventHandler: MonoBehaviour
 						kvp.Value.parent.Find("Transports_TDI").gameObject.SetActive(true);
 						//Debug.Log("Set TDI parent to active.");
 						playerCamera.GetComponent<Skybox>().enabled = false;
-					} else {
+					}
+					else {
 						playerCamera.GetComponent<Skybox>().enabled = true;
 					}
 					//Debug.Log("Set "  + nextLocationObj.name + " to active.");
@@ -218,6 +232,8 @@ public class EventHandler: MonoBehaviour
 					currLocation = nextLocation;
 					currLevel.setCurrLocation(nextLocation);
 				} else {
+					//Getting rid of this line makes nothing disappear ever, which means everything loads right,
+					//but there are also rocks in houses and you can see the house interiors in the distance from the city.
 					nextLocationObj.SetActive(false);
 				}
 			}
@@ -403,8 +419,11 @@ public class EventHandler: MonoBehaviour
 				playerStartPosition = GameObject.Find("TransportToDungeon").transform.position;
 				break;
 			case "HealingCave":
-				playerStartPosition = GameObject.Find ("TransportToHealingCave").transform.position;
+				playerStartPosition = GameObject.Find ("HealingCaveEntrance").transform.position;
 				break;
+			case "Forest":
+			playerStartPosition = GameObject.Find("TransportToHealingCave").transform.position;
+			break;
 //			case "Dungeon":
 //				return EventHandler.GameLocation.DUNGEON;
 

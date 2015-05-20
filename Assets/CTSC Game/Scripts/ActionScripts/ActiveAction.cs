@@ -47,9 +47,9 @@ public class ActiveAction : MissionAction {
 	}
 
 	public bool execute(){
-		Debug.Log ("Executing active action");
+		//Debug.Log ("Executing active action");
 		if (!gui && active) {
-			Debug.Log("Activated thing");
+			//Debug.Log("Activated thing");
 			thing.SetActive(true);
 			if (thing.GetComponent<NavMeshAgent>() != null){
 				thing.GetComponent<NavMeshAgent>().enabled = false;
@@ -62,21 +62,21 @@ public class ActiveAction : MissionAction {
 				isFirst = false;
 				//call gui to display text
 				dBox.displayText (false, startPar, numPar);
-				Debug.Log ("Displaying text on Gui");
+				//Debug.Log ("Displaying text on Gui");
 				return false;
 			}
 			//only return true when text box is completed.
 			if (//canvas.isActiveAndEnabled &&
 		       dBox.textCompleted) {
-				Debug.Log ("Text box is completed!");
+				//Debug.Log ("Text box is completed!");
 				return true;
 			}
-			Debug.Log ("Still displaying text.");
+			//Debug.Log ("Still displaying text.");
 			//call gui to display text
 			//dBox.displayText (true, startPar, numPar);
 			return false;
 		}
-		Debug.Log ("Active action is completed");
+		//Debug.Log ("Active action is completed");
 		return true;
 	}
 }

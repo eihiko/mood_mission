@@ -36,7 +36,7 @@ public class DropAction : MissionAction {
 	}
 
 	public bool execute(){
-		Debug.Log ("Executing drop action");
+		//Debug.Log ("Executing drop action");
 		if (!whoIs.has (what)) {
 			guiHandler.reset ();
 			if (what.Equals("map")){

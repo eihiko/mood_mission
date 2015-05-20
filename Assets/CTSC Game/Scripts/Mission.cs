@@ -122,13 +122,13 @@ public class Mission : IComparable<Mission> {
 					if (!kvp.Value) {
 						isComplete = false;
 						currLeft++;
-						Debug.Log("The mission: " + missionType + " is not complete");
+						//Debug.Log("The mission: " + missionType + " is not complete");
 					}
 
 				}
-				Debug.Log ("There are :" + currLeft + " events left in this mission");
+				//Debug.Log ("There are :" + currLeft + " events left in this mission");
 				if (currLeft == 0){
-					Debug.Log("The mission: " + missionType + " is complete, moving to next mission");
+					//Debug.Log("The mission: " + missionType + " is complete, moving to next mission");
 					isComplete = true;
 				}
 			}

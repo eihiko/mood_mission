@@ -22,14 +22,14 @@ public class EnterAction : MissionAction {
 	}
 	
 	public bool execute(){
-		Debug.Log ("Executing enter action");
+		//Debug.Log ("Executing enter action");
 
 		if (collisionScript.isEntered) {
 			guiHandler.reset();
 			if (character != null) {
 				willEnter.GetComponent<CharacterOurs>().canEnter = false;
 			}
-			Debug.Log("Enter action is complete");
+			//Debug.Log("Enter action is complete");
 			return true;
 		}
 		if (first) {

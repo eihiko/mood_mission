@@ -85,7 +85,7 @@ public class EventHandler: MonoBehaviour
 		//Map all locations to their enum in locations map.
 		foreach (Transform location in locations.transform) {
 			if (location.gameObject.name.Equals("TopDownInteriors")){
-				Debug.Log("In TDI");
+				//Debug.Log("In TDI");
 				foreach (Transform room in location){
 					if (!room.gameObject.name.Equals("Transports_TDI")){
 						GameLocation enumLoc = switchLocation(room.gameObject.name);
@@ -207,12 +207,12 @@ public class EventHandler: MonoBehaviour
 					if (kvp.Value.parent.name.Equals("TopDownInteriors")){
 						kvp.Value.parent.gameObject.SetActive(true);
 						kvp.Value.parent.Find("Transports_TDI").gameObject.SetActive(true);
-						Debug.Log("Set TDI parent to active.");
+						//Debug.Log("Set TDI parent to active.");
 						playerCamera.GetComponent<Skybox>().enabled = false;
 					} else {
 						playerCamera.GetComponent<Skybox>().enabled = true;
 					}
-					Debug.Log("Set "  + nextLocationObj.name + " to active.");
+					//Debug.Log("Set "  + nextLocationObj.name + " to active.");
 					nextLocationObj.SetActive(true);
 					lastLocation = currLocation;
 					currLocation = nextLocation;
@@ -282,7 +282,7 @@ public class EventHandler: MonoBehaviour
 	 */
 	IEnumerator Fade()
 	{
-		Debug.Log("in fade coroutine");
+		//Debug.Log("in fade coroutine");
 		playerScreenFade.Fade(false, .001f);
 		while (currState == GameState.TRANSPORT){
 			yield return null;

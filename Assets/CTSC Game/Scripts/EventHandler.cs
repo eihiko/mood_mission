@@ -209,7 +209,9 @@ public class EventHandler: MonoBehaviour
 						kvp.Value.parent.Find("Transports_TDI").gameObject.SetActive(true);
 						Debug.Log("Set TDI parent to active.");
 						playerCamera.GetComponent<Skybox>().enabled = false;
-					} else {
+					} else if (kvp.Value.name.Equals("HealingCave")) {
+						playerCamera.GetComponent<Skybox>().enabled = false;
+					} else  {
 						playerCamera.GetComponent<Skybox>().enabled = true;
 					}
 					Debug.Log("Set "  + nextLocationObj.name + " to active.");

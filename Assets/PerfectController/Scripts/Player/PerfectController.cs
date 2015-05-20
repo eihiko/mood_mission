@@ -41,10 +41,12 @@ public class PerfectController : MonoBehaviour {
 			snapToGround ();
 			checkGrounded ();
 
-			if (!isControllable)
+			if (!isControllable){
+
 				applyMouseLook (true);
-			else
+			} else {
 				applyMouseLook(false);
+			}
 			
 			applyMoveForces (isGrounded ? 1 : airBias);
 			capXZVelocity ();

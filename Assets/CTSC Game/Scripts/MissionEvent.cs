@@ -128,8 +128,12 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.CANDLE, "Grab the candle on the table with G"));
 			//Player must GRAB(Key)
 		//		actionQ.Enqueue (new GrabAction (mm.Player, mm.Key, "Grab the key on the table with G"));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 7, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Player must ENTER(mentorBasement)
 				actionQ.Enqueue (new EnterAction (mm.Player, mm.MentorBasement,
 				                                  "Stand near Torkana's basement door and press E to enter"));
@@ -149,23 +153,35 @@ public class MissionEvent : MonoBehaviour {
 			//Candle must ACTIVE(false)
 				//we use a headlamp here instead of a real candle
 				actionQ.Enqueue (new ActiveAction (mm.Candle, false));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 8, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.RELIGHT_CANDLE:
 			//Player must FIND(Match) to light candle (GRAB?)
 				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.MATCH, "Find some matches then grab them with G"));
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 9, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.FIND_KEY:
 			//Player must FIND(Key) to open chest (GRAB?)
 				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.KEY, "Find the key then grab it with G"));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 10, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.OPEN_CHEST:
@@ -217,19 +233,23 @@ public class MissionEvent : MonoBehaviour {
 			//Mission Two events
 			case MissionManager.EventType.LEAVE_GUIDES:
 			//Player must MOVE(currLoc, TorkanaLoc)
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
 				actionQ.Enqueue(new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 13, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.FOLLOW_GUIDE:
 			
 			//Torkana must MOVE(currLoc, adjToBeeArea) iff IN_RANGE(Torkana, Player)
-			//	actionQ.Enqueue(new FollowAction(0, 12, mm.Torkana));
+				actionQ.Enqueue(new FollowAction(0, 12, mm.Torkana));
 				//actionQ.Enqueue (new MoveAction (mm.Torkana, mm.adjToBeeArea));
 			//Player must MOVE(currLoc, adjToBeeArea)
 				//this automatically happens b.c. follow action requires it!
-				//isBusy = true;
-				isTest = true;
+				isBusy = true;
+			//	isTest = true;
 				break;
 			case MissionManager.EventType.LOSE_MAP:
 			//Player must DROP(Map)
@@ -238,9 +258,12 @@ public class MissionEvent : MonoBehaviour {
 				//actionQ.Enqueue(new MoveAction(mm.Map, mm.mapLocation));
 				//activate map on ground near bees
 				actionQ.Enqueue(new ActiveAction(mm.Map, true));
-
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
 				actionQ.Enqueue(new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 15, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Torkana must GIVE(Player, Amulet)
 				//don't think this is happening until later
 			//Player must MOVE(currLoc, BeeArea)
@@ -249,8 +272,11 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.ENCOUNTER_BEES:
 			//Gui must ACTIVE(true, brief)
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 17, 1));
-
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				//actionQ.Enqueue(new MoveAction(mm.Bees, mm.Player));
 				isBusy = true;
 				break;
@@ -275,8 +301,12 @@ public class MissionEvent : MonoBehaviour {
 				isBusy = true;
 				break;
 			case MissionManager.EventType.GO_TO_DOCTORS:
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
 				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 18, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Torkana must MOVE(currLoc, adjToDoctorsHouse) iff IN_RANGE(Torkana, Player)
 			//Player must MOVE(currLoc, adjToDoctorsHouse)
 			//note that Torkana moves to the doctor's house so the player also must
@@ -296,31 +326,51 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.Doctor, false, 0));
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.nearDoctor, ""));
 				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaNearDoctor));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Torkana and Doctor must TALK(audio, noGui)
 				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 20, 2));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.DOCTOR_INTRO:
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Player and Doctor must TALK(audio, guiToShow)
 				actionQ.Enqueue(new TalkAction(mm.Doctor, currentAudio, mm.currentUI, 22, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Doctor must EXAMINE(Torkana)
 				isBusy = true;
 				break;
 			case MissionManager.EventType.GUIDE_EXAM:
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Doctor and Torkana must TALK(audio, noGui)
 				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 24, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Player must MOVE(currLoc, adjToDoor)
 				//Player must ENTER(FOREST)
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.GoingToBees, "Go straight to the garden for the herbs"));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = false;
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 26, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Player must MOVE(currLoc, DoctorGarden)
 				isBusy = true;
 				break;
 			case MissionManager.EventType.REACH_GARDEN:
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 27, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.TOLERATE_BEES_AGAIN:
@@ -346,17 +396,25 @@ public class MissionEvent : MonoBehaviour {
 		//	//**Dont use these until later scenarios
 				break;
 			case MissionManager.EventType.GATHER_HERBS:
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 28, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				//Player must GRAB(Herb)
 				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.HERB, "Press G to grab herb"));
 
 				//set the focus of the bees to the doctor's garden area
 				//mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.TorkanaEnterDoctors));
-				actionQ.Enqueue(new ActiveAction(mm.Bees, false));
+				actionQ.Enqueue(new ActiveAction(mm.Bees, false));//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//print message to go into cave
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 29, 1));
+
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 
 				//mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				//actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveInside, ""));
@@ -373,13 +431,21 @@ public class MissionEvent : MonoBehaviour {
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				//player must enter healing cave
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveEntrance, "Press E near the cave entrance to enter"));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 30, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				actionQ.Enqueue(new GrabAction(mm.Player,GrabMe.kind.HEALING_WATER,"Grab the healing water with G"));
 				//player must find the health potion to get out alive
 				if(mm.Player.GetComponent<CharacterOurs>().health < 50){
+					actionQ.Enqueue (new FreezeAction (mm.Player, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 31, 1));
+					actionQ.Enqueue (new FreezeAction (mm.Player, false));
 					actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.HEALTH_POTION, "Grab the health potion with G"));
+					actionQ.Enqueue (new FreezeAction (mm.Player, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 32, 1));
+					actionQ.Enqueue (new FreezeAction (mm.Player, false));
 					actionQ.Enqueue(new ApplyAction(mm.Player, mm.Player, GrabMe.kind.HEALTH_POTION));
 				}
 				isBusy = true;

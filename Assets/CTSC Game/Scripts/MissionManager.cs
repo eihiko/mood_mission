@@ -70,7 +70,7 @@ public class MissionManager : MonoBehaviour {
 
 	public GameObject currentUI;
 
-	//mission 1 objects
+	//mission objects
 	public GameObject TorkanaHouse, TorkanaSitPos, inFrontTorkanaDoor,
 	inFrontTorkanaHouse;
 	public GameObject Candle;
@@ -80,6 +80,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject Map, Bees, Doctors_House, PlayerEnterDoctors, TorkanaEnterDoctors;
 	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden;
 	public GameObject HealingCaveEntrance, healthPotion;
+	public GameObject InjuredPerson, nearInjuredPerson;
 	
 	public MissionManager.MissionType currMissionType;
 

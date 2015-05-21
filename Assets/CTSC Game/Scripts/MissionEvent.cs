@@ -410,6 +410,11 @@ public class MissionEvent : MonoBehaviour {
 			//Player must ENTER(Forest)
 				break;
 			//About 1/3 way through missions...
+			case MissionManager.EventType.TALK_TO_MT1:
+				//Player and Townsperson must TALK(audio, guiToShow)
+				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,33,1));
+				isBusy = true;
+				break;
 			}
 		}
 

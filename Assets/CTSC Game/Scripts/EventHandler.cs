@@ -198,7 +198,7 @@ public class EventHandler: MonoBehaviour
 			currLocation = nextLocation;
 			currLevel.setCurrLocation (nextLocation);
 			playerCamera.GetComponent<Skybox> ().enabled = true;
-		} 
+		}
 		//------Note------
 		//This code correctly loads the forest AND city, but throws a lot of Missing Reference Exceptions.
 		//Also the fade back in never happens and must be fixed by going into the Pause menu briefly.
@@ -211,7 +211,7 @@ public class EventHandler: MonoBehaviour
 			//playerCamera.GetComponent<Skybox> ().enabled = true;
 		//}
 		//This code does not load the city when exiting a house, but doesn't have the other problems.
-			else if (currLocation != GameLocation.DUNGEON){
+			else if (currLocation != GameLocation.DUNGEON && nextLocation != GameLocation.FOREST && nextLocation != GameLocation.TDC){
 			GameObject nextLocationObj;
 			foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
 				nextLocationObj = kvp.Value.gameObject;
@@ -231,6 +231,31 @@ public class EventHandler: MonoBehaviour
 					lastLocation = currLocation;
 					currLocation = nextLocation;
 					currLevel.setCurrLocation(nextLocation);
+				} else {
+					//Getting rid of this line makes nothing disappear ever, which means everything loads right,
+					//but there are also rocks in houses and you can see the house interiors in the distance from the city.
+					nextLocationObj.SetActive(false);
+				}
+			}
+		}
+
+		else if (currLocation != GameLocation.DUNGEON && (nextLocation == GameLocation.FOREST || nextLocation == GameLocation.TDC)){
+			GameObject nextLocationObj;
+			foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
+				nextLocationObj = kvp.Value.gameObject;
+				
+				if (kvp.Key == GameLocation.FOREST || kvp.Key == GameLocation.TDC) {
+					if (kvp.Value.parent.name.Equals("TopDownCity")){
+						kvp.Value.parent.gameObject.SetActive(true);
+						//Debug.Log("Set TDI parent to active.");
+						playerCamera.GetComponent<Skybox>().enabled = true;
+					}
+					//Debug.Log("Set "  + nextLocationObj.name + " to active.");
+					nextLocationObj.SetActive(true);
+					lastLocation = currLocation;
+					currLocation = nextLocation;
+					currLevel.setCurrLocation(nextLocation);
+					playerCamera.GetComponent<Skybox>().enabled = true;
 				} else {
 					//Getting rid of this line makes nothing disappear ever, which means everything loads right,
 					//but there are also rocks in houses and you can see the house interiors in the distance from the city.

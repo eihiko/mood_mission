@@ -23,7 +23,7 @@ public class FloorSwitch : MonoBehaviour {
 			Debug.Log("Floor switch is not pressed.");
 			//do some time calculations for the button move
 			timeStep = System.DateTime.Today.Millisecond - lastTime;
-			timeStep /= 100000f;
+			timeStep /= 1000f;
 			elapsedTime += timeStep;
 		
 			//lerp button upward after not pressing for 2 seconds
@@ -32,11 +32,14 @@ public class FloorSwitch : MonoBehaviour {
 				//have the button stop at its low point
 				if (buttonPos.y > highPoint) {
 					Debug.Log("Switch is lerping upward from being pressed.");
-					Vector3.Lerp (buttonPos, new Vector3 (buttonPos.x, buttonPos.y + timeStep, buttonPos.z), timeStep);
+					buttonPos = buttonPos - (Vector3.down / 1000) * timeStep;
+				//	Vector3.Lerp (buttonPos, new Vector3 (buttonPos.x, buttonPos.y + timeStep, buttonPos.z), timeStep);
 				}
 			}
 		}
+
 		lastTime = System.DateTime.Today.Millisecond;
+		Debug.Log ("The last time is: " + lastTime);
 	}
 
 	void OnTriggerLeave(){

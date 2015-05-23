@@ -35,12 +35,12 @@ public class MissionEvent : MonoBehaviour {
 		if ((isBusy && executionComplete) || isTest) {
 			isBusy = false;
 			isTest = false;
-			Debug.Log ("done executing actions, event complete");
+		//	Debug.Log ("done executing actions, event complete");
 			//OnComplete ();
 			isComplete = true;
 		} else if (isBusy && !executionComplete) {
 			//this.execute (actionQ);
-			Debug.Log ("Still executing action");
+		//	Debug.Log ("Still executing action");
 			isComplete = false;
 		} else if (!isBusy && !executionComplete) {
 			//Debug.Log ("no actions received yet");
@@ -64,13 +64,13 @@ public class MissionEvent : MonoBehaviour {
 		//Determine what to do based on the current mission
 		mission = mm.getCurrentMission ();
 		//isBusy = actionQ.Count > 0;
-		Debug.Log ("queueing actions for next event");
+	//	Debug.Log ("queueing actions for next event");
 		if (!isBusy) {
-			Debug.Log("System is not busy");
+	//		Debug.Log("System is not busy");
 			switch (eventType) {
 			//Mission one events
 			case MissionManager.EventType.INTRO:
-				Debug.Log ("into the INTRO event");
+	//			Debug.Log ("into the INTRO event");
 			    //Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Gui must ACTIVE(true, brief)
@@ -101,7 +101,7 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.ENTER_GUIDES:
 
-				Debug.Log ("into the enter guides event");
+	//			Debug.Log ("into the enter guides event");
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue(new TurnAction(mm.Player, mm.Torkana, true, 40));
@@ -115,7 +115,7 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.CANDLE:
 
-				Debug.Log ("into the candle event");
+	//			Debug.Log ("into the candle event");
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Torkana must TALK(audio, guiToShow)
@@ -141,7 +141,7 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.ENTER_GUIDE_BASEMENT:
 
-				Debug.Log ("into the guides basement event");
+	//			Debug.Log ("into the guides basement event");
 			//Candle must ACTIVE(true)
 				//we use a headlamp here instead of a real candle
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
@@ -506,8 +506,8 @@ public class MissionEvent : MonoBehaviour {
     //Each action queue represents a mission event
 	bool execute(Queue<MissionAction> actionQ){
 		if (actionQ.Count > 0 && currAction == null && !isComplete) {
-			Debug.Log ("we have at least one action in the queue!");
-			Debug.Log ("there are this many actions in queue: " + actionQ.Count);
+	//		Debug.Log ("we have at least one action in the queue!");
+	//		Debug.Log ("there are this many actions in queue: " + actionQ.Count);
 			currAction = actionQ.Dequeue ();
 		}
 		//begin the mission event with its first action
@@ -524,7 +524,7 @@ public class MissionEvent : MonoBehaviour {
 
 	//	bool isComplete = false;
 		if (actionQ.Count >= 0 && currAction != null) {
-			Debug.Log ("Executing mission actions for this event");
+	//		Debug.Log ("Executing mission actions for this event");
 //			if (actionQ.Count == 0 && isComplete){
 //				Debug.Log ("event is complete...");
 //				currAction = null;
@@ -534,19 +534,19 @@ public class MissionEvent : MonoBehaviour {
 			if(currAction.execute()){
 		    //return currAction.execute();
 				if (actionQ.Count > 0){
-					Debug.Log("Dequeueing next action, last was completed");
+	//				Debug.Log("Dequeueing next action, last was completed");
 					currAction = actionQ.Dequeue();
 					isBusy = true;
 				} else {
 					currAction = null;
-					Debug.Log ("last action was completed, now event is complete...");
+	//				Debug.Log ("last action was completed, now event is complete...");
 					return true;
 				}
 				//return true;
 		     } else { //Otherwise, we can't continue the story.
 //			    //may want to change this later to keep trying action
 
-				Debug.Log ("Still executing action..please hold");
+	//			Debug.Log ("Still executing action..please hold");
 		    }
 		}
 		return false;

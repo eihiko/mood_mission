@@ -1,71 +1,68 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class FloorSwitch : MonoBehaviour {
+	const float ASCENT = 0.01f;
+	const float DESCENT = 0.01f;
 
-	const float highPoint = -16.43f;
-	const float lowPoint = -16.63f;
+	public float MAX_CHANGE = 2.0f;
+	float highPoint = 0.0f;
+	float lowPoint = 0.0f;
 
-	float elapsedTime = 0.0f;
-	float lastTime = 0.0f;
-	float timeStep = 0.1f;
+	long lastTimeUpdate = 0;
+	long lastTimeTrigger = 0;
 
-	bool isPressed = false;
+	public bool isPressed = false;
+	bool negativeCoords = false;
 	
 	// Use this for initialization
+
+	//This can be done differently for ascent-oriented buttons, but ours is descent-oriented like a press
 	void Start () {
-	
+		highPoint = transform.position.y;
+		lowPoint = transform.position.y - MAX_CHANGE;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (!isPressed) {
-			Debug.Log("Floor switch is not pressed.");
-			//do some time calculations for the button move
-			timeStep = System.DateTime.Today.Millisecond - lastTime;
-			timeStep /= 1000f;
-			elapsedTime += timeStep;
-		
-			//lerp button upward after not pressing for 2 seconds
-			if (elapsedTime > 2f) {
 				Vector3 buttonPos = transform.position;
 				//have the button stop at its low point
-				if (buttonPos.y > highPoint) {
-					Debug.Log("Switch is lerping upward from being pressed.");
-					buttonPos = buttonPos - (Vector3.down / 1000) * timeStep;
+				if (buttonPos.y < highPoint) {
+					Debug.Log("Switch is lerping upward from being released.");
+					buttonPos.y += ASCENT;
+					transform.position = buttonPos;
 				//	Vector3.Lerp (buttonPos, new Vector3 (buttonPos.x, buttonPos.y + timeStep, buttonPos.z), timeStep);
 				}
-			}
 		}
-
-		lastTime = System.DateTime.Today.Millisecond;
-		Debug.Log ("The last time is: " + lastTime);
 	}
 
-	void OnTriggerLeave(){
-		isPressed = false;
-		Debug.Log("Floor switch has been released.");
+	void OnTriggerExit(Collider c){
+		if (c.tag == "Player") {
+			isPressed = false;
+			Debug.Log ("Floor switch has been released.");
+		}
 	}
 
 	void OnTriggerStay(Collider c){
+		Debug.Log ("The trigger stay method is working.");
 		if (c.tag == "Player") {
 			Debug.Log("Floor switch is pressed!");
 			isPressed = true;
-			//do some time calculations for the button move
-			timeStep = System.DateTime.Today.Millisecond - lastTime;
-			timeStep /= 100000f;
-			elapsedTime += timeStep;
 
 			//after standing on for 4 seconds, start moving the button downward
-			if (elapsedTime > 4f) {
+		//	if (elapsedTime > 4f) {
 				Vector3 buttonPos = transform.position;
 				//have the button stop at its low point
-				if (buttonPos.y < lowPoint) {
-					Debug.Log("Switch is lerping downward into the groud.");
-					Vector3.Lerp (buttonPos, new Vector3 (buttonPos.x, buttonPos.y - timeStep, buttonPos.z), timeStep);
+				if (buttonPos.y > lowPoint) {
+					Debug.Log("Switch is lerping downward into the ground.");
+					buttonPos.y -= DESCENT;
+					transform.position = buttonPos;
+					//Vector3.Lerp (buttonPos, new Vector3 (buttonPos.x, buttonPos.y - timeStep, buttonPos.z), timeStep);
 				}
-			}
+		//	}
 		}
-		lastTime = System.DateTime.Today.Millisecond;
+	//	lastTime = System.DateTime.Today.Millisecond;
 	}
 }

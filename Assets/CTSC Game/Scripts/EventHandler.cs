@@ -207,7 +207,7 @@ public class EventHandler: MonoBehaviour
 					if (kvp.Value.parent.name.Equals("TopDownInteriors")){
 						kvp.Value.parent.gameObject.SetActive(true);
 						kvp.Value.parent.Find("Transports_TDI").gameObject.SetActive(true);
-						Debug.Log("Set TDI parent to active.");
+//						Debug.Log("Set TDI parent to active.");
 						playerCamera.GetComponent<Skybox>().enabled = false;
 					} else if (kvp.Value.name.Equals("HealingCave")) {
 						playerCamera.GetComponent<Skybox>().enabled = false;
@@ -284,7 +284,7 @@ public class EventHandler: MonoBehaviour
 	 */
 	IEnumerator Fade()
 	{
-		Debug.Log("in fade coroutine");
+//		Debug.Log("in fade coroutine");
 		playerScreenFade.Fade(false, .001f);
 		while (currState == GameState.TRANSPORT){
 			yield return null;

@@ -52,7 +52,7 @@ public class TransportPlayer : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider col){
-		Debug.Log("Entered trigger");
+//		Debug.Log("Entered trigger");
 		if(col.gameObject.tag.Equals("Player") &&
 		   col.GetComponent<CharacterOurs>().canEnter &&
 		   Input.GetKeyDown(KeyCode.E)){

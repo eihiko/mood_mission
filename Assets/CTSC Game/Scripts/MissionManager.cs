@@ -79,7 +79,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject atBeeArea, DoctorGardenBees;
 	public GameObject Map, Bees, Doctors_House, PlayerEnterDoctors, TorkanaEnterDoctors;
 	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden;
-	public GameObject HealingCaveEntrance, healthPotion;
+	public GameObject HealingCaveEntrance, healthPotion, CaveSwitch, CaveGateOpened, CaveGateClosed;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -107,7 +107,7 @@ public class MissionManager : MonoBehaviour {
 					child.gameObject.SetActive(false);
 				}
 			}
-			Debug.Log ("Initialized and disabled all missions.");
+//			Debug.Log ("Initialized and disabled all missions.");
 		}
 	}
 
@@ -212,7 +212,7 @@ public class MissionManager : MonoBehaviour {
 					currTransform = missionObjects[(int)type].transform;
 				    //Add all the event transforms for this mission to its event dictionary
 					foreach (Transform child in currTransform){
-						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;

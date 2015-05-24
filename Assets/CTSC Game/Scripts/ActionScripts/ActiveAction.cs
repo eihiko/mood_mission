@@ -47,7 +47,7 @@ public class ActiveAction : MissionAction {
 	}
 
 	public bool execute(){
-		Debug.Log ("Executing active action");
+//		Debug.Log ("Executing active action");
 		if (!gui && active) {
 			Debug.Log("Activated thing");
 			thing.SetActive(true);
@@ -71,12 +71,12 @@ public class ActiveAction : MissionAction {
 				Debug.Log ("Text box is completed!");
 				return true;
 			}
-			Debug.Log ("Still displaying text.");
+//			Debug.Log ("Still displaying text.");
 			//call gui to display text
 			//dBox.displayText (true, startPar, numPar);
 			return false;
 		}
-		Debug.Log ("Active action is completed");
+//		Debug.Log ("Active action is completed");
 		return true;
 	}
 }

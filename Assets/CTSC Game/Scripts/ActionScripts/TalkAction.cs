@@ -46,7 +46,7 @@ public class TalkAction : MissionAction {
 	}
 
 	public bool execute(){
-		Debug.Log ("Executing talk action");
+//		Debug.Log ("Executing talk action");
 		//activate talking animation and faceplus
 		if (!hasBegun) {
 			hasBegun = true;

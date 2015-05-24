@@ -33,7 +33,7 @@ public class TurnAction : MissionAction {
 	}
 	
 	public bool execute(){
-		Debug.Log ("Executing turn action");
+//		Debug.Log ("Executing turn action");
 
 		Transform turn = turns.transform;
 		if (!isPlayer) {

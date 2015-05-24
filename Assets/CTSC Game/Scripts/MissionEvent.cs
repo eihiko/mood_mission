@@ -436,7 +436,10 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 30, 1));
 				//Player must UNFREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
-				actionQ.Enqueue(new GrabAction(mm.Player,GrabMe.kind.HEALING_WATER,"Grab the healing water with G"));
+				actionQ.Enqueue(new PressAction(mm.CaveSwitch));
+				actionQ.Enqueue (new ActiveAction(mm.CaveGateClosed, false));
+				actionQ.Enqueue (new ActiveAction(mm.CaveGateOpened, true));
+				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.HEALING_WATER,"Jump into the water and grab some healing water with G"));
 				//player must find the health potion to get out alive
 				if(mm.Player.GetComponent<CharacterOurs>().health < 50){
 					actionQ.Enqueue (new FreezeAction (mm.Player, true));

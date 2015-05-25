@@ -7,7 +7,7 @@ using System;
 public class MissionManager : MonoBehaviour {
 
 	public enum MissionType {
-		GUIDES_HUT, FOREST, DOCTORS_OFFICE, CROSS_BRIDGE, ENTER_CITY_GATHER_SUPPLIES, 
+		GUIDES_HUT, FOREST, DOCTORS_OFFICE, ENTER_CITY_GATHER_SUPPLIES, 
 		TALK_TO_SON, HELP_TP_1, HELP_TP_2, HELP_TP_3, HYDRA, SEWER_QUEST, 
 	}
 
@@ -22,23 +22,22 @@ public class MissionManager : MonoBehaviour {
 		GO_TO_DOCTORS,
 		//Third Mission at Doctor's Office (10 events)
 		ENTER_DOCTORS, DOCTOR_INTRO, GUIDE_EXAM, REACH_GARDEN, TOLERATE_BEES_AGAIN,
-		GATHER_HERBS, GATHER_HEALING_WATER, GIVE_DOCTOR_HERBS, PLAYER_EXAM, ATTAIN_AMULET, LEAVE_FOREST,
-		//Fourth Mission leaving Forest (3 events)
-		ENTER_BRIDGE, CROSS_BRIDGE, EXIT_BRIDGE, 
-		//Fifth Mission entering city (7 events)
+		GATHER_HERBS, GATHER_HEALING_WATER, GIVE_DOCTOR_HERBS, PLAYER_EXAM, ATTAIN_AMULET, 
+		//Fourth Mission entering city (9 events)
 		//Must account for time taken to gather mt1 water
 		//If too much time taken, must fetch medicine.. deal with this later..
-		ENTER_CITY, TALK_TO_MT1, ENTER_TAVERN, GATHER_SELF_SUPPLIES, GATHER_MT1_WATER,
-		//These will have to be checked for if player takes too long..
+		LEAVE_FOREST, ENTER_CITY, TALK_TO_MT1, ENTER_TAVERN, GATHER_SELF_SUPPLIES, GATHER_MT1_WATER,
+		//These will have to be checked for if player takes too long to get the water..
 		NEEDS_MEDICINE,
-		//bridge sequence = 28 to 30
-		GATHER_MEDICINE, 
-		//bridge sequence again..
+		//go back to Torkana's for medicine..
+		GIVE_MEDICINE, 
+		//come back
 		//Finish talking will have to be determined if MT1 needed medicine
-		FINISH_TALKING_MT1, GO_TO_MT2_HOUSE,
-		//Sixth Mission to Sewer Designer's son's house (2 events)
-		CONFRONT_MT2, OFF_TO_HELP_PEOPLE,
-		//Seventh Mission to help FT2 (8 events)
+		FINISH_TALKING_MT1,
+
+		//Fifth Mission to Sewer Designer's son's house (2 events)
+		GO_TO_MT2_HOUSE, CONFRONT_MT2, OFF_TO_HELP_PEOPLE,
+		//Sixth Mission to help FT2 (8 events)
 		//The player has the option of getting the photo album or just
 		//handing FT2 the supplies. We must check if these events based on what
 		//the player decides. 
@@ -48,14 +47,14 @@ public class MissionManager : MonoBehaviour {
 		//Next two townspeople to help missions use these..
 		//Use these to conclude helping missions as well.
 		RETURN_TO_SON, TALK_TO_SON, EXIT_SONS_HOUSE,
-		//Eight Mission to help MT3
+		//Seventh Mission to help MT3
 		ENTER_MT3_HOUSE, TALK_TO_MT3, 
-		//Ninth Mission to help FT3
+		//Eighth Mission to help FT3
 		ENTER_FT3_HOUSE, TALK_TO_FT3,
-		//Tenth Mission to go on quest for Hydra
+		//Ninth Mission to go on quest for Hydra
 		//use previous return talk and exit son for this mission also
 		BEGIN_HYDRA_QUEST, BATTLE_HYDRA, DEFEAT_HYDRA,
-		//Eleventh Mission to begin sewer quest
+		//Tenth Mission to begin sewer quest
 		//uses the previous values of return talk and exit son
 		ATTAIN_SEWER_MAP,
 		//
@@ -77,9 +76,10 @@ public class MissionManager : MonoBehaviour {
 	public GameObject MentorBasement, ChestClosed, ChestOpen;
 	public GameObject TorkanaStandPos, leavingHouse;
 	public GameObject atBeeArea, DoctorGardenBees;
-	public GameObject Map, Bees, Doctors_House, PlayerEnterDoctors, TorkanaEnterDoctors;
+	public GameObject Map, Bees, DoctorsHouse, PlayerEnterDoctors, TorkanaEnterDoctors;
 	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden;
-	public GameObject HealingCaveEntrance, healthPotion, CaveSwitch, CaveGateOpened, CaveGateClosed;
+	public GameObject HealingCaveEntrance, HealingCaveExit, healthPotion, CaveSwitch, CaveGateOpened, CaveGateClosed;
+	public GameObject TDC;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -227,7 +227,7 @@ public class MissionManager : MonoBehaviour {
 					}
 					break;
 				case MissionType.DOCTORS_OFFICE:
-					for(int i = 17; i < 28; i++) {
+					for(int i = 17; i < 27; i++) {
 						events.Add((EventType)i);
 					}
 					currTransform = missionObjects[(int)type].transform;
@@ -235,20 +235,15 @@ public class MissionManager : MonoBehaviour {
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
-//				case MissionType.CROSS_BRIDGE:
-//					for(int i = 28; i < 31; i++) {
-//						events.Add((EventType)i);
-//					}
-//					currTransform = missionObjects[(int)type].transform;
-//					foreach (Transform child in currTransform){
-//						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
-//					}
-//					break;
-//				case MissionType.ENTER_CITY_GATHER_SUPPLIES:
-//					for(int i = 12; i < 18; i++) {
-				//						events.Add((EventType)i);
-//					}
-//					break;
+				case MissionType.ENTER_CITY_GATHER_SUPPLIES:
+					for(int i = 27; i < 36; i++) {
+						events.Add((EventType)i);
+					}
+					currTransform = missionObjects[(int)type].transform;
+					foreach (Transform child in currTransform){
+						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+					}
+					break;
 //				case MissionType.TALK_TO_SON:
 //					for(int i = 12; i < 18; i++) {
 				//						events.Add((EventType)i);

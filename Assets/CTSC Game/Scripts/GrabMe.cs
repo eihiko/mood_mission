@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GrabMe : MonoBehaviour {
 
-	public enum kind {WOOD, CANDLE, KEY, MATCH, TORCH, COMPASS, GOLD, KNIFE, SHIELD, MAP, HERB, HEALING_WATER,
-	HEALTH_POTION}
+	public enum kind { WOOD, CANDLE, KEY, MATCH, TORCH, COMPASS, GOLD, KNIFE, SHIELD, MAP, HERB, HEALING_WATER,
+	HEALTH_POTION, AMULET }
 
 	public GrabMe.kind myKind;
 
@@ -22,6 +22,14 @@ public class GrabMe : MonoBehaviour {
 		if (other.tag == "Player" && Input.GetKeyDown(KeyCode.G)) {
 			GameObject player = other.gameObject;
 			player.GetComponent<CharacterOurs>().grab(this.gameObject);
+		}
+		if (other.tag == "Torkana") {
+			GameObject torkana = other.gameObject;
+			torkana.GetComponent<NPC_Character>().grab(this.gameObject);
+		}
+		if (other.tag == "Doctor") {
+			GameObject doctor = other.gameObject;
+			doctor.GetComponent<NPC_Character>().grab(this.gameObject);
 		}
 	}
 

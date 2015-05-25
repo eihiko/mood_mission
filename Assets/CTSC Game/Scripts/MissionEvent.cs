@@ -228,6 +228,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new EnterAction (mm.Player, mm.inFrontTorkanaHouse,
 				                                  "Stand near Torkana's front door and press E"));
 			//Checkpoint to reflect with gui and input, write data to database
+				actionQ.Enqueue (new CheckpointAction());
 				isBusy = true;
 				break;
 			//Mission Two events
@@ -313,10 +314,11 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new FollowAction(13, 29, mm.Torkana));
 			
 			//Player must ENTER(DoctorsHouse)
-				actionQ.Enqueue(new EnterAction(mm.Player, mm.Doctors_House, ""));
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.DoctorsHouse, ""));
 
 			//Torkana must STAND(adjToDoctor) in the house
 			//Checkpoint to reflect with gui and input, write data to database
+				actionQ.Enqueue (new CheckpointAction());
 				isBusy = true;
 				break;
 			//Mission Three events
@@ -451,34 +453,98 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue (new FreezeAction (mm.Player, false));
 					actionQ.Enqueue(new ApplyAction(mm.Player, mm.Player, GrabMe.kind.HEALTH_POTION));
 				}
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 33, 1));
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				//player must exit healing cave
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveExit, "Press E near the cave entrance to exit"));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.GIVE_DOCTOR_HERBS:
-			//Torkana must TALK(audio, noGui)
-			//Player must MOVE(currLoc, adjToDoctor)
-			//Doctor must TALK(audio, guiToShow)
-		        //Player must GIVE(Herb, Doctor)
-			//Doctor must TALK(audio, guiToShow)
+				//Player must MOVE(currLoc, adjToDoctor)
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.nearDoctor, "Give the herbs and water to the doctor"));
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+				//Doctor must TALK(audio, guiToShow)
+				actionQ.Enqueue(new TalkAction(mm.Doctor, currentAudio, mm.currentUI, 34, 2));
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+				//Player must GIVE(Herb, Doctor)
+				actionQ.Enqueue(new DropAction(mm.Player, GrabMe.kind.HERB, "Give the herb to the Doctor"));
+				actionQ.Enqueue(new DropAction(mm.Player, GrabMe.kind.HEALING_WATER, "Now, give the healing water to the Doctor"));
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 36, 2));
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+				isBusy = true;
 				break;
 			case MissionManager.EventType.PLAYER_EXAM:
+				//Player must SIT(Chair)
+				//Doctor must heal torkana
+				//actionQ.Enqueue(new AnimateAction(mm.Doctor, AnimateAction.type.Heal));
+				//Doctor must heal player (fade screen and change colors)
+				//actionQ.Enqueue(new AnimateAction(mm.Doctor, AnimateAction.type.Heal));
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+				//Torkana must TALK(audio, noGui)
+				//Doctor must TALK(audio, guiToShow)
+				actionQ.Enqueue(new TalkAction(mm.Doctor, currentAudio, mm.currentUI, 38, 1));
+				//Torkana must TALK(audio, guiToShow)
+				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 39, 2));
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+				isBusy = true;
+
 			//Player and Doctor must TALK(audio, guiToShow)
 			//Doctor must EXAMINE(Player)
 			//Doctor must TALK(audio, noGui)
 				break;
 			case MissionManager.EventType.ATTAIN_AMULET:
+				actionQ.Enqueue(new GiveAction(mm.Torkana, mm.Player, GrabMe.kind.AMULET));
+				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.AMULET, "Grab the amulet by pressing G"));
+				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 41, 1));
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.DoctorsHouse, "Leave the Doctor's Office and head out to Merami"));
 			//Torkana must GIVE(Amulet, Player)
 			//Torkana must TALK(audio, guiToShow)
 			//Torkana must MOVE(currLoc, adjToDoor)
 			//Torkana must ENTER(Forest)
 			//Torkana must ACTIVE(false)
+				actionQ.Enqueue(new ActiveAction(mm.Torkana, false));
+				//Doctor must ACTIVE(false)
+				actionQ.Enqueue(new ActiveAction(mm.Doctor, false));
 			//Checkpoint to reflect with gui and input, write data to database
+				actionQ.Enqueue (new CheckpointAction());
+				isBusy = true;
 				break;
 			//Mission 4 Actions
 			case MissionManager.EventType.LEAVE_FOREST:
+				actionQ.Enqueue(new ActiveAction(mm.TDC, true));
 			//Player must MOVE(currLoc, adjToDoor)
 			//Player must ENTER(Forest)
+				isBusy = true;
 				break;
-			//About 1/3 way through missions...
+			case MissionManager.EventType.ENTER_CITY:
+				isBusy = true;
+				break;
+			case MissionManager.EventType.TALK_TO_MT1:
+				isBusy = true;
+				break;
+			case MissionManager.EventType.ENTER_TAVERN:
+				isBusy = true;
+				break;
+			case MissionManager.EventType.GATHER_SELF_SUPPLIES:
+				isBusy = true;
+				break;
+			case MissionManager.EventType.GATHER_MT1_WATER:
+				isBusy = true;
+				break;
+			//These will have to be checked for if player takes too long to get the water..
+			case MissionManager.EventType.NEEDS_MEDICINE:
+				isBusy = true;
+				break;
+			case MissionManager.EventType.GIVE_MEDICINE:
+				isBusy = true;
+				break;
+			case MissionManager.EventType.FINISH_TALKING_MT1:
+				isBusy = true;
+				break;
+			//Ready for fifth mission
 			}
 		}
 

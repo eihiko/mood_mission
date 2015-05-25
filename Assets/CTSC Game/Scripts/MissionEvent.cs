@@ -406,13 +406,70 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			//Mission 4 Actions
 			case MissionManager.EventType.LEAVE_FOREST:
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 			//Player must MOVE(currLoc, adjToDoor)
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.Doctors_House, "Head outside to start your journey to Merami"));
 			//Player must ENTER(Forest)
+				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 34, 1));
+				isBusy = true;
 				break;
 			//About 1/3 way through missions...
+
+			//Mission 4 Events
+			case MissionManager.EventType.ENTER_BRIDGE:
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.BridgeSighted, "The city is just across that bridge.  Not much farther now"));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.CROSS_BRIDGE:
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.BridgeEntrance, "Almost there - you've nearly made it."));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.EXIT_BRIDGE:
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.BridgeEnd, "You've made it this far without Torkana's help: just a bit farther"));
+				isBusy = true;
+				break;
+
+			//Mission 5 Events.
+			case MissionManager.EventType.ENTER_CITY:
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.CityEntrance, "You did it!  You made it all the way to Merami on your own!"));
+				isBusy = true;
+				break;
 			case MissionManager.EventType.TALK_TO_MT1:
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.nearInjuredPerson, "That person looks hurt.  You should see if they need help"));
 				//Player and Townsperson must TALK(audio, guiToShow)
-				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,33,1));
+				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,35,2));
+				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,37,1));
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.TavernEntrance, "Search for the tavern.  It should be nearby.  Look for the sign with a mug"));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.ENTER_TAVERN:
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.insideTavern, "There's the tavern.  They should have the supplies and healing water you need."));
+				isBusy = true;
+				break;
+//			case MissionManager.EventType.GATHER_SELF_SUPPLIES:
+//				actionQ.Enqueue(new EnterAction(mm.Player,mm.nearTavernKeeper, "Talk to the tavern keeper about your supplies and the water for the townsperson"));
+//				isBusy = true;
+//				break;
+//			case MissionManager.EventType.GATHER_MT1_WATER:
+//				isBusy = true;
+//				break;
+//			case MissionManager.EventType.NEEDS_MEDICINE:
+//				isBusy = true;
+//				break;
+//			case MissionManager.EventType.GATHER_MEDICINE:
+//				isBusy = true;
+//				break;
+			case MissionManager.EventType.FINISH_TALKING_MT1:
+				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,38,1));
+				if (mm.InjuredPerson.GetComponent<injuredPerson>().needsMedicine)
+					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,39,1));
+				else
+					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,40,6));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.GO_TO_MT2_HOUSE:
+				actionQ.Enqueue(new ActiveAction(mm.currentUI,true,46,1));
 				isBusy = true;
 				break;
 			}

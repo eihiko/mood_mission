@@ -51,7 +51,7 @@ public class PlayerScreenFade : MonoBehaviour {
 	//-----------------------------------------------------------------------------
 	
 	void HandleFadeBegin(){
-		Debug.Log( "Fade Begin" );
+		//Debug.Log( "Fade Begin" );
 		//reset position since the injury effect moves us around:
 		cachedTransform.localPosition = startingPosition;
 	}
@@ -60,15 +60,15 @@ public class PlayerScreenFade : MonoBehaviour {
 		switch ( currentFadeType ) {
 		
 		case FadeType.Fade:
-			Debug.Log( "Fade Updated: " + percentage );
+			//Debug.Log( "Fade Updated: " + percentage );
 			break;
 			
 		case FadeType.Flash:
-			Debug.Log( "Flash Updated: " + percentage );
+			//Debug.Log( "Flash Updated: " + percentage );
 			break;
 			
 		case FadeType.Injury:
-			Debug.Log( "Injury Updated: " + percentage );
+			//Debug.Log( "Injury Updated: " + percentage );
 			
 			//generate random offsets that diminish in severity by the fade's percentage to shake the camera with:
 			float randomXAmount = Random.Range( -percentage, percentage );
@@ -84,7 +84,7 @@ public class PlayerScreenFade : MonoBehaviour {
 	}
 	
 	void HandleFadeEnd(){
-		Debug.Log( "Fade End" );
+		//Debug.Log( "Fade End" );
 		//reset position since the injury effect moves us around:
 		cachedTransform.localPosition = startingPosition;
 	}

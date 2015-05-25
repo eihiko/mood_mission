@@ -79,7 +79,7 @@ public class DialogBox : MonoBehaviour {
 				// While there's lines left in the text file, do this:
 //							expoStrings.Add(line);
 				dialogStrings.Add(line);
-				Debug.Log(line);
+				//Debug.Log(line);
 			}
 				
 			// Done reading, close the reader and return true to broadcast success    

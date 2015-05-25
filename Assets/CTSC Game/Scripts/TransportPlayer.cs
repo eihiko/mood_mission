@@ -52,7 +52,7 @@ public class TransportPlayer : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider col){
-		Debug.Log("Entered trigger");
+		//Debug.Log("Entered trigger");
 		if(col.gameObject.tag.Equals("Player") &&
 		   col.GetComponent<CharacterOurs>().canEnter &&
 		   Input.GetKeyDown(KeyCode.E)){
@@ -61,7 +61,7 @@ public class TransportPlayer : MonoBehaviour {
 
 			//Handles fade out.
 			setTransportState();
-			Debug.Log("Into " + location);
+			//Debug.Log("Into " + location);
 			player = col.gameObject;
 
 			//Store the current player position.

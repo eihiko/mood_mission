@@ -70,7 +70,7 @@ public class MissionManager : MonoBehaviour {
 
 	public GameObject currentUI;
 
-	//mission 1 objects
+	//mission objects
 	public GameObject TorkanaHouse, TorkanaSitPos, inFrontTorkanaDoor,
 	inFrontTorkanaHouse;
 	public GameObject Candle;
@@ -80,6 +80,11 @@ public class MissionManager : MonoBehaviour {
 	public GameObject Map, Bees, Doctors_House, PlayerEnterDoctors, TorkanaEnterDoctors;
 	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden;
 	public GameObject HealingCaveEntrance, healthPotion;
+	public GameObject BridgeSighted, BridgeEntrance, BridgeEnd;
+	public GameObject CityEntrance;
+	public GameObject InjuredPerson; //Note, is also classified as injuredPerson
+	public GameObject nearInjuredPerson;
+	public GameObject TavernEntrance, insideTavern, nearTavernKeeper;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -212,7 +217,7 @@ public class MissionManager : MonoBehaviour {
 					currTransform = missionObjects[(int)type].transform;
 				    //Add all the event transforms for this mission to its event dictionary
 					foreach (Transform child in currTransform){
-						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+						//Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
@@ -235,20 +240,25 @@ public class MissionManager : MonoBehaviour {
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
-//				case MissionType.CROSS_BRIDGE:
-//					for(int i = 28; i < 31; i++) {
-//						events.Add((EventType)i);
-//					}
-//					currTransform = missionObjects[(int)type].transform;
-//					foreach (Transform child in currTransform){
-//						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
-//					}
-//					break;
-//				case MissionType.ENTER_CITY_GATHER_SUPPLIES:
-//					for(int i = 12; i < 18; i++) {
-				//						events.Add((EventType)i);
-//					}
-//					break;
+				case MissionType.CROSS_BRIDGE:
+					for(int i = 28; i < 31; i++) {
+						events.Add((EventType)i);
+					}
+					currTransform = missionObjects[(int)type].transform;
+					foreach (Transform child in currTransform){
+						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+					}
+					break;
+				//TODO Figure out how to alter this to take into account what choice the player makes at the tavern
+				case MissionType.ENTER_CITY_GATHER_SUPPLIES:
+					for(int i = 31; i < 40; i++) {
+										events.Add((EventType)i);
+					}
+				currTransform = missionObjects[(int)type].transform;
+				foreach (Transform child in currTransform){
+					eventDict.Add(child.GetComponent<MissionEvent>().eventType,child);
+				}
+				break;
 //				case MissionType.TALK_TO_SON:
 //					for(int i = 12; i < 18; i++) {
 				//						events.Add((EventType)i);

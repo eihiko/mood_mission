@@ -31,3 +31,15 @@ The bees will not follow you into the healing cave. You need to find the special
 As the Doctor said, you must search for the healing water pool in the cave.
 You have a low amount of health and will not be able to bear anymore threats. You must find a healing potion somewhere in the cave now.
 Now you must apply the potion by clicking the drop-down inventory and selecting the potion.
+According to the map, the city is over the ridge to the right of the doctor's house.
+Townsperson: Please help me! A creature bit me and the poison is entering my veins. I need water to clean the wound and remove the poison but I can’t stand up to get to the tavern. 
+Could you please bring some healing water to me as quickly as possible?
+Townsperson: Thank you!  The tavern is just down the street. There is a mug on the sign.
+Townsperson: Oh, you got the healing water!  Thank you!
+Townsperson: I still feel ill...  The doctor just outside of town should have medicine that will heal me.  Would you please get me some?
+Townsperson: Thank you for your help. I’m feeling better already!
+What brings you to Merami?
+You explain your quest to find Torkana and the adventures you have had already.
+Townsperson: Yes, what Kalatar told you is true. Many people have fled the town because they’re afraid of the dragon and the creatures.
+In the {insert description of the house} house lives the son of the man who built the sewer system. His father went into the sewers to try to get rid of a big creature that has taken over the sewers and he never returned.
+If you want to strike at the heart of the creatures, you need to defeat the dragon, but no one knows how to get to the island where it lives. I suggest you go try to find the Sewer Foreman in the sewer where he works.

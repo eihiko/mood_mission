@@ -83,7 +83,7 @@ public class CharacterOurs : MonoBehaviour {
 	public bool has(GrabMe.kind item){
 		foreach (GameObject g in inventory) {
 			GrabMe.kind k = g.GetComponent<GrabMe>().getKind();
-			Debug.Log("The kind of this item is : " + k);
+			//Debug.Log("The kind of this item is : " + k);
 			if (item == k){
 				return true;
 			}

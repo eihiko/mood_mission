@@ -66,7 +66,7 @@ public class Mission : IComparable<Mission> {
 			enableMissionEvent(eventType);
 		} else {
 			isComplete = true;
-			Debug.Log ("Mission is complete via execute method.");
+//			Debug.Log ("Mission is complete via execute method.");
 		}
 	}
 
@@ -100,7 +100,7 @@ public class Mission : IComparable<Mission> {
 	public void setEventComplete(MissionManager.EventType completedEvent){
 		missionEvents [completedEvent] = true;
 		disableMissionEvent (completedEvent);
-		Debug.Log ("Player has completed: " + completedEvent.ToString () + " event");
+//		Debug.Log ("Player has completed: " + completedEvent.ToString () + " event");
 	}
 	
 	// Update is called once per frame
@@ -122,13 +122,13 @@ public class Mission : IComparable<Mission> {
 					if (!kvp.Value) {
 						isComplete = false;
 						currLeft++;
-						//Debug.Log("The mission: " + missionType + " is not complete");
+//						Debug.Log("The mission: " + missionType + " is not complete");
 					}
 
 				}
-				//Debug.Log ("There are :" + currLeft + " events left in this mission");
+//				Debug.Log ("There are :" + currLeft + " events left in this mission");
 				if (currLeft == 0){
-					//Debug.Log("The mission: " + missionType + " is complete, moving to next mission");
+//					Debug.Log("The mission: " + missionType + " is complete, moving to next mission");
 					isComplete = true;
 				}
 			}

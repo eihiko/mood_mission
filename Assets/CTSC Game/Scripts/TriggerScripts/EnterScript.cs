@@ -28,7 +28,7 @@ public class EnterScript : MonoBehaviour {
 	}
 
 	public void OnTriggerStay(Collider o){
-		//Debug.Log ("Entered trigger for the enter script");
+//		Debug.Log ("Entered trigger for the enter script");
 		if (o.tag == thisTag) {
 			isEntered = true;
 		} else {

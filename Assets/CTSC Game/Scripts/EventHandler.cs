@@ -186,83 +186,63 @@ public class EventHandler: MonoBehaviour
 
 	public void EnableLocation(GameLocation nextLocation)
 	{
+		//handle level loading
 		if (nextLocation == GameLocation.DUNGEON) {
+			//load dungeon level and exit
 			Application.LoadLevel (1);
 			lastLocation = currLocation;
 			currLocation = nextLocation;
 			currLevel.setCurrLocation (nextLocation);
 			playerCamera.GetComponent<Skybox> ().enabled = false;
+			return;
 		} else if (currLocation == GameLocation.DUNGEON && nextLocation == GameLocation.TDC) {
+			//load level with city and forest
 			Application.LoadLevel (0);
-			lastLocation = currLocation;
-			currLocation = nextLocation;
-			currLevel.setCurrLocation (nextLocation);
-			playerCamera.GetComponent<Skybox> ().enabled = true;
 		}
-		//------Note------
-		//This code correctly loads the forest AND city, but throws a lot of Missing Reference Exceptions.
-		//Also the fade back in never happens and must be fixed by going into the Pause menu briefly.
 
-		//else if (nextLocation == GameLocation.FOREST || nextLocation == GameLocation.TDC) {
-			//Application.LoadLevel (0);
-			//lastLocation = currLocation;
-			//currLocation = nextLocation;
-			//currLevel.setCurrLocation (nextLocation);
-			//playerCamera.GetComponent<Skybox> ().enabled = true;
-		//}
-		//This code does not load the city when exiting a house, but doesn't have the other problems.
-			else if (currLocation != GameLocation.DUNGEON && nextLocation != GameLocation.FOREST && nextLocation != GameLocation.TDC){
-			GameObject nextLocationObj;
-			foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
-				nextLocationObj = kvp.Value.gameObject;
+		//disable all locations first
+		foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
+			kvp.Value.gameObject.SetActive(false);
+		}
 
-				if (kvp.Key == nextLocation) {
-					if (kvp.Value.parent.name.Equals("TopDownInteriors")){
-						kvp.Value.parent.gameObject.SetActive(true);
-						kvp.Value.parent.Find("Transports_TDI").gameObject.SetActive(true);
-						//Debug.Log("Set TDI parent to active.");
-						playerCamera.GetComponent<Skybox>().enabled = false;
+		//selectively load necessary locations
+		switch (nextLocation) {
+			case GameLocation.TDC:
+			case GameLocation.FOREST:
+				//load forest and city
+				foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
+					if(kvp.Key == GameLocation.TDC){
+						kvp.Value.gameObject.SetActive(true);
 					}
-					else {
-						playerCamera.GetComponent<Skybox>().enabled = true;
+					if(kvp.Key == GameLocation.FOREST){
+						kvp.Value.gameObject.SetActive(true);
 					}
-					//Debug.Log("Set "  + nextLocationObj.name + " to active.");
-					nextLocationObj.SetActive(true);
-					lastLocation = currLocation;
-					currLocation = nextLocation;
-					currLevel.setCurrLocation(nextLocation);
-				} else {
-					//Getting rid of this line makes nothing disappear ever, which means everything loads right,
-					//but there are also rocks in houses and you can see the house interiors in the distance from the city.
-					nextLocationObj.SetActive(false);
 				}
-			}
-		}
-
-		else if (currLocation != GameLocation.DUNGEON && (nextLocation == GameLocation.FOREST || nextLocation == GameLocation.TDC)){
-			GameObject nextLocationObj;
-			foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
-				nextLocationObj = kvp.Value.gameObject;
-				
-				if (kvp.Key == GameLocation.FOREST || kvp.Key == GameLocation.TDC) {
-					if (kvp.Value.parent.name.Equals("TopDownCity")){
-						kvp.Value.parent.gameObject.SetActive(true);
-						//Debug.Log("Set TDI parent to active.");
-						playerCamera.GetComponent<Skybox>().enabled = true;
+				break;
+			default:
+				GameObject nextLocationObj;
+				//handle loading of interiors
+				foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
+					nextLocationObj = kvp.Value.gameObject;
+					if (kvp.Key == nextLocation) {
+						//first, enable the parent object of the interiors
+						if (kvp.Value.parent.name.Equals ("TopDownInteriors")) {
+							kvp.Value.parent.gameObject.SetActive (true);
+							kvp.Value.parent.Find ("Transports_TDI").gameObject.SetActive (true);
+							//						Debug.Log("Set TDI parent to active.");
+							playerCamera.GetComponent<Skybox> ().enabled = false;
+						}
+						//second, enable the actual interior object
+						nextLocationObj.SetActive (true);
+						lastLocation = currLocation;
+						currLocation = nextLocation;
+						currLevel.setCurrLocation (nextLocation);
+						//leave the loop, our enabling is complete.
+						break;
 					}
-					//Debug.Log("Set "  + nextLocationObj.name + " to active.");
-					nextLocationObj.SetActive(true);
-					lastLocation = currLocation;
-					currLocation = nextLocation;
-					currLevel.setCurrLocation(nextLocation);
-					playerCamera.GetComponent<Skybox>().enabled = true;
-				} else {
-					//Getting rid of this line makes nothing disappear ever, which means everything loads right,
-					//but there are also rocks in houses and you can see the house interiors in the distance from the city.
-					nextLocationObj.SetActive(false);
 				}
+				break;
 			}
-		}
 	}
 
 	/**
@@ -323,7 +303,7 @@ public class EventHandler: MonoBehaviour
 	 */
 	IEnumerator Fade()
 	{
-		//Debug.Log("in fade coroutine");
+//		Debug.Log("in fade coroutine");
 		playerScreenFade.Fade(false, .001f);
 		while (currState == GameState.TRANSPORT){
 			yield return null;

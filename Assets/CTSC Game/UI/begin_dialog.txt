@@ -31,6 +31,7 @@ The bees will not follow you into the healing cave. You need to find the special
 As the Doctor said, you must search for the healing water pool in the cave.
 You have a low amount of health and will not be able to bear anymore threats. You must find a healing potion somewhere in the cave now.
 Now you must apply the potion by clicking the drop-down inventory and selecting the potion.
+<<<<<<< HEAD
 According to the map, the city is over the ridge to the right of the doctor's house.
 Townsperson: Please help me! A creature bit me and the poison is entering my veins. I need water to clean the wound and remove the poison but I can’t stand up to get to the tavern. 
 Could you please bring some healing water to me as quickly as possible?
@@ -43,3 +44,14 @@ You explain your quest to find Torkana and the adventures you have had already.
 Townsperson: Yes, what Kalatar told you is true. Many people have fled the town because they’re afraid of the dragon and the creatures.
 In the {insert description of the house} house lives the son of the man who built the sewer system. His father went into the sewers to try to get rid of a big creature that has taken over the sewers and he never returned.
 If you want to strike at the heart of the creatures, you need to defeat the dragon, but no one knows how to get to the island where it lives. I suggest you go try to find the Sewer Foreman in the sewer where he works.
+=======
+You are ready to return to the Doctor’s Office. Find your way back so that the Doctor can help you and Torkana as soon as possible.
+Doctor: Look who is back! Torkana and I are very happy to see you. We hope that you have successfully found the necessary supplies to heal both of you.
+If you have found the herbs and healing water, please give them to me now.
+Torkana: Thank you for finding the medicine for me. I hope the healing cave was not too terrifying or confusing. I plan to give you something after the Doctor heals us. 
+Please, sit down at the chair to your left and rest until you are healed.
+Doctor: Now that you are looking a lot better, you can speak to Torkana and figure out what his plans are for you.
+Torkana: I wanted to give you this magical amulet. It will be your guiding light for the rest of your journey. I hope your trip to Merami is an exciting learning experience that you can manage. There will be hardships, but do not let these overcome you.
+Take this amulet and allow it to guide you at rough times.
+Now that you have the amulet, you can head off on your journey. Merami is highlighted on your map, so you should not have trouble finding it.
+>>>>>>> 3ad3ab97fe1380122bc535f0dccea82f721a4460

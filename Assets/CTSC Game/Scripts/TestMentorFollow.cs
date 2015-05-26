@@ -155,7 +155,7 @@ public class TestMentorFollow : MonoBehaviour {
 			//get where on the z axis our raycast hit the ground
 			float z = hitInfo.point.z;
 
-			Debug.Log("A raycast hit the terrain with z: " + z);
+//			Debug.Log("A raycast hit the terrain with z: " + z);
 			
 			//copy current position into temporary container
 			Vector3 pos = torkanaTrans.position;

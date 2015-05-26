@@ -35,12 +35,13 @@ public class MissionEvent : MonoBehaviour {
 		if ((isBusy && executionComplete) || isTest) {
 			isBusy = false;
 			isTest = false;
-			//Debug.Log ("done executing actions, event complete");
+
+		//	Debug.Log ("done executing actions, event complete");
 			//OnComplete ();
 			isComplete = true;
 		} else if (isBusy && !executionComplete) {
 			//this.execute (actionQ);
-			//Debug.Log ("Still executing action");
+		//	Debug.Log ("Still executing action");
 			isComplete = false;
 		} else if (!isBusy && !executionComplete) {
 			//Debug.Log ("no actions received yet");
@@ -64,13 +65,13 @@ public class MissionEvent : MonoBehaviour {
 		//Determine what to do based on the current mission
 		mission = mm.getCurrentMission ();
 		//isBusy = actionQ.Count > 0;
-		//Debug.Log ("queueing actions for next event");
+	//	Debug.Log ("queueing actions for next event");
 		if (!isBusy) {
-			//Debug.Log("System is not busy");
+	//		Debug.Log("System is not busy");
 			switch (eventType) {
 			//Mission one events
 			case MissionManager.EventType.INTRO:
-				//Debug.Log ("into the INTRO event");
+	//			Debug.Log ("into the INTRO event");
 			    //Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Gui must ACTIVE(true, brief)
@@ -100,8 +101,7 @@ public class MissionEvent : MonoBehaviour {
 				isBusy = true;
 				break;
 			case MissionManager.EventType.ENTER_GUIDES:
-
-				//Debug.Log ("into the enter guides event");
+	//			Debug.Log ("into the enter guides event");
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue(new TurnAction(mm.Player, mm.Torkana, true, 40));
@@ -114,8 +114,7 @@ public class MissionEvent : MonoBehaviour {
 				isBusy = true;
 				break;
 			case MissionManager.EventType.CANDLE:
-
-				//Debug.Log ("into the candle event");
+	//			Debug.Log ("into the candle event");
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Torkana must TALK(audio, guiToShow)
@@ -128,16 +127,19 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.CANDLE, "Grab the candle on the table with G"));
 			//Player must GRAB(Key)
 		//		actionQ.Enqueue (new GrabAction (mm.Player, mm.Key, "Grab the key on the table with G"));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 7, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Player must ENTER(mentorBasement)
 				actionQ.Enqueue (new EnterAction (mm.Player, mm.MentorBasement,
 				                                  "Stand near Torkana's basement door and press E to enter"));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.ENTER_GUIDE_BASEMENT:
-
-				//Debug.Log ("into the guides basement event");
+	//			Debug.Log ("into the guides basement event");
 			//Candle must ACTIVE(true)
 				//we use a headlamp here instead of a real candle
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
@@ -149,23 +151,35 @@ public class MissionEvent : MonoBehaviour {
 			//Candle must ACTIVE(false)
 				//we use a headlamp here instead of a real candle
 				actionQ.Enqueue (new ActiveAction (mm.Candle, false));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 8, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.RELIGHT_CANDLE:
 			//Player must FIND(Match) to light candle (GRAB?)
 				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.MATCH, "Find some matches then grab them with G"));
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 9, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.FIND_KEY:
 			//Player must FIND(Key) to open chest (GRAB?)
 				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.KEY, "Find the key then grab it with G"));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 10, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.OPEN_CHEST:
@@ -212,24 +226,29 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new EnterAction (mm.Player, mm.inFrontTorkanaHouse,
 				                                  "Stand near Torkana's front door and press E"));
 			//Checkpoint to reflect with gui and input, write data to database
+				actionQ.Enqueue (new CheckpointAction());
 				isBusy = true;
 				break;
 			//Mission Two events
 			case MissionManager.EventType.LEAVE_GUIDES:
 			//Player must MOVE(currLoc, TorkanaLoc)
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
 				actionQ.Enqueue(new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 13, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.FOLLOW_GUIDE:
 			
 			//Torkana must MOVE(currLoc, adjToBeeArea) iff IN_RANGE(Torkana, Player)
-			//	actionQ.Enqueue(new FollowAction(0, 12, mm.Torkana));
+				actionQ.Enqueue(new FollowAction(0, 12, mm.Torkana));
 				//actionQ.Enqueue (new MoveAction (mm.Torkana, mm.adjToBeeArea));
 			//Player must MOVE(currLoc, adjToBeeArea)
 				//this automatically happens b.c. follow action requires it!
-				//isBusy = true;
-				isTest = true;
+				isBusy = true;
+			//	isTest = true;
 				break;
 			case MissionManager.EventType.LOSE_MAP:
 			//Player must DROP(Map)
@@ -238,9 +257,12 @@ public class MissionEvent : MonoBehaviour {
 				//actionQ.Enqueue(new MoveAction(mm.Map, mm.mapLocation));
 				//activate map on ground near bees
 				actionQ.Enqueue(new ActiveAction(mm.Map, true));
-
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
 				actionQ.Enqueue(new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 15, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Torkana must GIVE(Player, Amulet)
 				//don't think this is happening until later
 			//Player must MOVE(currLoc, BeeArea)
@@ -249,8 +271,11 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.ENCOUNTER_BEES:
 			//Gui must ACTIVE(true, brief)
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 17, 1));
-
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				//actionQ.Enqueue(new MoveAction(mm.Bees, mm.Player));
 				isBusy = true;
 				break;
@@ -275,18 +300,23 @@ public class MissionEvent : MonoBehaviour {
 				isBusy = true;
 				break;
 			case MissionManager.EventType.GO_TO_DOCTORS:
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
 				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 18, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Torkana must MOVE(currLoc, adjToDoctorsHouse) iff IN_RANGE(Torkana, Player)
 			//Player must MOVE(currLoc, adjToDoctorsHouse)
 			//note that Torkana moves to the doctor's house so the player also must
 				actionQ.Enqueue(new FollowAction(13, 29, mm.Torkana));
 			
 			//Player must ENTER(DoctorsHouse)
-				actionQ.Enqueue(new EnterAction(mm.Player, mm.Doctors_House, ""));
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.DoctorsHouse, ""));
 
 			//Torkana must STAND(adjToDoctor) in the house
 			//Checkpoint to reflect with gui and input, write data to database
+				actionQ.Enqueue (new CheckpointAction());
 				isBusy = true;
 				break;
 			//Mission Three events
@@ -296,31 +326,51 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.Doctor, false, 0));
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.nearDoctor, ""));
 				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaNearDoctor));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Torkana and Doctor must TALK(audio, noGui)
 				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 20, 2));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.DOCTOR_INTRO:
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Player and Doctor must TALK(audio, guiToShow)
 				actionQ.Enqueue(new TalkAction(mm.Doctor, currentAudio, mm.currentUI, 22, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Doctor must EXAMINE(Torkana)
 				isBusy = true;
 				break;
 			case MissionManager.EventType.GUIDE_EXAM:
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Doctor and Torkana must TALK(audio, noGui)
 				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 24, 2));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Player must MOVE(currLoc, adjToDoor)
 				//Player must ENTER(FOREST)
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.GoingToBees, "Go straight to the garden for the herbs"));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = false;
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 26, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 			//Player must MOVE(currLoc, DoctorGarden)
 				isBusy = true;
 				break;
 			case MissionManager.EventType.REACH_GARDEN:
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 27, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.TOLERATE_BEES_AGAIN:
@@ -346,17 +396,25 @@ public class MissionEvent : MonoBehaviour {
 		//	//**Dont use these until later scenarios
 				break;
 			case MissionManager.EventType.GATHER_HERBS:
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 28, 1));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				//Player must GRAB(Herb)
 				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.HERB, "Press G to grab herb"));
 
 				//set the focus of the bees to the doctor's garden area
 				//mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.TorkanaEnterDoctors));
-				actionQ.Enqueue(new ActiveAction(mm.Bees, false));
+				actionQ.Enqueue(new ActiveAction(mm.Bees, false));//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//print message to go into cave
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 29, 1));
+
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 
 				//mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				//actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveInside, ""));
@@ -373,65 +431,96 @@ public class MissionEvent : MonoBehaviour {
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				//player must enter healing cave
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveEntrance, "Press E near the cave entrance to enter"));
+				//Player must FREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 30, 1));
-				actionQ.Enqueue(new GrabAction(mm.Player,GrabMe.kind.HEALING_WATER,"Grab the healing water with G"));
+				//Player must UNFREEZE
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+				actionQ.Enqueue(new PressAction(mm.CaveSwitch));
+				actionQ.Enqueue (new ActiveAction(mm.CaveGateClosed, false));
+				actionQ.Enqueue (new ActiveAction(mm.CaveGateOpened, true));
+				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.HEALING_WATER,"Jump into the water and grab some healing water with G"));
 				//player must find the health potion to get out alive
 				if(mm.Player.GetComponent<CharacterOurs>().health < 50){
+					actionQ.Enqueue (new FreezeAction (mm.Player, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 31, 1));
+					actionQ.Enqueue (new FreezeAction (mm.Player, false));
 					actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.HEALTH_POTION, "Grab the health potion with G"));
+					actionQ.Enqueue (new FreezeAction (mm.Player, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 32, 1));
+					actionQ.Enqueue (new FreezeAction (mm.Player, false));
 					actionQ.Enqueue(new ApplyAction(mm.Player, mm.Player, GrabMe.kind.HEALTH_POTION));
 				}
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 33, 1));
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				//player must exit healing cave
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveExit, "Press E near the cave entrance to exit"));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.GIVE_DOCTOR_HERBS:
-			//Torkana must TALK(audio, noGui)
-			//Player must MOVE(currLoc, adjToDoctor)
-			//Doctor must TALK(audio, guiToShow)
-		        //Player must GIVE(Herb, Doctor)
-			//Doctor must TALK(audio, guiToShow)
+				//Player must MOVE(currLoc, adjToDoctor)
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.nearDoctor, "Give the herbs and water to the doctor"));
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+				//Doctor must TALK(audio, guiToShow)
+				actionQ.Enqueue(new TalkAction(mm.Doctor, currentAudio, mm.currentUI, 34, 2));
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+				//Player must GIVE(Herb, Doctor)
+				actionQ.Enqueue(new DropAction(mm.Player, GrabMe.kind.HERB, "Give the herb to the Doctor"));
+				actionQ.Enqueue(new DropAction(mm.Player, GrabMe.kind.HEALING_WATER, "Now, give the healing water to the Doctor"));
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 36, 2));
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+				isBusy = true;
 				break;
 			case MissionManager.EventType.PLAYER_EXAM:
+				//Player must SIT(Chair)
+				//Doctor must heal torkana
+				//actionQ.Enqueue(new AnimateAction(mm.Doctor, AnimateAction.type.Heal));
+				//Doctor must heal player (fade screen and change colors)
+				//actionQ.Enqueue(new AnimateAction(mm.Doctor, AnimateAction.type.Heal));
+				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+				//Torkana must TALK(audio, noGui)
+				//Doctor must TALK(audio, guiToShow)
+				actionQ.Enqueue(new TalkAction(mm.Doctor, currentAudio, mm.currentUI, 38, 1));
+				//Torkana must TALK(audio, guiToShow)
+				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 39, 2));
+				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+				isBusy = true;
+
 			//Player and Doctor must TALK(audio, guiToShow)
 			//Doctor must EXAMINE(Player)
 			//Doctor must TALK(audio, noGui)
 				break;
 			case MissionManager.EventType.ATTAIN_AMULET:
+				actionQ.Enqueue(new GiveAction(mm.Torkana, mm.Player, GrabMe.kind.AMULET));
+				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.AMULET, "Grab the amulet by pressing G"));
+				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 41, 1));
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.DoctorsHouse, "Leave the Doctor's Office and head out to Merami"));
 			//Torkana must GIVE(Amulet, Player)
 			//Torkana must TALK(audio, guiToShow)
 			//Torkana must MOVE(currLoc, adjToDoor)
 			//Torkana must ENTER(Forest)
 			//Torkana must ACTIVE(false)
+				actionQ.Enqueue(new ActiveAction(mm.Torkana, false));
+				//Doctor must ACTIVE(false)
+				actionQ.Enqueue(new ActiveAction(mm.Doctor, false));
 			//Checkpoint to reflect with gui and input, write data to database
+				actionQ.Enqueue (new CheckpointAction());
+				isBusy = true;
 				break;
 			//Mission 4 Actions
 			case MissionManager.EventType.LEAVE_FOREST:
-				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 			//Player must MOVE(currLoc, adjToDoor)
-				actionQ.Enqueue(new EnterAction(mm.Player,mm.Doctors_House, "Head outside to start your journey to Merami"));
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.DoctorsHouse, "Head outside to start your journey to Merami"));
 			//Player must ENTER(Forest)
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 34, 1));
 				isBusy = true;
 				break;
-			//About 1/3 way through missions...
-
-			//Mission 4 Events
-			case MissionManager.EventType.ENTER_BRIDGE:
-				actionQ.Enqueue(new EnterAction(mm.Player,mm.BridgeSighted, "The city is just across that bridge.  Not much farther now"));
-				isBusy = true;
-				break;
-			case MissionManager.EventType.CROSS_BRIDGE:
-				actionQ.Enqueue(new EnterAction(mm.Player,mm.BridgeEntrance, "Almost there - you've nearly made it."));
-				isBusy = true;
-				break;
-			case MissionManager.EventType.EXIT_BRIDGE:
-				actionQ.Enqueue(new EnterAction(mm.Player,mm.BridgeEnd, "You've made it this far without Torkana's help: just a bit farther"));
-				isBusy = true;
-				break;
-
-			//Mission 5 Events.
+			//Fourth mission begins
 			case MissionManager.EventType.ENTER_CITY:
-				actionQ.Enqueue(new EnterAction(mm.Player,mm.CityEntrance, "You did it!  You made it all the way to Merami on your own!"));
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.CityEntrance, "You did it!  You made it all the way to Merami on your own!"));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.TALK_TO_MT1:
@@ -457,7 +546,7 @@ public class MissionEvent : MonoBehaviour {
 //			case MissionManager.EventType.NEEDS_MEDICINE:
 //				isBusy = true;
 //				break;
-//			case MissionManager.EventType.GATHER_MEDICINE:
+//			case MissionManager.EventType.GIVE_MEDICINE:
 //				isBusy = true;
 //				break;
 			case MissionManager.EventType.FINISH_TALKING_MT1:
@@ -472,6 +561,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new ActiveAction(mm.currentUI,true,46,1));
 				isBusy = true;
 				break;
+			//Ready for fifth mission
 			}
 		}
 
@@ -502,8 +592,8 @@ public class MissionEvent : MonoBehaviour {
     //Each action queue represents a mission event
 	bool execute(Queue<MissionAction> actionQ){
 		if (actionQ.Count > 0 && currAction == null && !isComplete) {
-			//Debug.Log ("we have at least one action in the queue!");
-			//Debug.Log ("there are this many actions in queue: " + actionQ.Count);
+	//		Debug.Log ("we have at least one action in the queue!");
+	//		Debug.Log ("there are this many actions in queue: " + actionQ.Count);
 			currAction = actionQ.Dequeue ();
 		}
 		//begin the mission event with its first action
@@ -520,7 +610,7 @@ public class MissionEvent : MonoBehaviour {
 
 	//	bool isComplete = false;
 		if (actionQ.Count >= 0 && currAction != null) {
-			//Debug.Log ("Executing mission actions for this event");
+	//		Debug.Log ("Executing mission actions for this event");
 //			if (actionQ.Count == 0 && isComplete){
 //				Debug.Log ("event is complete...");
 //				currAction = null;
@@ -530,19 +620,18 @@ public class MissionEvent : MonoBehaviour {
 			if(currAction.execute()){
 		    //return currAction.execute();
 				if (actionQ.Count > 0){
-					//Debug.Log("Dequeueing next action, last was completed");
+	//				Debug.Log("Dequeueing next action, last was completed");
 					currAction = actionQ.Dequeue();
 					isBusy = true;
 				} else {
 					currAction = null;
-					//Debug.Log ("last action was completed, now event is complete...");
+	//				Debug.Log ("last action was completed, now event is complete...");
 					return true;
 				}
 				//return true;
 		     } else { //Otherwise, we can't continue the story.
 //			    //may want to change this later to keep trying action
-
-				//Debug.Log ("Still executing action..please hold");
+	//			Debug.Log ("Still executing action..please hold");
 		    }
 		}
 		return false;

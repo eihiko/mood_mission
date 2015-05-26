@@ -39,7 +39,7 @@ public class MoveAction : MissionAction  {
 	void Update(){
 		if (moveMe) {
 			if (animate && Vector3.Distance (move.transform.position, to.transform.position) > 3.3f) {
-				//Debug.Log ("mover is moving to their destination");
+//				Debug.Log ("mover is moving to their destination");
 				move.GetComponent<NavMeshAgent> ().enabled = true;
 				//animate the npc
 				if (animate) {
@@ -91,12 +91,11 @@ public class MoveAction : MissionAction  {
 	//return true when "move" is adjacent to "to" (other npc or waypoint)
 	public bool execute(){
 		//check type for more complex moves
-		//Debug.Log ("Trying move action");
-
+//		Debug.Log ("Trying move action");
 		if (!atDestination && agent != null) {
 			if (animate) {
 				moveMe = true;
-				//Debug.Log ("Executing move action");
+//				Debug.Log ("Executing move action");
 				Update ();
 			} else {
 				//stop the nav agent

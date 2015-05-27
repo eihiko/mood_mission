@@ -515,7 +515,7 @@ public class MissionEvent : MonoBehaviour {
 			//Player must MOVE(currLoc, adjToDoor)
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.DoctorsHouse, "Head outside to start your journey to Merami"));
 			//Player must ENTER(Forest)
-				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 34, 1));
+				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 42, 1));
 				isBusy = true;
 				break;
 			//Fourth mission begins
@@ -526,8 +526,8 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.TALK_TO_MT1:
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.nearInjuredPerson, "That person looks hurt.  You should see if they need help"));
 				//Player and Townsperson must TALK(audio, guiToShow)
-				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,35,2));
-				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,37,1));
+				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 43, 2));
+				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 45, 1));
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.TavernEntrance, "Search for the tavern.  It should be nearby.  Look for the sign with a mug"));
 				isBusy = true;
 				break;
@@ -550,15 +550,15 @@ public class MissionEvent : MonoBehaviour {
 //				isBusy = true;
 //				break;
 			case MissionManager.EventType.FINISH_TALKING_MT1:
-				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,38,1));
+				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 46, 1));
 				if (mm.InjuredPerson.GetComponent<injuredPerson>().needsMedicine)
-					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,39,1));
+					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 47, 1));
 				else
-					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,40,6));
+					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 48, 6));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.GO_TO_MT2_HOUSE:
-				actionQ.Enqueue(new ActiveAction(mm.currentUI,true,46,1));
+				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 54, 1));
 				isBusy = true;
 				break;
 			//Ready for fifth mission

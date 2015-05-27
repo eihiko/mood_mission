@@ -1,15 +1,15 @@
-ï»¿Although your village has always been a safe haven, things have changed in the surrounding areas. You have heard stories of dragons and strange creatures moving into neighboring towns and you have seen fleeing townspeople in the woods, sometimes begging for food. Everyone in your village lives in fear of the day when the creatures will intrude into your village and life will be forever changed. 
+Although your village has always been a safe haven, things have changed in the surrounding areas. You have heard stories of dragons and strange creatures moving into neighboring towns and you have seen fleeing townspeople in the woods, sometimes begging for food. Everyone in your village lives in fear of the day when the creatures will intrude into your village and life will be forever changed. 
 You have heard stories of a great warrior named Torkana who has been traveling from town to town battling the dragon and other creatures. Lore says that Torkana lives out in the woods alone, but few have seen his hut and its location is unknown.
 As you walk home from school, you are preoccupied by worries about your uncle, who lives in the neighboring village of Merami. You have heard that Merami is being overrun by creatures. It has been over a week since you have heard from your uncle and you do not even know if he is still alive. You look up and realize that you missed a turn to go home and wandered deeper into the woods than you have ever been. You enter a clearing and see a little hut. A person emerges from the hut and walks to a pile of firewood a short distance from the hut, then sees you and greets you wearily.
 I wonder if I could ask you to help me by gathering firewood out in my backyard. I just arrived home from a long journey, and I am too weak and injured to lift it myself. My name is Torkana. If you could please pick up that firewood and bring it into my hut, I would be most grateful.
 I was just in the town of Merami. A dragon and other creatures have taken over the town, and the villagers are in great need of assistance. Unfortunately I was injured in battle and was barely able to make it back here alive. I fear that I am not well enough to continue to battle these creatures. I do not know what will become of the townspeople if the creatures are left unchecked. Every village and town in the area will become uninhabitable. Everything that we hold dear will be destroyed.
 Torkana: Please, put down the wood. It is so heavy, but you are obviously quite strong, much like I was in my younger days. In fact, you remind me of myself at your age. I wonder if you might be willing to help me a bit more by accompanying me on a journey to a town through the forest. The town is called Merami, where a dragon has lately inhabited the surrounding areas of. We must battle the dragon before creatures have overrun the city. The journey will require bravery and quick thinking, but from what I have seen of you, you will be brave enough to handle the challenge.
 I will stoke the fire so we can warm up before our journey. While I am doing that, would you please go down to my cellar? There are some tools down there that would be useful to you on the quest. I have locked them all in a chest in the back room of the basement. The key to the chest is somewhere in the back room. It is dark down there so take this candle to light your way.
-And so your adventure beginsâ€¦
+And so your adventure begins…
 You candle has blown out due to the cold draft down here. You should try to relight it. Matches may be useful but watch out for spiders!
 Torkana said he wanted you to gather supplies from a chest but mentioned it was locked. Try looking around in the back room for the key.
 Now open the chest!
-Torkana: Excellent job! You have demonstrated courage, intelligence, kindness and perseveranceâ€”all characteristics that will serve you well as you continue on this journey.
+Torkana: Excellent job! You have demonstrated courage, intelligence, kindness and perseverance—all characteristics that will serve you well as you continue on this journey.
 When you are prepared, we will head to Merami. I will meet you outside.
 We are headed off to Merami, but first I would like to give you this map.
 The map covers the whole area that you should need to reach to defeat the dragon.
@@ -17,8 +17,8 @@ Torkana: I see you have lost your map due to the wind. You must search for it do
 Beware; there may be bees down there that will torment you. You should choose to tolerate them and they will eventually ignore you.
 Torkana said you should tolerate the bees, so focus on trying to find the map if you can.
 Torkana: You were really brave down there. I am proud of you for tolerating the bees and retrieving the map. You got stung pretty badly though. 
-How about we go to the Doctorâ€™s office closer to Merami and get ourselves healed? Letâ€™s walk together to the doctorâ€™s office now.
-Torkana: Hi Doctor! Iâ€™m here because was injured in a recent battle. Iâ€™m afraid itâ€™s getting worse. Can you take a look at my wounds?
+How about we go to the Doctor’s office closer to Merami and get ourselves healed? Let’s walk together to the doctor’s office now.
+Torkana: Hi Doctor! I’m here because was injured in a recent battle. I’m afraid it’s getting worse. Can you take a look at my wounds?
 My friend here also got stung up really bad. They need medical treatment before their bites swell.
 Doctor: Yes, you two are in rough shape. Good thing you came to my office today. We have had a bee problem around here. I have just the herb you need out back in my garden. There is a healing cave with special water too.
 Would you be willing to get both so I can heal you two up?
@@ -31,21 +31,7 @@ The bees will not follow you into the healing cave. You need to find the special
 As the Doctor said, you must search for the healing water pool in the cave.
 You have a low amount of health and will not be able to bear anymore threats. You must find a healing potion somewhere in the cave now.
 Now you must apply the potion by clicking the drop-down inventory and selecting the potion.
-<<<<<<< HEAD
-According to the map, the city is over the ridge to the right of the doctor's house.
-Townsperson: Please help me! A creature bit me and the poison is entering my veins. I need water to clean the wound and remove the poison but I canâ€™t stand up to get to the tavern. 
-Could you please bring some healing water to me as quickly as possible?
-Townsperson: Thank you!  The tavern is just down the street. There is a mug on the sign.
-Townsperson: Oh, you got the healing water!  Thank you!
-Townsperson: I still feel ill...  The doctor just outside of town should have medicine that will heal me.  Would you please get me some?
-Townsperson: Thank you for your help. Iâ€™m feeling better already!
-What brings you to Merami?
-You explain your quest to find Torkana and the adventures you have had already.
-Townsperson: Yes, what Kalatar told you is true. Many people have fled the town because theyâ€™re afraid of the dragon and the creatures.
-In the {insert description of the house} house lives the son of the man who built the sewer system. His father went into the sewers to try to get rid of a big creature that has taken over the sewers and he never returned.
-If you want to strike at the heart of the creatures, you need to defeat the dragon, but no one knows how to get to the island where it lives. I suggest you go try to find the Sewer Foreman in the sewer where he works.
-=======
-You are ready to return to the Doctorâ€™s Office. Find your way back so that the Doctor can help you and Torkana as soon as possible.
+You are ready to return to the Doctor’s Office. Find your way back so that the Doctor can help you and Torkana as soon as possible.
 Doctor: Look who is back! Torkana and I are very happy to see you. We hope that you have successfully found the necessary supplies to heal both of you.
 If you have found the herbs and healing water, please give them to me now.
 Torkana: Thank you for finding the medicine for me. I hope the healing cave was not too terrifying or confusing. I plan to give you something after the Doctor heals us. 
@@ -54,4 +40,15 @@ Doctor: Now that you are looking a lot better, you can speak to Torkana and figu
 Torkana: I wanted to give you this magical amulet. It will be your guiding light for the rest of your journey. I hope your trip to Merami is an exciting learning experience that you can manage. There will be hardships, but do not let these overcome you.
 Take this amulet and allow it to guide you at rough times.
 Now that you have the amulet, you can head off on your journey. Merami is highlighted on your map, so you should not have trouble finding it.
->>>>>>> 3ad3ab97fe1380122bc535f0dccea82f721a4460
+According to the map, the city is over the ridge to the right of the doctor's house.
+Townsperson: Please help me! A creature bit me and the poison is entering my veins. I need water to clean the wound and remove the poison but I can’t stand up to get to the tavern. 
+Could you please bring some healing water to me as quickly as possible?
+Townsperson: Thank you!  The tavern is just down the street. There is a mug on the sign.
+Townsperson: Oh, you got the healing water!  Thank you!
+Townsperson: I still feel ill...  The doctor just outside of town should have medicine that will heal me.  Would you please get me some?
+Townsperson: Thank you for your help. I’m feeling better already!
+What brings you to Merami?
+You explain your quest to find Torkana and the adventures you have had already.
+Townsperson: Yes, what Kalatar told you is true. Many people have fled the town because they’re afraid of the dragon and the creatures.
+In the {insert description of the house} house lives the son of the man who built the sewer system. His father went into the sewers to try to get rid of a big creature that has taken over the sewers and he never returned.
+If you want to strike at the heart of the creatures, you need to defeat the dragon, but no one knows how to get to the island where it lives. I suggest you go try to find the Sewer Foreman in the sewer where he works.

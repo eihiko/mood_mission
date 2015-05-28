@@ -52,3 +52,11 @@ You explain your quest to find Torkana and the adventures you have had already.
 Townsperson: Yes, what Kalatar told you is true. Many people have fled the town because they’re afraid of the dragon and the creatures.
 In the {insert description of the house} house lives the son of the man who built the sewer system. His father went into the sewers to try to get rid of a big creature that has taken over the sewers and he never returned.
 If you want to strike at the heart of the creatures, you need to defeat the dragon, but no one knows how to get to the island where it lives. I suggest you go try to find the Sewer Foreman in the sewer where he works.
+The townsperson said the foreman's son lives in the {insert description of house} house.  You should head there right away.
+Foreman's Son: Can I help you?
+You explain your quest to defeat the dragon and that you need to speak to his father to get to the island.
+Son: My father disappeared days ago. I wanted to go after him but I haven’t had time because of my responsibilities operating the city facilities and caring for my mother.
+I have a map of the sewers but I am not entirely sure that I trust you enough to give it to you...
+I know of two townspeople who need help with certain problems they have. If you help them, I may give you the map.
+The first one is one with a blue door that is close to the tavern, and the second one has a red door and is down and across the street from here.
+You need to help both townspeople to get the sewer map.  The closest is the one next to the tavern, in the house with the blue door.

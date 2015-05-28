@@ -557,11 +557,30 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 48, 6));
 				isBusy = true;
 				break;
+
+			//Fifth Mission Events
 			case MissionManager.EventType.GO_TO_MT2_HOUSE:
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 54, 1));
 				isBusy = true;
 				break;
-			//Ready for fifth mission
+			case MissionManager.EventType.CONFRONT_MT2:
+				//Freeze the player during the sequence
+				actionQ.Enqueue(new FreezeAction(mm.Player, true));
+				actionQ.Enqueue(new OpenAction(mm.Son, mm.SonDoorClosed, mm.SonDoorOpen));
+				actionQ.Enqueue(new MoveAction(mm.Son, mm.SonByDoor));
+				actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI, 55, 1));
+				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 56, 1));
+				actionQ.Enqueue(new TalkAction(mm.Son,currentAudio, mm.currentUI, 57, 4));
+				//Then unfreezes after the sequence ends
+				actionQ.Enqueue(new FreezeAction(mm.Player, false));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.OFF_TO_HELP_PEOPLE:
+				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 60, 1));
+				isBusy = true;
+				break;
+
+			//Sixth Mission Events go here
 			}
 		}
 

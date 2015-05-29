@@ -8,7 +8,7 @@ public class MissionManager : MonoBehaviour {
 
 	public enum MissionType {
 		GUIDES_HUT, FOREST, DOCTORS_OFFICE, ENTER_CITY_GATHER_SUPPLIES, 
-		TALK_TO_SON, HELP_TP_1, HELP_TP_2, HELP_TP_3, HYDRA, SEWER_QUEST, 
+		TALK_TO_SON, HELP_TP_1, HELP_TP_2, HELP_TP_3, CYCLOPS, HYDRA, SEWER_QUEST, 
 	}
 
 	//This should eventually be in its own class.
@@ -35,17 +35,15 @@ public class MissionManager : MonoBehaviour {
 		//Finish talking will have to be determined if MT1 needed medicine
 		FINISH_TALKING_MT1,
 
-		//Fifth Mission to Sewer Designer's son's house (3 events)
+		//Fifth Mission to Sewer Designer's son's house/Helping Townspeople (27 events)
 		GO_TO_MT2_HOUSE, CONFRONT_MT2, OFF_TO_HELP_PEOPLE,
-
-		//Sixth Mission to help MT3 (8 events)
-		//May need to adjust 6/7 for changes to one of the 2 starting missions
+		
+		//May need to adjust for changes to one of the 2 starting missions
 		//Old man and the blacksmith
 		ENTER_MT3_HOUSE, TALK_TO_MT3, GO_TO_BLACKSMITH, 
 		//Tool creation: include failure loops
 		CREATE_TOOL_1, CREATE_TOOL_2, CREATE_TOOL_3, RETURN_TO_MT3, FINISH_TALKING_MT3,
-
-		//Seventh Mission to help FT1 (8 events)
+		
 		//Letter delivery
 		ENTER_FT1_HOUSE, TALK_TO_FT1, EXIT_FT1_HOUSE, 
 		//These must play thunder sounds and start particle effect(?) at certain points
@@ -53,21 +51,18 @@ public class MissionManager : MonoBehaviour {
 		//These must check the choice of the player during the storm
 		RETURN_TO_FT1, WAIT_FOR_DRIZZLE, WAIT_FOR_END, 
 
-		//Eighth Mission to help FT2 (5 events)
+		//Locket
 		HEAD_BACK_MT2, TALK_TO_FT2, ENTER_FT2_HOUSE, FIND_LOCKET, GIVE_LOCKET,
-
-		//Ninth Mission to talk to son again (3 events)
 		RETURN_TO_SON, TALK_TO_SON, EXIT_SONS_HOUSE,
 
-		//Tenth Mission to deal with cyclops (12 events)
+		//Sixth Mission to deal with cyclops (12 events)
 		TOWARD_TOWN_CENTER, TALK_TO_FT3, APPLES_FROM_FT3, 
-		TALK_TO_MT4, CLOSER_TOWN_CENTER
+		TALK_TO_MT4, CLOSER_TOWN_CENTER, 
 		//Need to play sound file here
 		HEAR_LAUGHING, 
 		//Finally at the town center where the mission truly begins
 		REACH_TOWN_CENTER, TALK_TO_GUARD,
 		GIVE_CYCLOPS_APPLES,
-		//TODO: Evelyn - See if there's a way to get this to work using these three events.  If not, compile into one event.
 		//These must check the dialogue choice of cyclops, with some sort of loop until the correct one is selected
 		CYCLOPS_CHOICE,
 		//If the cyclops chooses wrong
@@ -108,8 +103,8 @@ public class MissionManager : MonoBehaviour {
 	public GameObject TavernEntrance, insideTavern, nearTavernKeeper;
 	public GameObject HealingCaveEntrance, HealingCaveExit, healthPotion, CaveSwitch, CaveGateOpened, CaveGateClosed;
 	public GameObject TDC;
-	public GameObject Son, SonByDoor;
-	public GameObject SonDoorClosed, SonDoorOpen;
+	public GameObject Son;
+	public GameObject InsideSonHouse, OutsideSonHouse;
 	
 	public MissionManager.MissionType currMissionType;
 

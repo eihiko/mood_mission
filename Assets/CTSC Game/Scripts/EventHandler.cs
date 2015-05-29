@@ -218,6 +218,7 @@ public class EventHandler: MonoBehaviour
 						kvp.Value.gameObject.SetActive(true);
 					}
 				}
+				playerCamera.GetComponent<Skybox>().enabled = true;
 				break;
 			default:
 				GameObject nextLocationObj;

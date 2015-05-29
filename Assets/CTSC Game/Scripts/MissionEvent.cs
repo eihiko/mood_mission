@@ -519,6 +519,7 @@ public class MissionEvent : MonoBehaviour {
 				isBusy = true;
 				break;
 			//Fourth mission begins
+				//All EnterAction places need EnterScripts
 			case MissionManager.EventType.ENTER_CITY:
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.CityEntrance, "You did it!  You made it all the way to Merami on your own!"));
 				isBusy = true;
@@ -564,23 +565,23 @@ public class MissionEvent : MonoBehaviour {
 				isBusy = true;
 				break;
 			case MissionManager.EventType.CONFRONT_MT2:
-				//Freeze the player during the sequence
-				actionQ.Enqueue(new FreezeAction(mm.Player, true));
-				actionQ.Enqueue(new OpenAction(mm.Son, mm.SonDoorClosed, mm.SonDoorOpen));
-				actionQ.Enqueue(new MoveAction(mm.Son, mm.SonByDoor));
-				actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI, 55, 1));
-				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 56, 1));
-				actionQ.Enqueue(new TalkAction(mm.Son,currentAudio, mm.currentUI, 57, 4));
-				//Then unfreezes after the sequence ends
-				actionQ.Enqueue(new FreezeAction(mm.Player, false));
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideSonHouse, ""));
+				actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI,55,1));
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.InsideSonHouse, "Enter the house by pressing E"));
+				actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI, 56, 1));
+				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 57, 1));
+				actionQ.Enqueue(new TalkAction(mm.Son,currentAudio, mm.currentUI, 58, 4));
+				//Player then exits the house
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideSonHouse, "Leave the house to go help the townspeople"));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.OFF_TO_HELP_PEOPLE:
-				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 60, 1));
+				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 62, 1));
 				isBusy = true;
 				break;
 
-			//Sixth Mission Events go here
 			}
 		}
 

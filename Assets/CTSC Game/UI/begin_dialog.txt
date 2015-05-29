@@ -53,7 +53,8 @@ Townsperson: Yes, what Kalatar told you is true. Many people have fled the town 
 In the {insert description of the house} house lives the son of the man who built the sewer system. His father went into the sewers to try to get rid of a big creature that has taken over the sewers and he never returned.
 If you want to strike at the heart of the creatures, you need to defeat the dragon, but no one knows how to get to the island where it lives. I suggest you go try to find the Sewer Foreman in the sewer where he works.
 The townsperson said the foreman's son lives in the {insert description of house} house.  You should head there right away.
-Foreman's Son: Can I help you?
+Foreman's Son: Come on inside!
+Son: Can I help you?
 You explain your quest to defeat the dragon and that you need to speak to his father to get to the island.
 Son: My father disappeared days ago. I wanted to go after him but I haven’t had time because of my responsibilities operating the city facilities and caring for my mother.
 I have a map of the sewers but I am not entirely sure that I trust you enough to give it to you...

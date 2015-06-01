@@ -582,6 +582,25 @@ public class MissionEvent : MonoBehaviour {
 				isBusy = true;
 				break;
 
+			//Sixth Mission Events
+			case MissionManager.EventType.ENTER_MT3_HOUSE:
+				actionQ.Enqueue (new ActiveAction(mm.currentUI, true, 63, 1));
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.InsideMT3House, "Enter the house by pressing E"));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.TALK_TO_MT3:
+				actionQ.Enqueue(new TalkAction(mm.MT3,currentAudio,mm.currentUI,64,1));
+				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 65, 1));
+				actionQ.Enqueue(new TalkAction(mm.MT3,currentAudio,mm.currentUI,66,2));
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.GoingToBlacksmith, "Go to the blacksmith to get tools"));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.GO_TO_BLACKSMITH:
+				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 68,1));
+				isBusy = true;
+				break;
 			}
 		}
 

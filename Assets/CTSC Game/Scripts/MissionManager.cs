@@ -35,27 +35,27 @@ public class MissionManager : MonoBehaviour {
 		//Finish talking will have to be determined if MT1 needed medicine
 		FINISH_TALKING_MT1,
 
-		//Fifth Mission to Sewer Designer's son's house/Helping Townspeople (27 events)
+		//Fifth Mission to Sewer Designer's son's house (3 events)
 		GO_TO_MT2_HOUSE, CONFRONT_MT2, OFF_TO_HELP_PEOPLE,
-		
-		//May need to adjust for changes to one of the 2 starting missions
-		//Old man and the blacksmith
+
+		//Sixth Mission - Old man and the blacksmith (8 events)
 		ENTER_MT3_HOUSE, TALK_TO_MT3, GO_TO_BLACKSMITH, 
 		//Tool creation: include failure loops
-		CREATE_TOOL_1, CREATE_TOOL_2, CREATE_TOOL_3, RETURN_TO_MT3, FINISH_TALKING_MT3,
-		
-		//Letter delivery
+		CREATE_TOOL_1, CREATE_TOOL_2, CREATE_TOOL_3, 
+		RETURN_TO_MT3, FINISH_TALKING_MT3,
+
+		//Seventh Mission - Letter delivery (8 events)
 		ENTER_FT1_HOUSE, TALK_TO_FT1, EXIT_FT1_HOUSE, 
 		//These must play thunder sounds and start particle effect(?) at certain points
 		THUNDER_BEGINS, RAIN_STARTS,
 		//These must check the choice of the player during the storm
 		RETURN_TO_FT1, WAIT_FOR_DRIZZLE, WAIT_FOR_END, 
-
-		//Locket
-		HEAD_BACK_MT2, TALK_TO_FT2, ENTER_FT2_HOUSE, FIND_LOCKET, GIVE_LOCKET,
+		
+		//Eighth Mission - Locket and end of Son part (12 events)
+		HEAD_BACK_MT2, TALK_TO_FT2, ENTER_FT2_HOUSE, FIND_DRAWINGS, SHOW_DRAWINGS, FIND_PICTURES, SHOW_PICTURES, FIND_LOCKET, GIVE_LOCKET,
 		RETURN_TO_SON, TALK_TO_SON, EXIT_SONS_HOUSE,
 
-		//Sixth Mission to deal with cyclops (12 events)
+		//Ninth Mission to deal with cyclops (12 events)
 		TOWARD_TOWN_CENTER, TALK_TO_FT3, APPLES_FROM_FT3, 
 		TALK_TO_MT4, CLOSER_TOWN_CENTER, 
 		//Need to play sound file here
@@ -69,7 +69,7 @@ public class MissionManager : MonoBehaviour {
 		GET_MORE_APPLES, FEED_CYCLOPS_MORE,
 
 
-		//Ninth Mission to go on quest for Hydra
+		//Tenth Mission to go on quest for Hydra
 		//use previous return talk and exit son for this mission also
 		BEGIN_HYDRA_QUEST, BATTLE_HYDRA, DEFEAT_HYDRA,
 		//Tenth Mission to begin sewer quest
@@ -105,6 +105,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject TDC;
 	public GameObject Son;
 	public GameObject InsideSonHouse, OutsideSonHouse, leavingSonsHouse;
+	public GameObject MT3, InsideMT3House, OutsideMT3House, GoingToBlacksmith;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -274,18 +275,18 @@ public class MissionManager : MonoBehaviour {
 						events.Add((EventType)i);
 					}
 					break;
-//				case MissionType.HELP_TP_1:
-//					for(int i = 12; i < 18; i++) {
-				//						events.Add((EventType)i);
-//					}
-//					break;
+				case MissionType.HELP_TP_1:
+					for(int i = 39; i < 47; i++) {
+						events.Add((EventType)i);
+					}
+					break;
 //				case MissionType.HELP_TP_2:
-//					for(int i = 12; i < 18; i++) {
-				//						events.Add((EventType)i);
+//					for(int i = 47; i < 55; i++) {
+//						events.Add((EventType)i);
 //					}
 //					break;
 //				case MissionType.HELP_TP_3:
-//					for(int i = 12; i < 18; i++) {
+//					for(int i = 55; i < 67; i++) {
 				//						events.Add((EventType)i);
 //					}
 //					break;

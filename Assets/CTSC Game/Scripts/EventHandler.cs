@@ -207,7 +207,7 @@ public class EventHandler: MonoBehaviour
 		case GameLocation.FOREST:
 			//Loads only the city, forest, and interior transports
 			foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
-				if (kvp.Key != GameLocation.TDC || kvp.Key != GameLocation.FOREST) {
+				if (kvp.Key != GameLocation.TDC && kvp.Key != GameLocation.FOREST) {
 					if (kvp.Value.parent.name.Equals ("TopDownInteriors")) {
 						kvp.Value.parent.Find ("Transports_TDI").gameObject.SetActive (true);
 						kvp.Value.gameObject.SetActive (false);

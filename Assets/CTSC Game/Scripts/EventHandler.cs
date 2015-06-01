@@ -47,6 +47,7 @@ public class EventHandler: MonoBehaviour
 	public GameObject loginMenu;
 	CurrentLevel currLevel;
 	public float loadTime = 1f;
+	public GameObject TDCTransports;
 	
 	//The set of locations to transport to.
 	Dictionary<GameLocation, Transform> locationSet;
@@ -200,13 +201,71 @@ public class EventHandler: MonoBehaviour
 			Application.LoadLevel (0);
 		}
 
-		//disable all locations first
-		foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
-			kvp.Value.gameObject.SetActive(false);
+		//New attempt at getting transports to work correctly
+		switch (nextLocation) {
+		case GameLocation.TDC:
+		case GameLocation.FOREST:
+			//Loads only the city, forest, and interior transports
+			foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
+				if (kvp.Key != GameLocation.TDC || kvp.Key != GameLocation.FOREST) {
+					if (kvp.Value.parent.name.Equals ("TopDownInteriors")) {
+						kvp.Value.parent.Find ("Transports_TDI").gameObject.SetActive (true);
+						kvp.Value.gameObject.SetActive (false);
+					} else {
+						kvp.Value.gameObject.SetActive (false);
+					}
+				} else {
+					kvp.Value.gameObject.SetActive (true);
+				}
+			}
+			lastLocation = currLocation;
+			currLocation = nextLocation;
+			break;
+		default:
+			//Otherwise, location is in the interiors
+			//Load only the interiors and TDI and TDC transports
+			foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
+				if (kvp.Value.parent.name.Equals ("TopDownInteriors")) {
+					//Interiors must be loaded
+					kvp.Value.parent.gameObject.SetActive (true);
+					//TDI transports must also be loaded
+					kvp.Value.parent.Find ("Transports_TDI").gameObject.SetActive (true);
+					//Finally, the game object itself must be loaded.
+					kvp.Value.gameObject.SetActive (true);
+				} else if (kvp.Key == GameLocation.TDC) {
+					//Load in the TDC transports as well
+					//Debug.Log (kvp.Value.ToString());
+					//kvp.Value.Find ("Transports_TDC").gameObject.SetActive (true);
+					//Transform[] toEnable = kvp.Value.Find("Transports_TDC").GetComponentsInChildren<Transform>();
+					//Set the object itself inactive
+					//kvp.Value.gameObject.SetActive (false);
+					//But make sure the transports are enabled
+					//for (int i=0;i<toEnable.Length;i++) {
+					//	toEnable[i].gameObject.SetActive(true);
+					//}
+				} else {
+					kvp.Value.gameObject.SetActive (false);
+				}
+			}
+			//Finally, enable all the TDCTransports
+			TDCTransports.gameObject.SetActive(true);
+			Transform[] toEnable = TDCTransports.GetComponentsInChildren<Transform>();
+			for (int i=0;i<toEnable.Length;i++) {
+				toEnable[i].gameObject.SetActive(true);
+			}
+			lastLocation = currLocation;
+			currLocation = nextLocation;
+			currLevel.setCurrLocation(nextLocation);
+			break;
 		}
 
+		//disable all locations first
+		//foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
+		//	kvp.Value.gameObject.SetActive(false);
+		//}
+
 		//selectively load necessary locations
-		switch (nextLocation) {
+	/*	switch (nextLocation) {
 			case GameLocation.TDC:
 			case GameLocation.FOREST:
 				//load forest and city
@@ -243,7 +302,7 @@ public class EventHandler: MonoBehaviour
 					}
 				}
 				break;
-			}
+			} */
 	}
 
 	/**

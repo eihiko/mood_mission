@@ -574,7 +574,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new TalkAction(mm.Son,currentAudio, mm.currentUI, 58, 4));
 				//Player then exits the house
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-				actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideSonHouse, "Leave the house to go help the townspeople"));
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingSonsHouse, "Leave the house to go help the townspeople"));
 				isBusy = true;
 				break;
 			case MissionManager.EventType.OFF_TO_HELP_PEOPLE:

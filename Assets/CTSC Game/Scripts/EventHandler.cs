@@ -220,6 +220,7 @@ public class EventHandler: MonoBehaviour
 			}
 			lastLocation = currLocation;
 			currLocation = nextLocation;
+			currLevel.setCurrLocation(nextLocation);
 			break;
 		default:
 			//Otherwise, location is in the interiors

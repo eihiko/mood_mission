@@ -104,7 +104,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject HealingCaveEntrance, HealingCaveExit, healthPotion, CaveSwitch, CaveGateOpened, CaveGateClosed;
 	public GameObject TDC;
 	public GameObject Son;
-	public GameObject InsideSonHouse, OutsideSonHouse;
+	public GameObject InsideSonHouse, OutsideSonHouse, leavingSonsHouse;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -269,11 +269,11 @@ public class MissionManager : MonoBehaviour {
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
-//				case MissionType.TALK_TO_SON:
-//					for(int i = 12; i < 18; i++) {
-				//						events.Add((EventType)i);
-//					}
-//					break;
+				case MissionType.TALK_TO_SON:
+					for(int i = 36; i < 39; i++) {
+						events.Add((EventType)i);
+					}
+					break;
 //				case MissionType.HELP_TP_1:
 //					for(int i = 12; i < 18; i++) {
 				//						events.Add((EventType)i);

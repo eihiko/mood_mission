@@ -33,6 +33,14 @@ public class GiveAction : MissionAction {
 //		case GrabMe.kind.HERB:
 //			decision = giveToTorkana(kind);
 //			break;
+		case GrabMe.kind.TOOLS:
+			if (to.GetComponent<CharacterOurs>() != null) {
+				decision = giveToPlayer (kind);
+			}
+			else {
+				decision = giveToNPC (kind);
+			}
+			break;
 		}
 
 		return decision;
@@ -41,6 +49,14 @@ public class GiveAction : MissionAction {
 	bool giveToPlayer(GrabMe.kind theKind){
 		from.GetComponent<NPC_Character> ().setGiveItem (true);
 		return to.GetComponent<CharacterOurs>().has(theKind);
+	}
+
+	bool giveToNPC(GrabMe.kind thisKind){
+		from.GetComponent<CharacterOurs> ().drop (thisKind, to.transform);
+		NPC_Character NPCto = to.GetComponent<NPC_Character> ();
+		NPCto.setTakeItem (true);
+		NPCto.grab (NPCto.item);
+		return !to.GetComponent<CharacterOurs> ().has (thisKind);
 	}
 
     bool giveToTorkana(GrabMe.kind theKind){

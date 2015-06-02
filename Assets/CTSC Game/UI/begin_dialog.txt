@@ -59,11 +59,21 @@ You explain your quest to defeat the dragon and that you need to speak to his fa
 Son: My father disappeared days ago. I wanted to go after him but I have not had time because of my responsibilities operating the city facilities and caring for my mother.
 I have a map of the sewers but I am not entirely sure that I trust you enough to give it to you...
 I know of two townspeople who need help with certain problems they have. If you help them, I may give you the map.
-The first one is one with a blue door that is down the road from the tavern, and the second one has a red door and is down and to the right from here.
-You need to help both townspeople to get the sewer map.  Start with the person in the house down the street from the tavern, with the blue door.
+The first one is one with the flowers out front that is down the road from the tavern, and the second one is down and to the right from here, next to the locksmith.
+You need to help both townspeople to get the sewer map.  Start with the person in the house down the street from the tavern, with the flowers.
 This looks like the right house.  You should go inside and see what you can do to help.
 Old Man: How may I help you?
 You explain to the old man that the son of the sewer mentioned that he needed help and that you were very willing to help him with whatever he needed.
-Old Man: Oh, that is wonderful of you to do so! I recently injured myself going down to the basement and it’s hard for me to walk now. My fireplace damper has been broken and the fireplace is smoking a little.
-If it’s not too much trouble, please go to the the blacksmith’s house, the last house down at the end of the street to the right, to get some tools for me. l will be extremely grateful for your efforts!
+Old Man: Oh, that is wonderful of you to do so! I recently injured myself moving furniture around and it’s hard for me to walk now. My fireplace damper has been broken and the fireplace is smoking a little.
+If it’s not too much trouble, please go to the the blacksmith’s house, down at the end of the street to the right, to get some tools for me. l will be extremely grateful for your efforts!
 The blacksmith is in the house at the end of the street.  He should be able to help you get tools for the old man.
+Blacksmith: Hello.  How may I help you?
+You explain to him that you need some tools from him to help the old man up the street with his damaged fireplace damper.
+Blacksmith: I would love to help you, but all of the tools I had ready are being used by other townspeople right now.
+If you help me forge some new ones, I would be happy to let you use them.
+Blacksmith: Great job!  We still have two more tools to make, though.
+Blacksmith: Brilliant!  Only one left to create.
+Blacksmith: You got it!  Thanks again for helping me out.  Here, take these to the old man up the street.
+With the tools you made, the old man should be able to fix his fireplace damper.  You should go back to him.
+Old Man: There you are.  Were you able to get the tools I need?
+Old Man: Oh, thank you!  These are exactly what I needed!  You are very kind.

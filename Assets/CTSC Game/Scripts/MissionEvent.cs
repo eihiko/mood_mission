@@ -599,6 +599,58 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.GO_TO_BLACKSMITH:
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 68,1));
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.AtBlacksmith, "Enter the blacksmith's house"));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.TALK_TO_BLACKSMITH:
+				actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,69,1));
+				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 70, 1));
+				actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,71,2));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.CREATE_TOOL_1:
+				bool puzzle1done = false;
+				while (!puzzle1done) {
+					//Insert puzzle #1
+					puzzle1done = true;
+				}
+				actionQ.Enqueue(new TalkAction(mm.Blacksmith, currentAudio,mm.currentUI,73,1));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.CREATE_TOOL_2:
+				bool puzzle2done = false;
+				while (!puzzle2done) {
+					//Insert puzzle #2
+					puzzle2done = true;
+				}
+				actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,74,1));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.CREATE_TOOL_3:
+				bool puzzle3done = false;
+				while (!puzzle3done) {
+					//Insert puzzle #1
+					puzzle3done = true;
+				}
+				actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,75,1));
+				actionQ.Enqueue(new GiveAction(mm.Blacksmith,mm.Player, GrabMe.kind.TOOLS));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.RETURN_TO_MT3:
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingBlacksmith, "Return to the old man's house with your new tools"));
+				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 76, 1));
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.InsideMT3House, ""));
+				isBusy = true;
+				break;
+			case MissionManager.EventType.FINISH_TALKING_MT3:
+				actionQ.Enqueue(new TalkAction(mm.MT3,currentAudio,mm.currentUI,77,1));
+				actionQ.Enqueue(new GiveAction(mm.Player,mm.MT3, GrabMe.kind.TOOLS));
+				actionQ.Enqueue(new TalkAction(mm.MT3,currentAudio,mm.currentUI,78,1));
+				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideMT3House, "Go outside to help the other townsperson"));
 				isBusy = true;
 				break;
 			}

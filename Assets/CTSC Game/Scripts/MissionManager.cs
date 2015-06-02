@@ -38,8 +38,8 @@ public class MissionManager : MonoBehaviour {
 		//Fifth Mission to Sewer Designer's son's house (3 events)
 		GO_TO_MT2_HOUSE, CONFRONT_MT2, OFF_TO_HELP_PEOPLE,
 
-		//Sixth Mission - Old man and the blacksmith (8 events)
-		ENTER_MT3_HOUSE, TALK_TO_MT3, GO_TO_BLACKSMITH, 
+		//Sixth Mission - Old man and the blacksmith (9 events)
+		ENTER_MT3_HOUSE, TALK_TO_MT3, GO_TO_BLACKSMITH, TALK_TO_BLACKSMITH,
 		//Tool creation: include failure loops
 		CREATE_TOOL_1, CREATE_TOOL_2, CREATE_TOOL_3, 
 		RETURN_TO_MT3, FINISH_TALKING_MT3,
@@ -106,6 +106,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject Son;
 	public GameObject InsideSonHouse, OutsideSonHouse, leavingSonsHouse;
 	public GameObject MT3, InsideMT3House, OutsideMT3House, GoingToBlacksmith;
+	public GameObject Blacksmith, AtBlacksmith, leavingBlacksmith;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -276,17 +277,17 @@ public class MissionManager : MonoBehaviour {
 					}
 					break;
 				case MissionType.HELP_TP_1:
-					for(int i = 39; i < 47; i++) {
+					for(int i = 39; i < 48; i++) {
 						events.Add((EventType)i);
 					}
 					break;
 //				case MissionType.HELP_TP_2:
-//					for(int i = 47; i < 55; i++) {
+//					for(int i = 48; i < 56; i++) {
 //						events.Add((EventType)i);
 //					}
 //					break;
 //				case MissionType.HELP_TP_3:
-//					for(int i = 55; i < 67; i++) {
+//					for(int i = 56; i < 68; i++) {
 				//						events.Add((EventType)i);
 //					}
 //					break;

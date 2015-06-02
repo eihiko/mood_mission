@@ -4,7 +4,7 @@ using System.Collections;
 public class GrabMe : MonoBehaviour {
 
 	public enum kind { WOOD, CANDLE, KEY, MATCH, TORCH, COMPASS, GOLD, KNIFE, SHIELD, MAP, HERB, HEALING_WATER,
-	HEALTH_POTION, AMULET }
+	HEALTH_POTION, AMULET, TOOLS }
 
 	public GrabMe.kind myKind;
 

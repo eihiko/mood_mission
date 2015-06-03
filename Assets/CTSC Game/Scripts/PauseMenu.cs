@@ -23,7 +23,7 @@ public class PauseMenu : MonoBehaviour{
 		userName = user.GetComponent<LoginInfo> ().getUserName ();
 		databaseName = user.GetComponent<LoginInfo> ().getDatabaseName ();
 		tableName = user.GetComponent<LoginInfo> ().getTableName ();
-		Debug.Log ("User: " + userName + "db: " + databaseName + "table: " + tableName);
+		//Debug.Log ("User: " + userName + "db: " + databaseName + "table: " + tableName);
 	}
 
 	void Update() { 
@@ -58,7 +58,7 @@ public class PauseMenu : MonoBehaviour{
 		GUILayout.BeginVertical(); 
 		GUILayout.FlexibleSpace();
 		if (GUILayout.Button("Save Game")) {
-			Debug.Log (userName + " " + databaseName + " " + tableName);
+			//Debug.Log (userName + " " + databaseName + " " + tableName);
 			LevelSerializer.SaveGame(userName);
 			string serializedGame = LevelSerializer.SerializeLevel();
 			if (serializedGame == null || serializedGame.Equals("")){

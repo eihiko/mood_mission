@@ -96,7 +96,6 @@ public class MissionManager : MonoBehaviour {
 	public GameObject atBeeArea, DoctorGardenBees;
 	public GameObject Map, Bees, DoctorsHouse, PlayerEnterDoctors, TorkanaEnterDoctors;
 	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden;
-	public GameObject BridgeSighted, BridgeEntrance, BridgeEnd;
 	public GameObject CityEntrance;
 	public GameObject InjuredPerson; //Note, is also classified as injuredPerson
 	public GameObject nearInjuredPerson;
@@ -107,6 +106,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject InsideSonHouse, OutsideSonHouse, leavingSonsHouse;
 	public GameObject MT3, InsideMT3House, OutsideMT3House, GoingToBlacksmith;
 	public GameObject Blacksmith, AtBlacksmith, leavingBlacksmith;
+	public GameObject Tools;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -140,6 +140,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		test (5);
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -161,6 +162,13 @@ public class MissionManager : MonoBehaviour {
 			currMission.execute();
 		} else {
 			Debug.Log ("Player has completed: " + currMission.ToString ());
+			missionHistory[currMission] = true;
+		}
+	}
+
+	public void test(int missionsCompleted){
+		for (int i=0; i<missionsCompleted; i++) {
+			Mission currMission = getCurrentMission();
 			missionHistory[currMission] = true;
 		}
 	}
@@ -275,10 +283,22 @@ public class MissionManager : MonoBehaviour {
 					for(int i = 36; i < 39; i++) {
 						events.Add((EventType)i);
 					}
+					currTransform = missionObjects[(int)type].transform;
+					//Add all the event transforms for this mission to its event dictionary
+					foreach (Transform child in currTransform){
+						//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+					}
 					break;
 				case MissionType.HELP_TP_1:
 					for(int i = 39; i < 48; i++) {
 						events.Add((EventType)i);
+					}
+					currTransform = missionObjects[(int)type].transform;
+					//Add all the event transforms for this mission to its event dictionary
+					foreach (Transform child in currTransform){
+						//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
 //				case MissionType.HELP_TP_2:
@@ -303,9 +323,9 @@ public class MissionManager : MonoBehaviour {
 //					break;
 			}
 			currMission = new Mission((int)type, type, events, eventDict);
-			if (currMissionNum > 1){
+			//if (currMissionNum > 1){
 				missionHistory.Add(currMission, false);
-			}
+			//}
 			events.Clear();
 			currMissionNum++;
 		}

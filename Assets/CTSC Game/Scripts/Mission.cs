@@ -82,7 +82,7 @@ public class Mission : IComparable<Mission> {
 		return this.isCurrentMission;
 	}
 
-	private MissionManager.EventType getCurrentMissionEvent(){
+	public MissionManager.EventType getCurrentMissionEvent(){
 		foreach (KeyValuePair<MissionManager.EventType, bool> eventType in missionEvents) {
 			if (!eventType.Value){
 				//Debug.Log("Current mission event is: " + eventType.ToString());

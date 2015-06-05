@@ -12,6 +12,7 @@ public class NPC_Character : MonoBehaviour {
 	bool giveItem;
 	bool takeAnItem;
 	List<GrabMe.kind> inventory;
+	public Transform placeToDrop;
 	GameObject player;
 
 	public NPC_Character(){

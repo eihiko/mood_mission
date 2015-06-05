@@ -735,7 +735,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingBlacksmith, "Return to the old man's house with your new tools"));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 76, 1));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-				actionQ.Enqueue(new EnterAction(mm.Player,mm.InsideMT3House, ""));
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.BackWithTools, ""));
 				isBusy = true;
 				}
 				break;

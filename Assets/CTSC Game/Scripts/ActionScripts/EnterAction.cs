@@ -32,6 +32,7 @@ public class EnterAction : MissionAction {
 			return true;
 		}
 		if (first) {
+			this.collisionScript.setWillEnter(willEnter);
 			guiHandler.setTextToShow (text);
 			first = false;
 			if (character != null) {
@@ -46,7 +47,7 @@ public class EnterAction : MissionAction {
 		this.willEnter = willEnter;
 		this.toEnter = toEnter;
 	    this.collisionScript = toEnter.GetComponent<EnterScript> ();
-		this.collisionScript.setWillEnter(willEnter);
+		//this.collisionScript.setWillEnter(willEnter);
 		this.character = willEnter.GetComponent<CharacterOurs> ();
 
 		interactionManager = GameObject.Find ("InteractionManager");

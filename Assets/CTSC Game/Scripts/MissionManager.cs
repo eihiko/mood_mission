@@ -105,7 +105,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject Son;
 	public GameObject InsideSonHouse, OutsideSonHouse, leavingSonsHouse;
 	public GameObject MT3, InsideMT3House, OutsideMT3House, GoingToBlacksmith;
-	public GameObject Blacksmith, AtBlacksmith, leavingBlacksmith;
+	public GameObject Blacksmith, AtBlacksmith, leavingBlacksmith, BackWithTools;
 	public GameObject Tools;
 	
 	public MissionManager.MissionType currMissionType;

@@ -52,11 +52,11 @@ public class GiveAction : MissionAction {
 	}
 
 	bool giveToNPC(GrabMe.kind thisKind){
-		from.GetComponent<CharacterOurs> ().drop (thisKind, to.transform);
 		NPC_Character NPCto = to.GetComponent<NPC_Character> ();
+		from.GetComponent<CharacterOurs> ().drop (thisKind, NPCto.placeToDrop);
 		NPCto.setTakeItem (true);
 		NPCto.grab (NPCto.item);
-		return !to.GetComponent<CharacterOurs> ().has (thisKind);
+		return !from.GetComponent<CharacterOurs> ().has (thisKind);
 	}
 
     bool giveToTorkana(GrabMe.kind theKind){

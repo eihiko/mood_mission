@@ -26,6 +26,7 @@ public class GiveAction : MissionAction {
 		bool decision = false;
 		switch (kind) {
 
+		case GrabMe.kind.LETTERS:
 		case GrabMe.kind.AMULET:
 			decision = giveToPlayer(kind);
 			break;

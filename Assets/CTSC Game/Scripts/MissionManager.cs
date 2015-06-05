@@ -44,12 +44,12 @@ public class MissionManager : MonoBehaviour {
 		CREATE_TOOL_1, CREATE_TOOL_2, CREATE_TOOL_3, 
 		RETURN_TO_MT3, FINISH_TALKING_MT3,
 
-		//Seventh Mission - Letter delivery (8 events)
+		//Seventh Mission - Letter delivery (10 events)
 		ENTER_FT1_HOUSE, TALK_TO_FT1, EXIT_FT1_HOUSE, 
 		//These must play thunder sounds and start particle effect(?) at certain points
 		THUNDER_BEGINS, RAIN_STARTS,
 		//These must check the choice of the player during the storm
-		RETURN_TO_FT1, WAIT_FOR_DRIZZLE, WAIT_FOR_END, 
+		TURN_BACK, RETURN_TO_FT1, DELIVER_LETTERS, WAIT_FOR_DRIZZLE, WAIT_FOR_END, 
 		
 		//Eighth Mission - Locket and end of Son part (12 events)
 		HEAD_BACK_MT2, TALK_TO_FT2, ENTER_FT2_HOUSE, FIND_DRAWINGS, SHOW_DRAWINGS, FIND_PICTURES, SHOW_PICTURES, FIND_LOCKET, GIVE_LOCKET,
@@ -99,7 +99,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject CityEntrance;
 	public GameObject InjuredPerson; //Note, is also classified as injuredPerson
 	public GameObject nearInjuredPerson;
-	public GameObject TavernEntrance, insideTavern, nearTavernKeeper;
+	public GameObject TavernKeeper, TavernEntrance, insideTavern, nearTavernKeeper;
 	public GameObject HealingCaveEntrance, HealingCaveExit, healthPotion, CaveSwitch, CaveGateOpened, CaveGateClosed;
 	public GameObject TDC;
 	public GameObject Son;
@@ -107,6 +107,11 @@ public class MissionManager : MonoBehaviour {
 	public GameObject MT3, InsideMT3House, OutsideMT3House, GoingToBlacksmith;
 	public GameObject Blacksmith, AtBlacksmith, leavingBlacksmith, BackWithTools;
 	public GameObject Tools;
+	public GameObject FT1, InsideFT1House, OutsideFT1House;
+	public AudioSource Thunder;
+	public ParticleEmitter RainMaker;
+	public int choiceInRain=3;
+	public GameObject turnBack, moveOn, backAtFT1, leavingHouseAgain, safeInTavern, leavingTavernAgain;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -301,13 +306,19 @@ public class MissionManager : MonoBehaviour {
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
-//				case MissionType.HELP_TP_2:
-//					for(int i = 48; i < 56; i++) {
-//						events.Add((EventType)i);
-//					}
-//					break;
+				case MissionType.HELP_TP_2:
+					for(int i = 48; i < 58; i++) {
+						events.Add((EventType)i);
+					}
+				currTransform = missionObjects[(int)type].transform;
+				//Add all the event transforms for this mission to its event dictionary
+				foreach (Transform child in currTransform){
+					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+				}
+					break;
 //				case MissionType.HELP_TP_3:
-//					for(int i = 56; i < 68; i++) {
+//					for(int i = 58; i < 70; i++) {
 				//						events.Add((EventType)i);
 //					}
 //					break;

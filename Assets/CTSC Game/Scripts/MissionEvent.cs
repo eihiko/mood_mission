@@ -749,6 +749,108 @@ public class MissionEvent : MonoBehaviour {
 				isBusy = true;
 				}
 				break;
+			case MissionManager.EventType.ENTER_FT1_HOUSE:
+				if (mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 79,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 80,1));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.InsideFT1House, "Enter the townsperson's house"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.TALK_TO_FT1:
+				if (mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,81,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,82,1));
+					actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,83,2));
+					actionQ.Enqueue(new GiveAction(mm.FT1,mm.Player, GrabMe.kind.LETTERS));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.EXIT_FT1_HOUSE:
+				if (mission.getCurrentMissionEvent()==eventType) {
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideFT1House, "Go to the tavern to deliver the letters"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,85,1));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.THUNDER_BEGINS:
+				if (mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new ActiveAction(mm.Thunder,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,86,1));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.RAIN_STARTS:
+				if (mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new ActiveAction(mm.RainMaker,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,87,1));
+					actionQ.Enqueue(new ActiveAction(mm.turnBack,true));
+					actionQ.Enqueue(new ActiveAction(mm.moveOn,true));
+					//Insert ChoiceAction here
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.TURN_BACK:
+				if (mission.getCurrentMissionEvent()==eventType) {
+					if (mm.choiceInRain==0) {
+						actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,88,1));
+						//Insert ChoiceAction here
+						isBusy = true;
+					}
+				}
+				break;
+			case MissionManager.EventType.RETURN_TO_FT1:
+				if (mission.getCurrentMissionEvent()==eventType) {
+					if (mm.choiceInRain==0) {
+						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.backAtFT1, ""));
+						actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,89,1));
+						actionQ.Enqueue(new ActiveAction(mm.Thunder,false));
+						actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
+						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,95,1));
+						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+						actionQ.Enqueue(new EnterAction,mm.Player,mm.leavingHouseAgain, "Step outside and return to the foreman's son"));
+						isBusy = true;
+					}
+				}
+				break;
+			case MissionManager.EventType.DELIVER_LETTERS:
+				if (mission.getCurrentMissionEvent()==eventType) {
+					if (mm.choiceInRain==1) {
+						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.safeInTavern, "Get into the tavern quickly"));
+						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,90,1));
+						actionQ.Enqueue(new TalkAction(mm.Player,currentAudio,mm.currentUI,91,1));
+						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,92,1));
+						actionQ.Enqueue(new ActiveAction(mm.Thunder,false));
+						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,93,1));
+						//Insert ChoiceAction here
+						isBusy = true;
+					}
+				}
+				break;
+			case MissionManager.EventType.WAIT_FOR_DRIZZLE:
+				if (mission.getCurrentMissionEvent()==eventType) {
+					if (mm.choiceInRain==1) {
+						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingTavernAgain, "Step back outside and return to the foreman's son"));
+						isBusy = true;
+					}
+				}
+				break;
+			case MissionManager.EventType.WAIT_FOR_END:
+				if (mission.getCurrentMissionEvent()==eventType) {
+					if (mm.choiceInRain==2) {
+						actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
+						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,94,1));
+						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingTavernAgain, "Step back outside and return to the foreman's son"));
+						isBusy = true;
+					}
+				}
+				break;
 			}
 		}
 

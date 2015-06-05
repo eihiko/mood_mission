@@ -40,7 +40,7 @@ Doctor: Now that you are looking a lot better, you can speak to Torkana and figu
 Torkana: I wanted to give you this magical amulet. It will be your guiding light for the rest of your journey. I hope your trip to Merami is an exciting learning experience that you can manage. There will be hardships, but do not let these overcome you.
 Take this amulet and allow it to guide you at rough times.
 Now that you have the amulet, you can head off on your journey. Merami is highlighted on your map, so you should not have trouble finding it.
-According to the map, the city is over the ridge to the right of the doctor's house.
+According to the map, the city is over the ridge to the right of the house.
 Townsperson: Please help me! A creature bit me and the poison is entering my veins. I need water to clean the wound and remove the poison but I can’t stand up to get to the tavern. 
 Could you please bring some healing water to me as quickly as possible?
 Townsperson: Thank you!  The tavern is just down the street. There is a mug on the sign.
@@ -64,8 +64,8 @@ You need to help both townspeople to get the sewer map.  Start with the person i
 This looks like the right house.  You should go inside and see what you can do to help.
 Old Man: How may I help you?
 You explain to the old man that the son of the sewer mentioned that he needed help and that you were very willing to help him with whatever he needed.
-Old Man: Oh, that is wonderful of you to do so! I recently injured myself moving furniture around and it’s hard for me to walk now. My fireplace damper has been broken and the fireplace is smoking a little.
-If it’s not too much trouble, please go to the the blacksmith’s house, down at the end of the street to the right, to get some tools for me. l will be extremely grateful for your efforts!
+Old Man: Oh, that is wonderful of you to do so! I recently injured myself moving furniture around and it is hard for me to walk now. My fireplace damper has been broken and the fireplace is smoking a little.
+If it is not too much trouble, please go to the the blacksmith, down at the end of the street to the right, to get some tools for me. l will be extremely grateful for your efforts!
 The blacksmith is in the house at the end of the street.  He should be able to help you get tools for the old man.
 Blacksmith: Hello.  How may I help you?
 You explain to him that you need some tools from him to help the old man up the street with his damaged fireplace damper.
@@ -77,3 +77,20 @@ Blacksmith: You got it!  Thanks again for helping me out.  Here, take these to t
 With the tools you made, the old man should be able to fix his fireplace damper.  You should go back to him.
 Old Man: There you are.  Were you able to get the tools I need?
 Old Man: Oh, thank you!  These are exactly what I needed!  You are very kind.
+Next you should visit the person living next to the locksmith.  According to the directions you were given, it should be just a short walk away.
+That is the locksmith right there.  This must be the place.
+Woman: How may I help you?
+You explain to the middle-aged woman that the son of the sewer foreman mentioned that she needed help and that you were very willing to help her with whatever she needed.
+Woman: Oh, how nice of you to do so! As a matter of fact, I do need a little favor.
+I have some letters that need to be mailed. If you do not mind, please take the letters to the tavern so the postman can pick them up. I have not had the time to go down to the tavern myself, but if you could mail the letters for me, I would be very thankful!
+It looks like a storm may be coming.  The tavern is a bit of a walk from here.  Better hurry.
+You can hear the thunder getting closer.
+Oh no!  The rain has already started.  You should get to shelter quickly before it gets worse.
+Torkana through the amulet: You were chosen for your strength, bravery, and compassion. You are not making a good choice, which makes me rethink whether you are a capable warrior.
+Woman: You came back.  I guess this storm is too strong to go out in.  I suppose I will deliver the letters another day.  Thank you anyway for trying.
+Tavern Keeper: You have some letters to mail to the neighboring town I see.
+You: I am helping the middle aged woman that lives in the house with the red door to mail these. She has been so busy lately and I am just doing a small favor. The storm is quite big outside, do you mind if I stay here until it stops?
+Tavern Keeper: You are so nice to be helping her! How could I not let you stay until the storm has stopped?
+You stay in the tavern until the thunder stops.  You can still hear it raining outside.  Will you stay until it stops completely?  Press 1 to stay longer or 2 to leave now.
+You wait in the tavern until you cannot hear the rain any longer.
+You wait and talk with the woman until the storm has passed.  You should return to the son of the foreman now.

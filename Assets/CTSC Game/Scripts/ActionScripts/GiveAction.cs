@@ -26,7 +26,6 @@ public class GiveAction : MissionAction {
 		bool decision = false;
 		switch (kind) {
 
-		case GrabMe.kind.LETTERS:
 		case GrabMe.kind.AMULET:
 			decision = giveToPlayer(kind);
 			break;
@@ -34,6 +33,7 @@ public class GiveAction : MissionAction {
 //		case GrabMe.kind.HERB:
 //			decision = giveToTorkana(kind);
 //			break;
+		case GrabMe.kind.LETTERS:
 		case GrabMe.kind.TOOLS:
 			if (to.GetComponent<CharacterOurs>() != null) {
 				decision = giveToPlayer (kind);

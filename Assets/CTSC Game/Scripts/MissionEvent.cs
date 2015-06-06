@@ -807,11 +807,12 @@ public class MissionEvent : MonoBehaviour {
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.backAtFT1, ""));
 						actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,89,1));
+						actionQ.Enqueue(new GiveAction(mm.Player,mm.FT1, GrabMe.kind.LETTERS));
 						actionQ.Enqueue(new ActiveAction(mm.Thunder,false));
 						actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
 						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,95,1));
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-						actionQ.Enqueue(new EnterAction,mm.Player,mm.leavingHouseAgain, "Step outside and return to the foreman's son"));
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingHouseAgain, "Step outside and return to the foreman's son"));
 						isBusy = true;
 					}
 				}
@@ -824,6 +825,7 @@ public class MissionEvent : MonoBehaviour {
 						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,90,1));
 						actionQ.Enqueue(new TalkAction(mm.Player,currentAudio,mm.currentUI,91,1));
 						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,92,1));
+						actionQ.Enqueue(new GiveAction(mm.Player,mm.TavernKeeper, GrabMe.kind.LETTERS));
 						actionQ.Enqueue(new ActiveAction(mm.Thunder,false));
 						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,93,1));
 						//Insert ChoiceAction here

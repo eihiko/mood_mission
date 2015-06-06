@@ -108,8 +108,8 @@ public class MissionManager : MonoBehaviour {
 	public GameObject Blacksmith, AtBlacksmith, leavingBlacksmith, BackWithTools;
 	public GameObject Tools;
 	public GameObject FT1, InsideFT1House, OutsideFT1House;
-	public AudioSource Thunder;
-	public ParticleEmitter RainMaker;
+	public GameObject Thunder;
+	public GameObject RainMaker;
 	public int choiceInRain=3;
 	public GameObject turnBack, moveOn, backAtFT1, leavingHouseAgain, safeInTavern, leavingTavernAgain;
 	

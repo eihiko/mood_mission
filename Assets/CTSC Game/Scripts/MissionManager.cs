@@ -106,12 +106,14 @@ public class MissionManager : MonoBehaviour {
 	public GameObject InsideSonHouse, OutsideSonHouse, leavingSonsHouse;
 	public GameObject MT3, InsideMT3House, OutsideMT3House, GoingToBlacksmith;
 	public GameObject Blacksmith, AtBlacksmith, leavingBlacksmith, BackWithTools;
-	public GameObject Tools;
-	public GameObject FT1, InsideFT1House, OutsideFT1House;
+	public GameObject Tools, Letters;
+	public GameObject FT1, AtFT1House, InsideFT1House, OutsideFT1House;
 	public GameObject Thunder;
 	public GameObject RainMaker;
-	public int choiceInRain=3;
-	public GameObject turnBack, moveOn, backAtFT1, leavingHouseAgain, safeInTavern, leavingTavernAgain;
+	public int choiceInRain=2;
+	public int choiceInTavern=2;
+	public GameObject turnBack, moveOn, returnToFT1, backAtFT1, leavingHouseAgain, safeInTavern, leavingTavernAgain;
+	public ButtonScript tavernRainButton;
 	
 	public MissionManager.MissionType currMissionType;
 

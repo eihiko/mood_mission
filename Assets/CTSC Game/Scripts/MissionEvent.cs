@@ -752,6 +752,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.ENTER_FT1_HOUSE:
 				if (mission.getCurrentMissionEvent()==eventType) {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 79,1));
+					actionQ.Enqueue(new EnterAction(mm.Player, mm.AtFT1House, "Head past the blacksmith's place to get to the house"));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 80,1));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.InsideFT1House, "Enter the townsperson's house"));
@@ -763,7 +764,8 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,81,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,82,1));
 					actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,83,2));
-					actionQ.Enqueue(new GiveAction(mm.FT1,mm.Player, GrabMe.kind.LETTERS));
+					//actionQ.Enqueue(new ActiveAction(mm.Letters,true));
+					actionQ.Enqueue(new GrabAction(mm.Player,GrabMe.kind.LETTERS, "Grab the letters with G"));
 					isBusy = true;
 				}
 				break;
@@ -788,22 +790,44 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,87,1));
 					actionQ.Enqueue(new ActiveAction(mm.turnBack,true));
 					actionQ.Enqueue(new ActiveAction(mm.moveOn,true));
-					//Insert ChoiceAction here
+					EnterScript[] triggers = new EnterScript[2];
+					triggers[0] = mm.turnBack.GetComponent<EnterScript>();
+					triggers[1] = mm.moveOn.GetComponent<EnterScript>();
+					actionQ.Enqueue(new ChoiceAction(mm.Player,"Trigger",triggers,"Rain",2, false, "Will you keep going toward the tavern or turn back?"));
+					if (mm.choiceInRain==0){
+						mission.setEventComplete(MissionManager.EventType.TURN_BACK);
+						mission.setEventComplete(MissionManager.EventType.RETURN_TO_FT1);
+						Debug.Log("Missions set complete mo");
+					}
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.TURN_BACK:
 				if (mission.getCurrentMissionEvent()==eventType) {
-					if (mm.choiceInRain==0) {
+					//if (mm.choiceInRain==0) {
 						actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,88,1));
-						//Insert ChoiceAction here
-						isBusy = true;
+						EnterScript[] triggers = new EnterScript[2];
+						triggers[0] = mm.returnToFT1.GetComponent<EnterScript>();
+						triggers[1] = mm.moveOn.GetComponent<EnterScript>();
+						actionQ.Enqueue(new ChoiceAction(mm.Player,"Trigger",triggers,"Rain",2, true, "Do you listen to Torkana or keep heading back?"));
+					if (mm.choiceInRain==0){
+						mission.setEventComplete(MissionManager.EventType.DELIVER_LETTERS);
+						mission.setEventComplete(MissionManager.EventType.WAIT_FOR_DRIZZLE);
+						mission.setEventComplete(MissionManager.EventType.WAIT_FOR_END);
+						Debug.Log("Missions set complete tb");
 					}
+						isBusy = true;
+					//}
+					//else{
+					//	isComplete = true;
+						//actionQ.Enqueue(new NullAction());
+						//isBusy = true;
+					//}
 				}
 				break;
 			case MissionManager.EventType.RETURN_TO_FT1:
 				if (mission.getCurrentMissionEvent()==eventType) {
-					if (mm.choiceInRain==0) {
+					//if (mm.choiceInRain==0) {
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.backAtFT1, ""));
 						actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,89,1));
@@ -814,12 +838,17 @@ public class MissionEvent : MonoBehaviour {
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingHouseAgain, "Step outside and return to the foreman's son"));
 						isBusy = true;
-					}
+					//}
+					//else{
+					//	isComplete = true;
+						//actionQ.Enqueue(new NullAction());
+						//isBusy = true;
+					//}
 				}
 				break;
 			case MissionManager.EventType.DELIVER_LETTERS:
 				if (mission.getCurrentMissionEvent()==eventType) {
-					if (mm.choiceInRain==1) {
+					//if (mm.choiceInRain==1) {
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.safeInTavern, "Get into the tavern quickly"));
 						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,90,1));
@@ -828,29 +857,48 @@ public class MissionEvent : MonoBehaviour {
 						actionQ.Enqueue(new GiveAction(mm.Player,mm.TavernKeeper, GrabMe.kind.LETTERS));
 						actionQ.Enqueue(new ActiveAction(mm.Thunder,false));
 						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,93,1));
-						//Insert ChoiceAction here
-						isBusy = true;
+						actionQ.Enqueue(new ChoiceAction(mm.Player,"Button",new EnterScript[1],"TavernAfter",2,false, "Press 1 to leave now, or press 2 to wait until the rain completely stops"));
+					if (mm.choiceInRain==0){
+						mission.setEventComplete(MissionManager.EventType.WAIT_FOR_END);
+						Debug.Log("Missions set complete wd");
 					}
+						isBusy = true;
+					//}
+					//else{
+					//	isComplete = true;
+						//actionQ.Enqueue(new NullAction());
+						//isBusy = true;
+					//}
 				}
 				break;
 			case MissionManager.EventType.WAIT_FOR_DRIZZLE:
 				if (mission.getCurrentMissionEvent()==eventType) {
-					if (mm.choiceInRain==1) {
+					//if (mm.choiceInTavern==0) {
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingTavernAgain, "Step back outside and return to the foreman's son"));
 						isBusy = true;
-					}
+					//}
+					//else{
+					//	isComplete = true;
+						//actionQ.Enqueue(new NullAction());
+						//isBusy = true;
+					//}
 				}
 				break;
 			case MissionManager.EventType.WAIT_FOR_END:
 				if (mission.getCurrentMissionEvent()==eventType) {
-					if (mm.choiceInRain==2) {
+					//if (mm.choiceInTavern==1) {
 						actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
 						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,94,1));
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingTavernAgain, "Step back outside and return to the foreman's son"));
 						isBusy = true;
-					}
+					//}
+					//else{
+					//	isComplete = true;
+						//actionQ.Enqueue(new NullAction());
+						//isBusy = true;
+					//}
 				}
 				break;
 			}

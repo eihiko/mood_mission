@@ -91,6 +91,28 @@ Woman: You came back.  I guess this storm is too strong to go out in.  I suppose
 Tavern Keeper: You have some letters to mail to the neighboring town I see.
 You: I am helping the middle aged woman that lives in the house with the red door to mail these. She has been so busy lately and I am just doing a small favor. The storm is quite big outside, do you mind if I stay here until it stops?
 Tavern Keeper: You are so nice to be helping her! How could I not let you stay until the storm has stopped?
-You stay in the tavern until the thunder stops.  You can still hear it raining outside.  Will you stay until it stops completely?  Press 1 to stay longer or 2 to leave now.
+You stay in the tavern until the thunder stops.  You can still hear it raining outside.  Will you stay until it stops completely?
 You wait in the tavern until you cannot hear the rain any longer.
 You wait and talk with the woman until the storm has passed.  You should return to the son of the foreman now.
+As you near the house again, you hear the sound of a little girl crying.  You decide to go see if there is anything you can do.
+You find the girl you heard earlier.  You ask her what is wrong.
+Girl: I got separated from my parents as people were running away from the monsters that have invaded town... I came back to our house because I was sure they would come back for me soon! I’ve waited for so long but I haven’t seen them...
+I don’t think they love me! Or else why would they not have come back for me once they noticed I got left behind?
+You reassure the girl that her parents do love her, but she still seems sad.  You decide to see if you can find something that would show her that her parents still love her.
+Look around for something that shows love.  Perhaps something she created that her parents saved.
+Those drawings should do the trick.  You should bring them out to the girl.
+You show the girl the drawings.
+You: Look! They care about what you do. All your drawings are up on the wall. They must be really proud of you!
+Girl: I guess...
+She does not seem convinced yet.  Maybe you can find something more important if you look again.
+The drawings were not enough.  Maybe there is something more permanent you can find.
+Baby pictures!  Those definitely show that her parents love her!
+You: You are so important to them! All the pictures on the wall are photos of you. If they didn’t love you, why would they have your pictures all over the place?
+Girl: I suppose you are right…
+She seems more convinced now, but not completely.  If you can find one more really important thing, maybe it will cheer her up.
+One more important thing should be enough to fully convince her.  Surely there is something very important here to show her.
+This locket has a family portrait inside of it!  It must be extremely important to her.  It even has the words "I love you" on the back of it!
+You hand the locket to the girl, who stops crying.
+Girl: I had totally forgotten about this necklace!  You are right! My parents do love me. There is no way that they will not come back for me. I will wait as long as I have to until they get here!
+Girl: MOM!  DAD!
+Seeing the girl reunited with her family, you say goodbye and head back to the son of the foreman.

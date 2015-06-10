@@ -901,6 +901,97 @@ public class MissionEvent : MonoBehaviour {
 					//}
 				}
 				break;
+			case MissionManager.EventType.HEAD_BACK_MT2:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.hearGirlCrying, "Return to the foreman's son to tell him about your deeds"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,96,1));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearGirl, "Investigate the sounds of crying"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.TALK_TO_FT2:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,97,1));
+					actionQ.Enqueue(new TalkAction(mm.YoungGirl,currentAudio,mm.currentUI,98,2));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.ENTER_FT2_HOUSE:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,100,1));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.insideGirlHouse, "Look around the girl's house to find examples of her parent's love"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.FIND_DRAWINGS:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,101,1));
+					//Shut off the rain if still on
+					actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
+					actionQ.Enqueue(new EnterAction(mm.Player, mm.nearDrawings, "Search for something the girl made"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,102,1));
+					actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.DRAWINGS, "Pick up the drawings with G"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.SHOW_DRAWINGS:
+				if (mission.getCurrentMissionEvent()==eventType){
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.drawingExit, "Show the girl the drawings"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,103,2));
+					actionQ.Enqueue(new TalkAction(mm.YoungGirl,currentAudio,mm.currentUI,105,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI, true,106,1));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.inside2, "Go back inside to find something else"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.FIND_PICTURES:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,107,1));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearPictures, "Search for something more permanent"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,108,1));
+					actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.PICTURES, "Pick up the pictures with G"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.SHOW_PICTURES:
+				if (mission.getCurrentMissionEvent()==eventType){
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.pictureExit, "Show the girl the pictures"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,109,1));
+					actionQ.Enqueue(new TalkAction(mm.YoungGirl, currentAudio,mm.currentUI,110,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI, true,111,1));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.inside3, "Go inside one more time to search"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.FIND_LOCKET:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,112,1));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearLocket, "Search for one last important item"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,113,1));
+					actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.LOCKET, "Pick up the locket with G"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.GIVE_LOCKET:
+				if (mission.getCurrentMissionEvent()==eventType){
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.locketExit, "Show the girl the locket"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,114,1));
+					actionQ.Enqueue(new TalkAction(mm.YoungGirl, currentAudio,mm.currentUI,115,1));
+					//Parents come running in
+					actionQ.Enqueue(new MoveAction(mm.GirlsFather,mm.fatherStop, AnimationEngine.Type.RUN));
+					actionQ.Enqueue(new MoveAction(mm.GirlsMother,mm.motherStop, AnimationEngine.Type.RUN));
+					actionQ.Enqueue(new StandAction(mm.YoungGirl,mm.YoungGirlStand));
+					actionQ.Enqueue(new TalkAction(mm.YoungGirl,currentAudio,mm.currentUI,116,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,117,1));
+					isBusy = true;
+				}
+				break;
 			}
 		}
 

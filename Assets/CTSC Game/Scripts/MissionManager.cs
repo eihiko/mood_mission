@@ -114,6 +114,8 @@ public class MissionManager : MonoBehaviour {
 	public int choiceInTavern=2;
 	public GameObject turnBack, moveOn, shelterAtFT1, backAtFT1, leavingHouseAgain, safeInTavern, leavingTavernAgain;
 	public ButtonScript tavernRainButton;
+	public GameObject YoungGirl, hearGirlCrying, nearGirl, insideGirlHouse, nearDrawings, drawingExit, inside2, nearPictures, pictureExit, inside3, nearLocket, locketExit;
+	public GameObject GirlsFather, GirlsMother, fatherStop, motherStop, YoungGirlStand;
 	
 	public MissionManager.MissionType currMissionType;
 

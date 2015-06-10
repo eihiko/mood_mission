@@ -29,7 +29,6 @@ public class FreezeAction : MissionAction {
 	}
 	
 	public bool execute(){
-//		Debug.Log ("Executing freeze action");
 		if (freeze) {
 			FreezePlayer ();
 		} else {

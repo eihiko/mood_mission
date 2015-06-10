@@ -105,6 +105,7 @@ public class MissionManager : MonoBehaviour {
 		DontDestroyOnLoad (transform.gameObject);
 		if (missionHistory.Count == 0){
 			initializeMissions();
+			Debug.Log (missionHistory.Count);
 			//Player will not be able to complete any missions until story begins
 			foreach (GameObject mission in missionObjects){
 				mission.SetActive(false);
@@ -282,7 +283,7 @@ public class MissionManager : MonoBehaviour {
 //					break;
 			}
 			currMission = new Mission((int)type, type, events, eventDict);
-			if (currMissionNum > 1){
+			if (currMissionNum >= 0){
 				missionHistory.Add(currMission, false);
 			}
 			events.Clear();

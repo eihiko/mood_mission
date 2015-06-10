@@ -18,6 +18,6 @@ public class CheckpointAction : MissionAction {
 	}
 
 	public bool execute(){
-		return false;
+		return true;
 	}	
 }

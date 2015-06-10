@@ -620,12 +620,12 @@ public class MissionEvent : MonoBehaviour {
 			if(currAction.execute()){
 		    //return currAction.execute();
 				if (actionQ.Count > 0){
-	//				Debug.Log("Dequeueing next action, last was completed");
+					//Debug.Log("Dequeueing next action, last was completed");
 					currAction = actionQ.Dequeue();
 					isBusy = true;
 				} else {
 					currAction = null;
-	//				Debug.Log ("last action was completed, now event is complete...");
+					//Debug.Log ("last action was completed, now event is complete...");
 					return true;
 				}
 				//return true;

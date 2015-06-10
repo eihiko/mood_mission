@@ -7,7 +7,7 @@ public class EnterScript : MonoBehaviour {
 
 	public bool isEntered = false;
 	private GameObject willEnter;
-	public string thisTag = "Player";
+	private string thisTag = "TagNotSet";
 	public string type = "";
 	public MissionManager.MissionType thisMissionType;
 	public GameObject manipulateMe;
@@ -24,7 +24,7 @@ public class EnterScript : MonoBehaviour {
 
 	public void setWillEnter(GameObject willEnter){
 		this.willEnter = willEnter;
-		this.tag = willEnter.tag;
+		thisTag = willEnter.tag;
 	}
 
 	public void OnTriggerStay(Collider o){

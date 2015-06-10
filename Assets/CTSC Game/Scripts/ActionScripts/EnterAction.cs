@@ -22,7 +22,7 @@ public class EnterAction : MissionAction {
 	}
 	
 	public bool execute(){
-//		Debug.Log ("Executing enter action");
+		Debug.Log ("Executing enter action");
 		if (collisionScript.isEntered) {
 			guiHandler.reset();
 			if (character != null) {

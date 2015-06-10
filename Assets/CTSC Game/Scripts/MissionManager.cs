@@ -112,7 +112,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject RainMaker;
 	public int choiceInRain=2;
 	public int choiceInTavern=2;
-	public GameObject turnBack, moveOn, returnToFT1, backAtFT1, leavingHouseAgain, safeInTavern, leavingTavernAgain;
+	public GameObject turnBack, moveOn, shelterAtFT1, backAtFT1, leavingHouseAgain, safeInTavern, leavingTavernAgain;
 	public ButtonScript tavernRainButton;
 	
 	public MissionManager.MissionType currMissionType;

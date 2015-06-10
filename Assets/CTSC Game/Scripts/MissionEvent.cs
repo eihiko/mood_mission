@@ -794,11 +794,11 @@ public class MissionEvent : MonoBehaviour {
 					triggers[0] = mm.turnBack.GetComponent<EnterScript>();
 					triggers[1] = mm.moveOn.GetComponent<EnterScript>();
 					actionQ.Enqueue(new ChoiceAction(mm.Player,"Trigger",triggers,"Rain",2, false, "Will you keep going toward the tavern or turn back?"));
-					if (mm.choiceInRain==0){
-						mission.setEventComplete(MissionManager.EventType.TURN_BACK);
-						mission.setEventComplete(MissionManager.EventType.RETURN_TO_FT1);
-						Debug.Log("Missions set complete mo");
-					}
+					//if (mm.choiceInRain==0){
+					//	mission.setEventComplete(MissionManager.EventType.TURN_BACK);
+					//	mission.setEventComplete(MissionManager.EventType.RETURN_TO_FT1);
+					//	Debug.Log("Missions set complete mo");
+					//}
 					isBusy = true;
 				}
 				break;
@@ -807,15 +807,15 @@ public class MissionEvent : MonoBehaviour {
 					//if (mm.choiceInRain==0) {
 						actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,88,1));
 						EnterScript[] triggers = new EnterScript[2];
-						triggers[0] = mm.returnToFT1.GetComponent<EnterScript>();
+						triggers[0] = mm.shelterAtFT1.GetComponent<EnterScript>();
 						triggers[1] = mm.moveOn.GetComponent<EnterScript>();
 						actionQ.Enqueue(new ChoiceAction(mm.Player,"Trigger",triggers,"Rain",2, true, "Do you listen to Torkana or keep heading back?"));
-					if (mm.choiceInRain==0){
-						mission.setEventComplete(MissionManager.EventType.DELIVER_LETTERS);
-						mission.setEventComplete(MissionManager.EventType.WAIT_FOR_DRIZZLE);
-						mission.setEventComplete(MissionManager.EventType.WAIT_FOR_END);
-						Debug.Log("Missions set complete tb");
-					}
+					//if (mm.choiceInRain==0){
+					//	mission.setEventComplete(MissionManager.EventType.DELIVER_LETTERS);
+					//	mission.setEventComplete(MissionManager.EventType.WAIT_FOR_DRIZZLE);
+					//	mission.setEventComplete(MissionManager.EventType.WAIT_FOR_END);
+					//	Debug.Log("Missions set complete tb");
+					//}
 						isBusy = true;
 					//}
 					//else{

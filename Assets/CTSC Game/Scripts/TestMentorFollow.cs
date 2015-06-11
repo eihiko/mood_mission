@@ -17,7 +17,7 @@ public class TestMentorFollow : MonoBehaviour {
 	private int endIndex = 0;
 	private bool isActive = false;
 	private bool pathComplete = true;
-	private float speed = 1.2f;
+	private float speed = 2.4f;
 	private Transform torkanaTrans;
 	private Transform playerTrans;
 	private float manhattan = 0.0f;

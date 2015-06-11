@@ -18,10 +18,6 @@ public class FollowAction : MissionAction {
 	}
 	
 	public bool execute(){
-		return true;
-	}
-	
-	/*public bool execute(){
 		if (!followScript.enabled && !pathBegun) {
 //			if (navAgent.enabled){
 //				navAgent.enabled = false;
@@ -44,5 +40,5 @@ public class FollowAction : MissionAction {
 		}
 
 		return false;
-	}*/
+	}
 }

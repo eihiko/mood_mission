@@ -17,11 +17,12 @@ public class TestMentorFollow : MonoBehaviour {
 	private int endIndex = 0;
 	private bool isActive = false;
 	private bool pathComplete = true;
-	private float speed = 2.4f;
+	private float speed = 4.8f;
 	private Transform torkanaTrans;
 	private Transform playerTrans;
 	private float manhattan = 0.0f;
 	private bool pathBegun = false;
+	private float maxDistance = 9f;
 
 	public void Start() {
 
@@ -99,7 +100,7 @@ public class TestMentorFollow : MonoBehaviour {
 		
 		Debug.Log ("Manhattan distance between Torkana and Player is: " + manhattan);
 		
-		if (Vector3.Distance(torkanaTrans.position, playerTrans.position) < 18f) {
+		if (Vector3.Distance(torkanaTrans.position, playerTrans.position) < maxDistance) {
 			// ||// (lockTorkana && (transform.position - player.position).magnitude < 7.5f))
 			
 			Debug.Log ("Torkana is moving to the destination: " + currIndex); 

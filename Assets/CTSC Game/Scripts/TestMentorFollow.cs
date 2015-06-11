@@ -70,8 +70,8 @@ public class TestMentorFollow : MonoBehaviour {
 	}
 
 	public bool isGoal(){
-		if ((currIndex == endIndex || currIndex == numDests) &&
-		    Vector3.Distance (torkanaTrans.position, agentDests [endIndex]) < 1.0f) {
+		if ((currIndex >= endIndex || currIndex == numDests) &&
+		    Vector3.Distance (torkanaTrans.position, agentDests [endIndex]) < maxDistance) {
 			return true;
 		}
 		return false;

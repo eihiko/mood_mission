@@ -132,6 +132,11 @@ public class MissionManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Mission currMission = getCurrentMission();
+		//DEBUG: Skip mission when PageDown is pressed.
+		if(Input.GetKeyUp (KeyCode.PageDown)){
+			missionHistory[currMission] = true;
+		}
+		currMission = getCurrentMission ();
 		currMissionType = currMission.getMissionType ();
 		if (currMission == null) {
 			Debug.Log ("Game is completed!");

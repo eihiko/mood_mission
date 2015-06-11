@@ -617,7 +617,8 @@ public class MissionEvent : MonoBehaviour {
 //			}
 			//Action runs its own loop until it's completed
 			//then execute will return true if successfully completed
-			if(currAction.execute()){
+			//DEBUG: Skip current action if PageUp is pressed.
+			if(currAction.execute() || Input.GetKeyUp (KeyCode.PageUp)){
 		    //return currAction.execute();
 				if (actionQ.Count > 0){
 					//Debug.Log("Dequeueing next action, last was completed");

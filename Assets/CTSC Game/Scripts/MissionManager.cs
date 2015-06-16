@@ -136,6 +136,7 @@ public class MissionManager : MonoBehaviour {
 		DontDestroyOnLoad (transform.gameObject);
 		if (missionHistory.Count == 0){
 			initializeMissions();
+			Debug.Log (missionHistory.Count);
 			//Player will not be able to complete any missions until story begins
 			foreach (GameObject mission in missionObjects){
 				mission.SetActive(false);
@@ -163,6 +164,11 @@ public class MissionManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Mission currMission = getCurrentMission();
+		//DEBUG: Skip mission when PageDown is pressed.
+		if(Input.GetKeyUp (KeyCode.PageDown)){
+			missionHistory[currMission] = true;
+		}
+		currMission = getCurrentMission ();
 		currMissionType = currMission.getMissionType ();
 		if (currMission == null) {
 			Debug.Log ("Game is completed!");
@@ -338,9 +344,7 @@ public class MissionManager : MonoBehaviour {
 //					break;
 			}
 			currMission = new Mission((int)type, type, events, eventDict);
-			//if (currMissionNum > 1){
-				missionHistory.Add(currMission, false);
-			//}
+			missionHistory.Add(currMission, false);
 			events.Clear();
 			currMissionNum++;
 		}

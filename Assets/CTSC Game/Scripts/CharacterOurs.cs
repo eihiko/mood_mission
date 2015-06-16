@@ -104,6 +104,7 @@ public class CharacterOurs : MonoBehaviour {
 	void updateInventory()
 	{
 		buttonPrefab.GetComponent<LayoutElement> ().minWidth = Screen.width * 0.2f;
+		menuPanel.DestroyChildren();
 		for (int i = 0; i < inventory.Count; i++) {
 			GameObject button = (GameObject)Instantiate (buttonPrefab);
 			button.GetComponentInChildren<Text>().text = getItemName((GameObject)inventory[i]);

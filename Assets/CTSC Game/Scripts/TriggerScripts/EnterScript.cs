@@ -7,8 +7,7 @@ public class EnterScript : MonoBehaviour {
 
 	public bool isEntered = false;
 	private GameObject willEnter;
-	public string thisTag = "";
-	//public string thisTag = "Player";
+	private string thisTag = "TagNotSet";
 	public string type = "";
 	public MissionManager.MissionType thisMissionType;
 	public GameObject manipulateMe;
@@ -17,7 +16,6 @@ public class EnterScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		mm = GameObject.Find ("MissionManager").GetComponent<MissionManager>();
-		thisTag = "";
 	}
 	
 	// Update is called once per frame
@@ -27,7 +25,6 @@ public class EnterScript : MonoBehaviour {
 	public void setWillEnter(GameObject willEnter){
 		this.willEnter = willEnter;
 		thisTag = willEnter.tag;
-		//this.tag = willEnter.tag;
 	}
 
 	public void OnTriggerStay(Collider o){

@@ -265,6 +265,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.FOLLOW_GUIDE:
 				if(mission.getCurrentMissionEvent()==eventType) {
 			//Torkana must MOVE(currLoc, adjToBeeArea) iff IN_RANGE(Torkana, Player)
+					actionQ.Enqueue(new MinimapAction("Torkana"));
 				actionQ.Enqueue(new FollowAction(0, 12, mm.Torkana));
 				//actionQ.Enqueue (new MoveAction (mm.Torkana, mm.adjToBeeArea));
 			//Player must MOVE(currLoc, adjToBeeArea)
@@ -281,6 +282,7 @@ public class MissionEvent : MonoBehaviour {
 				//actionQ.Enqueue(new MoveAction(mm.Map, mm.mapLocation));
 				//activate map on ground near bees
 				actionQ.Enqueue(new ActiveAction(mm.Map, true));
+					actionQ.Enqueue(new MinimapAction("nothing"));
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
@@ -338,6 +340,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 18, 2));
 				//Player must UNFREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+					actionQ.Enqueue(new MinimapAction("Torkana"));
 			//Torkana must MOVE(currLoc, adjToDoctorsHouse) iff IN_RANGE(Torkana, Player)
 			//Player must MOVE(currLoc, adjToDoctorsHouse)
 			//note that Torkana moves to the doctor's house so the player also must
@@ -355,6 +358,7 @@ public class MissionEvent : MonoBehaviour {
 			//Mission Three events
 			case MissionManager.EventType.ENTER_DOCTORS:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new MinimapAction("nothing"));
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.PlayerEnterDoctors, ""));
 				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaEnterDoctors));
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.Doctor, false, 0));
@@ -587,6 +591,7 @@ public class MissionEvent : MonoBehaviour {
 				//Player and Townsperson must TALK(audio, guiToShow)
 				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 43, 2));
 				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 45, 1));
+					actionQ.Enqueue(new MinimapAction("Tavern"));
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.TavernEntrance, "Search for the tavern.  It should be nearby.  Look for the sign with a mug"));
 				isBusy = true;
 				}
@@ -633,6 +638,7 @@ public class MissionEvent : MonoBehaviour {
 			//Fifth Mission Events
 			case MissionManager.EventType.GO_TO_MT2_HOUSE:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new MinimapAction("Son"));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 54, 1));
 				isBusy = true;
 				}
@@ -904,6 +910,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.HEAD_BACK_MT2:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.hearGirlCrying, "Return to the foreman's son to tell him about your deeds"));
+					actionQ.Enqueue(new ActiveAction(mm.CryingSound,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,96,1));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearGirl, "Investigate the sounds of crying"));
 					isBusy = true;

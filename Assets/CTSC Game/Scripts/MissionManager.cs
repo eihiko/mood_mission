@@ -136,7 +136,7 @@ public class MissionManager : MonoBehaviour {
 		DontDestroyOnLoad (transform.gameObject);
 		if (missionHistory.Count == 0){
 			initializeMissions();
-			Debug.Log (missionHistory.Count);
+			//Debug.Log (missionHistory.Count);
 			//Player will not be able to complete any missions until story begins
 			foreach (GameObject mission in missionObjects){
 				mission.SetActive(false);
@@ -150,7 +150,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//test (1); //Set number of missions to skip when testing
+		test (1); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -285,15 +285,15 @@ public class MissionManager : MonoBehaviour {
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
-				case MissionType.ENTER_CITY_GATHER_SUPPLIES:
-					for(int i = 27; i < 36; i++) {
-						events.Add((EventType)i);
-					}
-					currTransform = missionObjects[(int)type].transform;
-					foreach (Transform child in currTransform){
-						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
-					}
-					break;
+				//case MissionType.ENTER_CITY_GATHER_SUPPLIES:
+				//	for(int i = 27; i < 36; i++) {
+				//		events.Add((EventType)i);
+				//	}
+				//	currTransform = missionObjects[(int)type].transform;
+				//	foreach (Transform child in currTransform){
+				//		eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+				//	}
+				//	break;
 				case MissionType.TALK_TO_SON:
 					for(int i = 36; i < 39; i++) {
 						events.Add((EventType)i);
@@ -327,11 +327,17 @@ public class MissionManager : MonoBehaviour {
 					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 				}
 					break;
-//				case MissionType.HELP_TP_3:
-//					for(int i = 58; i < 70; i++) {
+				//case MissionType.HELP_TP_3:
+				//	for(int i = 58; i < 70; i++) {
 				//						events.Add((EventType)i);
-//					}
-//					break;
+				//	}
+				//currTransform = missionObjects[(int)type].transform;
+				//Add all the event transforms for this mission to its event dictionary
+				//foreach (Transform child in currTransform){
+					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+				//	eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+				//}
+				//	break;
 //				case MissionType.HYDRA:
 //					for(int i = 12; i < 18; i++) {
 				//						events.Add((EventType)i);

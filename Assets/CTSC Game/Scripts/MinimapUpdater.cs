@@ -22,11 +22,13 @@ public class MinimapUpdater : MonoBehaviour {
 		allMarkers [6] = GirlMarker;
 		allMarkers [7] = BoathouseMarker;
 		changeObjective ("nothing");
+		CurrentObjective = playerMarker;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		objectiveArrow.transform.LookAt (CurrentObjective.transform.position);
+		objectiveArrow.transform.Rotate (90f, 90f, 0f);
 	}
 
 	public void deactivateOthers(int active){
@@ -41,47 +43,55 @@ public class MinimapUpdater : MonoBehaviour {
 	public void changeObjective(string objective){
 		switch (objective) {
 		case "Torkana":
-			this.objectiveArrow.SetActive (true);
 			this.CurrentObjective = this.TorkanaMarker;
+			this.objectiveArrow.SetActive (true);
 			deactivateOthers(0);
+			playerMarker.SetActive(false);
 			break;
 		case "Tavern":
-			this.objectiveArrow.SetActive(true);
 			this.CurrentObjective = this.TavernMarker;
+			this.objectiveArrow.SetActive(true);
 			deactivateOthers(1);
+			playerMarker.SetActive(false);
 			break;
 		case "Son":
-			this.objectiveArrow.SetActive (true);
 			this.CurrentObjective = this.SonMarker;
+			this.objectiveArrow.SetActive (true);
 			deactivateOthers(2);
+			playerMarker.SetActive(false);
 			break;
 		case "MT3":
-			this.objectiveArrow.SetActive (true);
 			this.CurrentObjective = this.MT3Marker;
+			this.objectiveArrow.SetActive (true);
 			deactivateOthers(3);
 			break;
 		case "Blacksmith":
-			this.objectiveArrow.SetActive (true);
 			this.CurrentObjective = this.BlacksmithMarker;
+			this.objectiveArrow.SetActive (true);
 			deactivateOthers(4);
+			playerMarker.SetActive(false);
 			break;
 		case "FT1":
-			this.objectiveArrow.SetActive (true);
 			this.CurrentObjective = this.FT1Marker;
+			this.objectiveArrow.SetActive (true);
 			deactivateOthers(5);
+			playerMarker.SetActive(false);
 			break;
 		case "Girl":
-			this.objectiveArrow.SetActive (true);
 			this.CurrentObjective = this.GirlMarker;
+			this.objectiveArrow.SetActive (true);
 			deactivateOthers(6);
+			playerMarker.SetActive(false);
 			break;
 		case "Boathouse":
-			this.objectiveArrow.SetActive (true);
 			this.CurrentObjective = this.BoathouseMarker;
+			this.objectiveArrow.SetActive (true);
 			deactivateOthers(7);
+			playerMarker.SetActive(false);
 			break;
 		default:
 			this.objectiveArrow.SetActive (false);
+			playerMarker.SetActive(true);
 			break;
 		}
 	}

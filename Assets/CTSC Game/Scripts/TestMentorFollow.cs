@@ -98,12 +98,12 @@ public class TestMentorFollow : MonoBehaviour {
 		manhattan = System.Math.Abs(torkanaTrans.position.x - playerTrans.position.x) +
 			System.Math.Abs(torkanaTrans.position.y - playerTrans.position.y);
 		
-		Debug.Log ("Manhattan distance between Torkana and Player is: " + manhattan);
+		//Debug.Log ("Manhattan distance between Torkana and Player is: " + manhattan);
 		
 		if (Vector3.Distance(torkanaTrans.position, playerTrans.position) < maxDistance) {
 			// ||// (lockTorkana && (transform.position - player.position).magnitude < 7.5f))
 			
-			Debug.Log ("Torkana is moving to the destination: " + currIndex); 
+			//Debug.Log ("Torkana is moving to the destination: " + currIndex); 
 			//lockTorkana = false;
 			//agent.SetDestination(agentDests[currIndex]);
 			float step = speed * Time.deltaTime;
@@ -122,8 +122,8 @@ public class TestMentorFollow : MonoBehaviour {
 		//check Torkana's dist from the target dest
 		manhattan = System.Math.Abs(torkanaTrans.position.x - agentDests[currIndex].x) +
 			System.Math.Abs(torkanaTrans.position.y - agentDests[currIndex].y);
-		Debug.Log ("Torkana is: " + manhattan + " from the current goal dest.");
-		Debug.Log("Number of destinations is: " + numDests);
+		//Debug.Log ("Torkana is: " + manhattan + " from the current goal dest.");
+		//Debug.Log("Number of destinations is: " + numDests);
 		
 		if (Vector3.Distance(torkanaTrans.position, agentDests[currIndex]) < 1f) {
 			previousLocation = agentDests[currIndex];

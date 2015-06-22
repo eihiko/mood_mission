@@ -5,9 +5,9 @@ public class MinimapUpdater : MonoBehaviour {
 
 	public GameObject playerMarker, objectiveArrow;
 	public GameObject TorkanaMarker;
-	public GameObject TavernMarker, SonMarker, MT3Marker, BlacksmithMarker, FT1Marker, GirlMarker, BoathouseMarker;
+	public GameObject TavernMarker, SonMarker, MT3Marker, BlacksmithMarker, FT1Marker, GirlMarker, BoathouseMarker, MapMarker, GardenMarker, CityMarker;
 
-	GameObject[] allMarkers = new GameObject[8];
+	GameObject[] allMarkers = new GameObject[11];
 
 	public GameObject CurrentObjective;
 
@@ -21,6 +21,9 @@ public class MinimapUpdater : MonoBehaviour {
 		allMarkers [5] = FT1Marker;
 		allMarkers [6] = GirlMarker;
 		allMarkers [7] = BoathouseMarker;
+		allMarkers [8] = MapMarker;
+		allMarkers [9] = GardenMarker;
+		allMarkers [10] = CityMarker;
 		changeObjective ("nothing");
 		CurrentObjective = playerMarker;
 	}
@@ -89,9 +92,28 @@ public class MinimapUpdater : MonoBehaviour {
 			deactivateOthers(7);
 			playerMarker.SetActive(false);
 			break;
+		case "Map":
+			this.CurrentObjective = this.MapMarker;
+			this.objectiveArrow.SetActive(true);
+			deactivateOthers(8);
+			playerMarker.SetActive(false);
+			break;
+		case "Garden":
+			this.CurrentObjective = this.GardenMarker;
+			this.objectiveArrow.SetActive(true);
+			deactivateOthers(9);
+			playerMarker.SetActive(false);
+			break;
+		case "City":
+			this.CurrentObjective = this.CityMarker;
+			this.objectiveArrow.SetActive(true);
+			deactivateOthers(10);
+			playerMarker.SetActive(false);
+			break;
 		default:
 			this.objectiveArrow.SetActive (false);
 			playerMarker.SetActive(true);
+			deactivateOthers(0); //Deactivate all markers, except Torkana because he's important.  And it's easy.
 			break;
 		}
 	}

@@ -265,6 +265,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.FOLLOW_GUIDE:
 				if(mission.getCurrentMissionEvent()==eventType) {
 			//Torkana must MOVE(currLoc, adjToBeeArea) iff IN_RANGE(Torkana, Player)
+					//Set minimap to point to Torkana
 					actionQ.Enqueue(new MinimapAction("Torkana"));
 				actionQ.Enqueue(new FollowAction(0, 12, mm.Torkana));
 				//actionQ.Enqueue (new MoveAction (mm.Torkana, mm.adjToBeeArea));
@@ -282,7 +283,8 @@ public class MissionEvent : MonoBehaviour {
 				//actionQ.Enqueue(new MoveAction(mm.Map, mm.mapLocation));
 				//activate map on ground near bees
 				actionQ.Enqueue(new ActiveAction(mm.Map, true));
-					actionQ.Enqueue(new MinimapAction("nothing"));
+					//Set minimap to point to the map.  NOTE: if we plan on disabling the minimap for this section, this line can be deleted.
+					actionQ.Enqueue(new MinimapAction("Map"));
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 			//Torkana must TALK(audio, guiToShow)
@@ -340,6 +342,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 18, 2));
 				//Player must UNFREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+					//Resets map to follow Torkana again
 					actionQ.Enqueue(new MinimapAction("Torkana"));
 			//Torkana must MOVE(currLoc, adjToDoctorsHouse) iff IN_RANGE(Torkana, Player)
 			//Player must MOVE(currLoc, adjToDoctorsHouse)
@@ -358,6 +361,7 @@ public class MissionEvent : MonoBehaviour {
 			//Mission Three events
 			case MissionManager.EventType.ENTER_DOCTORS:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					//Turn off pointer indoors
 					actionQ.Enqueue(new MinimapAction("nothing"));
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.PlayerEnterDoctors, ""));
 				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaEnterDoctors));
@@ -404,6 +408,8 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 26, 1));
 				//Player must UNFREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+					//Point to the garden
+					actionQ.Enqueue(new MinimapAction("Garden"));
 			//Player must MOVE(currLoc, DoctorGarden)
 				isBusy = true;
 				}
@@ -478,6 +484,8 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.GATHER_HEALING_WATER:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					//Turn off pointer
+					actionQ.Enqueue(new MinimapAction("nothing"));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				//player must enter healing cave
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveEntrance, "Press E near the cave entrance to enter"));
@@ -486,6 +494,8 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 30, 1));
 				//Player must UNFREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+					//Reset minimap to null
+					actionQ.Enqueue(new MinimapAction("nothing"));
 				actionQ.Enqueue(new PressAction(mm.CaveSwitch));
 				actionQ.Enqueue (new ActiveAction(mm.CaveGateClosed, false));
 				actionQ.Enqueue (new ActiveAction(mm.CaveGateOpened, true));
@@ -574,6 +584,8 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.DoctorsHouse, "Head outside to start your journey to Merami"));
 			//Player must ENTER(Forest)
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 42, 1));
+					//Point to the city
+					actionQ.Enqueue(new MinimapAction("City"));
 				isBusy = true;
 				}
 				break;
@@ -581,6 +593,8 @@ public class MissionEvent : MonoBehaviour {
 				//All EnterAction places need EnterScripts
 			case MissionManager.EventType.ENTER_CITY:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					//Reset minimap to point at nothing
+					actionQ.Enqueue(new MinimapAction("nothing"));
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.CityEntrance, "You did it!  You made it all the way to Merami on your own!"));
 				isBusy = true;
 				}
@@ -591,6 +605,7 @@ public class MissionEvent : MonoBehaviour {
 				//Player and Townsperson must TALK(audio, guiToShow)
 				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 43, 2));
 				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 45, 1));
+					//Point to the tavern
 					actionQ.Enqueue(new MinimapAction("Tavern"));
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.TavernEntrance, "Search for the tavern.  It should be nearby.  Look for the sign with a mug"));
 				isBusy = true;
@@ -600,6 +615,8 @@ public class MissionEvent : MonoBehaviour {
 				if(mission.getCurrentMissionEvent()==eventType) {
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.insideTavern, "There's the tavern.  They should have the supplies and healing water you need."));
+					//Turn off the minimp pointer indoors
+					actionQ.Enqueue(new MinimapAction("nothing"));
 				isBusy = true;
 				}
 				break;
@@ -638,20 +655,30 @@ public class MissionEvent : MonoBehaviour {
 			//Fifth Mission Events
 			case MissionManager.EventType.GO_TO_MT2_HOUSE:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					//Point to the Son's house
 					actionQ.Enqueue(new MinimapAction("Son"));
+					//Freeze
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 54, 1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.CONFRONT_MT2:
 				if(mission.getCurrentMissionEvent()==eventType) {
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideSonHouse, ""));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI,55,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.InsideSonHouse, "Enter the house by pressing E"));
+					//Turn off pointer indoors
+					actionQ.Enqueue(new MinimapAction("nothing"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI, 56, 1));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 57, 1));
 				actionQ.Enqueue(new TalkAction(mm.Son,currentAudio, mm.currentUI, 58, 4));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				//Player then exits the house
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingSonsHouse, "Leave the house to go help the townspeople"));
@@ -660,7 +687,11 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.OFF_TO_HELP_PEOPLE:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					//Point to the old man
+					actionQ.Enqueue(new MinimapAction("MT3"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 62, 1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				isBusy = true;
 				}
 				break;
@@ -668,35 +699,48 @@ public class MissionEvent : MonoBehaviour {
 			//Sixth Mission Events
 			case MissionManager.EventType.ENTER_MT3_HOUSE:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue (new ActiveAction(mm.currentUI, true, 63, 1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.InsideMT3House, "Enter the house by pressing E"));
+					//Reset pointer
+					actionQ.Enqueue(new MinimapAction("nothing"));
 				isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.TALK_TO_MT3:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new TalkAction(mm.MT3,currentAudio,mm.currentUI,64,1));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 65, 1));
 				actionQ.Enqueue(new TalkAction(mm.MT3,currentAudio,mm.currentUI,66,2));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.GoingToBlacksmith, "Go to the blacksmith to get tools"));
+					//Point to the blacksmith
+					actionQ.Enqueue(new MinimapAction("Blacksmith"));
 				isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.GO_TO_BLACKSMITH:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 68,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.AtBlacksmith, "Enter the blacksmith's house"));
+					actionQ.Enqueue(new MinimapAction("nothing"));
 				isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.TALK_TO_BLACKSMITH:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,69,1));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 70, 1));
 				actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,71,2));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				isBusy = true;
 				}
 				break;
@@ -707,7 +751,9 @@ public class MissionEvent : MonoBehaviour {
 					//Insert puzzle #1
 					puzzle1done = true;
 				}
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new TalkAction(mm.Blacksmith, currentAudio,mm.currentUI,73,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				isBusy = true;
 				}
 				break;
@@ -718,7 +764,9 @@ public class MissionEvent : MonoBehaviour {
 					//Insert puzzle #2
 					puzzle2done = true;
 				}
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,74,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				isBusy = true;
 				}
 				break;
@@ -729,7 +777,9 @@ public class MissionEvent : MonoBehaviour {
 					//Insert puzzle #1
 					puzzle3done = true;
 				}
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,75,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new ActiveAction(mm.Tools,true));
 					actionQ.Enqueue(new GrabAction(mm.Player,GrabMe.kind.TOOLS, "Grab the tools with G"));
 				isBusy = true;
@@ -739,7 +789,9 @@ public class MissionEvent : MonoBehaviour {
 				if(mission.getCurrentMissionEvent()==eventType) {
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingBlacksmith, "Return to the old man's house with your new tools"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 76, 1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.BackWithTools, ""));
 				isBusy = true;
@@ -747,29 +799,40 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.FINISH_TALKING_MT3:
 				if(mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new TalkAction(mm.MT3,currentAudio,mm.currentUI,77,1));
 				actionQ.Enqueue(new GiveAction(mm.Player,mm.MT3, GrabMe.kind.TOOLS));
 				actionQ.Enqueue(new TalkAction(mm.MT3,currentAudio,mm.currentUI,78,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideMT3House, "Go outside to help the other townsperson"));
+					//Point to FT1
+					actionQ.Enqueue(new MinimapAction("FT1"));
 				isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.ENTER_FT1_HOUSE:
 				if (mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new FreezeAction(mm.Player, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 79,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new EnterAction(mm.Player, mm.AtFT1House, "Head past the blacksmith's place to get to the house"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 80,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.InsideFT1House, "Enter the townsperson's house"));
+					actionQ.Enqueue(new MinimapAction("nothing"));
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.TALK_TO_FT1:
 				if (mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,81,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,82,1));
 					actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,83,2));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					//actionQ.Enqueue(new ActiveAction(mm.Letters,true));
 					actionQ.Enqueue(new GrabAction(mm.Player,GrabMe.kind.LETTERS, "Grab the letters with G"));
 					isBusy = true;
@@ -779,21 +842,31 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType) {
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideFT1House, "Go to the tavern to deliver the letters"));
+					//Point at the old man's house again, because otherwise the player doesn't pass the triggers.
+					actionQ.Enqueue(new MinimapAction("MT3"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,85,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.THUNDER_BEGINS:
 				if (mission.getCurrentMissionEvent()==eventType) {
 					actionQ.Enqueue(new ActiveAction(mm.Thunder,true));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,86,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.RAIN_STARTS:
 				if (mission.getCurrentMissionEvent()==eventType) {
+					//NOW point at the tavern, because the important triggers are passed
+					actionQ.Enqueue(new MinimapAction("Tavern"));
 					actionQ.Enqueue(new ActiveAction(mm.RainMaker,true));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,87,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new ActiveAction(mm.turnBack,true));
 					actionQ.Enqueue(new ActiveAction(mm.moveOn,true));
 					EnterScript[] triggers = new EnterScript[2];
@@ -811,7 +884,9 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.TURN_BACK:
 				if (mission.getCurrentMissionEvent()==eventType) {
 					//if (mm.choiceInRain==0) {
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 						actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,88,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 						EnterScript[] triggers = new EnterScript[2];
 						triggers[0] = mm.shelterAtFT1.GetComponent<EnterScript>();
 						triggers[1] = mm.moveOn.GetComponent<EnterScript>();
@@ -836,11 +911,13 @@ public class MissionEvent : MonoBehaviour {
 					//if (mm.choiceInRain==0) {
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.backAtFT1, ""));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 						actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,89,1));
 						actionQ.Enqueue(new GiveAction(mm.Player,mm.FT1, GrabMe.kind.LETTERS));
 						actionQ.Enqueue(new ActiveAction(mm.Thunder,false));
 						actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
 						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,95,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingHouseAgain, "Step outside and return to the foreman's son"));
 						isBusy = true;
@@ -857,12 +934,14 @@ public class MissionEvent : MonoBehaviour {
 					//if (mm.choiceInRain==1) {
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.safeInTavern, "Get into the tavern quickly"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,90,1));
 						actionQ.Enqueue(new TalkAction(mm.Player,currentAudio,mm.currentUI,91,1));
 						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,92,1));
 						actionQ.Enqueue(new GiveAction(mm.Player,mm.TavernKeeper, GrabMe.kind.LETTERS));
 						actionQ.Enqueue(new ActiveAction(mm.Thunder,false));
 						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,93,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 						actionQ.Enqueue(new ChoiceAction(mm.Player,"Button",new EnterScript[1],"TavernAfter",2,false, "Press 1 to leave now, or press 2 to wait until the rain completely stops"));
 					if (mm.choiceInRain==0){
 						mission.setEventComplete(MissionManager.EventType.WAIT_FOR_END);
@@ -895,7 +974,9 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType) {
 					//if (mm.choiceInTavern==1) {
 						actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,94,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingTavernAgain, "Step back outside and return to the foreman's son"));
 						isBusy = true;
@@ -911,21 +992,29 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.hearGirlCrying, "Return to the foreman's son to tell him about your deeds"));
 					actionQ.Enqueue(new ActiveAction(mm.CryingSound,true));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,96,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					//Point to the girl's house
+					actionQ.Enqueue(new MinimapAction("Girl"));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearGirl, "Investigate the sounds of crying"));
+					actionQ.Enqueue(new MinimapAction("nothing"));
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.TALK_TO_FT2:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,97,1));
 					actionQ.Enqueue(new TalkAction(mm.YoungGirl,currentAudio,mm.currentUI,98,2));
+
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.ENTER_FT2_HOUSE:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,100,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.insideGirlHouse, "Look around the girl's house to find examples of her parent's love"));
 					isBusy = true;
@@ -933,11 +1022,15 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.FIND_DRAWINGS:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,101,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					//Shut off the rain if still on
 					actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
 					actionQ.Enqueue(new EnterAction(mm.Player, mm.nearDrawings, "Search for something the girl made"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,102,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.DRAWINGS, "Pick up the drawings with G"));
 					isBusy = true;
 				}
@@ -946,9 +1039,11 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType){
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.drawingExit, "Show the girl the drawings"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,103,2));
 					actionQ.Enqueue(new TalkAction(mm.YoungGirl,currentAudio,mm.currentUI,105,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true,106,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.inside2, "Go back inside to find something else"));
 					isBusy = true;
@@ -956,9 +1051,13 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.FIND_PICTURES:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,107,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearPictures, "Search for something more permanent"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,108,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.PICTURES, "Pick up the pictures with G"));
 					isBusy = true;
 				}
@@ -967,9 +1066,11 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType){
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.pictureExit, "Show the girl the pictures"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,109,1));
 					actionQ.Enqueue(new TalkAction(mm.YoungGirl, currentAudio,mm.currentUI,110,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true,111,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.inside3, "Go inside one more time to search"));
 					isBusy = true;
@@ -977,9 +1078,13 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.FIND_LOCKET:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,112,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearLocket, "Search for one last important item"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,113,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.LOCKET, "Pick up the locket with G"));
 					isBusy = true;
 				}
@@ -988,6 +1093,7 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType){
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.locketExit, "Show the girl the locket"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,114,1));
 					actionQ.Enqueue(new TalkAction(mm.YoungGirl, currentAudio,mm.currentUI,115,1));
 					//Parents come running in
@@ -996,6 +1102,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new StandAction(mm.YoungGirl,mm.YoungGirlStand));
 					actionQ.Enqueue(new TalkAction(mm.YoungGirl,currentAudio,mm.currentUI,116,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,117,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false)); //May need to move depending on how the running works
 					isBusy = true;
 				}
 				break;

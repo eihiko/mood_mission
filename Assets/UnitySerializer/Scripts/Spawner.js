@@ -48,8 +48,8 @@ function Update () {
 				l.GetComponent.<Light>().intensity = 2;
 				l.GetComponent.<Light>().color = Color(Random.value/2 + 0.5,Random.value/2 + 0.5,Random.value/2 + 0.5);
 			}
-			UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(go, "Assets/UnitySerializer/Scripts/Spawner.js(51,25)", "SaveAndReload");
-			UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(go, "Assets/UnitySerializer/Scripts/Spawner.js(52,25)", "ColorMe");
+			//UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(go, "Assets/UnitySerializer/Scripts/Spawner.js(51,25)", "SaveAndReload");
+			//UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(go, "Assets/UnitySerializer/Scripts/Spawner.js(52,25)", "ColorMe");
 			var mesh = go.AddComponent(MeshFilter);
 			mesh.sharedMesh = createMesh;
 			var renderer = go.AddComponent(MeshRenderer);

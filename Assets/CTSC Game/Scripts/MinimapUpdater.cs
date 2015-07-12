@@ -5,7 +5,7 @@ public class MinimapUpdater : MonoBehaviour {
 
 	public GameObject playerMarker, objectiveArrow;
 	public GameObject TorkanaMarker;
-	public GameObject TavernMarker, SonMarker, MT3Marker, BlacksmithMarker, FT1Marker, GirlMarker, BoathouseMarker, MapMarker, GardenMarker, CityMarker;
+	public GameObject TavernMarker, SonMarker, MT3Marker, BlacksmithMarker, FT1Marker, GirlMarker, BoathouseMarker, MapMarker, GardenMarker, CityMarker, DoctorMarker;
 
 	GameObject[] allMarkers = new GameObject[11];
 
@@ -24,6 +24,7 @@ public class MinimapUpdater : MonoBehaviour {
 		allMarkers [8] = MapMarker;
 		allMarkers [9] = GardenMarker;
 		allMarkers [10] = CityMarker;
+		allMarkers [11] = DoctorMarker;
 		changeObjective ("nothing");
 		CurrentObjective = playerMarker;
 	}
@@ -67,6 +68,7 @@ public class MinimapUpdater : MonoBehaviour {
 			this.CurrentObjective = this.MT3Marker;
 			this.objectiveArrow.SetActive (true);
 			deactivateOthers(3);
+			playerMarker.SetActive(false);
 			break;
 		case "Blacksmith":
 			this.CurrentObjective = this.BlacksmithMarker;
@@ -108,6 +110,12 @@ public class MinimapUpdater : MonoBehaviour {
 			this.CurrentObjective = this.CityMarker;
 			this.objectiveArrow.SetActive(true);
 			deactivateOthers(10);
+			playerMarker.SetActive(false);
+			break;
+		case "Doctor":
+			this.CurrentObjective = this.DoctorMarker;
+			this.objectiveArrow.SetActive(true);
+			deactivateOthers(11);
 			playerMarker.SetActive(false);
 			break;
 		default:

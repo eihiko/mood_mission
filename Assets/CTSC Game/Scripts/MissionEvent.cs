@@ -331,6 +331,7 @@ public class MissionEvent : MonoBehaviour {
 				mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
 				//move the actual position to the doctor's garden area
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.DoctorGardenBees));
+					actionQ.Enqueue(new MinimapAction("Torkana"));
 				isBusy = true;
 				}
 				break;
@@ -342,8 +343,8 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 18, 2));
 				//Player must UNFREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
-					//Resets map to follow Torkana again
-					actionQ.Enqueue(new MinimapAction("Torkana"));
+					//Resets map to point to Doctor's House
+					actionQ.Enqueue(new MinimapAction("Doctor"));
 			//Torkana must MOVE(currLoc, adjToDoctorsHouse) iff IN_RANGE(Torkana, Player)
 			//Player must MOVE(currLoc, adjToDoctorsHouse)
 			//note that Torkana moves to the doctor's house so the player also must
@@ -462,7 +463,8 @@ public class MissionEvent : MonoBehaviour {
 				//set the focus of the bees to the doctor's garden area
 				//mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.TorkanaEnterDoctors));
-				actionQ.Enqueue(new ActiveAction(mm.Bees, false));//Player must FREEZE
+				actionQ.Enqueue(new ActiveAction(mm.Bees, false));
+					actionQ.Enqueue(new MinimapAction("nothing"));//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//print message to go into cave
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 29, 1));
@@ -484,8 +486,6 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.GATHER_HEALING_WATER:
 				if(mission.getCurrentMissionEvent()==eventType) {
-					//Turn off pointer
-					actionQ.Enqueue(new MinimapAction("nothing"));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				//player must enter healing cave
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveEntrance, "Press E near the cave entrance to enter"));
@@ -494,8 +494,6 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 30, 1));
 				//Player must UNFREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
-					//Reset minimap to null
-					actionQ.Enqueue(new MinimapAction("nothing"));
 				actionQ.Enqueue(new PressAction(mm.CaveSwitch));
 				actionQ.Enqueue (new ActiveAction(mm.CaveGateClosed, false));
 				actionQ.Enqueue (new ActiveAction(mm.CaveGateOpened, true));
@@ -806,13 +804,12 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideMT3House, "Go outside to help the other townsperson"));
-					//Point to FT1
-					actionQ.Enqueue(new MinimapAction("FT1"));
 				isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.ENTER_FT1_HOUSE:
 				if (mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new MinimapAction("FT1"));
 					actionQ.Enqueue(new FreezeAction(mm.Player, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 79,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
@@ -911,6 +908,7 @@ public class MissionEvent : MonoBehaviour {
 					//if (mm.choiceInRain==0) {
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.backAtFT1, ""));
+					actionQ.Enqueue(new MinimapAction("nothing"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 						actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,89,1));
 						actionQ.Enqueue(new GiveAction(mm.Player,mm.FT1, GrabMe.kind.LETTERS));
@@ -934,6 +932,7 @@ public class MissionEvent : MonoBehaviour {
 					//if (mm.choiceInRain==1) {
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.safeInTavern, "Get into the tavern quickly"));
+					actionQ.Enqueue(new MinimapAction("nothing"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,90,1));
 						actionQ.Enqueue(new TalkAction(mm.Player,currentAudio,mm.currentUI,91,1));
@@ -990,6 +989,7 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.HEAD_BACK_MT2:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new MinimapAction("Son"));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.hearGirlCrying, "Return to the foreman's son to tell him about your deeds"));
 					actionQ.Enqueue(new ActiveAction(mm.CryingSound,true));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));

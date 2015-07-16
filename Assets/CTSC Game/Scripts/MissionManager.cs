@@ -51,9 +51,9 @@ public class MissionManager : MonoBehaviour {
 		//These must check the choice of the player during the storm
 		TURN_BACK, RETURN_TO_FT1, DELIVER_LETTERS, WAIT_FOR_DRIZZLE, WAIT_FOR_END, 
 		
-		//Eighth Mission - Locket and end of Son part (12 events)
+		//Eighth Mission - Locket and end of Son part (11 events)
 		HEAD_BACK_MT2, TALK_TO_FT2, ENTER_FT2_HOUSE, FIND_DRAWINGS, SHOW_DRAWINGS, FIND_PICTURES, SHOW_PICTURES, FIND_LOCKET, GIVE_LOCKET,
-		RETURN_TO_SON, TALK_TO_SON, EXIT_SONS_HOUSE,
+		RETURN_TO_SON, TALK_TO_SON,
 
 		//Ninth Mission to deal with cyclops (12 events)
 		TOWARD_TOWN_CENTER, TALK_TO_FT3, APPLES_FROM_FT3, 
@@ -116,6 +116,7 @@ public class MissionManager : MonoBehaviour {
 	public ButtonScript tavernRainButton;
 	public GameObject YoungGirl, CryingSound, hearGirlCrying, nearGirl, insideGirlHouse, nearDrawings, drawingExit, inside2, nearPictures, pictureExit, inside3, nearLocket, locketExit;
 	public GameObject GirlsFather, GirlsMother, fatherStop, motherStop, YoungGirlStand;
+	public GameObject BackFromDeeds,OnwardToCyclops;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -150,7 +151,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		test (0); //Set number of missions to skip when testing
+		test (7); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -327,17 +328,17 @@ public class MissionManager : MonoBehaviour {
 					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 				}
 					break;
-				//case MissionType.HELP_TP_3:
-				//	for(int i = 58; i < 70; i++) {
-				//						events.Add((EventType)i);
-				//	}
-				//currTransform = missionObjects[(int)type].transform;
+				case MissionType.HELP_TP_3:
+					for(int i = 58; i < 69; i++) {
+										events.Add((EventType)i);
+					}
+				currTransform = missionObjects[(int)type].transform;
 				//Add all the event transforms for this mission to its event dictionary
-				//foreach (Transform child in currTransform){
+				foreach (Transform child in currTransform){
 					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
-				//	eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
-				//}
-				//	break;
+					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+				}
+					break;
 //				case MissionType.HYDRA:
 //					for(int i = 12; i < 18; i++) {
 				//						events.Add((EventType)i);

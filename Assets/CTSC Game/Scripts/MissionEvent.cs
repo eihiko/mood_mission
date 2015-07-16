@@ -1106,6 +1106,21 @@ public class MissionEvent : MonoBehaviour {
 					isBusy = true;
 				}
 				break;
+			case MissionManager.EventType.RETURN_TO_SON:
+				if (mission.getCurrentMissionEvent()==eventType){
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.BackFromDeeds, "Return to the son's house"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.TALK_TO_SON:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI,118,2));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.OnwardToCyclops, "Head outside to find and defeat the cyclops"));
+					isBusy = true;
+				}
+				break;
 			}
 		}
 

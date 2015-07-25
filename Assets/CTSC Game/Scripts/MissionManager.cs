@@ -330,7 +330,7 @@ public class MissionManager : MonoBehaviour {
 					break;
 				case MissionType.HELP_TP_3:
 					for(int i = 58; i < 69; i++) {
-										events.Add((EventType)i);
+						events.Add((EventType)i);
 					}
 				currTransform = missionObjects[(int)type].transform;
 				//Add all the event transforms for this mission to its event dictionary

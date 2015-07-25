@@ -1097,6 +1097,8 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,114,1));
 					actionQ.Enqueue(new TalkAction(mm.YoungGirl, currentAudio,mm.currentUI,115,1));
 					//Parents come running in
+					actionQ.Enqueue(new ActiveAction(mm.GirlsFather,true));
+					actionQ.Enqueue(new ActiveAction(mm.GirlsMother,true));
 					actionQ.Enqueue(new MoveAction(mm.GirlsFather,mm.fatherStop, AnimationEngine.Type.RUN));
 					actionQ.Enqueue(new MoveAction(mm.GirlsMother,mm.motherStop, AnimationEngine.Type.RUN));
 					actionQ.Enqueue(new StandAction(mm.YoungGirl,mm.YoungGirlStand));
@@ -1109,13 +1111,17 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.RETURN_TO_SON:
 				if (mission.getCurrentMissionEvent()==eventType){
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new MinimapAction("Son"));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.BackFromDeeds, "Return to the son's house"));
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.TALK_TO_SON:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new MinimapAction("nothing"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI,118,2));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.OnwardToCyclops, "Head outside to find and defeat the cyclops"));
 					isBusy = true;

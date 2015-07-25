@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3312158}
   - 23: {fileID: 2363456}
   - 114: {fileID: 11498822}
+  - 136: {fileID: 13643608}
   m_Layer: 0
   m_Name: Picture(temp)
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -43.2249985, y: 6.9439311, z: 821.028015}
+  m_LocalPosition: {x: -43.2249985, y: 6.73099995, z: 821.028015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,7 +73,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7535612fedfd90743b77df0bdaec18a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myKind: 0
+  myKind: 17
+--- !u!136 &13643608
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198778}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: .75
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 7.4505806e-09}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

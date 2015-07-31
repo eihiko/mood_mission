@@ -8,7 +8,7 @@ public class TalkAction : MissionAction {
 	GameObject currUI;
 	Canvas canvas;
 	Transform text;
-	DialogBox dBox;
+	OldDialogBox dBox;
 	int startPar;
 	int numPar;
 	bool hasBegun = false;
@@ -36,7 +36,7 @@ public class TalkAction : MissionAction {
 			}
 		}
 
-		this.dBox = text.GetComponent<DialogBox>();
+		this.dBox = text.GetComponent<OldDialogBox>();
 
 		//set the new audio clip to the talker's voice
 		this.voice = talker.GetComponent<AudioSource> ();

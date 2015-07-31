@@ -12,7 +12,7 @@ public class ActiveAction : MissionAction {
 	int startPar;
 	int numPar;
 	Transform text;
-	DialogBox dBox;
+	OldDialogBox dBox;
 	bool gui = false;
 	bool isFirst = true;
 
@@ -41,7 +41,7 @@ public class ActiveAction : MissionAction {
 			}
 		}
 		
-		this.dBox = text.GetComponent<DialogBox>();
+		this.dBox = text.GetComponent<OldDialogBox>();
 		this.startPar = startPar;
 		this.numPar = numPar;
 	}

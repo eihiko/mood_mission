@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Text;
 using System.IO; 
 
-public class DialogBox : MonoBehaviour {
+public class OldDialogBox : MonoBehaviour {
 
 
 	private List<string> expoStrings = new List<string>();
@@ -26,6 +26,7 @@ public class DialogBox : MonoBehaviour {
 	public Text expositionText;
 	public Text dialogText;
 	public Text titleText;
+	public TextAsset beginDialog;
 	public GameObject prevButton;
 	public GameObject doneButton;
 	public GameObject nextButton;
@@ -41,7 +42,8 @@ public class DialogBox : MonoBehaviour {
 	//	isExpo = true;
 	//	Load ("Assets/CTSC Game/UI/begin_expo.txt");
 		isExpo = false;
-    	Load ("Assets/CTSC Game/UI/begin_dialog.txt");
+		dialogStrings = new List<string>(beginDialog.text.Split('\n'));
+    	//Load ("Assets/CTSC Game/UI/begin_dialog.txt");
 	}
 	
 	// Update is called once per frame
@@ -62,6 +64,7 @@ public class DialogBox : MonoBehaviour {
 		}*/
 	}
 
+/*
 	private bool Load(string fileName)
 	{
 		// Handle any problems that might arise when reading the text
@@ -93,6 +96,8 @@ public class DialogBox : MonoBehaviour {
 //		}
 
 	}
+	*/
+	
 
 	//A general method to display text (either expo, or dialog)
 	public void displayText(bool isExpo, int textNum, int numParagraphs) 

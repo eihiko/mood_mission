@@ -222,6 +222,20 @@ public class EventHandler: MonoBehaviour
 			currLocation = nextLocation;
 			currLevel.setCurrLocation(nextLocation);
 			break;
+		case GameLocation.HEALING_CAVE:
+			//Loads only the cave and the transports back into the forest
+			foreach(KeyValuePair<GameLocation, Transform> kvp in locationSet) {
+				if (kvp.Key != GameLocation.HEALING_CAVE && kvp.Key != GameLocation.FOREST) {
+					kvp.Value.gameObject.SetActive(false);
+				}
+				else {
+					kvp.Value.gameObject.SetActive(true);
+				}
+			}
+			lastLocation = currLocation;
+			currLocation = nextLocation;
+			currLevel.setCurrLocation(nextLocation);
+			break;
 		default:
 			//Otherwise, location is in the interiors
 			//Load only the interiors and TDI and TDC transports

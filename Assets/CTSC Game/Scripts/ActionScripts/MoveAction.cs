@@ -11,7 +11,7 @@ public class MoveAction : MissionAction  {
 	NavMeshAgent agent = null;
 	bool moveMe = false;
 	bool atDestination = false;
-	float speed = 1f;
+	float speed = 2f;
 	bool primMove = false;
 
 	// Use this for initialization

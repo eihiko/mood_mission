@@ -95,12 +95,12 @@ public class MissionManager : MonoBehaviour {
 	public GameObject TorkanaStandPos, leavingHouse;
 	public GameObject atBeeArea, DoctorGardenBees;
 	public GameObject Map, Bees, DoctorsHouse, PlayerEnterDoctors, TorkanaEnterDoctors;
-	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden;
+	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden, BackToDoctors, LeavingDoctor;
 	public GameObject CityEntrance;
 	public GameObject InjuredPerson; //Note, is also classified as injuredPerson
 	public GameObject nearInjuredPerson;
 	public GameObject TavernKeeper, TavernEntrance, insideTavern, nearTavernKeeper;
-	public GameObject HealingCaveEntrance, HealingCaveExit, healthPotion, CaveSwitch, CaveGateOpened, CaveGateClosed;
+	public GameObject HealingCaveEntrance, HealingCaveExit, BlockedPath, healthPotion, CaveSwitch, CaveGateOpened, CaveGateClosed;
 	public GameObject TDC;
 	public GameObject Son;
 	public GameObject InsideSonHouse, OutsideSonHouse, leavingSonsHouse;

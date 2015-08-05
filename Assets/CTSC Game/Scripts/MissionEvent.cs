@@ -78,13 +78,13 @@ public class MissionEvent : MonoBehaviour {
 				//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 0, 3));
 			    //Torkana must MOVE(currLoc, adjToPlayer, limp)
-				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.Player, AnimationEngine.Type.LIMP));  
+				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.Player, AnimationEngine.Type.WALK));  
 			    //Torkana must TALK(audio, guiToShow)
 			    actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 3, 2));
 				//Torkana must TURN(faceHouse)
 				actionQ.Enqueue(new TurnAction(mm.Torkana, mm.TorkanaHouse, false, 0));
 				//Torkana must MOVE(currLoc, adjToHouse)
-				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.LIMP));
+				actionQ.Enqueue(new MoveAction(mm.Torkana, mm.TorkanaHouse, AnimationEngine.Type.WALK));
 				//Player must UNFREEZE
 				actionQ.Enqueue(new FreezeAction(mm.Player, false));
 				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.WOOD, "Go to the backyard and" +
@@ -494,9 +494,16 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 30, 1));
 				//Player must UNFREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.BlockedPath, "Head deeper into the cave to find the healing spring"));
+					actionQ.Enqueue(new FreezeAction(mm.Player, true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 120, 1));
+					actionQ.Enqueue(new FreezeAction(mm.Player, false));
 				actionQ.Enqueue(new PressAction(mm.CaveSwitch));
 				actionQ.Enqueue (new ActiveAction(mm.CaveGateClosed, false));
 				actionQ.Enqueue (new ActiveAction(mm.CaveGateOpened, true));
+					actionQ.Enqueue(new FreezeAction(mm.Player, true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,121,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.HEALING_WATER,"Jump into the water and grab some healing water with G"));
 				//player must find the health potion to get out alive
 				if(mm.Player.GetComponent<CharacterOurs>().health < 50){
@@ -521,7 +528,8 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.GIVE_DOCTOR_HERBS:
 				if(mission.getCurrentMissionEvent()==eventType) {
 				//Player must MOVE(currLoc, adjToDoctor)
-				actionQ.Enqueue(new EnterAction(mm.Player, mm.nearDoctor, "Give the herbs and water to the doctor"));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player, mm.BackToDoctors, "Give the herbs and water to the doctor"));
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Doctor must TALK(audio, guiToShow)
 				actionQ.Enqueue(new TalkAction(mm.Doctor, currentAudio, mm.currentUI, 34, 2));
@@ -561,7 +569,6 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new GiveAction(mm.Torkana, mm.Player, GrabMe.kind.AMULET));
 				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.AMULET, "Grab the amulet by pressing G"));
 				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 41, 1));
-				actionQ.Enqueue(new EnterAction(mm.Player, mm.DoctorsHouse, "Leave the Doctor's Office and head out to Merami"));
 			//Torkana must GIVE(Amulet, Player)
 			//Torkana must TALK(audio, guiToShow)
 			//Torkana must MOVE(currLoc, adjToDoor)
@@ -579,7 +586,8 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.LEAVE_FOREST:
 				if(mission.getCurrentMissionEvent()==eventType) {
 			//Player must MOVE(currLoc, adjToDoor)
-				actionQ.Enqueue(new EnterAction(mm.Player,mm.DoctorsHouse, "Head outside to start your journey to Merami"));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.LeavingDoctor, "Head outside to start your journey to Merami"));
 			//Player must ENTER(Forest)
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 42, 1));
 					//Point to the city

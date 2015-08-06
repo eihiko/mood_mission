@@ -96,6 +96,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject atBeeArea, DoctorGardenBees;
 	public GameObject Map, Bees, DoctorsHouse, PlayerEnterDoctors, TorkanaEnterDoctors;
 	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden, BackToDoctors, LeavingDoctor;
+	public GameObject Amulet;
 	public GameObject CityEntrance;
 	public GameObject InjuredPerson; //Note, is also classified as injuredPerson
 	public GameObject nearInjuredPerson;

@@ -566,7 +566,8 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.ATTAIN_AMULET:
 				if(mission.getCurrentMissionEvent()==eventType) {
-				actionQ.Enqueue(new GiveAction(mm.Torkana, mm.Player, GrabMe.kind.AMULET));
+					actionQ.Enqueue(new ActiveAction(mm.Amulet,true));
+				//actionQ.Enqueue(new GiveAction(mm.Torkana, mm.Player, GrabMe.kind.AMULET));
 				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.AMULET, "Grab the amulet by pressing G"));
 				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 41, 1));
 			//Torkana must GIVE(Amulet, Player)

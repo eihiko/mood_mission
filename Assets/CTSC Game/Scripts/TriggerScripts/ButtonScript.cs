@@ -9,10 +9,11 @@ public class ButtonScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		options = new KeyCode[2];
+		options = new KeyCode[3];
 		options [0] = KeyCode.Alpha0;
 		options [1] = KeyCode.Alpha1;
-		choice = 2;
+		options [2] = KeyCode.Alpha2;
+		choice = 3;
 	}
 	
 	// Update is called once per frame
@@ -21,7 +22,13 @@ public class ButtonScript : MonoBehaviour {
 			choice = 0;
 		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
 			choice = 1;
+		} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+			choice = 2;
 		}
+	}
+
+	public void reset (){
+		choice = 3;
 	}
 
 	public KeyCode GetChoice(){

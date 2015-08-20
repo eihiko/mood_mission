@@ -13,6 +13,9 @@ public class Mission : IComparable<Mission> {
 	private List<GameObject> missionObjects;
 	private bool isCurrentMission;
 	private bool isComplete;
+	private TransportPlayer missionStart;
+	private MissionManager mm;
+
 
 	//A map of events and whether they are complete.
 	private SortedList<MissionManager.EventType, bool> missionEvents; 
@@ -26,11 +29,13 @@ public class Mission : IComparable<Mission> {
 	
 	public Mission(int missionID, MissionManager.MissionType missionType,
 	               List<MissionManager.EventType> events,
-	               Dictionary<MissionManager.EventType, Transform> eventTransforms){
+	               Dictionary<MissionManager.EventType, Transform> eventTransforms, TransportPlayer start, MissionManager manager){
 		this.missionID = missionID;
 		this.missionType = missionType;
 		this.missionEvents = new SortedList<MissionManager.EventType, bool>();
 		this.eventTransforms = eventTransforms;
+		this.missionStart = start;
+		this.mm = manager;
 		this.isCurrentMission = false;
 		this.isComplete = false;
 
@@ -101,6 +106,29 @@ public class Mission : IComparable<Mission> {
 		missionEvents [completedEvent] = true;
 		disableMissionEvent (completedEvent);
 //		Debug.Log ("Player has completed: " + completedEvent.ToString () + " event");
+	}
+
+	public void resetEvent(MissionManager.EventType eventToReset){
+		eventTransforms [eventToReset].gameObject.GetComponent<MissionEvent> ().resetEvent ();
+		missionEvents [eventToReset] = false;
+		enableMissionEvent (eventToReset);
+	}
+
+	public void resetMission(){
+		bool first = true;
+		foreach (KeyValuePair<MissionManager.EventType, bool> eventType in missionEvents) {
+			//Only enables first event
+			if (first) {
+				resetEvent(eventType.Key);
+				first = false;
+			}
+			else {
+				eventTransforms [eventType.Key].gameObject.GetComponent<MissionEvent> ().resetEvent ();
+				missionEvents [eventType.Key] = false;
+			}
+		}
+			//missionEvents [eventType.Key] = false;
+			missionStart.TransportNow(mm.Player);
 	}
 	
 	// Update is called once per frame

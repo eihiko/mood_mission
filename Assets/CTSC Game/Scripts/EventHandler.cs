@@ -380,7 +380,9 @@ public class EventHandler: MonoBehaviour
 	{
 //		Debug.Log("in fade coroutine");
 		playerScreenFade.Fade(false, .001f);
+		//Somewhere around here, things start to fail.
 		while (currState == GameState.TRANSPORT){
+			//Debug.Log ("Working...");
 			yield return null;
 		}
 		playerScreenFade.Fade(true, .001f);

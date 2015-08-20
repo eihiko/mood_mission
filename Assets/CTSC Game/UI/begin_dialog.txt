@@ -36,8 +36,8 @@ Doctor: Look who is back! Torkana and I are very happy to see you. We hope that 
 If you have found the herbs and healing water, please give them to me now.
 Torkana: Thank you for finding the medicine for me. I hope the healing cave was not too terrifying or confusing. I plan to give you something after the Doctor heals us. 
 Please, sit down at the chair to your left and rest until you are healed.
-Doctor: Now that you are looking a lot better, you can speak to Torkana and figure out what his plans are for you.
-Torkana: I wanted to give you this magical amulet. It will be your guiding light for the rest of your journey. I hope your trip to Merami is an exciting learning experience that you can manage. There will be hardships, but do not let these overcome you.
+Doctor: You're looking a lot better now.  Unfortunately, Torkana's injuries will take a little longer to heal.  He won't be able to travel with you to Merami.
+Torkana: I wanted to give you this magical amulet. It will be your guiding light for the rest of your journey, since I cannot come with you. I hope your trip to Merami is an exciting learning experience that you can manage. There will be hardships, but do not let these overcome you.
 Take this amulet and allow it to guide you at rough times.
 Now that you have the amulet, you can head off on your journey. Merami is highlighted on your map, so you should not have trouble finding it.
 According to the map, the city is over the ridge to the right of the house.
@@ -45,7 +45,7 @@ Townsperson: Please help me! A creature bit me and the poison is entering my vei
 Could you please bring some healing water to me as quickly as possible?
 Townsperson: Thank you!  The tavern is just down the street. There is a mug on the sign.
 Townsperson: Oh, you got the healing water!  Thank you!
-Townsperson: I still feel ill...  The doctor just outside of town should have medicine that will heal me.  Would you please get me some?
+Townsperson: I still feel ill...  The doctor just outside of town should have more potent healing water.  Would you get some for me?
 Townsperson: Thank you for your help. I’m feeling better already!
 What brings you to Merami?
 You explain your quest to find Torkana and the adventures you have had already.
@@ -120,3 +120,20 @@ Your willingness and ability to help the townspeople have increased my trust in 
 I need you to defeat the cyclops that has been bullying the townspeople and bashing things in the middle of the town. We have no idea why he is doing this. Perhaps, talking to some townspeople along your way there will give you some clues.
 The cave seems to be blocked off.  Maybe there's a switch somewhere in the cave that can open it.
 You hear a scraping sound from farther inside the cave.  The rock blocking your way must have moved.
+Tavern Keeper: You are in luck. We are about to close. What can I get for you?
+You need to get your supplies here, but you also promised the injured man outside that you would get water for him.  Which should you ask for first?
+You decide to ask for your supplies first, as they are important to your mission.  The tavern keeper asks you about your mission, and you explain that you are here to defeat the dragon.
+It takes a long time to get your supplies together before you can ask about the healing water.  You hope the man outside is okay.
+You remember the water that the doctor let you take.  Will you use it on the injured man or keep it for later use?
+Doctor: There is a little healing water left.  Take it with you as well.  It may come in handy in future fights.
+Torkana through the amulet: You were chosen for your strength, bravery, and compassion. You’re not making the best decision here, which makes me rethink whether you are a capable warrior.
+Now that you've helped the injured man, you can return to the tavern and get your supplies.
+Tavern Keeper: Healing water?  Of course!  Here you are!
+Townsperson: You have some of the doctor's healing water?  Oh, thank you!  I feel so much better now.
+Tavern Keeper: Supplies and healing water, coming right up!
+It takes the tavern keeper a little while to gather your supplies together.  You feel bad about keeping the injured man outside waiting.
+Tavern Keeper: Back already?
+You explain that you also need supplies for your mission to defeat the dragon.
+Tavern Keeper: No problem!  Give me a little time to get them ready for you.
+With your supplies ready, it's time to meet with the sewer Foreman's son.
+You did it!  You made it to Merami by yourself!

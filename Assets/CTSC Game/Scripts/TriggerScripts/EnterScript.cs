@@ -27,6 +27,12 @@ public class EnterScript : MonoBehaviour {
 		thisTag = willEnter.tag;
 	}
 
+	public void reset(){
+		isEntered = false;
+		willEnter = null;
+		thisTag = "TagNotSet";
+	}
+
 	public void OnTriggerStay(Collider o){
 //		Debug.Log ("Entered trigger for the enter script");
 		if (o.tag == thisTag) {

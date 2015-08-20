@@ -59,6 +59,10 @@ public class MissionEvent : MonoBehaviour {
 		}
 	}
 
+	public void resetEvent(){
+		isComplete = false;
+	}
+
 	//Just have a stack of actions and pop each action from the statck
 	//when it is completed. Then call OnComplete() to complete this event.
 	void OnTriggerEnter(Collider c){
@@ -569,7 +573,10 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.Amulet,true));
 				//actionQ.Enqueue(new GiveAction(mm.Torkana, mm.Player, GrabMe.kind.AMULET));
 				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.AMULET, "Grab the amulet by pressing G"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 41, 1));
+					actionQ.Enqueue(new TalkAction(mm.Doctor,currentAudio,mm.currentUI,127,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 			//Torkana must GIVE(Amulet, Player)
 			//Torkana must TALK(audio, guiToShow)
 			//Torkana must MOVE(currLoc, adjToDoor)
@@ -583,26 +590,30 @@ public class MissionEvent : MonoBehaviour {
 				isBusy = true;
 				}
 				break;
-			//Mission 4 Actions
 			case MissionManager.EventType.LEAVE_FOREST:
 				if(mission.getCurrentMissionEvent()==eventType) {
 			//Player must MOVE(currLoc, adjToDoor)
+					actionQ.Enqueue(new FreezeAction(mm.Player,false)); //Failsafe to make sure player can move if mission gets reset due to failure later on
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.LeavingDoctor, "Head outside to start your journey to Merami"));
 			//Player must ENTER(Forest)
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 42, 1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					//Point to the city
 					actionQ.Enqueue(new MinimapAction("City"));
 				isBusy = true;
 				}
 				break;
-			//Fourth mission begins
+				//Mission 4 Actions
 				//All EnterAction places need EnterScripts
 			case MissionManager.EventType.ENTER_CITY:
 				if(mission.getCurrentMissionEvent()==eventType) {
 					//Reset minimap to point at nothing
 					actionQ.Enqueue(new MinimapAction("nothing"));
-				actionQ.Enqueue(new EnterAction(mm.Player, mm.CityEntrance, "You did it!  You made it all the way to Merami on your own!"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,138,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				isBusy = true;
 				}
 				break;
@@ -610,8 +621,10 @@ public class MissionEvent : MonoBehaviour {
 				if(mission.getCurrentMissionEvent()==eventType) {
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.nearInjuredPerson, "That person looks hurt.  You should see if they need help"));
 				//Player and Townsperson must TALK(audio, guiToShow)
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 43, 2));
 				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 45, 1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					//Point to the tavern
 					actionQ.Enqueue(new MinimapAction("Tavern"));
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.TavernEntrance, "Search for the tavern.  It should be nearby.  Look for the sign with a mug"));
@@ -624,38 +637,98 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.insideTavern, "There's the tavern.  They should have the supplies and healing water you need."));
 					//Turn off the minimp pointer indoors
 					actionQ.Enqueue(new MinimapAction("nothing"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearTavernKeeper, "Talk to the tavern keeper about your supplies and the water for the townsperson"));
 				isBusy = true;
 				}
 				break;
-//			case MissionManager.EventType.GATHER_SELF_SUPPLIES:
-				//if(mission.getMissionType==eventType) {
-//				actionQ.Enqueue(new EnterAction(mm.Player,mm.nearTavernKeeper, "Talk to the tavern keeper about your supplies and the water for the townsperson"));
-//				isBusy = true;
-				//}
-//				break;
-//			case MissionManager.EventType.GATHER_MT1_WATER:
-				//if(mission.getMissionType==eventType) {
-//				isBusy = true;
-				//}
-//				break;
-//			case MissionManager.EventType.NEEDS_MEDICINE:
-				//if(mission.getMissionType==eventType) {
-//				isBusy = true;
-				//}
-//				break;
-//			case MissionManager.EventType.GIVE_MEDICINE:
-				//if(mission.getMissionType==eventType) {
-//				isBusy = true;
-				//}
-//				break;
+			case MissionManager.EventType.GET_SUPPLIES:
+				if(mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,122,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,123,1));
+					actionQ.Enqueue(new ChoiceAction(mm.Player,"Button",new EnterScript[1],"TavernSupply",3,false,
+					                                 "Press 1 to ask for the healing water first.  Press 2 to ask for both the water and your supplies.  Press 3 to ask for the supplies first and the water afterward."));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+				isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.NEEDS_MEDICINE:
+				if(mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,124,2));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.ReturningWithMedicine, "Hurry outside to give the healing water to the injured man."));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,46,2));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,126,1));
+					actionQ.Enqueue(new ChoiceAction(mm.Player,"Button",new EnterScript[1],"Water",2,false,"Press 1 to give the man your healing water, or press 2 to keep it for yourself."));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+				isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.GIVE_MEDICINE:
+				if(mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,128,1));
+					actionQ.Enqueue(new ChoiceAction(mm.Player,"Button",new EnterScript[1],"Water2",2,true,"Press 1 to listen to Torkana and give the man your healing water, or press 2 to keep the water to yourself."));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+				isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.FINISH_IN_TAVERN:
+				if(mission.getCurrentMissionEvent()==eventType) {
+					if(mm.choiceForSupply == 0){
+						actionQ.Enqueue(new FreezeAction(mm.Player,true));
+						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,130,1));
+						actionQ.Enqueue(new FreezeAction(mm.Player,false));
+						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.ReturningWithMedicine, "Hurry outside to give the healing water to the injured man."));
+					}
+					else if(mm.choiceForSupply == 1){
+						actionQ.Enqueue(new FreezeAction(mm.Player,true));
+						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,132,1));
+						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,133,1));
+						actionQ.Enqueue(new FreezeAction(mm.Player,false));
+						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.ReturningWithMedicine, "Hurry outside to give the healing water to the injured man."));
+					}
+					isBusy = true;
+				}
+				break;
 			case MissionManager.EventType.FINISH_TALKING_MT1:
 				if(mission.getCurrentMissionEvent()==eventType) {
-				actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 46, 1));
-				if (mm.InjuredPerson.GetComponent<injuredPerson>().needsMedicine)
-					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 47, 1));
-				else
-					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 48, 6));
+					if (mm.choiceForSupply == 0 || mm.choiceForSupply == 1){
+						actionQ.Enqueue(new FreezeAction(mm.Player,true));
+						actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 46, 1));
+						actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,48,1));
+					}
+					else if (mm.choiceForSupply == 2){
+						actionQ.Enqueue(new FreezeAction(mm.Player,true));
+						actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,131,1));
+					}
+					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,49,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,50,1));
+					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,51,3));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.GATHER_SELF_SUPPLIES:
+				if(mission.getCurrentMissionEvent()==eventType) {
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,129,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.ReturnToTavern, "Go back inside to get your supplies"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,134,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,135,1));
+					actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,136,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,137,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.toTheSon, ""));
+					isBusy = true;
 				}
 				break;
 

@@ -20,20 +20,22 @@ public class MissionManager : MonoBehaviour {
 		//**Losing the map triggers minimap to disappear**
 		FOLLOW_GUIDE, LOSE_MAP, ENCOUNTER_BEES, TOLERATE_BEES, RETRIEVE_MAP, 
 		GO_TO_DOCTORS,
-		//Third Mission at Doctor's Office (10 events)
+		//Third Mission at Doctor's Office (11 events)
 		ENTER_DOCTORS, DOCTOR_INTRO, GUIDE_EXAM, REACH_GARDEN, TOLERATE_BEES_AGAIN,
-		GATHER_HERBS, GATHER_HEALING_WATER, GIVE_DOCTOR_HERBS, PLAYER_EXAM, ATTAIN_AMULET, 
+		GATHER_HERBS, GATHER_HEALING_WATER, GIVE_DOCTOR_HERBS, PLAYER_EXAM, ATTAIN_AMULET, LEAVE_FOREST, 
 		//Fourth Mission entering city (9 events)
 		//Must account for time taken to gather mt1 water
 		//If too much time taken, must fetch medicine.. deal with this later..
-		LEAVE_FOREST, ENTER_CITY, TALK_TO_MT1, ENTER_TAVERN, GATHER_SELF_SUPPLIES, GATHER_MT1_WATER,
+		ENTER_CITY, TALK_TO_MT1, ENTER_TAVERN, GET_SUPPLIES,
 		//These will have to be checked for if player takes too long to get the water..
 		NEEDS_MEDICINE,
 		//go back to Torkana's for medicine..
 		GIVE_MEDICINE, 
+		//If medicine not needed
+		FINISH_IN_TAVERN,
 		//come back
 		//Finish talking will have to be determined if MT1 needed medicine
-		FINISH_TALKING_MT1,
+		FINISH_TALKING_MT1, GATHER_SELF_SUPPLIES,
 
 		//Fifth Mission to Sewer Designer's son's house (3 events)
 		GO_TO_MT2_HOUSE, CONFRONT_MT2, OFF_TO_HELP_PEOPLE,
@@ -86,6 +88,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject Torkana;
 
 	public GameObject currentUI;
+	public TransportPlayer[] startPoints;
 
 	//mission objects
 	public GameObject TorkanaHouse, TorkanaSitPos, inFrontTorkanaDoor,
@@ -100,7 +103,10 @@ public class MissionManager : MonoBehaviour {
 	public GameObject CityEntrance;
 	public GameObject InjuredPerson; //Note, is also classified as injuredPerson
 	public GameObject nearInjuredPerson;
-	public GameObject TavernKeeper, TavernEntrance, insideTavern, nearTavernKeeper;
+	public GameObject TavernKeeper, TavernEntrance, insideTavern, nearTavernKeeper, ReturningWithMedicine, ReturnToTavern, toTheSon;
+	public ButtonScript tavernSupplyButton,injuredPersonButton,water2Button;
+	public int choiceForSupply=3;
+	public int choiceWater=2;
 	public GameObject HealingCaveEntrance, HealingCaveExit, BlockedPath, healthPotion, CaveSwitch, CaveGateOpened, CaveGateClosed;
 	public GameObject TDC;
 	public GameObject Son;
@@ -152,7 +158,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		test (0); //Set number of missions to skip when testing
+		test (6); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -247,6 +253,7 @@ public class MissionManager : MonoBehaviour {
 	 */
 	private void initializeMissions(){
 		Mission currMission;
+		TransportPlayer missionStart;
 		//List<Transform> eventTransforms = new List<Transform>();
 		List<MissionManager.EventType> events = new List<MissionManager.EventType> ();
 		Dictionary<MissionManager.EventType, Transform> eventDict = new Dictionary<MissionManager.EventType, Transform> ();
@@ -260,8 +267,9 @@ public class MissionManager : MonoBehaviour {
 						events.Add((MissionManager.EventType)i);
 					//Debug.Log (((MissionManager.EventType)i).ToString ());
 					}
-					events.Add (MissionManager.EventType.NULL);
+					//events.Add (MissionManager.EventType.NULL);
 					currTransform = missionObjects[(int)type].transform;
+					missionStart = startPoints[(int)type];
 				    //Add all the event transforms for this mission to its event dictionary
 					foreach (Transform child in currTransform){
 //						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
@@ -269,38 +277,41 @@ public class MissionManager : MonoBehaviour {
 					}
 					break;
 				case MissionType.FOREST:
-				// i = 11 but changed it for testing !
 					for(int i = 11; i < 17; i++) {
 						events.Add((EventType)i);
 					}
 					currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
 					foreach (Transform child in currTransform){
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
 				case MissionType.DOCTORS_OFFICE:
-					for(int i = 17; i < 27; i++) {
+					for(int i = 17; i < 28; i++) {
 						events.Add((EventType)i);
 					}
 					currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
 					foreach (Transform child in currTransform){
 						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 					}
 					break;
-				//case MissionType.ENTER_CITY_GATHER_SUPPLIES:
-				//	for(int i = 27; i < 36; i++) {
-				//		events.Add((EventType)i);
-				//	}
-				//	currTransform = missionObjects[(int)type].transform;
-				//	foreach (Transform child in currTransform){
-				//		eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
-				//	}
-				//	break;
-				case MissionType.TALK_TO_SON:
-					for(int i = 36; i < 39; i++) {
+				case MissionType.ENTER_CITY_GATHER_SUPPLIES:
+					for(int i = 28; i < 37; i++) {
 						events.Add((EventType)i);
 					}
 					currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
+					foreach (Transform child in currTransform){
+						eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+					}
+					break;
+				case MissionType.TALK_TO_SON:
+					for(int i = 37; i < 40; i++) {
+						events.Add((EventType)i);
+					}
+					currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
 					//Add all the event transforms for this mission to its event dictionary
 					foreach (Transform child in currTransform){
 						//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
@@ -308,10 +319,11 @@ public class MissionManager : MonoBehaviour {
 					}
 					break;
 				case MissionType.HELP_TP_1:
-					for(int i = 39; i < 48; i++) {
+					for(int i = 40; i < 49; i++) {
 						events.Add((EventType)i);
 					}
 					currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
 					//Add all the event transforms for this mission to its event dictionary
 					foreach (Transform child in currTransform){
 						//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
@@ -319,10 +331,11 @@ public class MissionManager : MonoBehaviour {
 					}
 					break;
 				case MissionType.HELP_TP_2:
-					for(int i = 48; i < 58; i++) {
+					for(int i = 49; i < 59; i++) {
 						events.Add((EventType)i);
 					}
 				currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
 				//Add all the event transforms for this mission to its event dictionary
 				foreach (Transform child in currTransform){
 					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
@@ -330,10 +343,11 @@ public class MissionManager : MonoBehaviour {
 				}
 					break;
 				case MissionType.HELP_TP_3:
-					for(int i = 58; i < 69; i++) {
+					for(int i = 59; i < 70; i++) {
 						events.Add((EventType)i);
 					}
 				currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
 				//Add all the event transforms for this mission to its event dictionary
 				foreach (Transform child in currTransform){
 					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
@@ -350,8 +364,11 @@ public class MissionManager : MonoBehaviour {
 				//						events.Add((EventType)i);
 //					}
 //					break;
+			default:
+				missionStart = null;
+				break;
 			}
-			currMission = new Mission((int)type, type, events, eventDict);
+			currMission = new Mission((int)type, type, events, eventDict, missionStart, this);
 			missionHistory.Add(currMission, false);
 			events.Clear();
 			currMissionNum++;

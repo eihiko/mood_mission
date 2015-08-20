@@ -37,12 +37,13 @@ public class ChoiceAction : MissionAction{
 						currentMission.setEventComplete(MissionManager.EventType.DELIVER_LETTERS);
 						currentMission.setEventComplete(MissionManager.EventType.WAIT_FOR_DRIZZLE);
 						currentMission.setEventComplete(MissionManager.EventType.WAIT_FOR_END);
-						Debug.Log("Missions set complete lady");
+						//Debug.Log("Missions set complete lady");
 					}
 				}
 				else{
-					Debug.Log(indicator + " is a wrong key");}
-				Debug.Log("Indicator set to " + 0);
+					//Debug.Log(indicator + " is a wrong key");
+				}
+				//Debug.Log("Indicator set to " + 0);
 				return true;
 			}
 			else if (triggers[1].isEntered){
@@ -51,11 +52,11 @@ public class ChoiceAction : MissionAction{
 					manager.choiceInRain = 1;
 					currentMission.setEventComplete(MissionManager.EventType.TURN_BACK);
 					currentMission.setEventComplete(MissionManager.EventType.RETURN_TO_FT1);
-					Debug.Log("Mission set complete rain");
+					//Debug.Log("Mission set complete rain");
 				}
 				else{
 					Debug.Log(indicator + " is a wrong key");}
-				Debug.Log("Indicator set to " + 1);
+				//Debug.Log("Indicator set to " + 1);
 				return true;
 			}
 			if (first){
@@ -88,10 +89,20 @@ public class ChoiceAction : MissionAction{
 				if (indicator.Equals("TavernAfter")){
 					manager.choiceInTavern = 0;
 					currentMission.setEventComplete(MissionManager.EventType.WAIT_FOR_END);
-					Debug.Log("Missions set complete tavern");
+					//Debug.Log("Missions set complete tavern");
+				}
+				else if (indicator.Equals("TavernSupply")){
+					manager.choiceForSupply = 0;
+					currentMission.setEventComplete(MissionManager.EventType.NEEDS_MEDICINE);
+					currentMission.setEventComplete(MissionManager.EventType.GIVE_MEDICINE);
+				}
+				else if (indicator.Equals("Water")){
+					manager.choiceWater = 0;
+					currentMission.setEventComplete(MissionManager.EventType.GIVE_MEDICINE);
 				}
 				else{
-					Debug.Log(indicator + " is a wrong key");}
+					//Debug.Log(indicator + " is a wrong key");
+				}
 				return true;
 			}
 			else if (buttonScript.GetChoice()==buttons[1]){
@@ -99,10 +110,46 @@ public class ChoiceAction : MissionAction{
 				if (indicator.Equals("TavernAfter")){
 					manager.choiceInTavern = 1;
 					currentMission.setEventComplete(MissionManager.EventType.WAIT_FOR_DRIZZLE);
-					Debug.Log("Missions set complete stay");
+					//Debug.Log("Missions set complete stay");
+				}
+				else if (indicator.Equals("TavernSupply")){
+					manager.choiceForSupply = 1;
+					currentMission.setEventComplete(MissionManager.EventType.NEEDS_MEDICINE);
+					currentMission.setEventComplete(MissionManager.EventType.GIVE_MEDICINE);
+					currentMission.setEventComplete(MissionManager.EventType.GATHER_SELF_SUPPLIES);
+				}
+				else if (indicator.Equals("Water")){
+					manager.choiceWater = 1;
+				}
+				else if (indicator.Equals("Water2")){
+					currentMission.resetMission();
+					//Reset current mission, complete with blackout and move back to inside Doctor's house
+					//Also resets the appropriate EnterScripts and choices
+					manager.nearInjuredPerson.GetComponent<EnterScript>().reset();
+					manager.TavernEntrance.GetComponent<EnterScript>().reset();
+					manager.insideTavern.GetComponent<EnterScript>().reset();
+					manager.nearTavernKeeper.GetComponent<EnterScript>().reset();
+					manager.ReturningWithMedicine.GetComponent<EnterScript>().reset();
+					manager.choiceForSupply = 100;
+					manager.choiceWater = 100;
+					manager.tavernSupplyButton.reset();
+					manager.injuredPersonButton.reset();
+					manager.water2Button.reset();
 				}
 				else{
-					Debug.Log(indicator + " is a wrong key");}
+					//Debug.Log(indicator + " is a wrong key");
+					}
+				return true;
+			}
+			else if (buttons.Length>=3 && buttonScript.GetChoice()==buttons[2]){
+				guiHandler.reset();
+				if (indicator.Equals("TavernSupply")){
+					manager.choiceForSupply = 2;
+					currentMission.setEventComplete(MissionManager.EventType.FINISH_IN_TAVERN);
+					currentMission.setEventComplete(MissionManager.EventType.GATHER_SELF_SUPPLIES);
+				}
+				else{
+				}
 				return true;
 			}
 /*			for (int i=0;i<buttons.Length;i++){
@@ -129,7 +176,7 @@ public class ChoiceAction : MissionAction{
 	public ChoiceAction(GameObject Player, string mode, EnterScript[] triggers,string indicator, int numChoices, bool second, string message) {
 		manager = GameObject.Find ("MissionManager").GetComponent<MissionManager>();
 		currentMission = manager.getCurrentMission ();
-		Debug.Log ("Manager found");
+		//Debug.Log ("Manager found");
 		this.Player = Player;
 		this.mode = mode;
 		this.indicator = indicator;
@@ -142,7 +189,7 @@ public class ChoiceAction : MissionAction{
 			this.triggers = triggers;
 			for (int i=0;i<triggers.Length;i++){
 				triggers[i].setWillEnter(Player);
-				Debug.Log(triggers[i] + " set.");
+				//Debug.Log(triggers[i] + " set.");
 			}
 		}
 		if (mode.Equals ("Button")) {
@@ -151,8 +198,22 @@ public class ChoiceAction : MissionAction{
 				this.buttons [0] = KeyCode.Alpha0;
 				this.buttons [1] = KeyCode.Alpha1;
 			}
+			else if (numChoices == 3) {
+				this.buttons[0] = KeyCode.Alpha0;
+				this.buttons[1] = KeyCode.Alpha1;
+				this.buttons[2] = KeyCode.Alpha2;
+			}
 			if (indicator.Equals("TavernAfter")){
 				this.buttonScript = this.manager.tavernRainButton;
+			}
+			else if (indicator.Equals("TavernSupply")){
+				this.buttonScript = this.manager.tavernSupplyButton;
+			}
+			else if (indicator.Equals("Water")){
+				this.buttonScript = this.manager.injuredPersonButton;
+			}
+			else if (indicator.Equals("Water2")){
+				this.buttonScript = this.manager.water2Button;
 			}
 		}
 	}

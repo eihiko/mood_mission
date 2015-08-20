@@ -21,6 +21,7 @@ public class TransportPlayer : MonoBehaviour {
 	public Transform playerStart;
 	public float yawOnStart;
 	public String currentLocation;
+	public bool start;
 	
 	Vector3 currPlayerPosition;
 	Quaternion currPlayerRotation;
@@ -55,7 +56,7 @@ public class TransportPlayer : MonoBehaviour {
 
 		if(col.gameObject.tag.Equals("Player") &&
 		   col.GetComponent<CharacterOurs>().canEnter &&
-		   Input.GetKeyDown(KeyCode.E)){
+		   Input.GetKeyDown(KeyCode.E) && !start){
 			//turn off all interaction gui, can enable this if desired
 			guiHandler.reset();
 
@@ -71,6 +72,15 @@ public class TransportPlayer : MonoBehaviour {
 			//Transports player to given location.
 			Transport();
 		}
+	}
+
+	public void TransportNow(GameObject player){
+		guiHandler.reset ();
+		setTransportState ();
+		this.player = player;
+		currPlayerPosition = player.transform.position;
+		currPlayerRotation = player.transform.rotation;
+		Transport ();
 	}
 
 	void setTransportState(){
@@ -97,6 +107,7 @@ public class TransportPlayer : MonoBehaviour {
 	void Transport(){
 		eventHandler.Transport (true);
 		EnableTransportLocation ();
+		//MovePlayerToPosition never happens for some reason.
 		StartCoroutine (waitForSecs (5F, MovePlayerToPosition));
 	//	eventHandler.Transport (false);
     }

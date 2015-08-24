@@ -65,6 +65,7 @@ GameObject:
   - 65: {fileID: 6596108}
   - 23: {fileID: 2374114}
   - 114: {fileID: 11477442}
+  - 114: {fileID: 11485526}
   m_Layer: 0
   m_Name: EnterFT1House
   m_TagString: Untagged
@@ -137,6 +138,7 @@ GameObject:
   - 65: {fileID: 6574148}
   - 23: {fileID: 2360862}
   - 114: {fileID: 11451514}
+  - 114: {fileID: 11491960}
   m_Layer: 0
   m_Name: EnterCity
   m_TagString: MissionEvent
@@ -157,6 +159,7 @@ GameObject:
   - 23: {fileID: 2377848}
   - 114: {fileID: 11419484}
   - 114: {fileID: 11490886}
+  - 114: {fileID: 11493588}
   m_Layer: 0
   m_Name: GoToMT2House
   m_TagString: MissionEvent
@@ -176,6 +179,7 @@ GameObject:
   - 65: {fileID: 6598280}
   - 23: {fileID: 2318824}
   - 114: {fileID: 11401552}
+  - 114: {fileID: 11420632}
   m_Layer: 0
   m_Name: EnterMT3House
   m_TagString: Untagged
@@ -214,6 +218,7 @@ GameObject:
   - 65: {fileID: 6564914}
   - 23: {fileID: 2338012}
   - 114: {fileID: 11449798}
+  - 114: {fileID: 11419546}
   m_Layer: 0
   m_Name: EnterDoctors
   m_TagString: MissionEvent
@@ -233,6 +238,7 @@ GameObject:
   - 65: {fileID: 6535474}
   - 23: {fileID: 2391750}
   - 114: {fileID: 11425244}
+  - 114: {fileID: 11436446}
   m_Layer: 0
   m_Name: GiveMedicine
   m_TagString: MissionEvent
@@ -947,6 +953,7 @@ GameObject:
   - 65: {fileID: 6553990}
   - 23: {fileID: 2323546}
   - 114: {fileID: 11470316}
+  - 114: {fileID: 11416380}
   m_Layer: 0
   m_Name: FollowGuide
   m_TagString: MissionEvent
@@ -1251,6 +1258,7 @@ GameObject:
   - 65: {fileID: 6516162}
   - 23: {fileID: 2384716}
   - 114: {fileID: 11453860}
+  - 114: {fileID: 11403852}
   m_Layer: 0
   m_Name: HeadBackToMT2
   m_TagString: Untagged
@@ -1460,6 +1468,7 @@ GameObject:
   - 65: {fileID: 6567436}
   - 23: {fileID: 2337596}
   - 114: {fileID: 11419910}
+  - 114: {fileID: 11487948}
   m_Layer: 0
   m_Name: IntroEvent
   m_TagString: MissionEvent
@@ -1538,7 +1547,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 849.940002, y: 28.1030006, z: 685.77002}
+  m_LocalPosition: {x: 849.77002, y: 28.1000004, z: 686.140015}
   m_LocalScale: {x: 2, y: 3.37499976, z: 1.35000002}
   m_Children: []
   m_Father: {fileID: 480032}
@@ -1550,7 +1559,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.7399998, y: -4.11000013, z: -2.1500001}
+  m_LocalPosition: {x: -10.7399998, y: -4.11000013, z: -2.82999992}
   m_LocalScale: {x: 5.77593279, y: 2, z: 2.92702818}
   m_Children: []
   m_Father: {fileID: 480032}
@@ -1658,8 +1667,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 845.747253, y: 27.8995667, z: 666.154663}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 845.75, y: 27.8999996, z: 666.150024}
+  m_LocalScale: {x: 2, y: 2, z: 3.68113279}
   m_Children: []
   m_Father: {fileID: 480032}
   m_RootOrder: 5
@@ -1670,8 +1679,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 854.289978, y: 27.8999996, z: 665.969971}
-  m_LocalScale: {x: 3.54999971, y: 2, z: 2.24999952}
+  m_LocalPosition: {x: 853.77002, y: 27.8999996, z: 665.969971}
+  m_LocalScale: {x: 5.33312416, y: 2, z: 2.24999952}
   m_Children: []
   m_Father: {fileID: 480032}
   m_RootOrder: 4
@@ -1790,8 +1799,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 855.099854, y: 27.8995667, z: 665.016052}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 854.252014, y: 27.8999996, z: 665.02002}
+  m_LocalScale: {x: 4.2258153, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 480032}
   m_RootOrder: 6
@@ -2041,7 +2050,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 844.179993, y: 27.8999996, z: 661.960022}
+  m_LocalPosition: {x: 843.711975, y: 27.8999996, z: 661.960022}
   m_LocalScale: {x: 2, y: 3.45000029, z: 2.77593756}
   m_Children: []
   m_Father: {fileID: 480032}
@@ -2250,8 +2259,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 858.710022, y: 27.441, z: 660.179993}
-  m_LocalScale: {x: 2.2252512, y: 1.85843825, z: 1.96249974}
+  m_LocalPosition: {x: 858.409973, y: 27.4400005, z: 660.179993}
+  m_LocalScale: {x: 3.4328022, y: 1.85843825, z: 1.96249974}
   m_Children: []
   m_Father: {fileID: 480032}
   m_RootOrder: 8
@@ -2285,8 +2294,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 853.48999, y: 28.1000004, z: 683.570007}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 854.48999, y: 27.75, z: 684.380005}
+  m_LocalScale: {x: 2, y: 2, z: 4.74222088}
   m_Children: []
   m_Father: {fileID: 480032}
   m_RootOrder: 2
@@ -5438,8 +5447,8 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 152024}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5537,6 +5546,22 @@ MonoBehaviour:
   eventWaypoints: []
   eventBriefs: []
   currentAudio: {fileID: 0}
+--- !u!114 &11403852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0782e88396c99de4e9b5d1dc03034f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: TopDownCity
+  playerStart: {fileID: 487126}
+  yawOnStart: 0
+  currentLocation: TopDownCity
+  start: 1
 --- !u!114 &11405850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5673,6 +5698,22 @@ MonoBehaviour:
   eventWaypoints: []
   eventBriefs: []
   currentAudio: {fileID: 0}
+--- !u!114 &11416380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0782e88396c99de4e9b5d1dc03034f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: Forest
+  playerStart: {fileID: 423532}
+  yawOnStart: 0
+  currentLocation: Forest
+  start: 1
 --- !u!114 &11417048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5741,6 +5782,22 @@ MonoBehaviour:
   eventWaypoints: []
   eventBriefs: []
   currentAudio: {fileID: 0}
+--- !u!114 &11419546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0782e88396c99de4e9b5d1dc03034f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: Forest
+  playerStart: {fileID: 408014}
+  yawOnStart: 0
+  currentLocation: Forest
+  start: 1
 --- !u!114 &11419582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5809,6 +5866,22 @@ MonoBehaviour:
   eventWaypoints: []
   eventBriefs: []
   currentAudio: {fileID: 0}
+--- !u!114 &11420632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0782e88396c99de4e9b5d1dc03034f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: TopDownCity
+  playerStart: {fileID: 442550}
+  yawOnStart: 0
+  currentLocation: TopDownCity
+  start: 1
 --- !u!114 &11420676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5928,6 +6001,19 @@ MonoBehaviour:
   eventWaypoints: []
   eventBriefs: []
   currentAudio: {fileID: 0}
+--- !u!114 &11436446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeaa939fce84a254fb6aaf94170179bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options: 
+  choice: 0
 --- !u!114 &11437328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6553,6 +6639,22 @@ MonoBehaviour:
   eventWaypoints: []
   eventBriefs: []
   currentAudio: {fileID: 0}
+--- !u!114 &11485526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0782e88396c99de4e9b5d1dc03034f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: TopDownCity
+  playerStart: {fileID: 411292}
+  yawOnStart: 0
+  currentLocation: TopDownCity
+  start: 1
 --- !u!114 &11486596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6587,6 +6689,22 @@ MonoBehaviour:
   eventWaypoints: []
   eventBriefs: []
   currentAudio: {fileID: 0}
+--- !u!114 &11487948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0782e88396c99de4e9b5d1dc03034f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: Forest
+  playerStart: {fileID: 481002}
+  yawOnStart: 0
+  currentLocation: Forest
+  start: 1
 --- !u!114 &11489420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6636,6 +6754,38 @@ MonoBehaviour:
   eventWaypoints: []
   eventBriefs: []
   currentAudio: {fileID: 0}
+--- !u!114 &11491960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0782e88396c99de4e9b5d1dc03034f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: TopDownCity
+  playerStart: {fileID: 428478}
+  yawOnStart: 0
+  currentLocation: TopDownCity
+  start: 1
+--- !u!114 &11493588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0782e88396c99de4e9b5d1dc03034f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: TopDownCity
+  playerStart: {fileID: 488120}
+  yawOnStart: 0
+  currentLocation: TopDownCity
+  start: 1
 --- !u!114 &11493610
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -319,10 +319,11 @@ public class MissionEvent : MonoBehaviour {
 				//Bees must MOVE(currLoc, Player)
 				actionQ.Enqueue(new ActiveAction(mm.Bees, true));
 			//Player must INTERACT(Gui, Bees, Action) and Bees must REACT(Player, Action) and
-			//BEES must APPROVE(Action) 
-				actionQ.Enqueue(new PrintAction("Hold C while you move for courage\r\n" +
-				                                "Hold E while you move for compassion\r\n" +
-				                                "Hold Q while you move for health\r\n", 20));
+			//BEES must APPROVE(Action)
+					//Turn on damage zone around bees.
+				//actionQ.Enqueue(new PrintAction("Hold C while you move for courage\r\n" +
+				 //                               "Hold E while you move for compassion\r\n" +
+				 //                               "Hold Q while you move for health\r\n", 20));
 				isBusy = true;
 				}
 				break;

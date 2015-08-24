@@ -100,6 +100,9 @@ public class ChoiceAction : MissionAction{
 					manager.choiceWater = 0;
 					currentMission.setEventComplete(MissionManager.EventType.GIVE_MEDICINE);
 				}
+				else if (indicator.Equals("Water2")){
+					manager.choiceWater = 0;
+				}
 				else{
 					//Debug.Log(indicator + " is a wrong key");
 				}

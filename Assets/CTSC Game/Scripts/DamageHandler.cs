@@ -25,6 +25,7 @@ public class DamageHandler : MonoBehaviour {
 	}
 
 	public void TurnDamageOn(string type){
+		damageOn = true;
 		if (type.Equals ("Swarm")) {
 			watchCodes = new KeyCode[2];
 			watchCodes [0] = KeyCode.R; //Swat
@@ -53,6 +54,10 @@ public class DamageHandler : MonoBehaviour {
 			watchCodes [3] = KeyCode.Alpha4; //Compliment Scroll 4
 			watchCodes [4] = KeyCode.Alpha5; //Compliment Scroll 5
 		}
+	}
+
+	public void TurnDamageOff(){
+		damageOn = false;
 	}
 
 }

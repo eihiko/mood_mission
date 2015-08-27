@@ -321,9 +321,9 @@ public class MissionEvent : MonoBehaviour {
 			//Player must INTERACT(Gui, Bees, Action) and Bees must REACT(Player, Action) and
 			//BEES must APPROVE(Action)
 					//Turn on damage zone around bees.
-				//actionQ.Enqueue(new PrintAction("Hold C while you move for courage\r\n" +
-				 //                               "Hold E while you move for compassion\r\n" +
-				 //                               "Hold Q while you move for health\r\n", 20));
+					actionQ.Enqueue(new DamageAction(mm.damageHandler,true,"Swarm"));
+					actionQ.Enqueue(new PrintAction("Press 'R' to swat at the bees\r\n" +
+					                                "Press 'C' to stomp on the bees\r\n", 20));
 				isBusy = true;
 				}
 				break;
@@ -336,6 +336,8 @@ public class MissionEvent : MonoBehaviour {
 				mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
 				//move the actual position to the doctor's garden area
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.DoctorGardenBees));
+					//Turn off damage
+					actionQ.Enqueue(new DamageAction(mm.damageHandler,false,"Swarm"));
 					actionQ.Enqueue(new MinimapAction("Torkana"));
 				isBusy = true;
 				}
@@ -435,11 +437,15 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.DoctorGardenBees));
 				//Bees must MOVE(currLoc, Player)
 				actionQ.Enqueue(new ActiveAction(mm.Bees, true));
+					//Turn on damage
+					actionQ.Enqueue(new DamageAction(mm.damageHandler,true,"Swarm"));
 				//Player must INTERACT(Gui, Bees, Action) and Bees must REACT(Player, Action) and
 				//BEES must APPROVE(Action) 
-				actionQ.Enqueue(new PrintAction("Hold C while you move for courage\r\n" +
-				                                "Hold E while you move for compassion\r\n" +
-				                                "Hold Q while you move for health\r\n", 20));
+					actionQ.Enqueue(new PrintAction("Press 'R' to swat at the bees\r\n" +
+					                                "Press 'C' to stomp on the bees\r\n", 20));
+				//actionQ.Enqueue(new PrintAction("Hold C while you move for courage\r\n" +
+				//                                "Hold E while you move for compassion\r\n" +
+				//                                "Hold Q while you move for health\r\n", 20));
 
 				//Bees fly off to the doctor's garden
 				//set the focus of the bees to the doctor's garden area
@@ -467,8 +473,6 @@ public class MissionEvent : MonoBehaviour {
 
 				//set the focus of the bees to the doctor's garden area
 				//mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
-				actionQ.Enqueue(new MoveAction(mm.Bees, mm.TorkanaEnterDoctors));
-				actionQ.Enqueue(new ActiveAction(mm.Bees, false));
 					actionQ.Enqueue(new MinimapAction("nothing"));//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//print message to go into cave
@@ -494,6 +498,11 @@ public class MissionEvent : MonoBehaviour {
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				//player must enter healing cave
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveEntrance, "Press E near the cave entrance to enter"));
+					//Turn off bees when player enters cave
+					actionQ.Enqueue(new MoveAction(mm.Bees, mm.TorkanaEnterDoctors));
+					actionQ.Enqueue(new ActiveAction(mm.Bees, false));
+					//Turn off damage as well
+					actionQ.Enqueue(new DamageAction(mm.damageHandler,false,"Swarm"));
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 30, 1));
@@ -600,7 +609,7 @@ public class MissionEvent : MonoBehaviour {
 			//Player must ENTER(Forest)
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 42, 1));
-					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					//Point to the city
 					actionQ.Enqueue(new MinimapAction("City"));
 				isBusy = true;

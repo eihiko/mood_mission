@@ -82,6 +82,7 @@ public class MissionManager : MonoBehaviour {
 	}
 
 	public EventHandler eventHandler;
+	public DamageHandler damageHandler;
 	public GameObject UISet;
 	public GameObject[] missionObjects;
 	public GameObject Player;

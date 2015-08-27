@@ -125,7 +125,7 @@ public class TransportPlayer : MonoBehaviour {
 		} else if (eventHandler.switchLocation(location).Equals(EventHandler.GameLocation.FOREST)
 		           && eventHandler.switchLocation(currentLocation).Equals(EventHandler.GameLocation.HEALING_CAVE)){
 			Vector3 transportLocation = GetPlayerStartPosition ();
-			Debug.Log(transportLocation.ToString());
+			//Debug.Log(transportLocation.ToString());
 			player.transform.position = transportLocation;
 		}else if (playerStart != null) {
 			Vector3 transportLocation = playerStart.transform.position;

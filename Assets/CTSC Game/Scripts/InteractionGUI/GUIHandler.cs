@@ -26,7 +26,7 @@ public class GUIHandler : MonoBehaviour {
 	}
 
 	public void setTextToShow(string text){
-		Debug.Log ("Set text to show as: " + text);
+		//Debug.Log ("Set text to show as: " + text);
 		this.textToShow = text;
 	}
 	

@@ -30,7 +30,7 @@ public class FloorSwitch : MonoBehaviour {
 				Vector3 buttonPos = transform.position;
 				//have the button stop at its low point
 				if (buttonPos.y < highPoint) {
-					Debug.Log("Switch is lerping upward from being released.");
+					//Debug.Log("Switch is lerping upward from being released.");
 					buttonPos.y += ASCENT;
 					transform.position = buttonPos;
 				//	Vector3.Lerp (buttonPos, new Vector3 (buttonPos.x, buttonPos.y + timeStep, buttonPos.z), timeStep);
@@ -41,14 +41,14 @@ public class FloorSwitch : MonoBehaviour {
 	void OnTriggerExit(Collider c){
 		if (c.tag == "Player") {
 			isPressed = false;
-			Debug.Log ("Floor switch has been released.");
+			//Debug.Log ("Floor switch has been released.");
 		}
 	}
 
 	void OnTriggerStay(Collider c){
-		Debug.Log ("The trigger stay method is working.");
+		//Debug.Log ("The trigger stay method is working.");
 		if (c.tag == "Player") {
-			Debug.Log("Floor switch is pressed!");
+			//Debug.Log("Floor switch is pressed!");
 			isPressed = true;
 
 			//after standing on for 4 seconds, start moving the button downward
@@ -56,7 +56,7 @@ public class FloorSwitch : MonoBehaviour {
 				Vector3 buttonPos = transform.position;
 				//have the button stop at its low point
 				if (buttonPos.y > lowPoint) {
-					Debug.Log("Switch is lerping downward into the ground.");
+					//Debug.Log("Switch is lerping downward into the ground.");
 					buttonPos.y -= DESCENT;
 					transform.position = buttonPos;
 					//Vector3.Lerp (buttonPos, new Vector3 (buttonPos.x, buttonPos.y - timeStep, buttonPos.z), timeStep);

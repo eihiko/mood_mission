@@ -270,6 +270,7 @@ public class MissionEvent : MonoBehaviour {
 				if(mission.getCurrentMissionEvent()==eventType) {
 			//Torkana must MOVE(currLoc, adjToBeeArea) iff IN_RANGE(Torkana, Player)
 					//Set minimap to point to Torkana
+					actionQ.Enqueue(new StandAction(mm.Torkana,mm.inFrontTorkanaHouse)); //Allows for Torkana reset upon mission failure
 					actionQ.Enqueue(new MinimapAction("Torkana"));
 				actionQ.Enqueue(new FollowAction(0, 12, mm.Torkana));
 				//actionQ.Enqueue (new MoveAction (mm.Torkana, mm.adjToBeeArea));
@@ -320,10 +321,10 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new ActiveAction(mm.Bees, true));
 			//Player must INTERACT(Gui, Bees, Action) and Bees must REACT(Player, Action) and
 			//BEES must APPROVE(Action)
-					//Turn on damage zone around bees.
-					actionQ.Enqueue(new DamageAction(mm.damageHandler,true,"Swarm"));
-					actionQ.Enqueue(new PrintAction("Press 'R' to swat at the bees\r\n" +
-					                                "Press 'C' to stomp on the bees\r\n", 20));
+					EnterScript[] triggers = new EnterScript[2];
+					triggers[0] = mm.continueBees.GetComponent<EnterScript>();
+					triggers[1] = mm.turnBackBees.GetComponent<EnterScript>();
+					actionQ.Enqueue(new ChoiceAction(mm.Player,"Trigger",triggers,"Bees1",2,false,"Face your fears!  Tolerate the bees and get your map back."));
 				isBusy = true;
 				}
 				break;
@@ -336,8 +337,6 @@ public class MissionEvent : MonoBehaviour {
 				mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
 				//move the actual position to the doctor's garden area
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.DoctorGardenBees));
-					//Turn off damage
-					actionQ.Enqueue(new DamageAction(mm.damageHandler,false,"Swarm"));
 					actionQ.Enqueue(new MinimapAction("Torkana"));
 				isBusy = true;
 				}
@@ -437,12 +436,12 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.DoctorGardenBees));
 				//Bees must MOVE(currLoc, Player)
 				actionQ.Enqueue(new ActiveAction(mm.Bees, true));
-					//Turn on damage
-					actionQ.Enqueue(new DamageAction(mm.damageHandler,true,"Swarm"));
+					EnterScript[] triggers = new EnterScript[2];
+					triggers[0] = mm.continueHerb.GetComponent<EnterScript>();
+					triggers[1] = mm.turnBackHerb.GetComponent<EnterScript>();
+					actionQ.Enqueue(new ChoiceAction(mm.Player,"Trigger",triggers,"Bees2",2,false,"Tolerate the bees again to grab the herb you need."));
 				//Player must INTERACT(Gui, Bees, Action) and Bees must REACT(Player, Action) and
 				//BEES must APPROVE(Action) 
-					actionQ.Enqueue(new PrintAction("Press 'R' to swat at the bees\r\n" +
-					                                "Press 'C' to stomp on the bees\r\n", 20));
 				//actionQ.Enqueue(new PrintAction("Hold C while you move for courage\r\n" +
 				//                                "Hold E while you move for compassion\r\n" +
 				//                                "Hold Q while you move for health\r\n", 20));
@@ -499,10 +498,9 @@ public class MissionEvent : MonoBehaviour {
 				//player must enter healing cave
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveEntrance, "Press E near the cave entrance to enter"));
 					//Turn off bees when player enters cave
-					actionQ.Enqueue(new MoveAction(mm.Bees, mm.TorkanaEnterDoctors));
+					//actionQ.Enqueue(new MoveAction(mm.Bees, mm.TorkanaEnterDoctors)); <- so no changes have to be made when mission is restarted.
+					//May need to change swarm focus, though.
 					actionQ.Enqueue(new ActiveAction(mm.Bees, false));
-					//Turn off damage as well
-					actionQ.Enqueue(new DamageAction(mm.damageHandler,false,"Swarm"));
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 30, 1));
@@ -520,7 +518,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.HEALING_WATER,"Jump into the water and grab some healing water with G"));
 				//player must find the health potion to get out alive
-				if(mm.Player.GetComponent<CharacterOurs>().health < 50){
+				/*if(mm.Player.GetComponent<CharacterOurs>().health mm.Player.GetComponent<PlayerStatusBars>().Health() < 50){
 					actionQ.Enqueue (new FreezeAction (mm.Player, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 31, 1));
 					actionQ.Enqueue (new FreezeAction (mm.Player, false));
@@ -529,7 +527,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 32, 1));
 					actionQ.Enqueue (new FreezeAction (mm.Player, false));
 					actionQ.Enqueue(new ApplyAction(mm.Player, mm.Player, GrabMe.kind.HEALTH_POTION));
-				}
+				}*/  //completely unnecessary
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 33, 1));
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));

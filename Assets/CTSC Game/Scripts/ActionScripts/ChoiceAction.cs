@@ -40,6 +40,14 @@ public class ChoiceAction : MissionAction{
 						//Debug.Log("Missions set complete lady");
 					}
 				}
+				else if (indicator.Equals("Bees1")){
+					manager.choiceForBees1 = 0;
+					//Do nothing because this is the correct choice.
+				}
+				else if (indicator.Equals("Bees2")){
+					manager.choiceForBees2 = 0;
+					//Do nothing because this is the correct choice.
+				}
 				else{
 					//Debug.Log(indicator + " is a wrong key");
 				}
@@ -53,6 +61,20 @@ public class ChoiceAction : MissionAction{
 					currentMission.setEventComplete(MissionManager.EventType.TURN_BACK);
 					currentMission.setEventComplete(MissionManager.EventType.RETURN_TO_FT1);
 					//Debug.Log("Mission set complete rain");
+				}
+				else if (indicator.Equals("Bees1")){
+					currentMission.resetMission();
+					manager.atBeeArea.GetComponent<EnterScript>().reset ();
+					manager.continueBees.GetComponent<EnterScript>().reset();
+					manager.turnBackBees.GetComponent<EnterScript>().reset();
+				}
+				else if (indicator.Equals("Bees2")){
+					currentMission.resetMission();
+					manager.PlayerEnterDoctors.GetComponent<EnterScript>().reset();
+					manager.nearDoctor.GetComponent<EnterScript>().reset();
+					manager.GoingToBees.GetComponent<EnterScript>().reset();
+					manager.continueHerb.GetComponent<EnterScript>().reset();
+					manager.turnBackHerb.GetComponent<EnterScript>().reset();
 				}
 				else{
 					Debug.Log(indicator + " is a wrong key");}

@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class PlayerStatusBars : MonoBehaviour {
 
-
+	public MissionManager mm;
+	private Mission currentMission;
 	public RectTransform healthTransform;
 	public RectTransform courTransform;
 	public RectTransform compTransform;
@@ -20,6 +21,10 @@ public class PlayerStatusBars : MonoBehaviour {
 	private int currentHealth;
 	private int currentCourage;
 	private int currentCompassion;
+
+	public int Health() {
+		return currentHealth;
+	}
 
 
 	private int CurrentHealth
@@ -74,6 +79,8 @@ public class PlayerStatusBars : MonoBehaviour {
 	private bool onCD;
 	// Use this for initialization
 	void Start () {
+		currentMission = mm.getCurrentMission ();
+
 		cachedYHealth = healthTransform.position.y;
 		maxXValueHealth = healthTransform.position.x;
 		minXValueHealth = healthTransform.position.x - healthTransform.rect.width;
@@ -97,6 +104,11 @@ public class PlayerStatusBars : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (!mm.getCurrentMission ().Equals (currentMission)) {
+			currentMission = mm.getCurrentMission ();
+			Debug.Log ("Mission Changed");
+		}
 
 	}
 
@@ -193,8 +205,36 @@ public class PlayerStatusBars : MonoBehaviour {
 			onCD = false;
 			counter--;
 		}
-	}
 
+		//Make this a separate method and call it the instant death occurs.  Also, stop the coroutine at beginning.
+
+		//If you die, restart mission and send you back to the start point of said mission.  Only has to work for missions where you can die.
+		if(currentHealth <= 0) {
+			currentMission.resetMission();
+			CurrentHealth = 100;
+			//For each relevant mission, reset appropriate EnterScripts.  Add more missions as it becomes appropriate.
+			//This doesn't either
+			if(currentMission.getID() == 2){
+				//Need to move Torkana back to front of house.  Make inFrontTorkanaHouse a TransportPlayer.
+				mm.atBeeArea.GetComponent<EnterScript>().reset ();
+				//Need to reset bees.
+			}
+			//This doesn't need to be a thing anymore
+			if(currentMission.getID() == 3){
+				mm.PlayerEnterDoctors.GetComponent<EnterScript>().reset();
+				mm.nearDoctor.GetComponent<EnterScript>().reset();
+				mm.GoingToBees.GetComponent<EnterScript>().reset();
+				mm.HealingCaveEntrance.GetComponent<EnterScript>().reset();
+				mm.BlockedPath.GetComponent<EnterScript>().reset();
+				mm.CaveGateClosed.SetActive(true);
+				mm.CaveGateOpened.SetActive(false);
+				//May need to undepress switch.
+				mm.HealingCaveExit.GetComponent<EnterScript>().reset();
+			}
+			
+		}
+	}
+	
 	/*void OnTriggerStay(Collider other) 
 	{
 		if(other.gameObject.tag == "Player")
@@ -216,7 +256,13 @@ public class PlayerStatusBars : MonoBehaviour {
 
 		float currentXValue = MapValues (currentHealth, 0, maxHealth, minXValueHealth, maxXValueHealth);
 
-		healthTransform.position = new Vector3 (currentXValue, cachedYHealth);
+		if (currentHealth != 100) {
+			healthTransform.SetInsetAndSizeFromParentEdge (RectTransform.Edge.Right, maxXValueHealth - currentXValue, currentXValue - minXValueHealth);
+		} else {
+			healthTransform.SetInsetAndSizeFromParentEdge (RectTransform.Edge.Right, maxXValueHealth, maxXValueHealth - minXValueHealth);
+		}
+
+		//healthTransform.position = new Vector3 (currentXValue, cachedYHealth);
 	}
 
 	void HandleCompassion()

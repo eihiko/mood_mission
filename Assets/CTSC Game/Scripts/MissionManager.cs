@@ -98,8 +98,12 @@ public class MissionManager : MonoBehaviour {
 	public GameObject MentorBasement, ChestClosed, ChestOpen;
 	public GameObject TorkanaStandPos, leavingHouse;
 	public GameObject atBeeArea, DoctorGardenBees;
+	public GameObject continueBees,turnBackBees;
+	public int choiceForBees1 = 2;
 	public GameObject Map, Bees, DoctorsHouse, PlayerEnterDoctors, TorkanaEnterDoctors;
 	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden, BackToDoctors, LeavingDoctor;
+	public GameObject continueHerb, turnBackHerb;
+	public int choiceForBees2 = 2;
 	public GameObject Amulet;
 	public GameObject CityEntrance;
 	public GameObject InjuredPerson; //Note, is also classified as injuredPerson

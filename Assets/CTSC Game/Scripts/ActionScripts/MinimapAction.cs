@@ -22,7 +22,7 @@ public class MinimapAction : MissionAction {
 
 	public bool execute() {
 		minimap.changeObjective (objective);
-		Debug.Log("Pointing at " + objective.ToString());
+		//Debug.Log("Pointing at " + objective.ToString());
 		return true;
 	}
 

@@ -137,3 +137,18 @@ You explain that you also need supplies for your mission to defeat the dragon.
 Tavern Keeper: No problem!  Give me a little time to get them ready for you.
 With your supplies ready, it's time to meet with the sewer Foreman's son.
 You did it!  You made it to Merami by yourself!
+You come across a lady selling apples.  You ask her if she knows anything about the cyclops.
+Lady selling apples: The cyclops?
+Lady selling apples: Oh that dreadful thing! All I know is that he has been hitting things and disrupting everyone here! Last time, he stole a bunch of my apples and I know I’m not the only one he’s been stealing from!
+Lady selling apples: A few other townspeople who sell apples have also had encounters with him. I guess he really loves apples…
+You mention that you want to confront the cyclops, and ask for some apples to offer him as a token of peace.
+Lady selling apples: That's a good idea!  Here, take several.  It's worth it if it means my stand won't be getting broken anymore.  Good luck!
+Next you see a boy along the side of the road, and you ask if he has any information about the cylcops.
+Boy: Yeah, he’s been hitting things and disrupting everyone here, but I don’t think he’s a bad fellow. I think the guy just needs some friends. People always talk badly about him so I bet he is lonely!
+You thank the boy for helping you and continue on.
+You can hear the sound of deep laughter coming from the town center.  That must be the cyclops.
+The cyclops is breaking the stands in the area!
+Guard next to you: He is always doing this! Nobody seems to be able to stop him. If only he had some good use for his club...
+You get the attention of the cyclops, who stops swinging his club to talk to you.
+Cyclops: What do you want with me, huh?  Come to yell at me some more?
+You hand him an apple, which he takes and eats.  Now that you have his attention, you should talk to him about what he's doing.

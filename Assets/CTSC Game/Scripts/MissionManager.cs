@@ -57,25 +57,20 @@ public class MissionManager : MonoBehaviour {
 		HEAD_BACK_MT2, TALK_TO_FT2, ENTER_FT2_HOUSE, FIND_DRAWINGS, SHOW_DRAWINGS, FIND_PICTURES, SHOW_PICTURES, FIND_LOCKET, GIVE_LOCKET,
 		RETURN_TO_SON, TALK_TO_SON,
 
-		//Ninth Mission to deal with cyclops (12 events)
-		TOWARD_TOWN_CENTER, TALK_TO_FT3, APPLES_FROM_FT3, 
-		TALK_TO_MT4, CLOSER_TOWN_CENTER, 
+		//Ninth Mission to deal with cyclops (7 events)
+		TOWARD_TOWN_CENTER, TALK_TO_FT3,
+		TALK_TO_MT4,
 		//Need to play sound file here
 		HEAR_LAUGHING, 
 		//Finally at the town center where the mission truly begins
-		REACH_TOWN_CENTER, TALK_TO_GUARD,
-		GIVE_CYCLOPS_APPLES,
-		//These must check the dialogue choice of cyclops, with some sort of loop until the correct one is selected
-		CYCLOPS_CHOICE,
-		//If the cyclops chooses wrong
-		GET_MORE_APPLES, FEED_CYCLOPS_MORE,
+		TALK_TO_GUARD,
+		//Must check whether cyclops has chosen correctly yet.
+		GIVE_CYCLOPS_APPLES, GET_SEWER_OPEN,
 
 
 		//Tenth Mission to go on quest for Hydra
 		//use previous return talk and exit son for this mission also
 		BEGIN_HYDRA_QUEST, BATTLE_HYDRA, DEFEAT_HYDRA,
-		//Tenth Mission to begin sewer quest
-		//uses the previous values of return talk and exit son
 		ATTAIN_SEWER_MAP,
 		//
 		NULL
@@ -129,8 +124,14 @@ public class MissionManager : MonoBehaviour {
 	public GameObject YoungGirl, CryingSound, hearGirlCrying, nearGirl, insideGirlHouse, nearDrawings, drawingExit, inside2, nearPictures, pictureExit, inside3, nearLocket, locketExit;
 	public GameObject GirlsFather, GirlsMother, fatherStop, motherStop, YoungGirlStand;
 	public GameObject BackFromDeeds,OnwardToCyclops;
+	public GameObject nearAppleLady, AppleLady, nearKid, Kid, hearLaugh, nearGuard, Guard, nearCyclops, Cyclops;
 	
 	public MissionManager.MissionType currMissionType;
+
+	public Material sunny;
+	public Material darkness;
+	public Material rainy;
+	public Material night;
 
 	//UI indexed by name.
 	//These should be unique to each mission in the future.
@@ -359,6 +360,18 @@ public class MissionManager : MonoBehaviour {
 					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 				}
 					break;
+			case MissionType.CYCLOPS:
+				for (int i = 70; i < 77; i++) {
+					events.Add((EventType)i);
+				}
+				currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
+				//Add all the event transforms for this mission to its event dictionary
+				foreach (Transform child in currTransform){
+					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+				}
+				break;
 //				case MissionType.HYDRA:
 //					for(int i = 12; i < 18; i++) {
 				//						events.Add((EventType)i);

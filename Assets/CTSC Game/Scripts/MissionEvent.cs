@@ -78,6 +78,7 @@ public class MissionEvent : MonoBehaviour {
 				if(mission.getCurrentMissionEvent()==eventType) {
 	//			Debug.Log ("into the INTRO event");
 			    //Player must FREEZE
+					actionQ.Enqueue(new SkyboxAction(mm.sunny)); //Just to make sure the sky doesn't randomly stay black or anything.
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 0, 3));
@@ -154,6 +155,8 @@ public class MissionEvent : MonoBehaviour {
 			//Candle must ACTIVE(true)
 				//we use a headlamp here instead of a real candle
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
+					//Darken the room
+					actionQ.Enqueue(new SkyboxAction(true));
 				isBusy = true;
 				}
 				break;
@@ -224,6 +227,8 @@ public class MissionEvent : MonoBehaviour {
 			//Player must ENTER(mentorHouse)
 				actionQ.Enqueue (new EnterAction (mm.Player, mm.leavingHouse,
 				                                  "Stand near the ladder and press E to go upstairs"));
+					//Brighten again as you go up.
+					actionQ.Enqueue(new SkyboxAction(false));
 				actionQ.Enqueue (new ActiveAction (mm.Candle, false));
 				isBusy = true;
 				}
@@ -497,6 +502,10 @@ public class MissionEvent : MonoBehaviour {
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				//player must enter healing cave
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveEntrance, "Press E near the cave entrance to enter"));
+					//Turn sky dark again
+					actionQ.Enqueue(new SkyboxAction(mm.darkness));
+					//Also darken cave?
+					actionQ.Enqueue(new SkyboxAction(true));
 					//Turn off bees when player enters cave
 					//actionQ.Enqueue(new MoveAction(mm.Bees, mm.TorkanaEnterDoctors)); <- so no changes have to be made when mission is restarted.
 					//May need to change swarm focus, though.
@@ -534,6 +543,9 @@ public class MissionEvent : MonoBehaviour {
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				//player must exit healing cave
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.HealingCaveExit, "Press E near the cave entrance to exit"));
+					//Turn the sun back on.
+					actionQ.Enqueue(new SkyboxAction(mm.sunny));
+					actionQ.Enqueue(new SkyboxAction(false));
 				isBusy = true;
 				}
 				break;
@@ -929,6 +941,8 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType) {
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideFT1House, "Go to the tavern to deliver the letters"));
+					//Bring in the clouds
+					actionQ.Enqueue(new SkyboxAction(mm.rainy));
 					//Point at the old man's house again, because otherwise the player doesn't pass the triggers.
 					actionQ.Enqueue(new MinimapAction("MT3"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
@@ -1062,6 +1076,8 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.WAIT_FOR_END:
 				if (mission.getCurrentMissionEvent()==eventType) {
 					//if (mm.choiceInTavern==1) {
+					//Make it less cloudy
+					actionQ.Enqueue(new SkyboxAction(mm.sunny));
 						actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,94,1));
@@ -1077,6 +1093,7 @@ public class MissionEvent : MonoBehaviour {
 					//}
 				}
 				break;
+				//Mission 8 events
 			case MissionManager.EventType.HEAD_BACK_MT2:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new MinimapAction("Son"));
@@ -1117,6 +1134,8 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					//Shut off the rain if still on
 					actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
+					//Also make the clouds go away
+					actionQ.Enqueue(new SkyboxAction(mm.sunny));
 					actionQ.Enqueue(new EnterAction(mm.Player, mm.nearDrawings, "Search for something the girl made"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,102,1));
@@ -1214,6 +1233,72 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.OnwardToCyclops, "Head outside to find and defeat the cyclops"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.TOWARD_TOWN_CENTER:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new MinimapAction("Town Center"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearAppleLady,"Head towards the town center and see if you can get any information on the cyclops"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.TALK_TO_FT3:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,141,1));
+					actionQ.Enqueue(new TalkAction(mm.AppleLady,currentAudio,mm.currentUI,142,3));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,145,1));
+					actionQ.Enqueue(new TalkAction(mm.AppleLady,currentAudio,mm.currentUI,146,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.TALK_TO_MT4:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearKid,"Continue towards the town center."));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,147,1));
+					actionQ.Enqueue(new TalkAction(mm.Kid,currentAudio,mm.currentUI,148,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,149,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.HEAR_LAUGHING:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.hearLaugh,"Continue towards the town center."));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					//start laughter here
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,150,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearGuard,"Go and confront the cyclops."));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.TALK_TO_GUARD:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,151,1));
+					actionQ.Enqueue(new TalkAction(mm.Guard,currentAudio,mm.currentUI,152,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearCyclops,"Talk to the cyclops and see if you can get him to stop"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.GIVE_CYCLOPS_APPLES:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					//stop laughter here
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,153,1));
+					actionQ.Enqueue(new TalkAction(mm.Cyclops,currentAudio,mm.currentUI,154,1));
+					//Insert Cyclops choice
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.GET_SEWER_OPEN:
+				if (mission.getCurrentMissionEvent()==eventType){
 					isBusy = true;
 				}
 				break;

@@ -143,12 +143,50 @@ Lady selling apples: Oh that dreadful thing! All I know is that he has been hitt
 Lady selling apples: A few other townspeople who sell apples have also had encounters with him. I guess he really loves apples…
 You mention that you want to confront the cyclops, and ask for some apples to offer him as a token of peace.
 Lady selling apples: That's a good idea!  Here, take several.  It's worth it if it means my stand won't be getting broken anymore.  Good luck!
-Next you see a boy along the side of the road, and you ask if he has any information about the cylcops.
-Boy: Yeah, he’s been hitting things and disrupting everyone here, but I don’t think he’s a bad fellow. I think the guy just needs some friends. People always talk badly about him so I bet he is lonely!
-You thank the boy for helping you and continue on.
+Next you see a kid along the side of the road, and you ask if they has any information about the cylcops.
+Kid: Yeah, he’s been hitting things and disrupting everyone here, but I don’t think he’s a bad fellow. I think the guy just needs some friends. People always talk badly about him so I bet he is lonely!
+You thank the kid for helping you and continue on.
 You can hear the sound of deep laughter coming from the town center.  That must be the cyclops.
 The cyclops is breaking the stands in the area!
 Guard next to you: He is always doing this! Nobody seems to be able to stop him. If only he had some good use for his club...
 You get the attention of the cyclops, who stops swinging his club to talk to you.
 Cyclops: What do you want with me, huh?  Come to yell at me some more?
 You hand him an apple, which he takes and eats.  Now that you have his attention, you should talk to him about what he's doing.
+Cyclops: Hmmmm... Let me think about that for a while.
+Cyclops: Why should I help people?  They never helped me!
+Cyclops: That won't change anything.  Nobody likes me.
+Cyclops: Fine, then!  I'll just keep attacking!
+Cyclops: You know what?  That's actually a pretty good idea.  I'll go volunteer to be a guard.  Thanks for your help!
+You cleverly helped the cyclops find a good use for his strength.  
+Now that you have helped both the cyclops and the townspeople, you should return to the son of the sewer foreman and tell him about your deeds.
+Foreman's Son: Well done! I now fully believe in your ability to find my father and defeat the creatures that are in the sewer. Here’s the map of the sewer.
+Foreman's Son: By the way, several of the townspeople stopped by to tell me how grateful they are for your help.  They really like you!
+Foreman's Son: I'm counting on you to help out my father.  He has been gone for a long time, and I'm worried about him.  The entrance to the sewers is on the street right near my house.  Good luck.
+Foreman's Son: Oh!  I almost forgot; the deeper parts of the sewer are closed off so people don't get lost down there, but there's a switch to open them in my father's office.  There should be an extra key in one of the rooms.
+You found your way into the sewers.  Now you need to find the key and unlock the door that leads deeper in.
+You see the key, but it is surrounded by giant spiders that are blocking your path.
+You wait and see if the spiders leave, but they remain guarding the key.
+You try to stomp on the spiders, but more come crawling out of holes in the walls.
+The spiders rush past you to get to the food you placed down, as if they were expecting it.  Now is your chance to grab the key.
+Now that you have the key, you should be able to get into the foreman's office.
+When you enter the office, you see a note sitting on the table.  You pick it up and read what it says.
+Note: Son, I have seen some monsters coming from the lower levels of the sewers.  I am going down to block them up so the townspeople can begin rebuilding in peace.  Love, Dad.
+It sounds like the sewer foreman is on the lower levels, like his son said.  You should find the switch to open the gate and go down after him.
+You hear the sound of metal sliding - the door must be open now.
+A hydra!  What is such a powerful beast doing down here?  You don't see the foreman yet.  He must be past the hydra.
+It's no good!  You think you can defend yourself from fire blasts using your shield, but the negative thoughts are too strong...
+You don't think you can defend yourself from this threat.  The hydra sees that you aren't fighting back and turns to head deeper into the sewers.
+Torkana through the amulet: Are you alright?  That hydra is a difficult enemy to face.  It is good at using your own doubts against you.
+Torkana through the amulet: In order to beat it, you must strengthen your belief in yourself.  Think of all that you have accomplished, the trials you've overcome, the people that you've helped.  Let them be your strength.
+Torkana through the amulet: You were given special scrolls after facing your toughest challenges.  Those scrolls contain the positive feelings that the townspeople have in you.  You can use them to deflect the negative thoughts the hydra is using to attack you.
+Torkana through the amulet: Now go forward and face your fears!  The townspeople believe in you!
+Torkana through the amulet: Great job!  You've defeated the hydra!  You believed in yourself and the hydra's negative words could not harm you.
+Foreman: Hello!  I thought nobody would ever find me down here.  How were you able to get past the hydra?
+You tell him about your battle with the hydra.
+Foreman: Wow!  That's incredible!  I'm so glad you came to get me!
+Foreman: I came down here to seal the tunnels so the monsters couldn't get through, but when I was on my way back home, the hydra blocked my path.  If it wasn't for you, I would be stuck down here.
+Foreman: Come with me.  We should head back to my house.  I'm sure you could use some rest after your troubles.
+The foreman's son is overjoyed at the return of his father.  He thanks you for your help and tells the foreman about your quest.
+Foreman: The dragon, eh?  Well, you need a boat to be able to reach the island that it lives on.  
+Foreman: There is a troll who owns a boat rental down by the lake.  He should be willing to lend you a boat for free since you are helping us out.
+Foreman: It's already getting dark.  Take this torch with you so you can see the way.  Good luck!

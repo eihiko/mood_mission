@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Collections;
@@ -1236,6 +1236,7 @@ public class MissionEvent : MonoBehaviour {
 					isBusy = true;
 				}
 				break;
+			//Mission 9 Events
 			case MissionManager.EventType.TOWARD_TOWN_CENTER:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new MinimapAction("Town Center"));
@@ -1246,10 +1247,10 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.TALK_TO_FT3:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
-					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,141,1));
-					actionQ.Enqueue(new TalkAction(mm.AppleLady,currentAudio,mm.currentUI,142,3));
-					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,145,1));
-					actionQ.Enqueue(new TalkAction(mm.AppleLady,currentAudio,mm.currentUI,146,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,139,1));
+					actionQ.Enqueue(new TalkAction(mm.AppleLady,currentAudio,mm.currentUI,140,3));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,143,1));
+					actionQ.Enqueue(new TalkAction(mm.AppleLady,currentAudio,mm.currentUI,144,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
@@ -1258,9 +1259,9 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearKid,"Continue towards the town center."));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,145,1));
+					actionQ.Enqueue(new TalkAction(mm.Kid,currentAudio,mm.currentUI,146,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,147,1));
-					actionQ.Enqueue(new TalkAction(mm.Kid,currentAudio,mm.currentUI,148,1));
-					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,149,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
@@ -1270,7 +1271,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.hearLaugh,"Continue towards the town center."));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					//start laughter here
-					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,150,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,148,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearGuard,"Go and confront the cyclops."));
 					isBusy = true;
@@ -1279,8 +1280,8 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.TALK_TO_GUARD:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
-					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,151,1));
-					actionQ.Enqueue(new TalkAction(mm.Guard,currentAudio,mm.currentUI,152,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,149,1));
+					actionQ.Enqueue(new TalkAction(mm.Guard,currentAudio,mm.currentUI,150,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearCyclops,"Talk to the cyclops and see if you can get him to stop"));
 					isBusy = true;
@@ -1290,19 +1291,170 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					//stop laughter here
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,151,1));
+					actionQ.Enqueue(new TalkAction(mm.Cyclops,currentAudio,mm.currentUI,152,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,153,1));
-					actionQ.Enqueue(new TalkAction(mm.Cyclops,currentAudio,mm.currentUI,154,1));
-					//Insert Cyclops choice
+					actionQ.Enqueue(new PrintAction("Press 1 to suggest that the cyclops become a guard.  Press 2 to suggest that the cyclops stop attacking the stands.  Press 3 to suggest that the cyclops keep attacking.",100));
+					actionQ.Enqueue(new SetAction(mm.Cyclops.GetComponent<CyclopsChoiceLoop>().isChoosing,true));
+					actionQ.Enqueue(new WaitAction(mm.cyclopsChoice));
+					actionQ.Enqueue(new TalkAction(mm.Cyclops,currentAudio,mm.currentUI,158,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,159,2));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.GET_SEWER_OPEN:
 				if (mission.getCurrentMissionEvent()==eventType){
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.finalSonStop,"Return to the sewer foreman's son to get the sewer opened."));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI,161,3));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					isBusy = true;
+				}
+				break;
+
+			//Mission 10 events
+			case MissionManager.EventType.ENTER_SEWERS:
+				if(mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI,164,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.sewerEntrance,"Find the entrance to the sewers"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.TOLERATE_SPIDERS:
+				if(mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,165,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.keySpied,"Search the nearby rooms for the key"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,166,1));
+					actionQ.Enqueue(new PrintAction("Press 1 to attack the spiders.  Press 2 to wait for the spiders to leave.  Press 3 to lure the spiders away with food.",100));
+					actionQ.Enqueue(new SetAction(mm.Spiders1.GetComponent<SpiderLoopA>().isChoosing,true));
+					actionQ.Enqueue(new WaitAction(mm.choiceSewerSpiders));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,169,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					actionQ.Enqueue(new GrabAction(mm.Player,GrabMe.kind.SEWER_KEY,"Pick up the sewer key with G"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.OPEN_DOOR:
+				if(mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,170,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true; //Not sure if needed or not
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.officeDoor,"Enter the office and find the switch that opens the gate"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.FIND_NOTE:
+				if(mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,171,1));
+					actionQ.Enqueue(new TalkAction(mm.Foreman,currentAudio,mm.currentUI,172,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,173,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.ACTIVATE_LEVER:
+				if(mission.getCurrentMissionEvent()==eventType){
+					//Lever activating action
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.leverTrigger,"Pull the lever to open the door to the rest of the sewers"));
+					//Lever moves
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,174,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					//Player heads to the front of the hydra area
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.entranceToArena,"Continue on to find the foreman"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.HYDRA_FAIL:
+				if(mission.getCurrentMissionEvent()==eventType){
+					//Hydra spotted.  Make sure it isn't attacking yet.
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new FreezeAction(mm.Hydra,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,175,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					actionQ.Enqueue(new FreezeAction(mm.Hydra,false));
+					//Activate hydra and wait for player to get hit once by a negative thought.
+					actionQ.Enqueue(new WaitAction(mm.hydraHit1));
+					//Freeze hydra as well as Player.
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new FreezeAction(mm.Hydra,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,176,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					actionQ.Enqueue(new FreezeAction(mm.Hydra,false));
+					//Wait for second negative thought hit.
+					actionQ.Enqueue(new WaitAction(mm.hydraHit2));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new FreezeAction(mm.Hydra,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,177,1));
+					//Hydra turns to leave
+					//Deactivate hydra's attack
+					actionQ.Enqueue(new TurnAction(mm.Hydra,mm.hydraGoTo,false,0));
+					actionQ.Enqueue(new MoveAction(mm.Hydra,mm.hydraGoTo));
+					actionQ.Enqueue(new TurnAction(mm.Hydra,mm.hydraFace,false,0));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.COMPLIMENT_SCROLLS:
+				if(mission.getCurrentMissionEvent()==eventType){
+					//Torkana speaks to the player.
+					actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,178,4));
+					//Maybe some extra sequence?  Probably need to add in a fancy "You got a Compliment Scroll!" message after Cyclops and Townsperson missions
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.facingTheHydra,"Face your fears!  Defeat the hydra!"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.HYDRA_FIGHT:
+				if(mission.getCurrentMissionEvent()==eventType){
+					//Begin the fight!  Turn hydra's attack back on.
+					actionQ.Enqueue(new WaitAction(mm.hydraDefeated));
+					//Hydra turns and slinks away; gets deactivated once far enough away
+					actionQ.Enqueue(new TurnAction(mm.Hydra,mm.hydraFlee,false,0));
+					actionQ.Enqueue(new MoveAction(mm.Hydra,mm.hydraFlee));
+					actionQ.Enqueue(new ActiveAction(mm.Hydra,false));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,182,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.FIND_FOREMAN:
+				if (mission.getCurrentMissionEvent()==eventType){
+					//Player heads off to find foreman
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearForeman, "Head deeper into the sewers to find the foreman"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new TalkAction(mm.Foreman,currentAudio,mm.currentUI,183,1));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,184,1));
+					actionQ.Enqueue(new TalkAction(mm.Foreman,currentAudio,mm.currentUI,185,3));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					//Possibly do an insta-teleport out?
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.REUNION_WITH_SON:
+				if (mission.getCurrentMissionEvent()==eventType){
+					//At this point, player and foreman are in the foreman's house
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,188,1));
+					actionQ.Enqueue(new TalkAction(mm.Foreman,currentAudio,mm.currentUI,189,3));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					//Player steps outside
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.toTheBoathouse,"Go to the boathouse to talk to the troll"));
 					isBusy = true;
 				}
 				break;
 			}
+
 		}
 
 //		Debug.Log ("done queueing actions");

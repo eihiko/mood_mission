@@ -1,0 +1,1105 @@
+fileFormatVersion: 2
+guid: 7557c9d0f0384ce4a9ba4bc96f156029
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: CYCLOP_
+    100004: CYCLOP_ Head
+    100006: CYCLOP_ L Calf
+    100008: CYCLOP_ L Clavicle
+    100010: CYCLOP_ L Finger0
+    100012: CYCLOP_ L Finger01
+    100014: CYCLOP_ L Finger02
+    100016: CYCLOP_ L Finger1
+    100018: CYCLOP_ L Finger11
+    100020: CYCLOP_ L Finger12
+    100022: CYCLOP_ L Finger2
+    100024: CYCLOP_ L Finger21
+    100026: CYCLOP_ L Finger22
+    100028: CYCLOP_ L Finger3
+    100030: CYCLOP_ L Finger31
+    100032: CYCLOP_ L Finger32
+    100034: CYCLOP_ L Finger4
+    100036: CYCLOP_ L Finger41
+    100038: CYCLOP_ L Finger42
+    100040: CYCLOP_ L Foot
+    100042: CYCLOP_ L Forearm
+    100044: CYCLOP_ L Hand
+    100046: CYCLOP_ L Thigh
+    100048: CYCLOP_ L Toe0
+    100050: CYCLOP_ L UpperArm
+    100052: CYCLOP_ Neck
+    100054: CYCLOP_ Pelvis
+    100056: CYCLOP_ Queue de cheval 1
+    100058: CYCLOP_ R Calf
+    100060: CYCLOP_ R Clavicle
+    100062: CYCLOP_ R Finger0
+    100064: CYCLOP_ R Finger01
+    100066: CYCLOP_ R Finger02
+    100068: CYCLOP_ R Finger1
+    100070: CYCLOP_ R Finger11
+    100072: CYCLOP_ R Finger12
+    100074: CYCLOP_ R Finger2
+    100076: CYCLOP_ R Finger21
+    100078: CYCLOP_ R Finger22
+    100080: CYCLOP_ R Finger3
+    100082: CYCLOP_ R Finger31
+    100084: CYCLOP_ R Finger32
+    100086: CYCLOP_ R Finger4
+    100088: CYCLOP_ R Finger41
+    100090: CYCLOP_ R Finger42
+    100092: CYCLOP_ R Foot
+    100094: CYCLOP_ R Forearm
+    100096: CYCLOP_ R Hand
+    100098: CYCLOP_ R Thigh
+    100100: CYCLOP_ R Toe0
+    100102: CYCLOP_ R UpperArm
+    100104: CYCLOP_ Spine
+    100106: CYCLOP_ Spine1
+    100108: CYCLOP_EYE
+    400000: //RootNode
+    400002: CYCLOP_
+    400004: CYCLOP_ Head
+    400006: CYCLOP_ L Calf
+    400008: CYCLOP_ L Clavicle
+    400010: CYCLOP_ L Finger0
+    400012: CYCLOP_ L Finger01
+    400014: CYCLOP_ L Finger02
+    400016: CYCLOP_ L Finger1
+    400018: CYCLOP_ L Finger11
+    400020: CYCLOP_ L Finger12
+    400022: CYCLOP_ L Finger2
+    400024: CYCLOP_ L Finger21
+    400026: CYCLOP_ L Finger22
+    400028: CYCLOP_ L Finger3
+    400030: CYCLOP_ L Finger31
+    400032: CYCLOP_ L Finger32
+    400034: CYCLOP_ L Finger4
+    400036: CYCLOP_ L Finger41
+    400038: CYCLOP_ L Finger42
+    400040: CYCLOP_ L Foot
+    400042: CYCLOP_ L Forearm
+    400044: CYCLOP_ L Hand
+    400046: CYCLOP_ L Thigh
+    400048: CYCLOP_ L Toe0
+    400050: CYCLOP_ L UpperArm
+    400052: CYCLOP_ Neck
+    400054: CYCLOP_ Pelvis
+    400056: CYCLOP_ Queue de cheval 1
+    400058: CYCLOP_ R Calf
+    400060: CYCLOP_ R Clavicle
+    400062: CYCLOP_ R Finger0
+    400064: CYCLOP_ R Finger01
+    400066: CYCLOP_ R Finger02
+    400068: CYCLOP_ R Finger1
+    400070: CYCLOP_ R Finger11
+    400072: CYCLOP_ R Finger12
+    400074: CYCLOP_ R Finger2
+    400076: CYCLOP_ R Finger21
+    400078: CYCLOP_ R Finger22
+    400080: CYCLOP_ R Finger3
+    400082: CYCLOP_ R Finger31
+    400084: CYCLOP_ R Finger32
+    400086: CYCLOP_ R Finger4
+    400088: CYCLOP_ R Finger41
+    400090: CYCLOP_ R Finger42
+    400092: CYCLOP_ R Foot
+    400094: CYCLOP_ R Forearm
+    400096: CYCLOP_ R Hand
+    400098: CYCLOP_ R Thigh
+    400100: CYCLOP_ R Toe0
+    400102: CYCLOP_ R UpperArm
+    400104: CYCLOP_ Spine
+    400106: CYCLOP_ Spine1
+    400108: CYCLOP_EYE
+    7400000: attack1
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "\nDefault bone length found in this file is different
+      form the one found in the source avatar:\n\t'CYCLOP_ L Thigh' : position error
+      = 10.319284 mm\n\t'CYCLOP_ R Thigh' : position error = 10.094707 mm\n\nClip
+      'Take 001' has import animation warnings that might lower retargeting quality:\n\t'CYCLOP_
+      Spine' is inbetween humanoid transforms and has rotation animation that will
+      be discarded.\n\t'CYCLOP_ L Thigh' has translation animation that will be discarded.\n\t'CYCLOP_
+      R Thigh' has translation animation that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: attack1
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CYCLOP_
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ L Thigh
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ L Thigh/CYCLOP_ L Calf
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ L Thigh/CYCLOP_ L Calf/CYCLOP_
+          L Foot
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ L Thigh/CYCLOP_ L Calf/CYCLOP_
+          L Foot/CYCLOP_ L Toe0
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ R Thigh
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ R Thigh/CYCLOP_ R Calf
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ R Thigh/CYCLOP_ R Calf/CYCLOP_
+          R Foot
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ R Thigh/CYCLOP_ R Calf/CYCLOP_
+          R Foot/CYCLOP_ R Toe0
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          Head
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          Head/CYCLOP_ Queue de cheval 1
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          Head/CYCLOP_EYE
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger0
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger0/CYCLOP_ L Finger01
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger0/CYCLOP_ L Finger01/CYCLOP_ L Finger02
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger1
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger1/CYCLOP_ L Finger11
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger1/CYCLOP_ L Finger11/CYCLOP_ L Finger12
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger2
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger2/CYCLOP_ L Finger21
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger2/CYCLOP_ L Finger21/CYCLOP_ L Finger22
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger3
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger3/CYCLOP_ L Finger31
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger3/CYCLOP_ L Finger31/CYCLOP_ L Finger32
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger4
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger4/CYCLOP_ L Finger41
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          L Clavicle/CYCLOP_ L UpperArm/CYCLOP_ L Forearm/CYCLOP_ L Hand/CYCLOP_ L
+          Finger4/CYCLOP_ L Finger41/CYCLOP_ L Finger42
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger0
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger0/CYCLOP_ R Finger01
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger0/CYCLOP_ R Finger01/CYCLOP_ R Finger02
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger1
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger1/CYCLOP_ R Finger11
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger1/CYCLOP_ R Finger11/CYCLOP_ R Finger12
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger2
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger2/CYCLOP_ R Finger21
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger2/CYCLOP_ R Finger21/CYCLOP_ R Finger22
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger3
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger3/CYCLOP_ R Finger31
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger3/CYCLOP_ R Finger31/CYCLOP_ R Finger32
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger4
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger4/CYCLOP_ R Finger41
+        weight: 1
+      - path: CYCLOP_/CYCLOP_ Pelvis/CYCLOP_ Spine/CYCLOP_ Spine1/CYCLOP_ Neck/CYCLOP_
+          R Clavicle/CYCLOP_ R UpperArm/CYCLOP_ R Forearm/CYCLOP_ R Hand/CYCLOP_ R
+          Finger4/CYCLOP_ R Finger41/CYCLOP_ R Finger42
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human:
+    - boneName: CYCLOP_ Pelvis
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Thigh
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Calf
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Foot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Toe0
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ Spine1
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ Neck
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Clavicle
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R UpperArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Forearm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Hand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ Queue de cheval 1
+      humanName: Jaw
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_EYE
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Clavicle
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L UpperArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Forearm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Hand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Thigh
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Calf
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Foot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Toe0
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger0
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger01
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger02
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger11
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger12
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger2
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger21
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger22
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger3
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger31
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger32
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger4
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger41
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ L Finger42
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger0
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger01
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger02
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger11
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger12
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger2
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger21
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger22
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger3
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger31
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger32
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger4
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger41
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: CYCLOP_ R Finger42
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: CYCLOP(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_
+      position: {x: 0, y: 2.56255174, z: .0535898022}
+      rotation: {x: -.500000477, y: .499999583, z: .499999583, w: .500000477}
+      scale: {x: .999999881, y: .999999881, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ Pelvis
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: -.499999672, y: .500000358, z: .499999672, w: .500000358}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ Spine
+      position: {x: -.262932748, y: -.000473227497, z: 3.65290902e-07}
+      rotation: {x: -2.08047595e-06, y: 6.93675929e-07, z: -.000398158998, w: .99999994}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ Spine1
+      position: {x: -.594456136, y: -.00047335148, z: -1.31288735e-09}
+      rotation: {x: -3.01248826e-14, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ Neck
+      position: {x: -.621828318, y: -.0881047547, z: 3.78681753e-10}
+      rotation: {x: -2.62134149e-14, y: 3.32612302e-07, z: -.119920775, w: .992783487}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ Head
+      position: {x: -.230368957, y: 7.62939436e-08, z: 2.91038298e-13}
+      rotation: {x: -1.03966518e-13, y: -9.90267992e-08, z: .0357040353, w: .999362409}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_EYE
+      position: {x: -.322099894, y: .265611082, z: -9.15527323e-07}
+      rotation: {x: .764518976, y: -.644601226, z: 2.10576047e-07, w: -8.72366684e-07}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: CYCLOP_ Queue de cheval 1
+      position: {x: -.0124353021, y: .108230166, z: 3.03623096e-07}
+      rotation: {x: 1.56833238e-12, y: 2.33908781e-06, z: -.843340337, w: .537379861}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L Clavicle
+      position: {x: .0293780509, y: -.00454185484, z: .114660464}
+      rotation: {x: -.578319073, y: -.0700913742, z: .806889832, w: -.0977914557}
+      scale: {x: 1.00000012, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L UpperArm
+      position: {x: -.485192329, y: 0, z: 3.05175774e-07}
+      rotation: {x: .0422176495, y: .133357316, z: -.00602090126, w: .990150154}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ L Forearm
+      position: {x: -.823727548, y: 0, z: 0}
+      rotation: {x: -7.76175302e-09, y: 1.47414694e-08, z: .020992646, w: .999779642}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L Hand
+      position: {x: -.681105614, y: 0, z: 0}
+      rotation: {x: -.754253745, y: .0180208255, z: -.020753067, w: .656007528}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L Finger3
+      position: {x: -.328730762, y: .000468139624, z: .0663626716}
+      rotation: {x: .000100943158, y: .0237842929, z: .0209632963, w: .999497294}
+      scale: {x: 1.00000012, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L Finger31
+      position: {x: -.113186643, y: 0, z: -1.90734859e-08}
+      rotation: {x: 4.63178496e-10, y: -2.37731446e-10, z: -.0105522191, w: .999944329}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L Finger32
+      position: {x: -.0857389793, y: 3.05175774e-07, z: 9.53674295e-09}
+      rotation: {x: -1.8404297e-09, y: 2.11501439e-09, z: -.0105522191, w: .999944329}
+      scale: {x: .99999994, y: .999999881, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ L Finger2
+      position: {x: -.328373253, y: -.0136709595, z: -.0235267635}
+      rotation: {x: -.000397976459, y: 1.20145905e-05, z: .0301768892, w: .999544501}
+      scale: {x: 1, y: .99999994, z: 1.00000012}
+      transformModified: 1
+    - name: CYCLOP_ L Finger21
+      position: {x: -.131047815, y: 3.05175774e-07, z: 1.90734859e-08}
+      rotation: {x: 0, y: -0, z: -.0105522191, w: .999944329}
+      scale: {x: 1, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: CYCLOP_ L Finger22
+      position: {x: -.100028686, y: 0, z: -1.90734859e-08}
+      rotation: {x: -9.82751987e-12, y: -9.31270727e-10, z: -.0105522191, w: .999944329}
+      scale: {x: 1, y: .999999881, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ L Finger4
+      position: {x: -.312775254, y: .0127139278, z: .139153272}
+      rotation: {x: .000521846698, y: .0469141901, z: .0154509824, w: .998779297}
+      scale: {x: 1.00000012, y: .99999994, z: 1.00000012}
+      transformModified: 1
+    - name: CYCLOP_ L Finger41
+      position: {x: -.0964297429, y: 0, z: -2.86102289e-08}
+      rotation: {x: -7.83858367e-10, y: 1.39788883e-08, z: -.0105521884, w: .999944329}
+      scale: {x: 1, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: CYCLOP_ L Finger42
+      position: {x: -.0834033191, y: 0, z: 2.86102289e-08}
+      rotation: {x: 1.82323145e-09, y: -3.7447383e-09, z: -.0105522051, w: .999944329}
+      scale: {x: .999999881, y: .99999994, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L Finger1
+      position: {x: -.330934912, y: -.0314077735, z: -.123140596}
+      rotation: {x: -.00242701289, y: -.0672252178, z: .0301353056, w: .997279704}
+      scale: {x: 1.00000012, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: CYCLOP_ L Finger11
+      position: {x: -.119499967, y: -3.05175774e-07, z: -1.90734859e-08}
+      rotation: {x: 0, y: -0, z: -.010552234, w: .999944329}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L Finger12
+      position: {x: -.0951408371, y: 0, z: -1.90734859e-08}
+      rotation: {x: -3.74473785e-09, y: -1.82323134e-09, z: -.0105521884, w: .999944329}
+      scale: {x: 1.00000012, y: 1, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ L Finger0
+      position: {x: -.0952888504, y: .0138656609, z: -.138966963}
+      rotation: {x: .676336765, y: -.35148561, z: .265356243, w: .590434194}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L Finger01
+      position: {x: -.112942658, y: 2.28881831e-07, z: -3.05175774e-07}
+      rotation: {x: 0, y: -0, z: -.0105522638, w: .999944329}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L Finger02
+      position: {x: -.0960797891, y: -1.52587887e-07, z: 0}
+      rotation: {x: 4.454375e-08, y: -1.53720539e-08, z: -.010552248, w: .999944329}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R Clavicle
+      position: {x: .0293780509, y: -.00454124436, z: -.114660978}
+      rotation: {x: .578318775, y: .0700890794, z: .806890011, w: -.0977929831}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R UpperArm
+      position: {x: -.485192388, y: 4.76837148e-09, z: -3.05175774e-07}
+      rotation: {x: -.0422176905, y: -.13335596, z: -.00602077274, w: .990150332}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ R Forearm
+      position: {x: -.823727548, y: 3.81469718e-08, z: 0}
+      rotation: {x: 7.4489388e-09, y: 1.56407359e-10, z: .0209926385, w: .999779642}
+      scale: {x: 1.00000012, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R Hand
+      position: {x: -.681105793, y: 0, z: 3.05175774e-07}
+      rotation: {x: .754253745, y: -.0180208385, z: -.0207530577, w: .656007528}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: bludgeon
+      position: {x: -.234673768, y: .0872280896, z: -.0288543701}
+      rotation: {x: -.0209900104, y: .013271465, z: .961234033, w: -.274613291}
+      scale: {x: 1.00000024, y: .999999464, z: 1.00000012}
+      transformModified: 1
+    - name: CYCLOP_ R Finger3
+      position: {x: -.32873106, y: .00046783447, z: -.0663626641}
+      rotation: {x: -.0001009427, y: -.0237842984, z: .0209633131, w: .999497294}
+      scale: {x: .99999994, y: .999999881, z: .999999881}
+      transformModified: 1
+    - name: CYCLOP_ R Finger31
+      position: {x: -.113186799, y: 0, z: -9.53674295e-09}
+      rotation: {x: -3.24716276e-09, y: 1.19848464e-09, z: -.0105522191, w: .999944329}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R Finger32
+      position: {x: -.0857388303, y: 0, z: -9.53674295e-09}
+      rotation: {x: 6.01149353e-09, y: -4.0217798e-09, z: -.01055222, w: .999944329}
+      scale: {x: .999999881, y: .999999881, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R Finger2
+      position: {x: -.328373253, y: -.0136712641, z: .0235267449}
+      rotation: {x: .0003979803, y: -1.2017259e-05, z: .0301769245, w: .999544501}
+      scale: {x: .999999821, y: .999999821, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ R Finger21
+      position: {x: -.131048426, y: 0, z: 1.90734859e-08}
+      rotation: {x: 0, y: -0, z: -.0105522191, w: .999944329}
+      scale: {x: 1, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: CYCLOP_ R Finger22
+      position: {x: -.100028381, y: 0, z: 0}
+      rotation: {x: -1.8723687e-09, y: -9.11615672e-10, z: -.010552234, w: .999944329}
+      scale: {x: 1, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: CYCLOP_ R Finger4
+      position: {x: -.312775403, y: .0127136223, z: -.139153272}
+      rotation: {x: -.000521864509, y: -.046913825, z: .0154511118, w: .998779356}
+      scale: {x: .99999994, y: .99999994, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R Finger41
+      position: {x: -.0964294448, y: 3.05175774e-07, z: -9.53674295e-09}
+      rotation: {x: -4.70057726e-09, y: -4.14158041e-09, z: -.010552234, w: .999944329}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R Finger42
+      position: {x: -.0834036246, y: 0, z: 2.86102289e-08}
+      rotation: {x: 4.16497864e-10, y: -4.66126782e-09, z: -.0105522051, w: .999944329}
+      scale: {x: .999999881, y: .999999881, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ R Finger1
+      position: {x: -.330934912, y: -.031408079, z: .123140596}
+      rotation: {x: .00242701289, y: .067225188, z: .0301353224, w: .997279704}
+      scale: {x: 1, y: .999999881, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R Finger11
+      position: {x: -.119500123, y: -3.05175774e-07, z: 0}
+      rotation: {x: 3.7643928e-09, y: 3.68577235e-09, z: -.0105522182, w: .999944329}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R Finger12
+      position: {x: -.0951406807, y: 0, z: 3.81469718e-08}
+      rotation: {x: 1.96550103e-11, y: 1.86254145e-09, z: -.0105522033, w: .999944329}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ R Finger0
+      position: {x: -.0952889994, y: .0138653563, z: .138966963}
+      rotation: {x: -.676336765, y: .351484001, z: .265356302, w: .590435028}
+      scale: {x: .999999881, y: .999999881, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ R Finger01
+      position: {x: -.112942427, y: 7.62939436e-08, z: 3.05175774e-07}
+      rotation: {x: 3.14480136e-10, y: 2.98006615e-08, z: -.0105522033, w: .999944329}
+      scale: {x: 1.00000012, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R Finger02
+      position: {x: -.0960798636, y: -2.28881831e-07, z: 0}
+      rotation: {x: -1.50575694e-08, y: -1.47430912e-08, z: -.0105521809, w: .999944329}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R Thigh
+      position: {x: .26293242, y: .000683441118, z: -.262569398}
+      rotation: {x: -.000568265794, y: .99564755, z: -1.70525564e-05, w: -.0931970403}
+      scale: {x: 1, y: .99999994, z: 1.00000012}
+      transformModified: 1
+    - name: CYCLOP_ R Calf
+      position: {x: -1.2476449, y: 4.76837148e-09, z: 0}
+      rotation: {x: -2.8274254e-09, y: 1.4748549e-08, z: .0650097355, w: .997884631}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ R Foot
+      position: {x: -1.06761932, y: 1.90734859e-08, z: -7.62939436e-08}
+      rotation: {x: -.00604002178, y: -.0930011719, z: -.0645553991, w: .993552685}
+      scale: {x: .999999881, y: 1, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ R Toe0
+      position: {x: -.272964716, y: .491566747, z: 0}
+      rotation: {x: 1.54543507e-08, y: -1.54542708e-08, z: -.707106829, w: .707106829}
+      scale: {x: .99999994, y: 1, z: .99999994}
+      transformModified: 1
+    - name: CYCLOP_ L Thigh
+      position: {x: .26293242, y: .000681991572, z: .262569427}
+      rotation: {x: -.00056799606, y: .99564755, z: 1.9787065e-05, w: .0931970403}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L Calf
+      position: {x: -1.24764514, y: 0, z: 0}
+      rotation: {x: 2.78805712e-09, y: 1.81635096e-10, z: .065009743, w: .997884631}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: CYCLOP_ L Foot
+      position: {x: -1.06761944, y: 2.86102289e-08, z: 7.62939436e-08}
+      rotation: {x: .00604001665, y: .0930010602, z: -.0645553991, w: .993552685}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: CYCLOP_ L Toe0
+      position: {x: -.272964716, y: .491566718, z: 0}
+      rotation: {x: -1.5454269e-08, y: 1.54543507e-08, z: -.707106829, w: .707106829}
+      scale: {x: .99999994, y: 1, z: .99999994}
+      transformModified: 1
+    - name: wolf_skin
+      position: {x: -.0253198612, y: 2.75328612, z: .0775227621}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 1d96ccfce4b258241af9cdf3bd0dbe30,
+    type: 3}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

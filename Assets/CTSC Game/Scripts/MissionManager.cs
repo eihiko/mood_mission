@@ -8,7 +8,7 @@ public class MissionManager : MonoBehaviour {
 
 	public enum MissionType {
 		GUIDES_HUT, FOREST, DOCTORS_OFFICE, ENTER_CITY_GATHER_SUPPLIES, 
-		TALK_TO_SON, HELP_TP_1, HELP_TP_2, HELP_TP_3, CYCLOPS, HYDRA, SEWER_QUEST, 
+		TALK_TO_SON, HELP_TP_1, HELP_TP_2, HELP_TP_3, CYCLOPS, HYDRA, BOATHOUSE, GO_TO_ISLAND, DRAGON
 	}
 
 	//This should eventually be in its own class.
@@ -66,12 +66,30 @@ public class MissionManager : MonoBehaviour {
 		TALK_TO_GUARD,
 		//Must check whether cyclops has chosen correctly yet.
 		GIVE_CYCLOPS_APPLES, GET_SEWER_OPEN,
+		
+		//Tenth Mission to go on quest for Hydra (10 events)
+		//Pre-Hydra
+		ENTER_SEWERS, TOLERATE_SPIDERS, OPEN_DOOR, FIND_NOTE, ACTIVATE_LEVER,
+		//Hydra
+		HYDRA_FAIL, COMPLIMENT_SCROLLS, HYDRA_FIGHT,
+		//Post-Hydra
+		FIND_FOREMAN, REUNION_WITH_SON,
 
+		//Eleventh Mission to get a boat for the trip to the island (3 events)
+		GO_TO_TROLL, CALM_TROLL, RECEIVE_BOAT,
 
-		//Tenth Mission to go on quest for Hydra
-		//use previous return talk and exit son for this mission also
-		BEGIN_HYDRA_QUEST, BATTLE_HYDRA, DEFEAT_HYDRA,
-		ATTAIN_SEWER_MAP,
+		//Twelfth Mission to reach the dragon (6 events)
+		//Player can choose to brave the storm, turn back and wait for it to subside, or try to find a way around the storm
+		BRAVE_STORM, SCARED_BY_STORM, TRY_ALTERNATE_ROUTE,
+		//Ogre breathing part
+		SPOT_OGRE, CALM_OGRE, 
+		TOLERATE_SNAKES_AGAIN,
+
+		//Thirteenth Mission to fight the dragon! (3 events)
+		CONFRONT_DRAGON, DRAGON_BATTLE, DRAGON_DEFEATED,
+
+		//Optional Epilogue
+		BACK_IN_MERAMI, STAND_AGAINST_BULLY, 
 		//
 		NULL
 	}
@@ -125,6 +143,14 @@ public class MissionManager : MonoBehaviour {
 	public GameObject GirlsFather, GirlsMother, fatherStop, motherStop, YoungGirlStand;
 	public GameObject BackFromDeeds,OnwardToCyclops;
 	public GameObject nearAppleLady, AppleLady, nearKid, Kid, hearLaugh, nearGuard, Guard, nearCyclops, Cyclops;
+	public StoredBool cyclopsChoice;
+	public GameObject finalSonStop,sewerEntrance, keySpied, Spiders1;
+	public ButtonScript spider1Button;
+	public StoredBool choiceSewerSpiders;
+	public GameObject SewerKey;
+	public GameObject officeDoor, Foreman, leverTrigger, entranceToArena, Hydra, hydraGoTo, hydraFace;
+	public StoredBool hydraHit1,hydraHit2,hydraDefeated;
+	public GameObject facingTheHydra, hydraFlee, nearForeman, toTheBoathouse;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -164,7 +190,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		test (0); //Set number of missions to skip when testing
+		test (8); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -173,6 +199,8 @@ public class MissionManager : MonoBehaviour {
 			}
 			firstPlay = false;
 		}
+		cyclopsChoice = new StoredBool(false);
+		choiceSewerSpiders = new StoredBool (false);
 	}
 	
 	// Update is called once per frame
@@ -372,11 +400,18 @@ public class MissionManager : MonoBehaviour {
 					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 				}
 				break;
-//				case MissionType.HYDRA:
-//					for(int i = 12; i < 18; i++) {
-				//						events.Add((EventType)i);
-//					}
-//					break;
+			case MissionType.HYDRA:
+					for(int i = 77; i < 87; i++) {
+						events.Add((EventType)i);
+					}
+				currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
+				//Add all the event transforms for this mission to its event dictionary
+				foreach (Transform child in currTransform){
+					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+				}
+					break;
 //				case MissionType.SEWER_QUEST:
 //					for(int i = 12; i < 18; i++) {
 				//						events.Add((EventType)i);

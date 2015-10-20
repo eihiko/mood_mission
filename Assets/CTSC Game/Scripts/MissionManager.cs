@@ -114,7 +114,7 @@ public class MissionManager : MonoBehaviour {
 	public GameObject continueBees,turnBackBees;
 	public int choiceForBees1 = 2;
 	public GameObject Map, Bees, DoctorsHouse, PlayerEnterDoctors, TorkanaEnterDoctors;
-	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, DoctorGarden, BackToDoctors, LeavingDoctor;
+	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, BackToDoctors, LeavingDoctor;
 	public GameObject continueHerb, turnBackHerb;
 	public int choiceForBees2 = 2;
 	public GameObject Amulet;
@@ -148,7 +148,8 @@ public class MissionManager : MonoBehaviour {
 	public ButtonScript spider1Button;
 	public StoredBool choiceSewerSpiders;
 	public GameObject SewerKey;
-	public GameObject officeDoor, Foreman, leverTrigger, entranceToArena, Hydra, hydraGoTo, hydraFace;
+	public GameObject closedDoor, openDoor, officeDoor, Foreman, leverTrigger, openLever, thrownLever;
+	public GameObject hydraDoor, entranceToArena, Hydra;
 	public StoredBool hydraHit1,hydraHit2,hydraDefeated;
 	public GameObject facingTheHydra, hydraFlee, nearForeman, toTheBoathouse;
 	

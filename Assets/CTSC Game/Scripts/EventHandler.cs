@@ -188,35 +188,21 @@ public class EventHandler: MonoBehaviour
 	public void EnableLocation(GameLocation nextLocation)
 	{
 		//handle level loading
-		//if (nextLocation == GameLocation.DUNGEON) {
+		if (nextLocation == GameLocation.DUNGEON) {
 			//load dungeon level and exit
-		//	Application.LoadLevel (1);
-		//	lastLocation = currLocation;
-		//	currLocation = nextLocation;
-		//	currLevel.setCurrLocation (nextLocation);
-		//	playerCamera.GetComponent<Skybox> ().enabled = false;
-		//	return;
-		//} else if (currLocation == GameLocation.DUNGEON && nextLocation == GameLocation.TDC) {
+			Application.LoadLevel (1);
+			lastLocation = currLocation;
+			currLocation = nextLocation;
+			currLevel.setCurrLocation (nextLocation);
+			playerCamera.GetComponent<Skybox> ().enabled = false;
+			return;
+		} else if (currLocation == GameLocation.DUNGEON && nextLocation == GameLocation.TDC) {
 			//load level with city and forest
-		//	Application.LoadLevel (0);
-		//}
+			Application.LoadLevel (0);
+		}
 
 		//New attempt at getting transports to work correctly
 		switch (nextLocation) {
-		//Dungeon in same scene, handle as TDC/Forest
-		case GameLocation.DUNGEON:
-			//Loads only dungeon and sewer transport
-			foreach (KeyValuePair<GameLocation, Transform> kvp in locationSet) {
-				if (kvp.Key != GameLocation.DUNGEON) {
-					kvp.Value.gameObject.SetActive (false);
-				} else {
-					kvp.Value.gameObject.SetActive (true);
-				}
-			}
-			lastLocation = currLocation;
-			currLocation = nextLocation;
-			currLevel.setCurrLocation(nextLocation);
-			break;
 		case GameLocation.TDC:
 		case GameLocation.FOREST:
 			//Loads only the city, forest, and interior transports
@@ -509,7 +495,7 @@ public class EventHandler: MonoBehaviour
 		Vector3 playerStartPosition = new Vector3 (0, 0, 0);
 		switch (location) {
 			case "Dungeon":
-				playerStartPosition = GameObject.Find("TransportToTDCFromDungeon").transform.position;
+				playerStartPosition = GameObject.Find("TransportToTDC").transform.position;
 				break;
 			case "TopDownCity":
 				playerStartPosition = GameObject.Find("TransportToDungeon").transform.position;

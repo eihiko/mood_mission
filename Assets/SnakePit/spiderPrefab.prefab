@@ -429,8 +429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d808bab48560e00418ddf36ac8e3d6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 407574, guid: 33cb92181ca481942b02ae74fe1f996d, type: 2}
-  range: 10
+  target: {fileID: 0}
+  range: 0
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -487,14 +487,6 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: killTime
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 407574, guid: 33cb92181ca481942b02ae74fe1f996d, type: 2}
-    - target: {fileID: 0}
-      propertyPath: range
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

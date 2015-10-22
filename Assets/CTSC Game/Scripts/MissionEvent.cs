@@ -1306,6 +1306,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.GET_SEWER_OPEN:
 				if (mission.getCurrentMissionEvent()==eventType){
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new MinimapAction("Son"));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.finalSonStop,"Return to the sewer foreman's son to get the sewer opened."));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI,161,3));
@@ -1336,6 +1337,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new PrintAction("Press 1 to attack the spiders.  Press 2 to wait for the spiders to leave.  Press 3 to lure the spiders away with food.",100));
 					actionQ.Enqueue(new SetAction(mm.Spiders1.GetComponent<SpiderLoopA>().isChoosing,true));
 					actionQ.Enqueue(new WaitAction(mm.choiceSewerSpiders));
+					actionQ.Enqueue(new MoveAction(mm.Spiders1,mm.spiderMovePoint));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,169,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new GrabAction(mm.Player,GrabMe.kind.SEWER_KEY,"Pick up the sewer key with G"));
@@ -1402,6 +1404,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,177,1));
 					//Player "faints"
 					//Teleport player to dead end near arena, but don't end mission.
+					actionQ.Enqueue(new TransportAction(mm.Player,mm.hydraTransport));
 					isBusy = true;
 				}
 				break;
@@ -1417,12 +1420,11 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.HYDRA_FIGHT:
 				if(mission.getCurrentMissionEvent()==eventType){
 					//Begin the fight!  Turn hydra's attack back on.
+					actionQ.Enqueue(new FreezeAction(mm.Hydra,false));
+					actionQ.Enqueue(new PrintAction("Press 1: 'That was smart of you to use apples to appease the cyclops!'  " +
+					                                "Press 2: 'The townspeople told me they are extremely grateful for all your help! They really like you!'", 100));
 					actionQ.Enqueue(new WaitAction(mm.hydraDefeated));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
-					//Hydra turns and slinks away; gets deactivated once far enough away
-					actionQ.Enqueue(new TurnAction(mm.Hydra,mm.hydraFlee,false,0));
-					actionQ.Enqueue(new MoveAction(mm.Hydra,mm.hydraFlee));
-					actionQ.Enqueue(new ActiveAction(mm.Hydra,false));
 					actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,182,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
@@ -1431,14 +1433,14 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.FIND_FOREMAN:
 				if (mission.getCurrentMissionEvent()==eventType){
 					//Player heads off to find foreman
-					//How to do with current layout?
-					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearForeman, "Head deeper into the sewers and find the foreman"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearForeman, "Search for the foreman.  He should be nearby somewhere."));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new TalkAction(mm.Foreman,currentAudio,mm.currentUI,183,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,184,1));
 					actionQ.Enqueue(new TalkAction(mm.Foreman,currentAudio,mm.currentUI,185,3));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
-					//Possibly do an insta-teleport out?
+					actionQ.Enqueue(new MoveAction(mm.Foreman,mm.ForemanStand));
+					actionQ.Enqueue(new TransportAction(mm.Player,mm.ForemanHouseTransport));
 					isBusy = true;
 				}
 				break;

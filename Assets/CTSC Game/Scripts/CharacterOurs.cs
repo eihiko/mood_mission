@@ -49,7 +49,7 @@ public class CharacterOurs : MonoBehaviour {
 	
 	public void grab(GameObject item){
 		if (item != null && nextKind == item.GetComponent<GrabMe>().myKind) {
-			Debug.Log("grabbed item");
+			//Debug.Log("grabbed item");
 			inventory.Add (item);
 			item.SetActive (false);
 			updateInventory();
@@ -65,10 +65,10 @@ public class CharacterOurs : MonoBehaviour {
 			}
 		}
 		if (item != null) {
-			Debug.Log ("placed object of kind: " + kind);
+			//Debug.Log ("placed object of kind: " + kind);
 			place (item, at);
 		} else {
-			Debug.Log("could not place object of kind: " + kind);
+			//Debug.Log("could not place object of kind: " + kind);
 		}
 	}
 	

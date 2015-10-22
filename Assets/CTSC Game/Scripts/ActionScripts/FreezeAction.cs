@@ -44,7 +44,12 @@ public class FreezeAction : MissionAction {
 
 	void FreezePlayer()
 	{
-		player.GetComponent<PerfectController> ().setIsControllable(false);
+		if (player.GetComponent<PerfectController> ().Equals (null)) {
+			//Is a monster that must have firing disabled
+			player.GetComponent<Hydra> ().isFiring = false;
+		} else {
+			player.GetComponent<PerfectController> ().setIsControllable (false);
+		}
 //		isControllable = false; // disable player controls.
 //		FREEZEPOSITION = player.transform.position;
 //		FROZEN = true;
@@ -52,7 +57,12 @@ public class FreezeAction : MissionAction {
 
 	void Thaw()
 	{
-		player.GetComponent<PerfectController> ().setIsControllable(true);
+		if (player.GetComponent<PerfectController> ().Equals (null)) {
+			//Is a monster that must have firing enabled
+			player.GetComponent<Hydra> ().isFiring = true;
+		} else {
+			player.GetComponent<PerfectController> ().setIsControllable (true);
+		}
 	//	FROZEN = false;
 //		isControllable = true; 
 	}

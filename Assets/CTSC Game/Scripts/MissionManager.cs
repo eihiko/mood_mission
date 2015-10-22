@@ -144,14 +144,15 @@ public class MissionManager : MonoBehaviour {
 	public GameObject BackFromDeeds,OnwardToCyclops;
 	public GameObject nearAppleLady, AppleLady, nearKid, Kid, hearLaugh, nearGuard, Guard, nearCyclops, Cyclops;
 	public StoredBool cyclopsChoice;
-	public GameObject finalSonStop,sewerEntrance, keySpied, Spiders1;
+	public GameObject finalSonStop,sewerEntrance, keySpied, Spiders1, spiderMovePoint;
 	public ButtonScript spider1Button;
 	public StoredBool choiceSewerSpiders;
 	public GameObject SewerKey;
 	public GameObject closedDoor, openDoor, officeDoor, Foreman, leverTrigger, openLever, thrownLever;
 	public GameObject hydraDoor, entranceToArena, Hydra;
 	public StoredBool hydraHit1,hydraHit2,hydraDefeated;
-	public GameObject facingTheHydra, hydraFlee, nearForeman, toTheBoathouse;
+	public TransportPlayer hydraTransport, ForemanHouseTransport;
+	public GameObject facingTheHydra, nearForeman, ForemanStand, toTheBoathouse;
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -191,7 +192,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		test (8); //Set number of missions to skip when testing
+		test (9); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -202,6 +203,9 @@ public class MissionManager : MonoBehaviour {
 		}
 		cyclopsChoice = new StoredBool(false);
 		choiceSewerSpiders = new StoredBool (false);
+		hydraHit1 = new StoredBool (false);
+		hydraHit2 = new StoredBool (false);
+		hydraDefeated = new StoredBool (false);
 	}
 	
 	// Update is called once per frame
@@ -412,12 +416,7 @@ public class MissionManager : MonoBehaviour {
 					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
 					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 				}
-					break;
-//				case MissionType.SEWER_QUEST:
-//					for(int i = 12; i < 18; i++) {
-				//						events.Add((EventType)i);
-//					}
-//					break;
+				break;
 			default:
 				missionStart = null;
 				break;

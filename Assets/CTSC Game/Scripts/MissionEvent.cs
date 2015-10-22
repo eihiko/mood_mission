@@ -1347,8 +1347,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,170,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
-					actionQ.Enqueue(new ActiveAction(mm.openDoor,true));
-					actionQ.Enqueue(new ActiveAction(mm.closedDoor,false));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true; //Not sure if needed or not
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.officeDoor,"Enter the office and find the switch that opens the gate"));
 					isBusy = true;
 				}
@@ -1368,9 +1367,6 @@ public class MissionEvent : MonoBehaviour {
 					//Lever activating action
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.leverTrigger,"Pull the lever to open the door to the rest of the sewers"));
 					//Lever moves
-					actionQ.Enqueue(new ActiveAction(mm.openLever,false));
-					actionQ.Enqueue(new ActiveAction(mm.thrownLever,true));
-					actionQ.Enqueue(new ActiveAction(mm.hydraDoor,false)); //Open hydra arena
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,174,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
@@ -1400,8 +1396,11 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new FreezeAction(mm.Hydra,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,177,1));
-					//Player "faints"
-					//Teleport player to dead end near arena, but don't end mission.
+					//Hydra turns to leave
+					//Deactivate hydra's attack
+					actionQ.Enqueue(new TurnAction(mm.Hydra,mm.hydraGoTo,false,0));
+					actionQ.Enqueue(new MoveAction(mm.Hydra,mm.hydraGoTo));
+					actionQ.Enqueue(new TurnAction(mm.Hydra,mm.hydraFace,false,0));
 					isBusy = true;
 				}
 				break;
@@ -1418,11 +1417,11 @@ public class MissionEvent : MonoBehaviour {
 				if(mission.getCurrentMissionEvent()==eventType){
 					//Begin the fight!  Turn hydra's attack back on.
 					actionQ.Enqueue(new WaitAction(mm.hydraDefeated));
-					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					//Hydra turns and slinks away; gets deactivated once far enough away
 					actionQ.Enqueue(new TurnAction(mm.Hydra,mm.hydraFlee,false,0));
 					actionQ.Enqueue(new MoveAction(mm.Hydra,mm.hydraFlee));
 					actionQ.Enqueue(new ActiveAction(mm.Hydra,false));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,182,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
@@ -1431,8 +1430,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.FIND_FOREMAN:
 				if (mission.getCurrentMissionEvent()==eventType){
 					//Player heads off to find foreman
-					//How to do with current layout?
-					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearForeman, "Head deeper into the sewers and find the foreman"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearForeman, "Head deeper into the sewers to find the foreman"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new TalkAction(mm.Foreman,currentAudio,mm.currentUI,183,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,184,1));

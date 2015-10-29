@@ -190,7 +190,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		test (8); //Set number of missions to skip when testing
+		//test (2); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -389,7 +389,7 @@ public class MissionManager : MonoBehaviour {
 				}
 					break;
 			case MissionType.CYCLOPS:
-				for (int i = 70; i < 77; i++) {
+				for (int i = 70; i < 76; i++) {
 					events.Add((EventType)i);
 				}
 				currTransform = missionObjects[(int)type].transform;
@@ -400,18 +400,18 @@ public class MissionManager : MonoBehaviour {
 					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
 				}
 				break;
-			case MissionType.HYDRA:
-					for(int i = 77; i < 87; i++) {
-						events.Add((EventType)i);
-					}
-				currTransform = missionObjects[(int)type].transform;
-				missionStart = startPoints[(int)type];
+			//case MissionType.HYDRA:
+			//		for(int i = 77; i < 87; i++) {
+			//			events.Add((EventType)i);
+			//		}
+			//	currTransform = missionObjects[(int)type].transform;
+			//	missionStart = startPoints[(int)type];
 				//Add all the event transforms for this mission to its event dictionary
-				foreach (Transform child in currTransform){
+			//	foreach (Transform child in currTransform){
 					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
-					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
-				}
-					break;
+			//		eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+			//	}
+			//		break;
 //				case MissionType.SEWER_QUEST:
 //					for(int i = 12; i < 18; i++) {
 				//						events.Add((EventType)i);

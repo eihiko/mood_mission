@@ -5,7 +5,8 @@ public class MinimapUpdater : MonoBehaviour {
 
 	public GameObject playerMarker, objectiveArrow;
 	public GameObject TorkanaMarker;
-	public GameObject TavernMarker, SonMarker, MT3Marker, BlacksmithMarker, FT1Marker, GirlMarker, BoathouseMarker, MapMarker, GardenMarker, CityMarker, DoctorMarker, TownCenterMarker;
+	public GameObject TavernMarker, SonMarker, MT3Marker, BlacksmithMarker, FT1Marker, 
+	GirlMarker, BoathouseMarker, MapMarker, GardenMarker, CityMarker, DoctorMarker, TownCenterMarker;
 
 	GameObject[] allMarkers = new GameObject[13];
 

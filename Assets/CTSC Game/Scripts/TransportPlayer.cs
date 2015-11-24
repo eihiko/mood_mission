@@ -113,14 +113,19 @@ public class TransportPlayer : MonoBehaviour {
     }
 
 	void MovePlayerToPosition(){
-		if (eventHandler.switchLocation (location).Equals (EventHandler.GameLocation.DUNGEON)){
+		if (eventHandler.switchLocation (location).Equals (EventHandler.GameLocation.DUNGEON) &&
+			eventHandler.switchLocation (currentLocation).Equals (EventHandler.GameLocation.DUNGEON)) {
+			Vector3 transportLocation = playerStart.transform.position;
+			player.transform.position = transportLocation;
+		}
+		else if (eventHandler.switchLocation (location).Equals (EventHandler.GameLocation.DUNGEON)){
 			Vector3 transportLocation = GetPlayerStartPosition ();
-			Debug.Log(transportLocation.ToString());
+			//Debug.Log(transportLocation.ToString());
 			player.transform.position = transportLocation;
 		} else if (eventHandler.switchLocation(location).Equals(EventHandler.GameLocation.TDC)
 		           && eventHandler.switchLocation(currentLocation).Equals(EventHandler.GameLocation.DUNGEON)){
 			Vector3 transportLocation = GetPlayerStartPosition ();
-			Debug.Log(transportLocation.ToString());
+			//Debug.Log(transportLocation.ToString());
 			player.transform.position = transportLocation;
 		} else if (eventHandler.switchLocation(location).Equals(EventHandler.GameLocation.FOREST)
 		           && eventHandler.switchLocation(currentLocation).Equals(EventHandler.GameLocation.HEALING_CAVE)){

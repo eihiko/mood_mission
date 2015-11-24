@@ -2424,10 +2424,12 @@ Camera:
   m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!20 &2034488
 Camera:
   m_ObjectHideFlags: 1
@@ -2456,10 +2458,12 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!20 &2093340
 Camera:
   m_ObjectHideFlags: 1
@@ -2488,10 +2492,12 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!23 &2307920
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -2837,6 +2843,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -2906,6 +2913,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -5958,6 +5966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c95c4c63b714a14ae01c7c66cd5b88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mm: {fileID: 0}
   healthTransform: {fileID: 0}
   courTransform: {fileID: 0}
   compTransform: {fileID: 0}

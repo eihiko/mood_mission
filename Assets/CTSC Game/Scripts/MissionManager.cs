@@ -57,7 +57,7 @@ public class MissionManager : MonoBehaviour {
 		HEAD_BACK_MT2, TALK_TO_FT2, ENTER_FT2_HOUSE, FIND_DRAWINGS, SHOW_DRAWINGS, FIND_PICTURES, SHOW_PICTURES, FIND_LOCKET, GIVE_LOCKET,
 		RETURN_TO_SON, TALK_TO_SON,
 
-		//Ninth Mission to deal with cyclops (7 events)
+		//Ninth Mission to deal with cyclops (6 events)
 		TOWARD_TOWN_CENTER, TALK_TO_FT3,
 		TALK_TO_MT4,
 		//Need to play sound file here
@@ -65,11 +65,11 @@ public class MissionManager : MonoBehaviour {
 		//Finally at the town center where the mission truly begins
 		TALK_TO_GUARD,
 		//Must check whether cyclops has chosen correctly yet.
-		GIVE_CYCLOPS_APPLES, GET_SEWER_OPEN,
+		GIVE_CYCLOPS_APPLES, 
 		
-		//Tenth Mission to go on quest for Hydra (10 events)
+		//Tenth Mission to go on quest for Hydra (11 events)
 		//Pre-Hydra
-		ENTER_SEWERS, TOLERATE_SPIDERS, OPEN_DOOR, FIND_NOTE, ACTIVATE_LEVER,
+		GET_SEWER_OPEN, ENTER_SEWERS, TOLERATE_SPIDERS, OPEN_DOOR, FIND_NOTE, ACTIVATE_LEVER,
 		//Hydra
 		HYDRA_FAIL, COMPLIMENT_SCROLLS, HYDRA_FIGHT,
 		//Post-Hydra
@@ -153,6 +153,8 @@ public class MissionManager : MonoBehaviour {
 	public StoredBool hydraHit1,hydraHit2,hydraDefeated;
 	public TransportPlayer hydraTransport, ForemanHouseTransport;
 	public GameObject facingTheHydra, nearForeman, ForemanStand, toTheBoathouse;
+	public GameObject atBoathouse, Troll, atBoat;
+	public Breather breather; 
 	
 	public MissionManager.MissionType currMissionType;
 
@@ -192,7 +194,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		test (9); //Set number of missions to skip when testing
+		test (0); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -394,7 +396,7 @@ public class MissionManager : MonoBehaviour {
 				}
 					break;
 			case MissionType.CYCLOPS:
-				for (int i = 70; i < 77; i++) {
+				for (int i = 70; i < 76; i++) {
 					events.Add((EventType)i);
 				}
 				currTransform = missionObjects[(int)type].transform;
@@ -406,7 +408,7 @@ public class MissionManager : MonoBehaviour {
 				}
 				break;
 			case MissionType.HYDRA:
-					for(int i = 77; i < 87; i++) {
+					for(int i = 76; i < 87; i++) {
 						events.Add((EventType)i);
 					}
 				currTransform = missionObjects[(int)type].transform;

@@ -16,7 +16,7 @@ The map covers the whole area that you should need to reach to defeat the dragon
 Torkana: I see you have lost your map due to the wind. You must search for it down at the bottom of the hill. 
 There may be some bees down there, but they're the type that don't sting.  You should choose to tolerate them and they will eventually ignore you.
 Torkana said you should tolerate the bees, so focus on trying to find the map if you can.
-Torkana: You were really brave down there. I am proud of you for tolerating the bees and retrieving the map. You got stung pretty badly though. 
+Torkana: You were really brave down there. I am proud of you for tolerating the bees and retrieving the map. 
 How about we go to the Doctor’s office closer to Merami and get ourselves healed? Let’s walk together to the doctor’s office now.
 Torkana: Hi Doctor! I’m here because was injured in a recent battle. I’m afraid it’s getting worse. 
 Can you take a look at my wounds?
@@ -49,7 +49,7 @@ Townsperson: I still feel ill...  The doctor just outside of town should have mo
 Townsperson: Thank you for your help. I’m feeling better already!
 What brings you to Merami?
 You explain your quest to find Torkana and the adventures you have had already.
-Townsperson: Yes, what Kalatar told you is true. Many people have fled the town because they’re afraid of the dragon and the creatures.
+Townsperson: Yes, what Torkana told you is true. Many people have fled the town because they’re afraid of the dragon and the creatures.
 In the house on top of the hill down the street lives the son of the man who built the sewer system. His father went into the sewers to try to get rid of a big creature that has taken over the sewers and he never returned.
 If you want to strike at the heart of the creatures, you need to defeat the dragon, but no one knows how to get to the island where it lives. I suggest you go try to find the Sewer Foreman in the sewer where he works.
 The townsperson said the son of the foreman lives in the house at the top of the hill down the street.  You should head there right away.
@@ -190,3 +190,13 @@ The foreman's son is overjoyed at the return of his father.  He thanks you for y
 Foreman: The dragon, eh?  Well, you need a boat to be able to reach the island that it lives on.  
 Foreman: There is a troll who owns a boat rental down by the lake.  He should be willing to lend you a boat for free since you are helping us out.
 Foreman: It's already getting dark.  Take this torch with you so you can see the way.  Good luck!
+The boathouse should be along the shoreline to the south.
+As you enter, the troll working there begins to panic at the sudden light.  You need to calm him down before he can talk to you.
+Maybe showing the troll how to control his breathing will help.
+With your help, the troll manages to calm down.
+Troll: Thank you.  I’m afraid of bright light, so when you came in with that torch I got scared.  You were smart to show me that breathing exercise.  Now I know how to calm down if it happens again.
+Troll: What brings you to the boathouse so late?
+You explain that you need a boat to get to the island and defeat the dragon.
+Troll: Oh, you are going to defeat the dragon?  That’s very brave of you.  I’ll lend you one of my boats to get over to the island.
+Troll: The dragon has an ogre that stands guard outside its lair.  The ogre gets sleepy easily, so you should be able to use the same breathing technique you helped me with to get it to fall asleep.
+Now that you have a boat, getting to the island should be easy.

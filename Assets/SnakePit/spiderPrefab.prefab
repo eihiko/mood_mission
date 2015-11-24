@@ -401,7 +401,7 @@ MonoBehaviour:
   moveAnimSpeed: 1.20000005
   rotSpeed: 2
   rotTreshold: 80
-  killTime: -1
+  killTime: 100
   move2: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -486,7 +486,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: killTime
-      value: -1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: target
@@ -495,6 +495,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: range
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: move2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

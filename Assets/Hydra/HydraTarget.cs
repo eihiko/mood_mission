@@ -25,7 +25,7 @@ public class HydraTarget : MonoBehaviour {
 	}
 	
 	void Update(){
-		if(Input.GetKey(KeyCode.Space)){
+		if(Input.GetKey(KeyCode.C)){
 			shield.SetActive (true);
 		}
 		else{
@@ -59,7 +59,7 @@ public class HydraTarget : MonoBehaviour {
 	
 	private void FireballHit(){
 		AudioSource.PlayClipAtPoint(firehit, transform.position);
-		if(Input.GetKey(KeyCode.Space)){
+		if(Input.GetKey(KeyCode.C)){
 			AudioSource.PlayClipAtPoint(shieldhit, transform.position);
 		}
 	}

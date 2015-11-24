@@ -1239,6 +1239,7 @@ public class MissionEvent : MonoBehaviour {
 			//Mission 9 Events
 			case MissionManager.EventType.TOWARD_TOWN_CENTER:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new ActiveAction(mm.Cyclops,true));
 					actionQ.Enqueue(new MinimapAction("Town Center"));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearAppleLady,"Head towards the town center and see if you can get any information on the cyclops"));
 					isBusy = true;
@@ -1328,6 +1329,7 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.TOLERATE_SPIDERS:
 				if(mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new MinimapAction("nothing"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,165,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
@@ -1377,6 +1379,8 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,174,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					//Player heads to the front of the hydra area
+					actionQ.Enqueue(new ActiveAction(mm.Hydra,true));
+					actionQ.Enqueue(new FreezeAction(mm.Hydra,true));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.entranceToArena,"Continue on to find the foreman"));
 					isBusy = true;
 				}
@@ -1385,7 +1389,6 @@ public class MissionEvent : MonoBehaviour {
 				if(mission.getCurrentMissionEvent()==eventType){
 					//Hydra spotted.  Make sure it isn't attacking yet.
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
-					actionQ.Enqueue(new FreezeAction(mm.Hydra,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,175,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new FreezeAction(mm.Hydra,false));
@@ -1405,13 +1408,16 @@ public class MissionEvent : MonoBehaviour {
 					//Player "faints"
 					//Teleport player to dead end near arena, but don't end mission.
 					actionQ.Enqueue(new TransportAction(mm.Player,mm.hydraTransport));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.COMPLIMENT_SCROLLS:
 				if(mission.getCurrentMissionEvent()==eventType){
 					//Torkana speaks to the player.
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,178,4));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					//Maybe some extra sequence?  Probably need to add in a fancy "You got a Compliment Scroll!" message after Cyclops and Townsperson missions
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.facingTheHydra,"Face your fears!  Defeat the hydra!"));
 					isBusy = true;
@@ -1454,6 +1460,35 @@ public class MissionEvent : MonoBehaviour {
 					//Player steps outside
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.toTheBoathouse,"Go to the boathouse to talk to the troll"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.GO_TO_TROLL:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new MinimapAction("Boathouse"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,192,1));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.atBoathouse,"Head on to the boathouse"));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.CALM_TROLL:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new MinimapAction("nothing"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,193,2));
+					actionQ.Enqueue(new BreatherAction(mm.breather));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,195,1));
+					isBusy = true;
+				}
+				break;
+			case MissionManager.EventType.RECEIVE_BOAT:
+				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new TalkAction(mm.Troll,currentAudio,mm.currentUI,196,2));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,198,1));
+					actionQ.Enqueue(new TalkAction(mm.Troll,currentAudio,mm.currentUI,199,2));
+					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.atBoat,"Grab one of the boats outside"));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,201,1));
 					isBusy = true;
 				}
 				break;

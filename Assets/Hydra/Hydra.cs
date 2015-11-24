@@ -33,8 +33,8 @@ public class Hydra : MonoBehaviour {
 	public const int POSBALL = 1;
 	public const int NEGBALL = 2;
 
-	private bool[] trumped;
-	private int numTrumped;
+	public bool[] trumped;
+	public int numTrumped;
 	
 	private AudioClip [] launchSounds;
 	
@@ -76,9 +76,10 @@ public class Hydra : MonoBehaviour {
 		if (launchTimer < ballDelay){
 			launchTimer += Time.deltaTime;
 		}
-		else{
+		else if (isFiring==true){
 			launchTimer = 0;
 			a.SetTrigger ("Launch");
+			this.transform.LookAt(target.transform.position);
 		}
 		
 	
@@ -111,11 +112,14 @@ public class Hydra : MonoBehaviour {
 		ball.GetComponent<Rigidbody>().AddForce (ball.transform.forward * ballSpeed, ForceMode.VelocityChange);
 		AudioSource.PlayClipAtPoint(launchSounds[balltype], ball.transform.position);
 		if (balltype == Hydra.NEGBALL) {
-			int thought;
-			do {
-				thought = Random.Range (0, this.negativeThoughts.Length);
+			int thought=0;
+			bool thoughtFound=false;
+			while(!thoughtFound){
+				thought = Random.Range (0,this.negativeThoughts.Length);
+				if (!trumped[thought]){
+					thoughtFound = true;
+				}
 			}
-			while (!trumped[thought]);
 			hydraball.thought = thought;
 			AudioSource.PlayClipAtPoint (this.negativeThoughts [thought], ball.transform.position);
 		} else {

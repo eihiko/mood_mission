@@ -1466,7 +1466,9 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.GO_TO_TROLL:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new MinimapAction("Boathouse"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,192,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.atBoathouse,"Head on to the boathouse"));
 					isBusy = true;
@@ -1475,20 +1477,26 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.CALM_TROLL:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new MinimapAction("nothing"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,193,2));
 					actionQ.Enqueue(new BreatherAction(mm.breather));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,195,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.RECEIVE_BOAT:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new TalkAction(mm.Troll,currentAudio,mm.currentUI,196,2));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,198,1));
 					actionQ.Enqueue(new TalkAction(mm.Troll,currentAudio,mm.currentUI,199,2));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.atBoat,"Grab one of the boats outside"));
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,201,1));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
 				break;

@@ -194,7 +194,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		test (0); //Set number of missions to skip when testing
+		test (10); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -411,6 +411,18 @@ public class MissionManager : MonoBehaviour {
 					for(int i = 76; i < 87; i++) {
 						events.Add((EventType)i);
 					}
+				currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
+				//Add all the event transforms for this mission to its event dictionary
+				foreach (Transform child in currTransform){
+					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+				}
+				break;
+			case MissionType.BOATHOUSE:
+				for (int i=87; i<90; i++) {
+					events.Add((EventType)i);
+				}
 				currTransform = missionObjects[(int)type].transform;
 				missionStart = startPoints[(int)type];
 				//Add all the event transforms for this mission to its event dictionary

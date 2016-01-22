@@ -200,3 +200,18 @@ You explain that you need a boat to get to the island and defeat the dragon.
 Troll: Oh, you are going to defeat the dragon?  That’s very brave of you.  I’ll lend you one of my boats to get over to the island.
 Troll: The dragon has an ogre that stands guard outside its lair.  The ogre gets sleepy easily, so you should be able to use the same breathing technique you helped me with to get it to fall asleep.
 Now that you have a boat, getting to the island should be easy.
+It’s starting to rain again.  The waves are getting taller and rocking your boat.  If you hurry, you should be able to make it to the island before things get too bad, but it means rowing through the storm.
+You decide to move quickly and row out to the island before the storm gets worse.
+You decide to wait for the storm to die down a bit before rowing out.
+You decide to look for another way to get to the island.
+Looking around the town again, you don’t find any other ways onto the island, so you’ve wasted your time.  The storm has cleared enough for you to row out to the island.
+You have made your way to the island successfully.
+There is an ogre guarding the door to the dragon’s lair.  You remember that the troll said to do your deep breathing exercise to make it fall asleep.
+The ogre sits down and begins to doze.  You should be able to get past it now.
+There are a bunch of snakes on the floor inside the lair.  They aren’t venomous, but they still scare you.
+You remember Torkana telling you to face your fears.
+The snakes slither out of sight.  You can pass through the area now.
+Before you stands the dragon.  This is the toughest challenge you have faced so far.  
+You remember all the townspeople, the cyclops, the foreman, and the troll.  Their words of encouragement give you strength.
+You’ve done it!  The dragon is defeated and Merami will be safe once more!
+You try to kick the snakes out of your way, but more still slither across the opening.

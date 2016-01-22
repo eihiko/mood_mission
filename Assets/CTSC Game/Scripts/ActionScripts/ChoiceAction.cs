@@ -125,6 +125,11 @@ public class ChoiceAction : MissionAction{
 				else if (indicator.Equals("Water2")){
 					manager.choiceWater = 0;
 				}
+				else if (indicator.Equals("Boat")){
+					manager.choiceBoat = 0;
+					currentMission.setEventComplete(MissionManager.EventType.SCARED_BY_STORM);
+					currentMission.setEventComplete(MissionManager.EventType.TRY_ALTERNATE_ROUTE);
+				}
 				else{
 					//Debug.Log(indicator + " is a wrong key");
 				}
@@ -161,6 +166,11 @@ public class ChoiceAction : MissionAction{
 					manager.injuredPersonButton.reset();
 					manager.water2Button.reset();
 				}
+				else if (indicator.Equals("Boat")){
+					manager.choiceBoat = 1;
+					currentMission.setEventComplete(MissionManager.EventType.BRAVE_STORM);
+					currentMission.setEventComplete(MissionManager.EventType.TRY_ALTERNATE_ROUTE);
+				}
 				else{
 					//Debug.Log(indicator + " is a wrong key");
 					}
@@ -172,6 +182,11 @@ public class ChoiceAction : MissionAction{
 					manager.choiceForSupply = 2;
 					currentMission.setEventComplete(MissionManager.EventType.FINISH_IN_TAVERN);
 					currentMission.setEventComplete(MissionManager.EventType.GATHER_SELF_SUPPLIES);
+				}
+				else if (indicator.Equals("Boat")){
+					manager.choiceBoat = 2;
+					currentMission.setEventComplete(MissionManager.EventType.BRAVE_STORM);
+					currentMission.setEventComplete(MissionManager.EventType.SCARED_BY_STORM);
 				}
 				else{
 				}
@@ -239,6 +254,9 @@ public class ChoiceAction : MissionAction{
 			}
 			else if (indicator.Equals("Water2")){
 				this.buttonScript = this.manager.water2Button;
+			}
+			else if (indicator.Equals("Boat")){
+				this.buttonScript = this.manager.boatButton;
 			}
 		}
 	}

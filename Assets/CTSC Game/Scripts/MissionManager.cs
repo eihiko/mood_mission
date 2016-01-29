@@ -157,7 +157,7 @@ public class MissionManager : MonoBehaviour {
 	public Breather breather;
 	public ButtonScript boatButton;
 	public int choiceBoat=3;
-	public GameObject atOgre, doorToDragon, Snakes, snakeMovePoint, atDragon, Dragon;
+	public GameObject islandDock, atOgre, pathToDragon, Snakes, snakeMovePoint, atDragon, Dragon;
 	public ButtonScript snakeButton;
 	public StoredBool choiceSnakes, dragonDefeated;
 	
@@ -433,6 +433,28 @@ public class MissionManager : MonoBehaviour {
 				currTransform = missionObjects[(int)type].transform;
 				missionStart = startPoints[(int)type];
 				//Add all the event transforms for this mission to its event dictionary
+				foreach (Transform child in currTransform){
+					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+				}
+				break;
+			case MissionType.GO_TO_ISLAND:
+				for (int i=90; i<96; i++) {
+					events.Add ((EventType)i);
+				}
+				currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
+				foreach (Transform child in currTransform){
+					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
+					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);
+				}
+				break;
+			case MissionType.DRAGON:
+				for (int i=96; i<99; i++) {
+					events.Add ((EventType)i);
+				}
+				currTransform = missionObjects[(int)type].transform;
+				missionStart = startPoints[(int)type];
 				foreach (Transform child in currTransform){
 					//						Debug.Log ("Adding event to dict: " + child.GetComponent<MissionEvent>().eventType.ToString());
 					eventDict.Add (child.GetComponent<MissionEvent>().eventType, child);

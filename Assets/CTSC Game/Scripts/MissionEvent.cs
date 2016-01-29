@@ -1509,6 +1509,7 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,203,1));
 					//Player is moved to island
+					actionQ.Enqueue(new MoveAction(mm.Player,mm.islandDock));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
@@ -1518,6 +1519,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,204,1));
 					actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
 					//Player is moved to island
+					actionQ.Enqueue(new MoveAction(mm.Player,mm.islandDock));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
@@ -1529,6 +1531,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,206,1));
 					actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
 					//Player is moved to island
+					actionQ.Enqueue(new MoveAction(mm.Player,mm.islandDock));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
@@ -1538,6 +1541,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,207,1));
 					//Point minimap at Dragon's Door
+					actionQ.Enqueue(new MinimapAction("Dragon"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.atOgre,""));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
@@ -1556,11 +1560,8 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.TOLERATE_SNAKES_AGAIN:
 				if (mission.getCurrentMissionEvent()==eventType){
-					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-					actionQ.Enqueue(new EnterAction(mm.Player,mm.doorToDragon,"Continue forward to face the dragon!"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.pathToDragon,"Continue forward to face the dragon!"));
 					//Here there be snakes
-					//Point minimap at Dragon
-					//actionQ.Enqueue(new MinimapAction("Dragon"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,210,2));
 					actionQ.Enqueue(new PrintAction("Press 1 to attack the snakes.  Press 2 to wait for the snakes to leave.",100));

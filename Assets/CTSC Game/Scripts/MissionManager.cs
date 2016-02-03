@@ -194,7 +194,6 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		test (10); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -227,15 +226,35 @@ public class MissionManager : MonoBehaviour {
 		} else {
 			Debug.Log ("Player has completed: " + currMission.ToString ());
 			missionHistory[currMission] = true;
+            GameObject.FindGameObjectWithTag("Saver").GetComponent<Saver>().Save("Mission " + MissionsCompleted());
+        }
+	}
+
+	public void StartMission(int missionsCompleted){
+        Debug.Log("Jumping to mission " + missionsCompleted);
+        for (int i = 0; i < missionHistory.Count; i++)
+        {
+            missionHistory[missionHistory.Keys[i]] = false;
+            //missionHistory.Keys[i].resetMission();
+        }
+		for (int i=0; i<missionsCompleted; i++) {
+            Debug.Log("setting mission " + (i + 1) + " complete!");
+			missionHistory[missionHistory.Keys[i]] = true;
 		}
 	}
 
-	public void test(int missionsCompleted){
-		for (int i=0; i<missionsCompleted; i++) {
-			Mission currMission = getCurrentMission();
-			missionHistory[currMission] = true;
-		}
-	}
+    public int MissionsCompleted()
+    {
+        int total = 0;
+        foreach(bool completed in missionHistory.Values)
+        {
+            if (completed)
+            {
+                total++;
+            }
+        }
+        return total;
+    }
 
 	public void playUI(string name){
 		Cursor.visible = true;

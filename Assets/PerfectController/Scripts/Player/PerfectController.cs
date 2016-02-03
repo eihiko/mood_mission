@@ -58,8 +58,8 @@ public class PerfectController : MonoBehaviour {
 				controller.Move (new Vector3 (0, 0, 0));
 			}
 		} else {
-
-		}
+            controller.Move(new Vector3(0, 0, 0));
+        }
 	}
 	
 	void OnControllerColliderHit(ControllerColliderHit hit)
@@ -76,7 +76,7 @@ public class PerfectController : MonoBehaviour {
 			pitch = Mathf.Clamp (pitch, -60f, 60f);
 		}
 		transform.localEulerAngles = new Vector3(0, yaw, 0);
-		cam.localEulerAngles = new Vector3(pitch, 9, 0);
+		cam.localEulerAngles = new Vector3(pitch, 0, 0);
 	}
 	
 	private void applyMoveForces(float mult) {

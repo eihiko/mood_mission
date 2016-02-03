@@ -124,18 +124,19 @@ public class EventHandler: MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		//Determine the currently loaded location.
-		//currLocation = currLevel.getCurrLocation();
-//		if (lastLocation != currLocation) {
-//			//EnableLocation(currLocation);
-//			lastLocation = currLocation;
-//		}
-		
-		//Pause/unpause the game.
-		if (Input.GetKeyUp(KeyCode.Escape) && currState != GameState.PAUSE) {
+        pauseMenu = saveManagerObject.GetComponent<PauseMenu>();
+        //Determine the currently loaded location.
+        //currLocation = currLevel.getCurrLocation();
+        //		if (lastLocation != currLocation) {
+        //			//EnableLocation(currLocation);
+        //			lastLocation = currLocation;
+        //		}
+
+        //Pause/unpause the game.
+        if (Input.GetKeyUp(KeyCode.Escape) && currState != GameState.PAUSE) {
 			pauseMenu.setPaused(true);
-			Time.timeScale = 0;
-			currState = GameState.PAUSE;
+            Time.timeScale = 0;
+            currState = GameState.PAUSE;
 		} else if (Input.GetKeyUp(KeyCode.Escape) && currState == GameState.PAUSE) {
 			pauseMenu.setPaused(false);
 			Time.timeScale = 1;
@@ -345,7 +346,7 @@ public class EventHandler: MonoBehaviour
 	}
 
 	public void Gui(){
-		Time.timeScale = 0.0f;
+		//Time.timeScale = 0.0f;
 	}
 
 	/**
@@ -410,7 +411,7 @@ public class EventHandler: MonoBehaviour
 	void Play()
 	{
 		if (player.activeSelf){
-		    controller.UpdatePlayer(currState);
+		   controller.UpdatePlayer(currState);
 		}
 	}
 	
@@ -419,8 +420,12 @@ public class EventHandler: MonoBehaviour
 	 */
 	void Pause()
 	{
-		Time.timeScale = 0;
-	}
+        //Time.timeScale = 0;
+        if (player.activeSelf)
+        {
+            controller.UpdatePlayer(currState);
+        }
+    }
 	
 	/**
 	 * Loads the scene with the specified name.

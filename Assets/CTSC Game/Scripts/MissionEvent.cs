@@ -1458,6 +1458,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new TalkAction(mm.Foreman,currentAudio,mm.currentUI,189,3));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					//Player steps outside
+					actionQ.Enqueue(new SkyboxAction(mm.night));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.toTheBoathouse,"Go to the boathouse to talk to the troll"));
 					isBusy = true;
@@ -1479,7 +1480,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new MinimapAction("nothing"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,193,2));
-					actionQ.Enqueue(new BreatherAction(mm.breather));
+					//actionQ.Enqueue(new BreatherAction(mm.breather));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,195,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
@@ -1502,11 +1503,13 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,202,1));
 					actionQ.Enqueue(new ActiveAction(mm.RainMaker,true));
 					actionQ.Enqueue(new ChoiceAction(mm.Player,"Button",new EnterScript[1],"Boat",3,false, "Press 1 to continue on through the storm.  Press 2 to wait until the storm lessens.  Press 3 to search for a different way to the island."));
+					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.BRAVE_STORM:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,203,1));
 					//Player is moved to island
 					actionQ.Enqueue(new MoveAction(mm.Player,mm.islandDock));
@@ -1516,6 +1519,7 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.SCARED_BY_STORM:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,204,1));
 					actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
 					//Player is moved to island
@@ -1526,6 +1530,7 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.TRY_ALTERNATE_ROUTE:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,205,1));
 					//Fadeout?
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,206,1));
@@ -1552,7 +1557,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.CALM_OGRE:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
-					actionQ.Enqueue(new BreatherAction(mm.breather));
+					//actionQ.Enqueue(new BreatherAction(mm.breather));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,209,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;

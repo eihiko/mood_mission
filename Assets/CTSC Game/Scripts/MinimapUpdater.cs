@@ -8,7 +8,7 @@ public class MinimapUpdater : MonoBehaviour {
 	public GameObject TavernMarker, SonMarker, MT3Marker, BlacksmithMarker, FT1Marker, 
 	GirlMarker, BoathouseMarker, MapMarker, GardenMarker, CityMarker, DoctorMarker, TownCenterMarker, DragonMarker;
 
-	GameObject[] allMarkers = new GameObject[13];
+	GameObject[] allMarkers = new GameObject[14];
 
 	public GameObject CurrentObjective;
 

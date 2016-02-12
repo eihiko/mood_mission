@@ -75,12 +75,12 @@ public class MissionManager : MonoBehaviour {
 		//Post-Hydra
 		FIND_FOREMAN, REUNION_WITH_SON,
 
-		//Eleventh Mission to get a boat for the trip to the island (3 events)
+		//Eleventh Mission to get a boat for the trip to the island (6 events)
 		GO_TO_TROLL, CALM_TROLL, RECEIVE_BOAT,
-
-		//Twelfth Mission to reach the dragon (6 events)
 		//Player can choose to brave the storm, turn back and wait for it to subside, or try to find a way around the storm
 		BRAVE_STORM, SCARED_BY_STORM, TRY_ALTERNATE_ROUTE,
+
+		//Twelfth Mission to reach the dragon (3 events)
 		//Ogre breathing part
 		SPOT_OGRE, CALM_OGRE, 
 		TOLERATE_SNAKES_AGAIN,
@@ -199,7 +199,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		test (0); //Set number of missions to skip when testing
+		test (10); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -427,7 +427,7 @@ public class MissionManager : MonoBehaviour {
 				}
 				break;
 			case MissionType.BOATHOUSE:
-				for (int i=87; i<90; i++) {
+				for (int i=87; i<93; i++) {
 					events.Add((EventType)i);
 				}
 				currTransform = missionObjects[(int)type].transform;
@@ -439,7 +439,7 @@ public class MissionManager : MonoBehaviour {
 				}
 				break;
 			case MissionType.GO_TO_ISLAND:
-				for (int i=90; i<96; i++) {
+				for (int i=93; i<96; i++) {
 					events.Add ((EventType)i);
 				}
 				currTransform = missionObjects[(int)type].transform;

@@ -3,6 +3,14 @@ using System.Collections;
 
 public class Hydra : MonoBehaviour {
 
+	public enum Monster{
+		Hydra,
+		Dragon
+	}
+
+	public Monster mon;
+	private StoredBool trigger;
+
 	public Transform target;
 	public MissionManager mm;
 	
@@ -48,6 +56,17 @@ public class Hydra : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		switch (mon) {
+		case Monster.Hydra:
+			trigger = mm.hydraDefeated;
+			break;
+		case Monster.Dragon:
+			trigger = mm.dragonDefeated;
+			break;
+		default:
+			trigger = mm.hydraDefeated;
+			break;
+		}
 		isFiring = false;
 		hitsLeftPerThought = new int[numThoughts];
 		trumped = new bool[numThoughts];
@@ -69,7 +88,7 @@ public class Hydra : MonoBehaviour {
 
 		//If all of the thoughts have been defeated thoroughly, set the monster inactive and set hydraDefeated to true
 		if (numTrumped == trumped.Length) {
-			mm.hydraDefeated.setFlag();
+			trigger.setFlag();
 			this.gameObject.SetActive (false);
 		}
 	

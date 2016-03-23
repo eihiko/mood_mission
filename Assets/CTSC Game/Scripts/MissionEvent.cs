@@ -157,6 +157,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new ActiveAction (mm.Candle, true));
 					//Darken the room
 					actionQ.Enqueue(new SkyboxAction(true));
+					actionQ.Enqueue(new ActiveAction(mm.Sun,false)); //Turn off the sun
 				isBusy = true;
 				}
 				break;
@@ -228,6 +229,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue (new EnterAction (mm.Player, mm.leavingHouse,
 				                                  "Stand near the ladder and press E to go upstairs"));
 					//Brighten again as you go up.
+					actionQ.Enqueue(new ActiveAction(mm.Sun,true)); //Turn the sun back on.
 					actionQ.Enqueue(new SkyboxAction(false));
 				actionQ.Enqueue (new ActiveAction (mm.Candle, false));
 				isBusy = true;
@@ -277,7 +279,7 @@ public class MissionEvent : MonoBehaviour {
 					//Set minimap to point to Torkana
 					actionQ.Enqueue(new StandAction(mm.Torkana,mm.inFrontTorkanaHouse)); //Allows for Torkana reset upon mission failure
 					actionQ.Enqueue(new MinimapAction("Torkana"));
-				actionQ.Enqueue(new FollowAction(0, 12, mm.Torkana));
+				actionQ.Enqueue(new FollowAction(0, 13, mm.Torkana));
 				//actionQ.Enqueue (new MoveAction (mm.Torkana, mm.adjToBeeArea));
 			//Player must MOVE(currLoc, adjToBeeArea)
 				//this automatically happens b.c. follow action requires it!
@@ -355,11 +357,11 @@ public class MissionEvent : MonoBehaviour {
 				//Player must UNFREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 					//Resets map to point to Doctor's House
-					actionQ.Enqueue(new MinimapAction("Doctor"));
+					actionQ.Enqueue(new MinimapAction("Torkana"));
 			//Torkana must MOVE(currLoc, adjToDoctorsHouse) iff IN_RANGE(Torkana, Player)
 			//Player must MOVE(currLoc, adjToDoctorsHouse)
 			//note that Torkana moves to the doctor's house so the player also must
-				actionQ.Enqueue(new FollowAction(13, 29, mm.Torkana));
+				actionQ.Enqueue(new FollowAction(14, 29, mm.Torkana));
 			
 			//Player must ENTER(DoctorsHouse)
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.DoctorsHouse, ""));
@@ -846,39 +848,42 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.CREATE_TOOL_1:
 				if(mission.getCurrentMissionEvent()==eventType) {
-				bool puzzle1done = false;
-				while (!puzzle1done) {
-					//Insert puzzle #1
-					puzzle1done = true;
-				}
+					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,true));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
-				actionQ.Enqueue(new TalkAction(mm.Blacksmith, currentAudio,mm.currentUI,73,1));
+					actionQ.Enqueue(new CameraAction(true));
+					actionQ.Enqueue(new BlacksmithPuzzleAction(mm.Grid, 3, mm.firstPic));
+					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,false));
+					actionQ.Enqueue(new PuzzleClearAction(mm.Grid));
+					actionQ.Enqueue(new CameraAction(false));
+					actionQ.Enqueue(new TalkAction(mm.Blacksmith, currentAudio,mm.currentUI,73,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.CREATE_TOOL_2:
 				if(mission.getCurrentMissionEvent()==eventType) {
-				bool puzzle2done = false;
-				while (!puzzle2done) {
-					//Insert puzzle #2
-					puzzle2done = true;
-				}
+					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,true));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
-				actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,74,1));
+					actionQ.Enqueue(new CameraAction(true));
+					actionQ.Enqueue(new BlacksmithPuzzleAction(mm.Grid, 4, mm.secondPic));
+					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,false));
+					actionQ.Enqueue(new PuzzleClearAction(mm.Grid));
+					actionQ.Enqueue(new CameraAction(false));
+					actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,74,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.CREATE_TOOL_3:
 				if(mission.getCurrentMissionEvent()==eventType) {
-				bool puzzle3done = false;
-				while (!puzzle3done) {
-					//Insert puzzle #1
-					puzzle3done = true;
-				}
+					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,true));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
-				actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,75,1));
+					actionQ.Enqueue(new CameraAction(true));
+					actionQ.Enqueue(new BlacksmithPuzzleAction(mm.Grid, 5, mm.thirdPic));
+					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,false));
+					actionQ.Enqueue(new PuzzleClearAction(mm.Grid));
+					actionQ.Enqueue(new CameraAction(false));
+					actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,75,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new ActiveAction(mm.Tools,true));
 					actionQ.Enqueue(new GrabAction(mm.Player,GrabMe.kind.TOOLS, "Grab the tools with G"));
@@ -1330,6 +1335,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.TOLERATE_SPIDERS:
 				if(mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new MinimapAction("nothing"));
+					actionQ.Enqueue(new ActiveAction(mm.Spiders1,true)); //Turn on spiders
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,165,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
@@ -1565,6 +1571,7 @@ public class MissionEvent : MonoBehaviour {
 				break;
 			case MissionManager.EventType.TOLERATE_SNAKES_AGAIN:
 				if (mission.getCurrentMissionEvent()==eventType){
+					actionQ.Enqueue(new ActiveAction(mm.Snakes,true)); //Turn on snakes
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.pathToDragon,"Continue forward to face the dragon!"));
 					//Here there be snakes
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));

@@ -22,7 +22,7 @@ namespace PuzzleMiniGame
         public void StartGeneratingGrid()
         {
             Timeout.StopTimers();
-            disablePanel.SetActive(true);
+            //disablePanel.SetActive(true);
 
             // the game is only allowed in landscape mode so height < width always
             MAX_WIDTH = Math.Abs(puzzlePieceParent.rect.height);

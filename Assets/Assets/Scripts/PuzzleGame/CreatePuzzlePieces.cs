@@ -14,6 +14,7 @@ namespace PuzzleMiniGame
         public SceneReset sceneReset;
         public string sceneToLoadOnComplete;
         public RunTutorial tutorialCanvas;
+		public BlacksmithPuzzleAction action;
 
         public List<GameObject> GeneratePuzzlePieces(List<GameObject> gridPanels, int dimensions, string panelBase,
             int width, int height)
@@ -42,6 +43,7 @@ namespace PuzzleMiniGame
                     piece.GetComponent<RawImage>().SetNativeSize();
                     piece.GetComponent<PuzzleDragDrop>().correctContainer =
                         GetGridPanelByName(gridPanels, panelBase + panelNumber++).transform;
+					piece.GetComponent<PuzzleDragDrop>().action = this.action;
                     pieces.Add(piece);
                 }
             }
@@ -79,13 +81,14 @@ namespace PuzzleMiniGame
 
         private IEnumerator ShufflePositions(List<GameObject> pieces, AudioSource shuffleSound)
         {
-            yield return new WaitForSeconds(3.0f);
-            PieceAnimation(pieces, true);
-            yield return new WaitForSeconds(1.0f);
-            PieceAnimation(pieces, false);
+            //yield return new WaitForSeconds(3.0f);
+            //PieceAnimation(pieces, true);
+            //yield return new WaitForSeconds(1.0f);
+            //PieceAnimation(pieces, false);
             var piecesMutable = new List<GameObject>(pieces);
             while (piecesMutable.Count > 0)
             {
+				//Debug.Log (piecesMutable.Count + " mutable");
                 var first = piecesMutable[Random.Range(0, piecesMutable.Count)];
                 piecesMutable.Remove(first);
                 if (piecesMutable.Count == 0)
@@ -106,17 +109,17 @@ namespace PuzzleMiniGame
                 yield return new WaitForSeconds(shuffleSound.clip.length);
             }
 
-            yield return new WaitForSeconds(shuffleSound.clip.length);
-            Utilities.PlayAudio(transform.parent.GetComponent<AudioSource>());
-            Timeout.SetRepeatAudio(transform.parent.GetComponent<AudioSource>());
-            yield return new WaitForSeconds(transform.parent.GetComponent<AudioSource>().clip.length);
-            if (!GameFlags.PuzzleTutorialHasRun) tutorialCanvas.PlayTutorial(pieces);
-            else
-            {
+            //yield return new WaitForSeconds(shuffleSound.clip.length);
+            //Utilities.PlayAudio(transform.parent.GetComponent<AudioSource>());
+            //Timeout.SetRepeatAudio(transform.parent.GetComponent<AudioSource>());
+            //yield return new WaitForSeconds(transform.parent.GetComponent<AudioSource>().clip.length);
+            //if (!GameFlags.PuzzleTutorialHasRun) tutorialCanvas.PlayTutorial(pieces);
+            //else
+            //{
                 DisableCorrectlyPlacedPieces(pieces);
-                GameObject.Find("DisablePanel").SetActive(false);
-                Timeout.StartTimers();
-            }
+                //GameObject.Find("DisablePanel").SetActive(false);
+                //Timeout.StartTimers();
+            //}
         }
 
         public void DisableCorrectlyPlacedPieces(List<GameObject> pieces)

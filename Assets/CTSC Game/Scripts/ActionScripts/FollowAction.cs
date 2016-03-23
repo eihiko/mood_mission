@@ -18,6 +18,7 @@ public class FollowAction : MissionAction {
 	}
 	
 	public bool execute(){
+		navAgent.enabled = true; //Testing line for navigation fix.
 		if (!followScript.enabled && !pathBegun) {
 //			if (navAgent.enabled){
 //				navAgent.enabled = false;
@@ -36,6 +37,7 @@ public class FollowAction : MissionAction {
 			if (navAgent != null){
 				navAgent.enabled = false;
 			}
+			followScript.resetPath();
 			return true;
 		}
 

@@ -53,6 +53,13 @@ public class TestMentorFollow : MonoBehaviour {
 		isActive = true;
 	}
 
+	//Method to reset the follow script so Torkana can move again.
+	public void resetPath(){
+		this.currIndex = 0;
+		this.pathComplete = false;
+		this.pathBegun = false;
+	}
+
 	public void beginPath(int startIndex, int endIndex){
 		this.currIndex = startIndex;
 		this.endIndex = endIndex;
@@ -80,7 +87,7 @@ public class TestMentorFollow : MonoBehaviour {
 	void Update() {
 		torkanaTrans = transform;
 		playerTrans = player;
-		animationEngine.setHasLimp (true);
+		animationEngine.setHasLimp(false);
 
 		if (pathBegun) {
 		//	GroundTorkana ();

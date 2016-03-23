@@ -146,4 +146,8 @@ public class AnimationEngine : MonoBehaviour {
 	public void setHasLimp(bool hasLimp){
 		animator.SetBool("HasLimp", hasLimp);
 	}
+
+	public void setWalking(bool walking){
+		animator.SetBool ("Walking", walking);
+	}
 }

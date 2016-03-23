@@ -107,7 +107,7 @@ public class MissionManager : MonoBehaviour {
 	//mission objects
 	public GameObject TorkanaHouse, TorkanaSitPos, inFrontTorkanaDoor,
 	inFrontTorkanaHouse;
-	public GameObject Candle;
+	public GameObject Candle, Sun;
 	public GameObject MentorBasement, ChestClosed, ChestOpen;
 	public GameObject TorkanaStandPos, leavingHouse;
 	public GameObject atBeeArea, DoctorGardenBees;
@@ -130,6 +130,9 @@ public class MissionManager : MonoBehaviour {
 	public GameObject Son;
 	public GameObject InsideSonHouse, OutsideSonHouse, leavingSonsHouse;
 	public GameObject MT3, InsideMT3House, OutsideMT3House, GoingToBlacksmith;
+	public GameObject PuzzleGridCanvas;
+	public PuzzleMiniGame.CreatePuzzleGrid Grid;
+	public TakenImage firstPic, secondPic, thirdPic;
 	public GameObject Blacksmith, AtBlacksmith, leavingBlacksmith, BackWithTools;
 	public GameObject Tools, Letters;
 	public GameObject FT1, AtFT1House, InsideFT1House, OutsideFT1House;
@@ -199,7 +202,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		test (10); //Set number of missions to skip when testing
+		test (5); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){

@@ -3,6 +3,13 @@ using System.Collections;
 
 public class BlacksmithPuzzleAction : MissionAction {
 
+	public bool puzzleComplete=false;
+
+	private PuzzleMiniGame.CreatePuzzleGrid Grid;
+	private PuzzleMiniGame.CreatePuzzlePieces Pieces;
+	private int dimensions;
+	private bool generated;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -14,10 +21,20 @@ public class BlacksmithPuzzleAction : MissionAction {
 	}
 
 	public bool execute() {
-		return false;
+		if (!generated) {
+			Pieces.action = this;
+			Grid.DIMENSIONS = dimensions;
+			Grid.StartGeneratingGrid ();
+			generated = true;
+		}
+		return puzzleComplete;
 	}
 
-	public BlacksmithPuzzleAction(){
-
+	public BlacksmithPuzzleAction(PuzzleMiniGame.CreatePuzzleGrid grid, int dimensions, TakenImage picture){
+		this.Grid = grid;
+		this.Pieces = Grid.puzzlePieceGenerator;
+		Pieces.image = picture;
+		this.dimensions = dimensions;
+		generated = false;
 	}
 }

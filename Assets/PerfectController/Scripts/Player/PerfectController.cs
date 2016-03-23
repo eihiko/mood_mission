@@ -23,6 +23,7 @@ public class PerfectController : MonoBehaviour {
 	private CharacterController controller;
 	private bool isGrounded;
 	private bool isControllable;
+	private bool cameraControllable;
 
 	void Awake(){
 		DontDestroyOnLoad (transform.gameObject);
@@ -30,6 +31,7 @@ public class PerfectController : MonoBehaviour {
 
 	void Start () {
 		isControllable = true;
+		cameraControllable = false;
 		cam = transform.FindChild("Camera").transform;
 		controller = gameObject.GetComponent<CharacterController>();
 		pitch = 0;
@@ -76,7 +78,7 @@ public class PerfectController : MonoBehaviour {
 			pitch = Mathf.Clamp (pitch, -60f, 60f);
 		}
 		transform.localEulerAngles = new Vector3(0, yaw, 0);
-		cam.localEulerAngles = new Vector3(pitch, 9, 0);
+		cam.localEulerAngles = new Vector3 (pitch, 9, 0);
 	}
 	
 	private void applyMoveForces(float mult) {
@@ -158,5 +160,9 @@ public class PerfectController : MonoBehaviour {
 
 	public bool getIsControllable(){
 		return isControllable; 
+	}
+
+	public void setIsCameraControllable(bool controllable) {
+		cameraControllable = controllable;
 	}
 }

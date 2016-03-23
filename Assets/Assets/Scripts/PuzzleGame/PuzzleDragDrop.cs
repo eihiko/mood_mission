@@ -12,6 +12,7 @@ namespace PuzzleMiniGame
         public Vector3 originalPosition;
         public bool disabled = false;
         public Transform correctContainer;
+		public BlacksmithPuzzleAction action;
 
         private GameObject highlight;
         private GameObject[] gridPanels;
@@ -20,7 +21,7 @@ namespace PuzzleMiniGame
 
         private void Awake()
         {
-            gridPanels = GameObject.FindGameObjectsWithTag("GUI");
+			gridPanels = GameObject.FindGameObjectsWithTag("GUI");
         }
 
         private void Start()
@@ -30,27 +31,30 @@ namespace PuzzleMiniGame
 
         private void Update()
         {
-            if (Input.touchCount > 1 && currentlyDraggingPiece == transform)
-            {
-                ReturnToOriginalPosition();
-                currentlyDraggingPiece = null;
-            }
+			//if (Input.GetMouseButtonDown (0) && currentlyDraggingPiece == transform) {
+            if (Input.touchCount > 1 && currentlyDraggingPiece == transform) {
+				ReturnToOriginalPosition ();
+				currentlyDraggingPiece = null;
+			} //else if (Input.GetMouseButtonDown (0)) {
+				//ClickPanel ();
+			//}
         }
 
         public void ClickPanel()
         {
+			//if (Input.GetMouseButtonDown(0)) return;
             if (Input.touchCount > 1) return;
             currentlyDraggingPiece = transform;
-            Timeout.StartTimers();
+            //Timeout.StartTimers();
             originalPosition = transform.localPosition;
-            Timeout.StartTimers();
+            //Timeout.StartTimers();
         }
 
         public void MovePanel()
         {
             if (currentlyDraggingPiece != transform) return;
             if (disabled) return;
-            Timeout.StopTimers();
+            //Timeout.StopTimers();
             MoveToHierarchyBottom();
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
@@ -81,7 +85,7 @@ namespace PuzzleMiniGame
             {
                 StartCoroutine(SubmitAnswer(intersectingPanel, intersectingPanel == correctContainer.gameObject));
             }
-            Timeout.StartTimers();
+            //Timeout.StartTimers();
         }
 
         private void ReturnToOriginalPosition()
@@ -115,7 +119,7 @@ namespace PuzzleMiniGame
                 GrowPieces();
                 yield return new WaitForSeconds(1.0f);
                 var parent = transform.parent;
-                parent.GetComponent<CreatePuzzlePieces>().sceneReset.TriggerCorrect(parent.GetComponent<AudioSource>(), parent.GetComponent<CreatePuzzlePieces>().sceneToLoadOnComplete, true);
+				action.puzzleComplete = true;
             }
         }
 

@@ -45,16 +45,16 @@ namespace PuzzleMiniGame
 			//if (Input.GetMouseButtonDown(0)) return;
             if (Input.touchCount > 1) return;
             currentlyDraggingPiece = transform;
-            //Timeout.StartTimers();
+            Timeout.StartTimers();
             originalPosition = transform.localPosition;
-            //Timeout.StartTimers();
+            Timeout.StartTimers();
         }
 
         public void MovePanel()
         {
             if (currentlyDraggingPiece != transform) return;
             if (disabled) return;
-            //Timeout.StopTimers();
+            Timeout.StopTimers();
             MoveToHierarchyBottom();
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
@@ -85,7 +85,7 @@ namespace PuzzleMiniGame
             {
                 StartCoroutine(SubmitAnswer(intersectingPanel, intersectingPanel == correctContainer.gameObject));
             }
-            //Timeout.StartTimers();
+            Timeout.StartTimers();
         }
 
         private void ReturnToOriginalPosition()

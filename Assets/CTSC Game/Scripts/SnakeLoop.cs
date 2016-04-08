@@ -20,6 +20,13 @@ public class SnakeLoop : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//Sometimes Start isn't called at the start, so this ensures there aren't null references
+		if (isChoosing == null) {
+			//Do Start
+			playerChoice = undecided; //Initialize to "not chosen"
+			isChoosing = new StoredBool (false); //Player is not choosing right now.
+		}
+
 		if (Input.GetKeyDown (KeyCode.Alpha1) && isChoosing.isSet()) {
 			playerChoice = attack;
 			isChoosing.resetFlag();

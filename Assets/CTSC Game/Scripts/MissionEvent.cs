@@ -851,9 +851,11 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,true));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new CameraAction(true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,false));
 					actionQ.Enqueue(new BlacksmithPuzzleAction(mm.Grid, 3, mm.firstPic));
 					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,false));
 					actionQ.Enqueue(new PuzzleClearAction(mm.Grid));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true));
 					actionQ.Enqueue(new CameraAction(false));
 					actionQ.Enqueue(new TalkAction(mm.Blacksmith, currentAudio,mm.currentUI,73,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
@@ -865,9 +867,11 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,true));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new CameraAction(true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,false));
 					actionQ.Enqueue(new BlacksmithPuzzleAction(mm.Grid, 4, mm.secondPic));
 					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,false));
 					actionQ.Enqueue(new PuzzleClearAction(mm.Grid));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true));
 					actionQ.Enqueue(new CameraAction(false));
 					actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,74,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
@@ -879,9 +883,11 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,true));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new CameraAction(true));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,false));
 					actionQ.Enqueue(new BlacksmithPuzzleAction(mm.Grid, 5, mm.thirdPic));
 					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,false));
 					actionQ.Enqueue(new PuzzleClearAction(mm.Grid));
+					actionQ.Enqueue(new ActiveAction(mm.currentUI,true));
 					actionQ.Enqueue(new CameraAction(false));
 					actionQ.Enqueue(new TalkAction(mm.Blacksmith,currentAudio,mm.currentUI,75,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
@@ -1484,9 +1490,11 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.CALM_TROLL:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new MinimapAction("nothing"));
+					actionQ.Enqueue(new ActiveAction(mm.Sun,false)); //Turn off the sun
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,193,2));
-					//actionQ.Enqueue(new BreatherAction(mm.breather));
+					actionQ.Enqueue(new BreatherAction(mm.breather));
+					actionQ.Enqueue(new ActiveAction(mm.breather.gameObject,false));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,195,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
@@ -1499,6 +1507,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,198,1));
 					actionQ.Enqueue(new TalkAction(mm.Troll,currentAudio,mm.currentUI,199,2));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					actionQ.Enqueue(new ActiveAction(mm.Sun,true)); //Turn off the sun
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.atBoat,"Grab one of the boats outside"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));

@@ -1560,7 +1560,7 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,207,1));
-					//Point minimap at Dragon's Door
+					//Point minimap at Dragon
 					actionQ.Enqueue(new MinimapAction("Dragon"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.atOgre,""));
@@ -1572,7 +1572,9 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.CALM_OGRE:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
-					//actionQ.Enqueue(new BreatherAction(mm.breather));
+					actionQ.Enqueue(new BreatherAction(mm.breather2));
+					actionQ.Enqueue(new ActiveAction(mm.breather2.gameObject,false));
+					actionQ.Enqueue(new SleepAction(mm.Ogre));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,209,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;

@@ -157,10 +157,10 @@ public class MissionManager : MonoBehaviour {
 	public TransportPlayer hydraTransport, ForemanHouseTransport;
 	public GameObject facingTheHydra, nearForeman, ForemanStand, toTheBoathouse;
 	public GameObject atBoathouse, Troll, atBoat;
-	public Breather breather;
+	public Breather breather, breather2;
 	public ButtonScript boatButton;
 	public int choiceBoat=3;
-	public GameObject islandDock, atOgre, pathToDragon, Snakes, snakeMovePoint, atDragon, Dragon;
+	public GameObject islandDock, atOgre, pathToDragon, Ogre, Snakes, snakeMovePoint, atDragon, Dragon;
 	public ButtonScript snakeButton;
 	public StoredBool choiceSnakes, dragonDefeated;
 	
@@ -202,7 +202,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		test (9); //Set number of missions to skip when testing
+		//test (11); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){

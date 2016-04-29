@@ -1031,6 +1031,7 @@ GameObject:
   - 114: {fileID: 11461888}
   - 114: {fileID: 11478070}
   - 82: {fileID: 8241622}
+  - 114: {fileID: 11486360}
   m_Layer: 0
   m_Name: ControllerBody
   m_TagString: Player
@@ -3031,7 +3032,7 @@ Light:
   serializedVersion: 6
   m_Type: 0
   m_Color: {r: .897058845, g: .615567982, b: .112132356, a: 1}
-  m_Intensity: .800000012
+  m_Intensity: 1.5
   m_Range: 10
   m_SpotAngle: 122
   m_CookieSize: 10
@@ -4304,7 +4305,7 @@ MonoBehaviour:
   bobStr: .100000001
   bobFreq: .5
   eyesHeight: .5
-  yaw: -180
+  yaw: 0
   pitch: 0
 --- !u!114 &11438876
 MonoBehaviour:
@@ -5452,7 +5453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 3305971f-58f6-48c7-809a-92c518b46da5
+  _id: 
   classId: 0d9689da-0dbe-4ed2-b8e6-27f04a6f9756
   StoreAllComponents: 1
   Components: []
@@ -5979,7 +5980,7 @@ MonoBehaviour:
   maxCompassion: 100
   compassionText: {fileID: 0}
   visualCompassion: {fileID: 0}
-  damageCooldown: .5
+  damageCooldown: .0199999996
 --- !u!114 &11479360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6037,7 +6038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: 8676b329-8560-41ba-a1b6-e4034987f293
+  _id: 
   classId: 7f40b512-78e7-418d-ac9a-606ee32a864f
   StoreAllComponents: 1
   Components: []
@@ -6111,6 +6112,24 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: f1289d9a909bfda4e97fbd6af270d511, type: 2}
   mSpriteName: Dark
   mFillCenter: 1
+--- !u!114 &11486360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f94c68a877190499160a420cba181f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firehit: {fileID: 8300000, guid: 32b640eff7d26a0418b3eceb3c265cf3, type: 3}
+  shieldhit: {fileID: 8300000, guid: 1cdbbff7dc45f9341962f2884849b59e, type: 3}
+  shield: {fileID: 174188, guid: af29a29f058c0704a8093ddd1f8ca184, type: 2}
+  complimentScrolls: 2
+  torkanaScrolls: 0
+  hydra: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!114 &11486844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6320,7 +6339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDeserializing: 0
-  _id: b839f530-c602-4653-a25c-9a5316f2a83a
+  _id: 
   classId: 829076dd-9378-4b0f-9216-444b9040989d
   StoreAllComponents: 1
   Components: []

@@ -194,6 +194,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.FIND_KEY:
 				if(mission.getCurrentMissionEvent()==eventType) {
 			//Player must FIND(Key) to open chest (GRAB?)
+					actionQ.Enqueue(new ActiveAction(mm.Key,true));
 				actionQ.Enqueue (new GrabAction (mm.Player, GrabMe.kind.KEY, "Find the key then grab it with G"));
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
@@ -225,6 +226,7 @@ public class MissionEvent : MonoBehaviour {
 			//Torkana must STAND(inFrontOfDoor)
 			//Stands in front of his front door inside
 				actionQ.Enqueue (new StandAction (mm.Torkana, mm.TorkanaStandPos));
+					actionQ.Enqueue(new AlterStatAction("Courage", 5, true));
 			//Player must ENTER(mentorHouse)
 				actionQ.Enqueue (new EnterAction (mm.Player, mm.leavingHouse,
 				                                  "Stand near the ladder and press E to go upstairs"));
@@ -243,8 +245,6 @@ public class MissionEvent : MonoBehaviour {
 			//Torkana must TALK(audio, guiToShow)
 				actionQ.Enqueue (new TalkAction (mm.Torkana, currentAudio, mm.currentUI, 11, 2));
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
-				//Player must GRAB(Candle)
-				actionQ.Enqueue (new DropAction (mm.Player, GrabMe.kind.CANDLE));
 			//Torkana must ENTER(Forest)
 				actionQ.Enqueue (new ActiveAction (mm.Torkana, false));
 				actionQ.Enqueue (new MoveAction (mm.Torkana, mm.inFrontTorkanaHouse));
@@ -279,7 +279,8 @@ public class MissionEvent : MonoBehaviour {
 					//Set minimap to point to Torkana
 					actionQ.Enqueue(new StandAction(mm.Torkana,mm.inFrontTorkanaHouse)); //Allows for Torkana reset upon mission failure
 					actionQ.Enqueue(new MinimapAction("Torkana"));
-				actionQ.Enqueue(new FollowAction(0, 13, mm.Torkana));
+				actionQ.Enqueue(new FollowAction(0, 14, mm.Torkana));
+					actionQ.Enqueue(new StandAction(mm.Torkana,mm.TorkanaStandBees));
 				//actionQ.Enqueue (new MoveAction (mm.Torkana, mm.adjToBeeArea));
 			//Player must MOVE(currLoc, adjToBeeArea)
 				//this automatically happens b.c. follow action requires it!
@@ -344,6 +345,7 @@ public class MissionEvent : MonoBehaviour {
 				mm.Bees.GetComponent<Swarm>().swarmFocus = mm.DoctorGardenBees.transform;
 				//move the actual position to the doctor's garden area
 				actionQ.Enqueue(new MoveAction(mm.Bees, mm.DoctorGardenBees));
+					actionQ.Enqueue(new AlterStatAction("Courage", 5, true));
 					actionQ.Enqueue(new MinimapAction("Torkana"));
 				isBusy = true;
 				}
@@ -361,7 +363,8 @@ public class MissionEvent : MonoBehaviour {
 			//Torkana must MOVE(currLoc, adjToDoctorsHouse) iff IN_RANGE(Torkana, Player)
 			//Player must MOVE(currLoc, adjToDoctorsHouse)
 			//note that Torkana moves to the doctor's house so the player also must
-				actionQ.Enqueue(new FollowAction(14, 29, mm.Torkana));
+				actionQ.Enqueue(new FollowAction(15, 29, mm.Torkana));
+					actionQ.Enqueue(new StandAction(mm.Torkana, mm.TorkanaStandDoctor));
 			
 			//Player must ENTER(DoctorsHouse)
 				actionQ.Enqueue(new EnterAction(mm.Player, mm.DoctorsHouse, ""));
@@ -470,6 +473,7 @@ public class MissionEvent : MonoBehaviour {
 				if(mission.getCurrentMissionEvent()==eventType) {
 				//Player must FREEZE
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
+					actionQ.Enqueue(new AlterStatAction("Courage", 5, true));
 				//Gui must ACTIVE(true, brief)
 				actionQ.Enqueue (new ActiveAction (mm.currentUI, true, 28, 1));
 				//Player must UNFREEZE
@@ -561,8 +565,9 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new TalkAction(mm.Doctor, currentAudio, mm.currentUI, 34, 2));
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
 				//Player must GIVE(Herb, Doctor)
-				actionQ.Enqueue(new DropAction(mm.Player, GrabMe.kind.HERB, "Give the herb to the Doctor"));
+				actionQ.Enqueue(new DropAction(mm.Player, GrabMe.kind.HERB, "Give the herb to the Doctor with F"));
 				actionQ.Enqueue(new DropAction(mm.Player, GrabMe.kind.HEALING_WATER, "Now, give the healing water to the Doctor"));
+					actionQ.Enqueue(new AlterStatAction("Compassion", 5, true));
 				actionQ.Enqueue (new FreezeAction (mm.Player, true));
 				actionQ.Enqueue(new TalkAction(mm.Torkana, currentAudio, mm.currentUI, 36, 2));
 				actionQ.Enqueue (new FreezeAction (mm.Player, false));
@@ -604,9 +609,9 @@ public class MissionEvent : MonoBehaviour {
 			//Torkana must MOVE(currLoc, adjToDoor)
 			//Torkana must ENTER(Forest)
 			//Torkana must ACTIVE(false)
-				actionQ.Enqueue(new ActiveAction(mm.Torkana, false));
+				//actionQ.Enqueue(new ActiveAction(mm.Torkana, false));  TAKE OUT FOR NOW
 				//Doctor must ACTIVE(false)
-				actionQ.Enqueue(new ActiveAction(mm.Doctor, false));
+				//actionQ.Enqueue(new ActiveAction(mm.Doctor, false));  TAKE OUT FOR NOW
 			//Checkpoint to reflect with gui and input, write data to database
 				actionQ.Enqueue (new CheckpointAction());
 				isBusy = true;
@@ -634,6 +639,7 @@ public class MissionEvent : MonoBehaviour {
 					//Reset minimap to point at nothing
 					actionQ.Enqueue(new MinimapAction("nothing"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new AlterStatAction("Courage", 5, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,138,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				isBusy = true;
@@ -656,7 +662,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.ENTER_TAVERN:
 				if(mission.getCurrentMissionEvent()==eventType) {
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-				actionQ.Enqueue(new EnterAction(mm.Player,mm.insideTavern, "There's the tavern.  They should have the supplies and healing water you need."));
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.insideTavern, "There's the tavern.  They should have the supplies and healing water you need.  Enter with E."));
 					//Turn off the minimp pointer indoors
 					actionQ.Enqueue(new MinimapAction("nothing"));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearTavernKeeper, "Talk to the tavern keeper about your supplies and the water for the townsperson"));
@@ -678,9 +684,10 @@ public class MissionEvent : MonoBehaviour {
 				if(mission.getCurrentMissionEvent()==eventType) {
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,124,2));
+					actionQ.Enqueue(new AlterStatAction("Compassion", 5, false));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-					actionQ.Enqueue(new EnterAction(mm.Player,mm.ReturningWithMedicine, "Hurry outside to give the healing water to the injured man."));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.ReturningWithMedicine, "Hurry outside with E to give the healing water to the injured man."));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,46,2));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,126,1));
@@ -692,6 +699,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.GIVE_MEDICINE:
 				if(mission.getCurrentMissionEvent()==eventType) {
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new AlterStatAction("Compassion", 5, false));
 					actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,128,1));
 					actionQ.Enqueue(new ChoiceAction(mm.Player,"Button",new EnterScript[1],"Water2",2,true,"Press 1 to listen to Torkana and give the man your healing water, or press 2 to keep the water to yourself."));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
@@ -705,7 +713,8 @@ public class MissionEvent : MonoBehaviour {
 						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,130,1));
 						actionQ.Enqueue(new FreezeAction(mm.Player,false));
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-						actionQ.Enqueue(new EnterAction(mm.Player,mm.ReturningWithMedicine, "Hurry outside to give the healing water to the injured man."));
+						actionQ.Enqueue(new AlterStatAction("Compassion", 5, true));
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.ReturningWithMedicine, "Hurry outside with E to give the healing water to the injured man."));
 					}
 					else if(mm.choiceForSupply == 1){
 						actionQ.Enqueue(new FreezeAction(mm.Player,true));
@@ -713,7 +722,7 @@ public class MissionEvent : MonoBehaviour {
 						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,133,1));
 						actionQ.Enqueue(new FreezeAction(mm.Player,false));
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-						actionQ.Enqueue(new EnterAction(mm.Player,mm.ReturningWithMedicine, "Hurry outside to give the healing water to the injured man."));
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.ReturningWithMedicine, "Hurry outside with E to give the healing water to the injured man."));
 					}
 					isBusy = true;
 				}
@@ -724,9 +733,11 @@ public class MissionEvent : MonoBehaviour {
 						actionQ.Enqueue(new FreezeAction(mm.Player,true));
 						actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI, 46, 1));
 						actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,48,1));
+						actionQ.Enqueue(new AlterStatAction("Compassion", 10, true));
 					}
 					else if (mm.choiceForSupply == 2){
 						actionQ.Enqueue(new FreezeAction(mm.Player,true));
+						actionQ.Enqueue(new AlterStatAction("Compassion", 5, true));
 						actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,131,1));
 					}
 					actionQ.Enqueue(new TalkAction(mm.InjuredPerson,currentAudio,mm.currentUI,49,1));
@@ -831,7 +842,7 @@ public class MissionEvent : MonoBehaviour {
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 68,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-				actionQ.Enqueue(new EnterAction(mm.Player,mm.AtBlacksmith, "Enter the blacksmith's house"));
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.AtBlacksmith, "Enter the blacksmith's house with E."));
 					actionQ.Enqueue(new MinimapAction("nothing"));
 				isBusy = true;
 				}
@@ -884,7 +895,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new CameraAction(true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,false));
-					actionQ.Enqueue(new BlacksmithPuzzleAction(mm.Grid, 5, mm.thirdPic));
+					actionQ.Enqueue(new BlacksmithPuzzleAction(mm.Grid, 4, mm.thirdPic));
 					actionQ.Enqueue(new ActiveAction(mm.PuzzleGridCanvas,false));
 					actionQ.Enqueue(new PuzzleClearAction(mm.Grid));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true));
@@ -900,6 +911,7 @@ public class MissionEvent : MonoBehaviour {
 				if(mission.getCurrentMissionEvent()==eventType) {
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 				actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingBlacksmith, "Return to the old man's house with your new tools"));
+					actionQ.Enqueue(new MinimapAction("MT3"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 76, 1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
@@ -913,10 +925,11 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 				actionQ.Enqueue(new TalkAction(mm.MT3,currentAudio,mm.currentUI,77,1));
 				actionQ.Enqueue(new GiveAction(mm.Player,mm.MT3, GrabMe.kind.TOOLS));
+					actionQ.Enqueue(new AlterStatAction("Compassion", 5, true));
 				actionQ.Enqueue(new TalkAction(mm.MT3,currentAudio,mm.currentUI,78,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 				mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-				actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideMT3House, "Go outside to help the other townsperson"));
+				actionQ.Enqueue(new EnterAction(mm.Player,mm.OutsideMT3House, "Go outside with E to help the other townsperson"));
 				isBusy = true;
 				}
 				break;
@@ -931,7 +944,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true, 80,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-					actionQ.Enqueue(new EnterAction(mm.Player,mm.InsideFT1House, "Enter the townsperson's house"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.InsideFT1House, "Enter the townsperson's house with E."));
 					actionQ.Enqueue(new MinimapAction("nothing"));
 					isBusy = true;
 				}
@@ -997,6 +1010,7 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType) {
 					//if (mm.choiceInRain==0) {
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue (new AlterStatAction("Courage", 5, false));
 						actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,88,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 						EnterScript[] triggers = new EnterScript[2];
@@ -1024,6 +1038,7 @@ public class MissionEvent : MonoBehaviour {
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.backAtFT1, ""));
 					actionQ.Enqueue(new MinimapAction("nothing"));
+					actionQ.Enqueue(new AlterStatAction("Courage", 5, false));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 						actionQ.Enqueue(new TalkAction(mm.FT1,currentAudio,mm.currentUI,89,1));
 						actionQ.Enqueue(new GiveAction(mm.Player,mm.FT1, GrabMe.kind.LETTERS));
@@ -1032,7 +1047,7 @@ public class MissionEvent : MonoBehaviour {
 						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,95,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingHouseAgain, "Step outside and return to the foreman's son"));
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingHouseAgain, "Step outside with E and return to the foreman's son"));
 						isBusy = true;
 					//}
 					//else{
@@ -1048,6 +1063,8 @@ public class MissionEvent : MonoBehaviour {
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 						actionQ.Enqueue(new EnterAction(mm.Player,mm.safeInTavern, "Get into the tavern quickly"));
 					actionQ.Enqueue(new MinimapAction("nothing"));
+					actionQ.Enqueue(new AlterStatAction("Courage", 10, true));
+					actionQ.Enqueue(new AlterStatAction("Compassion", 5, true));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 						actionQ.Enqueue(new TalkAction(mm.TavernKeeper,currentAudio,mm.currentUI,90,1));
 						actionQ.Enqueue(new TalkAction(mm.Player,currentAudio,mm.currentUI,91,1));
@@ -1059,7 +1076,7 @@ public class MissionEvent : MonoBehaviour {
 						actionQ.Enqueue(new ChoiceAction(mm.Player,"Button",new EnterScript[1],"TavernAfter",2,false, "Press 1 to leave now, or press 2 to wait until the rain completely stops"));
 					if (mm.choiceInRain==0){
 						mission.setEventComplete(MissionManager.EventType.WAIT_FOR_END);
-						Debug.Log("Missions set complete wd");
+						//Debug.Log("Missions set complete wd");
 					}
 						isBusy = true;
 					//}
@@ -1073,8 +1090,9 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.WAIT_FOR_DRIZZLE:
 				if (mission.getCurrentMissionEvent()==eventType) {
 					//if (mm.choiceInTavern==0) {
+					actionQ.Enqueue(new AlterStatAction("Courage", 5, true));
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingTavernAgain, "Step back outside and return to the foreman's son"));
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingTavernAgain, "Step back outside with E and return to the foreman's son"));
 						isBusy = true;
 					//}
 					//else{
@@ -1094,7 +1112,7 @@ public class MissionEvent : MonoBehaviour {
 						actionQ.Enqueue(new ActiveAction(mm.currentUI,true,94,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 						mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingTavernAgain, "Step back outside and return to the foreman's son"));
+						actionQ.Enqueue(new EnterAction(mm.Player,mm.leavingTavernAgain, "Step back outside with E and return to the foreman's son"));
 						isBusy = true;
 					//}
 					//else{
@@ -1134,7 +1152,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,100,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-					actionQ.Enqueue(new EnterAction(mm.Player,mm.insideGirlHouse, "Look around the girl's house to find examples of her parent's love"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.insideGirlHouse, "Look around the girl's house to find examples of her parent's love.  Enter with E."));
 					isBusy = true;
 				}
 				break;
@@ -1151,19 +1169,20 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,102,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
-					actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.DRAWINGS, "Pick up the drawings with G"));
+					actionQ.Enqueue(new GrabAction(mm.Player, GrabMe.kind.DRAWINGS, "Pick up the writings with G"));
 					isBusy = true;
 				}
 				break;
 			case MissionManager.EventType.SHOW_DRAWINGS:
 				if (mission.getCurrentMissionEvent()==eventType){
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-					actionQ.Enqueue(new EnterAction(mm.Player,mm.drawingExit, "Show the girl the drawings"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.drawingExit, "Show the girl the writings"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,103,2));
 					actionQ.Enqueue(new TalkAction(mm.YoungGirl,currentAudio,mm.currentUI,105,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true,106,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					actionQ.Enqueue(new AlterStatAction("Compassion", 2, true));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.inside2, "Go back inside to find something else"));
 					isBusy = true;
@@ -1191,6 +1210,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new TalkAction(mm.YoungGirl, currentAudio,mm.currentUI,110,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI, true,111,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
+					actionQ.Enqueue(new AlterStatAction("Compassion", 3, true));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.inside3, "Go inside one more time to search"));
 					isBusy = true;
@@ -1215,6 +1235,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.locketExit, "Show the girl the locket"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,114,1));
+					actionQ.Enqueue(new AlterStatAction("Compassion", 5, true));
 					actionQ.Enqueue(new TalkAction(mm.YoungGirl, currentAudio,mm.currentUI,115,1));
 					//Parents come running in
 					actionQ.Enqueue(new ActiveAction(mm.GirlsFather,true));
@@ -1232,7 +1253,7 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType){
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
 					actionQ.Enqueue(new MinimapAction("Son"));
-					actionQ.Enqueue(new EnterAction(mm.Player,mm.BackFromDeeds, "Return to the son's house"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.BackFromDeeds, "Return to the son's house and enter with E."));
 					isBusy = true;
 				}
 				break;
@@ -1251,7 +1272,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.TOWARD_TOWN_CENTER:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new ActiveAction(mm.Cyclops,true));
-					actionQ.Enqueue(new MinimapAction("Town Center"));
+					actionQ.Enqueue(new MinimapAction("Apple Lady"));
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearAppleLady,"Head towards the town center and see if you can get any information on the cyclops"));
 					isBusy = true;
 				}
@@ -1259,6 +1280,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.TALK_TO_FT3:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new MinimapAction("nothing"));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,139,1));
 					actionQ.Enqueue(new TalkAction(mm.AppleLady,currentAudio,mm.currentUI,140,3));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,143,1));
@@ -1270,6 +1292,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.TALK_TO_MT4:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new EnterAction(mm.Player,mm.nearKid,"Continue towards the town center."));
+					actionQ.Enqueue(new MinimapAction("Town Center"));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,145,1));
 					actionQ.Enqueue(new TalkAction(mm.Kid,currentAudio,mm.currentUI,146,1));
@@ -1303,6 +1326,7 @@ public class MissionEvent : MonoBehaviour {
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					//stop laughter here
+					actionQ.Enqueue(new MinimapAction("nothing"));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,151,1));
 					actionQ.Enqueue(new TalkAction(mm.Cyclops,currentAudio,mm.currentUI,152,1));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,153,1));
@@ -1310,6 +1334,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new SetAction(mm.Cyclops.GetComponent<CyclopsChoiceLoop>().isChoosing,true));
 					actionQ.Enqueue(new WaitAction(mm.cyclopsChoice));
 					actionQ.Enqueue(new TalkAction(mm.Cyclops,currentAudio,mm.currentUI,158,1));
+					actionQ.Enqueue(new AlterStatAction("Courage", 10, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,159,2));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
@@ -1334,7 +1359,8 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new TalkAction(mm.Son,currentAudio,mm.currentUI,164,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-					actionQ.Enqueue(new EnterAction(mm.Player,mm.sewerEntrance,"Find the entrance to the sewers"));
+					actionQ.Enqueue(new MinimapAction("Sewer"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.sewerEntrance,"Find the entrance to the sewers and enter with E."));
 					isBusy = true;
 				}
 				break;
@@ -1351,6 +1377,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new PrintAction("Press 1 to attack the spiders.  Press 2 to wait for the spiders to leave.  Press 3 to lure the spiders away with food.",100));
 					actionQ.Enqueue(new SetAction(mm.Spiders1.GetComponent<SpiderLoopA>().isChoosing,true));
 					actionQ.Enqueue(new WaitAction(mm.choiceSewerSpiders));
+					actionQ.Enqueue(new AlterStatAction("Courage", 5, true));
 					actionQ.Enqueue(new MoveAction(mm.Spiders1,mm.spiderMovePoint));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,169,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
@@ -1444,6 +1471,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new WaitAction(mm.hydraDefeated));
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
 					actionQ.Enqueue(new TalkAction(mm.Torkana,currentAudio,mm.currentUI,182,1));
+					actionQ.Enqueue(new AlterStatAction("Courage", 10, true));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
 				}
@@ -1472,7 +1500,7 @@ public class MissionEvent : MonoBehaviour {
 					//Player steps outside
 					actionQ.Enqueue(new SkyboxAction(mm.night));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-					actionQ.Enqueue(new EnterAction(mm.Player,mm.toTheBoathouse,"Go to the boathouse to talk to the troll"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.toTheBoathouse,"Go to the boathouse to talk to the troll.  Press E to exit."));
 					isBusy = true;
 				}
 				break;
@@ -1483,7 +1511,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,192,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					mm.Player.GetComponent<CharacterOurs>().canEnter = true;
-					actionQ.Enqueue(new EnterAction(mm.Player,mm.atBoathouse,"Head on to the boathouse"));
+					actionQ.Enqueue(new EnterAction(mm.Player,mm.atBoathouse,"Head on to the boathouse.  Press E to enter."));
 					isBusy = true;
 				}
 				break;
@@ -1495,6 +1523,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,193,2));
 					actionQ.Enqueue(new BreatherAction(mm.breather));
 					actionQ.Enqueue(new ActiveAction(mm.breather.gameObject,false));
+					actionQ.Enqueue(new AlterStatAction("Compassion", 10, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,195,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
@@ -1525,6 +1554,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.BRAVE_STORM:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new AlterStatAction("Courage", 5, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,203,1));
 					//Player is moved to island
 					actionQ.Enqueue(new MoveAction(mm.Player,mm.islandDock));
@@ -1535,6 +1565,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.SCARED_BY_STORM:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new AlterStatAction("Courage", 5, false));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,204,1));
 					actionQ.Enqueue(new ActiveAction(mm.RainMaker,false));
 					//Player is moved to island
@@ -1575,6 +1606,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new BreatherAction(mm.breather2));
 					actionQ.Enqueue(new ActiveAction(mm.breather2.gameObject,false));
 					actionQ.Enqueue(new SleepAction(mm.Ogre));
+					actionQ.Enqueue(new AlterStatAction("Courage", 5, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,209,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					isBusy = true;
@@ -1591,6 +1623,7 @@ public class MissionEvent : MonoBehaviour {
 					actionQ.Enqueue(new SetAction(mm.Snakes.GetComponent<SnakeLoop>().isChoosing,true));
 					actionQ.Enqueue(new WaitAction(mm.choiceSnakes));
 					actionQ.Enqueue(new MoveAction(mm.Snakes,mm.snakeMovePoint));
+					actionQ.Enqueue(new AlterStatAction("Courage", 5, true));
 					actionQ.Enqueue(new ActiveAction(mm.Snakes,false));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,212,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
@@ -1622,6 +1655,7 @@ public class MissionEvent : MonoBehaviour {
 			case MissionManager.EventType.DRAGON_DEFEATED:
 				if (mission.getCurrentMissionEvent()==eventType){
 					actionQ.Enqueue(new FreezeAction(mm.Player,true));
+					actionQ.Enqueue(new AlterStatAction("Courage", 20, true));
 					actionQ.Enqueue(new ActiveAction(mm.currentUI,true,215,1));
 					actionQ.Enqueue(new FreezeAction(mm.Player,false));
 					//Any last-minute end-game stuffs

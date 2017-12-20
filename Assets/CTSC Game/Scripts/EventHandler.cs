@@ -134,6 +134,7 @@ public class EventHandler: MonoBehaviour
 
         //Pause/unpause the game.
         if (Input.GetKeyUp(KeyCode.Escape) && currState != GameState.PAUSE) {
+			//Debug.Log(currState.ToString());
 			pauseMenu.setPaused(true);
             Time.timeScale = 0;
             currState = GameState.PAUSE;
@@ -180,6 +181,8 @@ public class EventHandler: MonoBehaviour
 				lastState = GameState.GUI;
 				break;
 		}
+
+		currState = state;
 	}
 
 	IEnumerator waitForSecs(float seconds){

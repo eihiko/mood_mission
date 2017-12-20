@@ -98,7 +98,12 @@ public class Hydra : MonoBehaviour {
 		else if (isFiring==true){
 			launchTimer = 0;
 			a.SetTrigger ("Launch");
-			this.transform.LookAt(target.transform.position);
+			if (mon==Monster.Dragon){
+				GameObject Head = GameObject.Find ("mountain_dragon_ Head");
+				Head.transform.LookAt(target.transform.position);
+			}
+			else
+				this.transform.LookAt(target.transform.position);
 		}
 		
 	

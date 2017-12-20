@@ -32,11 +32,11 @@ As the Doctor said, you must search for the healing water pool in the cave.
 You have a low amount of health and will not be able to bear anymore threats. You must find a healing potion somewhere in the cave now.
 Now you must apply the potion by clicking the drop-down inventory and selecting the potion.
 You are ready to return to the Doctor’s Office. Find your way back so that the Doctor can help you and Torkana as soon as possible.
-Doctor: Look who is back! Torkana and I are very happy to see you. We hope that you have successfully found the necessary supplies to heal both of you.
+Doctor: Look who is back! Torkana and I are very happy to see you. We hope that you have successfully found the necessary supplies to heal him.
 If you have found the herbs and healing water, please give them to me now.
-Torkana: Thank you for finding the medicine for me. I hope the healing cave was not too terrifying or confusing. I plan to give you something after the Doctor heals us. 
-Please, sit down at the chair to your left and rest until you are healed.
-Doctor: You're looking a lot better now.  Unfortunately, Torkana's injuries will take a little longer to heal.  He won't be able to travel with you to Merami.
+Torkana: Thank you for finding the medicine for me. I hope the healing cave was not too terrifying or confusing. I plan to give you something after the Doctor heals me. 
+Please, sit down at the chair to your left and rest.
+Doctor: Unfortunately, Torkana's injuries will take a little longer to heal.  He won't be able to travel with you to Merami.
 Torkana: I wanted to give you this magical amulet. It will be your guiding light for the rest of your journey, since I cannot come with you. I hope your trip to Merami is an exciting learning experience that you can manage. There will be hardships, but do not let these overcome you.
 Take this amulet and allow it to guide you at rough times.
 Now that you have the amulet, you can head off on your journey. Merami is highlighted on your map, so you should not have trouble finding it.
@@ -100,12 +100,12 @@ Girl: I got separated from my parents as people were running away from the monst
 I don’t think they love me! Or else why would they not have come back for me once they noticed I got left behind?
 You reassure the girl that her parents do love her, but she still seems sad.  You decide to see if you can find something that would show her that her parents still love her.
 Look around for something that shows love.  Perhaps something she created that her parents saved.
-Those drawings should do the trick.  You should bring them out to the girl.
-You show the girl the drawings.
-You: Look! They care about what you do. All your drawings are up on the wall. They must be really proud of you!
+Those writings should do the trick.  You should bring them out to the girl.
+You show the girl the writings.
+You: Look! They care about what you do. All your writings are out on their desk. They must be really proud of you!
 Girl: I guess...
 She does not seem convinced yet.  Maybe you can find something more important if you look again.
-The drawings were not enough.  Maybe there is something more permanent you can find.
+The writings were not enough.  Maybe there is something more permanent you can find.
 These look like picutres of her!  Those definitely show that her parents love her!
 You: You are so important to them! All the pictures on the wall are photos of you. If they didn’t love you, why would they have your pictures all over the place?
 Girl: I suppose you are right…
@@ -114,7 +114,7 @@ One more important thing should be enough to fully convince her.  Surely there i
 This locket has a family portrait inside of it!  It must be extremely important to her.  It even has the words "I love you" on the back of it!
 You hand the locket to the girl, who stops crying.
 Girl: I had totally forgotten about this necklace!  You are right! My parents do love me. There is no way that they will not come back for me. I will wait as long as I have to until they get here!
-Girl: MOM!  DAD!
+(You see her parents come running up to the house)  Girl: MOM!  DAD!
 Seeing the girl reunited with her family, you say goodbye and head back to the son of the foreman.
 Son: Your willingness and ability to help the townspeople have increased my trust in you, but there is one more task for you to complete before I make a decision about giving the map to you.
 I need you to defeat the cyclops that has been bullying the townspeople and bashing things in the middle of the town. We have no idea why he is doing this. Perhaps, talking to some townspeople along your way there will give you some clues.

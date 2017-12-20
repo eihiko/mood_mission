@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -77,6 +77,7 @@ public class PlayerStatusBars : MonoBehaviour {
 
 	public float damageCooldown;
 	private bool onCD;
+
 	// Use this for initialization
 	void Start () {
 		currentMission = mm.getCurrentMission ();
@@ -94,10 +95,12 @@ public class PlayerStatusBars : MonoBehaviour {
 		maxXValueComp = compTransform.position.x;
 		minXValueComp = compTransform.position.x - compTransform.rect.width;
 
-		currentCompassion = (int)maxCompassion;
-		currentCourage = (int)maxCourage;
-
 		onCD = false;
+
+		currentCompassion = 50;
+		currentCourage = 5;
+		HandleCourage ();
+		HandleCompassion ();
 
 	}
 
@@ -107,7 +110,7 @@ public class PlayerStatusBars : MonoBehaviour {
 
 		if (!mm.getCurrentMission ().Equals (currentMission)) {
 			currentMission = mm.getCurrentMission ();
-			Debug.Log ("Mission Changed");
+			//Debug.Log ("Mission Changed");
 		}
 
 	}

@@ -62,10 +62,15 @@ public class Saver : MonoBehaviour {
             Debug.Log("Found loadData!");
             loadData.UpdatePlayer(player);
             loadData.UpdateTorkana(torkana);
-            loadData.UpdatePlayerCam(playerCam);
+			loadData.UpdatePlayerCam(playerCam);
             loadData.UpdateMapCam(mapCam);
-            missionManager.StartMission(loadData.mission);
+            missionManager.StartMission(loadData.mission, loadData.currentEvent);
             loadData = null;
+			this.GetComponent<PauseMenu>().setPaused(true);
+			Time.timeScale = 0;
+			EventHandler handler = GameObject.Find("EventHandler").GetComponent<EventHandler>();
+			//handler.currState = GameState.PAUSE;
+			handler.updateGame(EventHandler.GameState.PAUSE);
         }
     }
 
@@ -77,6 +82,7 @@ public class Saver : MonoBehaviour {
         data.StorePlayerCam(playerCam);
         data.StoreMapCam(mapCam);
         data.mission = missionManager.MissionsCompleted();
+		data.currentEvent = (int)missionManager.getCurrentMission().getCurrentMissionEvent ();
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream file = File.Create(Path(filename));
         formatter.Serialize(file, data);

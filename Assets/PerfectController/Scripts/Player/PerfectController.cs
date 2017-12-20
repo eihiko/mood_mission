@@ -37,10 +37,16 @@ public class PerfectController : MonoBehaviour {
 		pitch = 0;
 		velocity = Vector3.zero;
 	}
-	
+
 	public void UpdatePlayer(EventHandler.GameState state){
+		//Lines added here to fix loading issues.  Tried OnLevelWasLoaded, didn't always work.
+		cam = transform.FindChild("Camera").transform;
+		//Debug.Log (cam.ToString () + " was found?");
+		controller = gameObject.GetComponent<CharacterController>();
+
 		if (state != EventHandler.GameState.PAUSE) {
 			snapToGround ();
+			//Debug.Log("Snapped!");
 			checkGrounded ();
 
 			if (!isControllable){
@@ -78,11 +84,11 @@ public class PerfectController : MonoBehaviour {
 			pitch = Mathf.Clamp (pitch, -60f, 60f);
 		}
 		transform.localEulerAngles = new Vector3(0, yaw, 0);
-<<<<<<< HEAD
-		cam.localEulerAngles = new Vector3 (pitch, 9, 0);
-=======
+//<<<<<<< HEAD
+		//cam.localEulerAngles = new Vector3 (pitch, 9, 0);
+//=======
 		cam.localEulerAngles = new Vector3(pitch, 0, 0);
->>>>>>> refs/remotes/origin/save
+//>>>>>>> refs/remotes/origin/save
 	}
 	
 	private void applyMoveForces(float mult) {

@@ -6,9 +6,10 @@ public class MinimapUpdater : MonoBehaviour {
 	public GameObject playerMarker, objectiveArrow;
 	public GameObject TorkanaMarker;
 	public GameObject TavernMarker, SonMarker, MT3Marker, BlacksmithMarker, FT1Marker, 
-	GirlMarker, BoathouseMarker, MapMarker, GardenMarker, CityMarker, DoctorMarker, TownCenterMarker, DragonMarker;
+	GirlMarker, BoathouseMarker, MapMarker, GardenMarker, CityMarker, DoctorMarker, 
+	AppleLadyMarker, TownCenterMarker, SewerMarker, DragonMarker;
 
-	GameObject[] allMarkers = new GameObject[14];
+	GameObject[] allMarkers = new GameObject[16];
 
 	public GameObject CurrentObjective;
 
@@ -26,8 +27,10 @@ public class MinimapUpdater : MonoBehaviour {
 		allMarkers [9] = GardenMarker;
 		allMarkers [10] = CityMarker;
 		allMarkers [11] = DoctorMarker;
-		allMarkers [12] = TownCenterMarker;
-		allMarkers [13] = DragonMarker;;
+		allMarkers [12] = AppleLadyMarker;
+		allMarkers [13] = TownCenterMarker;
+		allMarkers [14] = SewerMarker;
+		allMarkers [15] = DragonMarker;;
 		changeObjective ("nothing");
 		CurrentObjective = playerMarker;
 	}
@@ -121,22 +124,34 @@ public class MinimapUpdater : MonoBehaviour {
 			deactivateOthers(11);
 			playerMarker.SetActive(false);
 			break;
+		case "Apple Lady":
+			this.CurrentObjective = this.AppleLadyMarker;
+			this.objectiveArrow.SetActive(true);
+			deactivateOthers(12);
+			playerMarker.SetActive(false);
+			break;
 		case "Town Center":
 			this.CurrentObjective = this.TownCenterMarker;
 			this.objectiveArrow.SetActive(true);
-			deactivateOthers(12);
+			deactivateOthers(13);
+			playerMarker.SetActive(false);
+			break;
+		case "Sewer":
+			this.CurrentObjective = this.SewerMarker;
+			this.objectiveArrow.SetActive(true);
+			deactivateOthers(14);
 			playerMarker.SetActive(false);
 			break;
 		case "Dragon":
 			this.CurrentObjective = this.DragonMarker;
 			this.objectiveArrow.SetActive(true);
-			deactivateOthers(13);
+			deactivateOthers(15);
 			playerMarker.SetActive(false);
 			break;
 		default:
 			this.objectiveArrow.SetActive (false);
 			playerMarker.SetActive(true);
-			deactivateOthers(0); //Deactivate all markers, except Torkana because he's important.  And it's easy.
+			deactivateOthers(100); //Deactivate all markers
 			break;
 		}
 	}

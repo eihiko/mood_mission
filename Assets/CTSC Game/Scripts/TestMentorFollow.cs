@@ -102,8 +102,10 @@ public class TestMentorFollow : MonoBehaviour {
 			return;
 		}
 		
+		//manhattan = System.Math.Abs(torkanaTrans.position.x - playerTrans.position.x) +
+			//System.Math.Abs(torkanaTrans.position.y - playerTrans.position.y);
 		manhattan = System.Math.Abs(torkanaTrans.position.x - playerTrans.position.x) +
-			System.Math.Abs(torkanaTrans.position.y - playerTrans.position.y);
+			System.Math.Abs(torkanaTrans.position.z - playerTrans.position.z);
 		
 		//Debug.Log ("Manhattan distance between Torkana and Player is: " + manhattan);
 		
@@ -127,8 +129,10 @@ public class TestMentorFollow : MonoBehaviour {
 		}
 		
 		//check Torkana's dist from the target dest
+		//manhattan = System.Math.Abs(torkanaTrans.position.x - agentDests[currIndex].x) +
+			//System.Math.Abs(torkanaTrans.position.y - agentDests[currIndex].y);
 		manhattan = System.Math.Abs(torkanaTrans.position.x - agentDests[currIndex].x) +
-			System.Math.Abs(torkanaTrans.position.y - agentDests[currIndex].y);
+			System.Math.Abs(torkanaTrans.position.z - agentDests[currIndex].z);
 		//Debug.Log ("Torkana is: " + manhattan + " from the current goal dest.");
 		//Debug.Log("Number of destinations is: " + numDests);
 		
@@ -161,7 +165,8 @@ public class TestMentorFollow : MonoBehaviour {
 		if(Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
 		{
 			//get where on the z axis our raycast hit the ground
-			float z = hitInfo.point.z;
+			//float z = hitInfo.point.z;
+			float y = hitInfo.point.y;
 
 //			Debug.Log("A raycast hit the terrain with z: " + z);
 			
@@ -169,7 +174,8 @@ public class TestMentorFollow : MonoBehaviour {
 			Vector3 pos = torkanaTrans.position;
 			
 			//change z to where on the z axis our raycast hit the ground
-			pos.z = z;
+			//pos.z = z;
+			pos.y = y;
 			
 			//override our position with the new adjusted position.
 			torkanaTrans.position = pos;

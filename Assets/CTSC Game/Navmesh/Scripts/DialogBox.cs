@@ -138,6 +138,10 @@ public class OldDialogBox : MonoBehaviour {
 			this.pageNum++;
 			scrollBar.value = 1;
 		}
+		//If at the last page, do textDone instead
+		else if (this.pageNum >= this.textNum + numParagraphs - 1) {
+			textDone ();
+		}
 	}
 
 	public void prevPage()

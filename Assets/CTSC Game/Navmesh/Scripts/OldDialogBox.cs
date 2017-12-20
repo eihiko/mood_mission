@@ -129,7 +129,7 @@ public class DialogBox : MonoBehaviour {
 	public void nextPage() 
 	{
 		//go forward the current page number plus the number of paragraphs
-		if(this.pageNum < (this.textNum + numParagraphs) - 1) {
+		if (this.pageNum < (this.textNum + numParagraphs) - 1) {
 			this.pageNum++;
 			scrollBar.value = 1;
 		}

@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-﻿using UnityEngine;
+//<<<<<<< HEAD
+/*﻿*/using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,13 +108,13 @@ public class MissionManager : MonoBehaviour {
 	//mission objects
 	public GameObject TorkanaHouse, TorkanaSitPos, inFrontTorkanaDoor,
 	inFrontTorkanaHouse;
-	public GameObject Candle, Sun;
+	public GameObject Candle, Sun, Key;
 	public GameObject MentorBasement, ChestClosed, ChestOpen;
 	public GameObject TorkanaStandPos, leavingHouse;
-	public GameObject atBeeArea, DoctorGardenBees;
+	public GameObject TorkanaStandBees, atBeeArea, DoctorGardenBees;
 	public GameObject continueBees,turnBackBees;
 	public int choiceForBees1 = 2;
-	public GameObject Map, Bees, DoctorsHouse, PlayerEnterDoctors, TorkanaEnterDoctors;
+	public GameObject Map, Bees, DoctorsHouse, TorkanaStandDoctor, PlayerEnterDoctors, TorkanaEnterDoctors;
 	public GameObject nearDoctor, TorkanaNearDoctor, Doctor, GoingToBees, BackToDoctors, LeavingDoctor;
 	public GameObject continueHerb, turnBackHerb;
 	public int choiceForBees2 = 2;
@@ -203,7 +203,7 @@ public class MissionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//test (11); //Set number of missions to skip when testing
+		test (1); //Set number of missions to skip when testing
 		getCurrentMission ();
 		UISet.SetActive (true);
 		if (firstPlay == true){
@@ -246,6 +246,37 @@ public class MissionManager : MonoBehaviour {
 			Mission currMission = getCurrentMission();
 			missionHistory[currMission] = true;
 		}
+	}
+
+	public void StartMission(int missionsCompleted, int currentEvent){
+		Debug.Log("Jumping to mission " + missionsCompleted);
+		for (int i = 0; i < missionHistory.Count; i++)
+		{
+			missionHistory[missionHistory.Keys[i]] = false;
+			//missionHistory.Keys[i].resetMission();
+		}
+		for (int i=0; i<missionsCompleted; i++) {
+			Debug.Log("setting mission " + (i + 1) + " complete!");
+			missionHistory[missionHistory.Keys[i]] = true;
+		}
+		Debug.Log ("Jumping to event " + (EventType)currentEvent);
+		for (int i=0; i<currentEvent; i++) {
+			Debug.Log ("setting event " + (i + 1) + " complete!");
+			this.getCurrentMission ().setEventComplete ((EventType)i);
+		}
+	}
+	
+	public int MissionsCompleted()
+	{
+		int total = 0;
+		foreach(bool completed in missionHistory.Values)
+		{
+			if (completed)
+			{
+				total++;
+			}
+		}
+		return total;
 	}
 
 	public void playUI(string name){
@@ -475,7 +506,7 @@ public class MissionManager : MonoBehaviour {
 		}
 	} 
 }
-=======
+/*=======
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -652,7 +683,7 @@ public class MissionManager : MonoBehaviour {
 	 * This is essentially a truth table to determine what missions the player
 	 * has completed.
 	 */
-	private SortedList<Mission, bool> missionHistory = new SortedList<Mission, bool>();
+/*	private SortedList<Mission, bool> missionHistory = new SortedList<Mission, bool>();
 
 	void Awake(){
 		DontDestroyOnLoad (transform.gameObject);
@@ -759,7 +790,7 @@ public class MissionManager : MonoBehaviour {
 		 * we can iterate through list of missions and find the first
 		 * that is not complete. That will be the next mission to complete.
 		 */
-		foreach(KeyValuePair<Mission, bool> mission in missionHistory){
+		/*foreach(KeyValuePair<Mission, bool> mission in missionHistory){
 			//Debug.Log("Current mission id is: " + mission.Key.getID());
 			GameObject currMission = missionObjects[mission.Key.getID()];
 			if (!mission.Value) {
@@ -789,7 +820,7 @@ public class MissionManager : MonoBehaviour {
 	 * Currently, the missions are indexed by their placement in the enum 
 	 * MissionType. The first element has a 0 index and hence, it is the first mission.
 	 */
-	private void initializeMissions(){
+	/*private void initializeMissions(){
 		Mission currMission;
 		TransportPlayer missionStart;
 		//List<Transform> eventTransforms = new List<Transform>();
@@ -939,4 +970,4 @@ public class MissionManager : MonoBehaviour {
 		}
 	} 
 }
->>>>>>> refs/remotes/origin/save
+>>>>>>> refs/remotes/origin/save*/

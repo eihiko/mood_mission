@@ -10,11 +10,17 @@ public class SaveData{
     public float[] playerCam = new float[6];
     public float[] mapCam = new float[6];
     public int mission;
+	public int currentEvent;
 
     public void StoreMission(int mission)
     {
         this.mission = mission;
     }
+
+	public void StoreEvent(int currEvent)
+	{
+		this.currentEvent = currEvent;
+	}
 
     public void StorePlayer(Transform player)
     {
@@ -39,6 +45,9 @@ public class SaveData{
     public void UpdatePlayer(Transform player)
     {
         UpdateTransform(this.player, player);
+		PerfectController controller = player.GetComponent<PerfectController> ();
+		controller.UpdatePlayer (EventHandler.GameState.PAUSE);
+		player.GetComponent<Rigidbody> ().useGravity = true;
     }
 
     public void UpdateTorkana(Transform torkana)

@@ -40,24 +40,209 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventHandler: {fileID: 0}
-  UISet: {fileID: 100068, guid: d57fd302bb55dfe46af7bb8f7e0fb82f, type: 2}
+  damageHandler: {fileID: 0}
+  UISet: {fileID: 0}
   missionObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   Player: {fileID: 0}
   Torkana: {fileID: 0}
   currentUI: {fileID: 0}
+  startPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   TorkanaHouse: {fileID: 0}
   TorkanaSitPos: {fileID: 0}
   inFrontTorkanaDoor: {fileID: 0}
   inFrontTorkanaHouse: {fileID: 0}
   Candle: {fileID: 0}
+  Sun: {fileID: 0}
+  Key: {fileID: 0}
   MentorBasement: {fileID: 0}
   ChestClosed: {fileID: 0}
   ChestOpen: {fileID: 0}
   TorkanaStandPos: {fileID: 0}
   leavingHouse: {fileID: 0}
   atBeeArea: {fileID: 0}
+  DoctorGardenBees: {fileID: 0}
+  continueBees: {fileID: 0}
+  turnBackBees: {fileID: 0}
+  choiceForBees1: 2
+  Map: {fileID: 0}
+  Bees: {fileID: 0}
+  DoctorsHouse: {fileID: 0}
+  PlayerEnterDoctors: {fileID: 0}
+  TorkanaEnterDoctors: {fileID: 0}
+  nearDoctor: {fileID: 0}
+  TorkanaNearDoctor: {fileID: 0}
+  Doctor: {fileID: 0}
+  GoingToBees: {fileID: 0}
+  BackToDoctors: {fileID: 0}
+  LeavingDoctor: {fileID: 0}
+  continueHerb: {fileID: 0}
+  turnBackHerb: {fileID: 0}
+  choiceForBees2: 2
+  Amulet: {fileID: 0}
+  CityEntrance: {fileID: 0}
+  InjuredPerson: {fileID: 0}
+  nearInjuredPerson: {fileID: 0}
+  TavernKeeper: {fileID: 0}
+  TavernEntrance: {fileID: 0}
+  insideTavern: {fileID: 0}
+  nearTavernKeeper: {fileID: 0}
+  ReturningWithMedicine: {fileID: 0}
+  ReturnToTavern: {fileID: 0}
+  toTheSon: {fileID: 0}
+  tavernSupplyButton: {fileID: 0}
+  injuredPersonButton: {fileID: 0}
+  water2Button: {fileID: 0}
+  choiceForSupply: 3
+  choiceWater: 2
+  HealingCaveEntrance: {fileID: 0}
+  HealingCaveExit: {fileID: 0}
+  BlockedPath: {fileID: 0}
+  healthPotion: {fileID: 0}
+  CaveSwitch: {fileID: 0}
+  CaveGateOpened: {fileID: 0}
+  CaveGateClosed: {fileID: 0}
+  TDC: {fileID: 0}
+  Son: {fileID: 0}
+  InsideSonHouse: {fileID: 0}
+  OutsideSonHouse: {fileID: 0}
+  leavingSonsHouse: {fileID: 0}
+  MT3: {fileID: 0}
+  InsideMT3House: {fileID: 0}
+  OutsideMT3House: {fileID: 0}
+  GoingToBlacksmith: {fileID: 0}
+  PuzzleGridCanvas: {fileID: 0}
+  Grid: {fileID: 0}
+  firstPic: {fileID: 0}
+  secondPic: {fileID: 0}
+  thirdPic: {fileID: 0}
+  Blacksmith: {fileID: 0}
+  AtBlacksmith: {fileID: 0}
+  leavingBlacksmith: {fileID: 0}
+  BackWithTools: {fileID: 0}
+  Tools: {fileID: 0}
+  Letters: {fileID: 0}
+  FT1: {fileID: 0}
+  AtFT1House: {fileID: 0}
+  InsideFT1House: {fileID: 0}
+  OutsideFT1House: {fileID: 0}
+  Thunder: {fileID: 0}
+  RainMaker: {fileID: 0}
+  choiceInRain: 2
+  choiceInTavern: 2
+  turnBack: {fileID: 0}
+  moveOn: {fileID: 0}
+  shelterAtFT1: {fileID: 0}
+  backAtFT1: {fileID: 0}
+  leavingHouseAgain: {fileID: 0}
+  safeInTavern: {fileID: 0}
+  leavingTavernAgain: {fileID: 0}
+  tavernRainButton: {fileID: 0}
+  YoungGirl: {fileID: 0}
+  CryingSound: {fileID: 0}
+  hearGirlCrying: {fileID: 0}
+  nearGirl: {fileID: 0}
+  insideGirlHouse: {fileID: 0}
+  nearDrawings: {fileID: 0}
+  drawingExit: {fileID: 0}
+  inside2: {fileID: 0}
+  nearPictures: {fileID: 0}
+  pictureExit: {fileID: 0}
+  inside3: {fileID: 0}
+  nearLocket: {fileID: 0}
+  locketExit: {fileID: 0}
+  GirlsFather: {fileID: 0}
+  GirlsMother: {fileID: 0}
+  fatherStop: {fileID: 0}
+  motherStop: {fileID: 0}
+  YoungGirlStand: {fileID: 0}
+  BackFromDeeds: {fileID: 0}
+  OnwardToCyclops: {fileID: 0}
+  nearAppleLady: {fileID: 0}
+  AppleLady: {fileID: 0}
+  nearKid: {fileID: 0}
+  Kid: {fileID: 0}
+  hearLaugh: {fileID: 0}
+  nearGuard: {fileID: 0}
+  Guard: {fileID: 0}
+  nearCyclops: {fileID: 0}
+  Cyclops: {fileID: 0}
+  cyclopsChoice: {fileID: 0}
+  finalSonStop: {fileID: 0}
+  sewerEntrance: {fileID: 0}
+  keySpied: {fileID: 0}
+  Spiders1: {fileID: 0}
+  spiderMovePoint: {fileID: 0}
+  spider1Button: {fileID: 0}
+  choiceSewerSpiders: {fileID: 0}
+  SewerKey: {fileID: 0}
+  closedDoor: {fileID: 0}
+  openDoor: {fileID: 0}
+  officeDoor: {fileID: 0}
+  Foreman: {fileID: 0}
+  leverTrigger: {fileID: 0}
+  openLever: {fileID: 0}
+  thrownLever: {fileID: 0}
+  hydraDoor: {fileID: 0}
+  entranceToArena: {fileID: 0}
+  Hydra: {fileID: 0}
+  hydraHit1: {fileID: 0}
+  hydraHit2: {fileID: 0}
+  hydraDefeated: {fileID: 0}
+  hydraTransport: {fileID: 0}
+  ForemanHouseTransport: {fileID: 0}
+  facingTheHydra: {fileID: 0}
+  nearForeman: {fileID: 0}
+  ForemanStand: {fileID: 0}
+  toTheBoathouse: {fileID: 0}
+  atBoathouse: {fileID: 0}
+  Troll: {fileID: 0}
+  atBoat: {fileID: 0}
+  breather: {fileID: 0}
+  breather2: {fileID: 0}
+  boatButton: {fileID: 0}
+  choiceBoat: 3
+  islandDock: {fileID: 0}
+  atOgre: {fileID: 0}
+  pathToDragon: {fileID: 0}
+  Ogre: {fileID: 0}
+  Snakes: {fileID: 0}
+  snakeMovePoint: {fileID: 0}
+  atDragon: {fileID: 0}
+  Dragon: {fileID: 0}
+  snakeButton: {fileID: 0}
+  choiceSnakes: {fileID: 0}
+  dragonDefeated: {fileID: 0}
+  currMissionType: 0
+  sunny: {fileID: 2100000, guid: a2126534b3a11b34e977105bd9e3cc03, type: 2}
+  darkness: {fileID: 2100000, guid: 5aab239cac7fe8a4c931693a7535da5c, type: 2}
+  rainy: {fileID: 2100000, guid: 931987be26c9646429c56f8a4692bb81, type: 2}
+  night: {fileID: 2100000, guid: 5ba172cd3918d7c44aa6d04446119a00, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

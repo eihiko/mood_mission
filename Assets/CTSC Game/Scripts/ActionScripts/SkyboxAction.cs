@@ -35,7 +35,7 @@ public class SkyboxAction : MissionAction {
 
 	public SkyboxAction(bool darkness){
 		if (darkness)
-			toShift = Color.black;
+			toShift = Color.gray;
 		else
 			toShift = Color.white;
 		lightShift = true;
